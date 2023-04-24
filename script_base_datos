@@ -1,0 +1,37 @@
+CREATE DATABASE joyeria;
+
+USE joyeria;
+
+CREATE TABLE joya (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(255) NOT NULL,
+    id_tipo_joya INT(11) NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (id_tipo_joya) REFERENCES tipo_joya(id)
+);
+
+CREATE TABLE tipo_joya (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(255) NOT NULL,
+    descripcion TEXT,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE locacion (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(255) NOT NULL,
+    direccion VARCHAR(255) NOT NULL,
+    ciudad VARCHAR(255) NOT NULL,
+    pais VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE inventario (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    id_joya INT(11) NOT NULL,
+    id_locacion INT(11) NOT NULL,
+    cantidad INT(11) NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (id_joya) REFERENCES joya(id),
+    FOREIGN KEY (id_locacion) REFERENCES locacion(id)
+);
