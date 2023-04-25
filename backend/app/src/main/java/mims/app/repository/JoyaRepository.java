@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface JoyaRepository extends JpaRepository<JoyaEntity, Integer> {
+
+    public Iterable<JoyaEntity> findAllByDeletedFalse();
 }

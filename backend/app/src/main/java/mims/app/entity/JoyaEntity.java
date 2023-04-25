@@ -16,32 +16,11 @@ public class JoyaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "nombre")
     private String nombre;
-    @Column(name = "id_tipo_joya")
-    private int idTipoJoya;
+    private int id_tipo_joya;
+    private boolean deleted;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public int getIdTipoJoya() {
-        return idTipoJoya;
-    }
-
-    public void setIdTipoJoya(int idTipoJoya) {
-        this.idTipoJoya = idTipoJoya;
+    public void setDeleted(boolean b) {
+        this.deleted = b;
     }
 }
