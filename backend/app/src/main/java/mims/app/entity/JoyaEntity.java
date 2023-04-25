@@ -12,6 +12,9 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+/**
+ * Esta clase representa la tabla joya
+ * */
 public class JoyaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
