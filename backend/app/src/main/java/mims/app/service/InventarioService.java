@@ -10,17 +10,53 @@ import java.util.ArrayList;
 
 @Service
 public class InventarioService {
+
+    /**
+     * se inyecta el repositorio de inventario
+     */
     @Autowired
     private InventarioRepository inventarioRepository;
 
+    /**
+     * este metodo devuelve todos los inventarios que no estan borrados
+     * @return ResponseEntity<ArrayList<InventarioEntity>>
+     */
     public ResponseEntity<ArrayList<InventarioEntity>> get_all_inventarios_not_deleted() {
         return ResponseEntity.ok((ArrayList<InventarioEntity>) inventarioRepository.findAllByDeletedFalse());
     }
 
+    /**
+     * este metodo devuelve todos los inventarios que no estan borrados
+     * @return ResponseEntity<ArrayList<InventarioEntity>>
+     */
+
+    public ResponseEntity<ArrayList<InventarioEntity>> get_all_inventarios_not_deleted_by_id_locacion(int id_locacion) {
+        return ResponseEntity.ok((ArrayList<InventarioEntity>) inventarioRepository.findAllByDeletedFalseAndIdLocacion(id_locacion));
+    }
+
+
+    /**
+     * este metodo devuelve todos los inventarios que no estan borrados
+     * y que tengan el id de la joya
+     * @return ResponseEntity<ArrayList<InventarioEntity>>
+     */
+    public ResponseEntity<ArrayList<InventarioEntity>> get_all_inventarios_not_deleted_by_id_joya(int id_joya) {
+        /** retorna todos los inventarios que no estan borrados y que tengan el id de la joya y que tengan 1 o mas elementos*/
+        return ResponseEntity.ok((ArrayList<InventarioEntity>) inventarioRepository.findAllByDeletedFalseAndIdJoyaAndCantidadGreaterThan(id_joya, 0));
+    }
+
+    /**
+     * este metodo devuelve un inventario por id
+     * @return ResponseEntity<InventarioEntity>
+     */
     public ResponseEntity<InventarioEntity> get_inventario_by_id(int id) {
         return inventarioRepository.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
+    /**
+     * este metodo actualiza un inventario
+     * @return ResponseEntity<InventarioEntity>
+     */
     public ResponseEntity<InventarioEntity> update_inventario(InventarioEntity inventario, int id) {
         return inventarioRepository.findById(id).map(inventario_data -> {
             inventario_data.setCantidad(inventario.getCantidad());
@@ -29,10 +65,18 @@ public class InventarioService {
         }).orElse(ResponseEntity.notFound().build());
     }
 
+    /**
+     * este metodo crea un inventario
+     * @return ResponseEntity<InventarioEntity>
+     */
     public ResponseEntity<InventarioEntity> save_inventario(InventarioEntity inventario) {
         return ResponseEntity.ok(inventarioRepository.save(inventario));
     }
 
+    /**
+     * este metodo borra un inventario
+     * @return ResponseEntity<InventarioEntity>
+     */
     public ResponseEntity<InventarioEntity> delete_inventario(int id) {
         return inventarioRepository.findById(id).map(inventario -> {
             inventario.setDeleted(true);

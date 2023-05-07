@@ -9,9 +9,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-/**
- * Esta clase representa el servicio de la entidad Joya
- */
 public class JoyaService {
     /**
      * Esta clase representa el repositorio de la tabla joya
@@ -21,7 +18,6 @@ public class JoyaService {
 
     /**
      * Este metodo devuelve todas las joyas que no estan borradas
-     * @param void
      * @return ResponseEntity<ArrayList<JoyaEntity>>
      */
     public ResponseEntity<ArrayList<JoyaEntity>> get_all_joyas_not_deleted() {
@@ -30,17 +26,17 @@ public class JoyaService {
 
     /**
      * Este metodo devuelve una joya por id
-     * @param id
+     * @param id es el id de la joya
      * @return ResponseEntity<JoyaEntity>
      */
     public ResponseEntity<JoyaEntity> get_joya_by_id(int id) {
-        return joyaRepository.findById(id).map(joya -> ResponseEntity.ok(joya)).orElse(ResponseEntity.notFound().build());
+        return joyaRepository.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     /**
      * Este metodo actualiza una joya
-     * @param joya
-     * @param id
+     * @param joya es la joya a actualizar
+     * @param id es el id de la joya
      * @return ResponseEntity<JoyaEntity>
      */
     public ResponseEntity<JoyaEntity> update_joya(JoyaEntity joya, int id) {
@@ -54,7 +50,7 @@ public class JoyaService {
 
     /**
      * Este metodo crea una joya
-     * @param joya
+     * @param joya es la joya a crear
      * @return ResponseEntity<JoyaEntity>
      */
     public ResponseEntity<JoyaEntity> save_joya(JoyaEntity joya) {
@@ -63,26 +59,16 @@ public class JoyaService {
 
     /**
      * Este metodo borra una joya
-     * @param id
+     * @param id es el id de la joya
      * @return ResponseEntity<?>
      */
-    public ResponseEntity<?> soft_delete_joya(int id) {
-        return joyaRepository.findById(id).map(joya -> {
-            joya.setDeleted(true);
-            joyaRepository.save(joya);
-            return ResponseEntity.ok().build();
-        }).orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<JoyaEntity> soft_delete_joya(int id) {
+           return joyaRepository.findById(id).map(joya -> {
+                joya.setDeleted(true);
+                JoyaEntity joya_deleted = joyaRepository.save(joya);
+                return ResponseEntity.ok().body(joya_deleted);
+            }).orElse(ResponseEntity.notFound().build());
     }
 
-    /**
-     * Este metodo borra una joya
-     * @param id
-     * @return ResponseEntity<?>
-     */
-    public ResponseEntity<?> delete_joya(int id) {
-        return joyaRepository.findById(id).map(joya -> {
-            joyaRepository.delete(joya);
-            return ResponseEntity.ok().build();
-        }).orElse(ResponseEntity.notFound().build());
-    }
+
 }
