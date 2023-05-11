@@ -41,6 +41,9 @@ public class InventarioService {
     public ResponseEntity<InventarioEntity> update_inventario(InventarioEntity inventario, int id) {
         return inventarioRepository.findById(id).map(inventario_data -> {
             inventario_data.setCantidad(inventario.getCantidad());
+            inventario_data.setId_joya(inventario.getId_joya());
+            inventario_data.setPrecio(inventario.getPrecio());
+            inventario_data.setId_locacion(inventario.getId_locacion());
             InventarioEntity inventario_updated = inventarioRepository.save(inventario_data);
             return ResponseEntity.ok().body(inventario_updated);
         }).orElse(ResponseEntity.notFound().build());
