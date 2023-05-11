@@ -25,6 +25,10 @@ public class InventarioEntity {
 
         @Column(name = "cantidad")
         private int cantidad;
+
+        @Column(name = "precio")
+        private float precio;
+
         private boolean deleted;
 
         public void setDeleted(boolean b) {
