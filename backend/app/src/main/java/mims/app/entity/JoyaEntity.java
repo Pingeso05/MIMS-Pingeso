@@ -19,7 +19,11 @@ public class JoyaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "nombre")
     private String nombre;
+
+    @Column(name = "id_tipo_joya")
     private int id_tipo_joya;
     private boolean deleted;
 

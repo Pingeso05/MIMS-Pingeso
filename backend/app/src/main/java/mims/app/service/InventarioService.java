@@ -25,25 +25,6 @@ public class InventarioService {
         return ResponseEntity.ok((ArrayList<InventarioEntity>) inventarioRepository.findAllByDeletedFalse());
     }
 
-    /**
-     * este metodo devuelve todos los inventarios que no estan borrados
-     * @return ResponseEntity<ArrayList<InventarioEntity>>
-     */
-
-    public ResponseEntity<ArrayList<InventarioEntity>> get_all_inventarios_not_deleted_by_id_locacion(int id_locacion) {
-        return ResponseEntity.ok((ArrayList<InventarioEntity>) inventarioRepository.findAllByDeletedFalseAndIdLocacion(id_locacion));
-    }
-
-
-    /**
-     * este metodo devuelve todos los inventarios que no estan borrados
-     * y que tengan el id de la joya
-     * @return ResponseEntity<ArrayList<InventarioEntity>>
-     */
-    public ResponseEntity<ArrayList<InventarioEntity>> get_all_inventarios_not_deleted_by_id_joya(int id_joya) {
-        /** retorna todos los inventarios que no estan borrados y que tengan el id de la joya y que tengan 1 o mas elementos*/
-        return ResponseEntity.ok((ArrayList<InventarioEntity>) inventarioRepository.findAllByDeletedFalseAndIdJoyaAndCantidadGreaterThan(id_joya, 0));
-    }
 
     /**
      * este metodo devuelve un inventario por id

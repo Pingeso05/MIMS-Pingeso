@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -19,6 +16,8 @@ public class LocacionEntity {
         @Id
         @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
         private int id;
+
+        @Column(name = "nombre")
         private String nombre;
         private boolean deleted;
 
