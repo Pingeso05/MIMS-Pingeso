@@ -1,5 +1,6 @@
 package mims.app.service;
 
+import mims.app.Model.DisplayInventarioModelInterface;
 import mims.app.entity.InventarioEntity;
 import mims.app.repository.InventarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,8 @@ public class InventarioService {
      * este metodo devuelve todos los inventarios que no estan borrados
      * @return ResponseEntity<ArrayList<InventarioEntity>>
      */
-    public ResponseEntity<ArrayList<InventarioEntity>> get_all_inventarios_not_deleted() {
-        return ResponseEntity.ok((ArrayList<InventarioEntity>) inventarioRepository.findAllByDeletedFalse());
+    public ArrayList<DisplayInventarioModelInterface> get_all_inventarios_not_deleted() {
+        return inventarioRepository.findAllInventario();
     }
 
 
@@ -44,6 +45,7 @@ public class InventarioService {
             inventario_data.setId_joya(inventario.getId_joya());
             inventario_data.setPrecio(inventario.getPrecio());
             inventario_data.setId_locacion(inventario.getId_locacion());
+            inventario_data.setId_tipo_joya(inventario.getId_tipo_joya());
             InventarioEntity inventario_updated = inventarioRepository.save(inventario_data);
             return ResponseEntity.ok().body(inventario_updated);
         }).orElse(ResponseEntity.notFound().build());

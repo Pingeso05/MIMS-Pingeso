@@ -29,6 +29,9 @@ public class InventarioEntity {
         @Column(name = "precio")
         private float precio;
 
+        @Column(name = "id_tipo_joya")
+        private int id_tipo_joya;
+
         private boolean deleted;
 
         public void setDeleted(boolean b) {

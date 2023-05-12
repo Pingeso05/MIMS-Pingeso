@@ -1,2 +1,5 @@
-package mims.app.repository;public interface DisplayInventarioRepository {
+package mims.app.repository;
+
+
+public interface DisplayInventarioRepository {
 }

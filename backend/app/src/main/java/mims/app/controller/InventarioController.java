@@ -1,5 +1,6 @@
 package mims.app.controller;
 
+import mims.app.Model.DisplayInventarioModelInterface;
 import mims.app.entity.InventarioEntity;
 import mims.app.service.InventarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +12,14 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping("/inventario")
 @SuppressWarnings("unused")
+@CrossOrigin(origins = "*")
 public class InventarioController {
 
     @Autowired
     private InventarioService inventarioService;
 
     @GetMapping
-    public ResponseEntity<ArrayList<InventarioEntity>> get_all_inventarios() {
+    public ArrayList<DisplayInventarioModelInterface> get_all_inventarios() {
         return inventarioService.get_all_inventarios_not_deleted();
     }
 
