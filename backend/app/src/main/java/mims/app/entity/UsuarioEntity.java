@@ -47,4 +47,16 @@ public class UsuarioEntity {
 
     @Column(name = "updated_at")
     private Date updated_at;
+
+    public void setDeleted(boolean b) {
+        this.deleted = b;
+    }
+
+    public void setRol(int rol) {
+        this.rol = rol;
+    }
+
+    public boolean getDeleted() {
+        return this.deleted;
+    }
 }
