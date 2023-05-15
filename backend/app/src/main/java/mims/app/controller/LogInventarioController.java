@@ -1,6 +1,7 @@
 package mims.app.controller;
 
 import mims.app.entity.LogInventarioEntity;
+import mims.app.service.LogInventarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
