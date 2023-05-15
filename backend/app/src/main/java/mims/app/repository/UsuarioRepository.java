@@ -9,5 +9,5 @@ import java.util.ArrayList;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<UsuarioEntity, Integer> {
-    ResponseEntity<ArrayList<UsuarioEntity>> get_all_usuarios_not_deleted();
+    public ArrayList<UsuarioEntity> findAllUsuariosByDeletedFalse();
 }

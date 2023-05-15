@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/tipojoya")
-@SuppressWarnings("unused")
+@CrossOrigin(origins = "*")
 public class TipoJoyaController {
 
     @Autowired

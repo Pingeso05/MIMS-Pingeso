@@ -14,19 +14,19 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public ResponseEntity<ArrayList<UsuarioEntity>> get_all_usuarios_not_deleted() {
-        return usuarioRepository.get_all_usuarios_not_deleted();
+    public ResponseEntity<ArrayList<UsuarioEntity>> get_all_not_deleted() {
+        return ResponseEntity.ok((ArrayList<UsuarioEntity>) usuarioRepository.findAllUsuariosByDeletedFalse());
     }
 
-    public ResponseEntity<UsuarioEntity> get_usuario_by_id(int id) {
+    public ResponseEntity<UsuarioEntity> get_by_id(int id) {
         return usuarioRepository.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
-    public ResponseEntity<UsuarioEntity> save_usuario(UsuarioEntity usuario) {
+    public ResponseEntity<UsuarioEntity> save(UsuarioEntity usuario) {
         return ResponseEntity.ok(usuarioRepository.save(usuario));
     }
 
-    public ResponseEntity<UsuarioEntity> update_usuario(UsuarioEntity usuario, int id) {
+    public ResponseEntity<UsuarioEntity> update(UsuarioEntity usuario, int id) {
         return usuarioRepository.findById(id).map(usuario_data -> {
             usuario_data.setNombre(usuario.getNombre());
             usuario_data.setApellido(usuario.getApellido());
@@ -40,7 +40,7 @@ public class UsuarioService {
         }).orElse(ResponseEntity.notFound().build());
     }
 
-    public ResponseEntity<UsuarioEntity> delete_usuario(int id) {
+    public ResponseEntity<UsuarioEntity> delete(int id) {
         return usuarioRepository.findById(id).map(usuario -> {
             usuario.setDeleted(true);
             UsuarioEntity usuario_deleted = usuarioRepository.save(usuario);
