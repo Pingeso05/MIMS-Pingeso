@@ -32,6 +32,18 @@ public class InventarioEntity {
         @Column(name = "id_tipo_joya")
         private int id_tipo_joya;
 
+        @Column(name = "created_by")
+        private int created_by;
+
+        @Column(name = "updated_by")
+        private int updated_by;
+
+        @Column(name = "created_at")
+        private java.sql.Timestamp created_at;
+
+        @Column(name = "updated_at")
+        private java.sql.Timestamp updated_at;
+
         private boolean deleted;
 
         public void setDeleted(boolean b) {
