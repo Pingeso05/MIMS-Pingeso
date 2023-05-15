@@ -18,27 +18,27 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @GetMapping
-    public ResponseEntity<ArrayList<UsuarioEntity>> get_all_usuarios() {
-        return usuarioService.get_all_usuarios_not_deleted();
+    public ResponseEntity<ArrayList<UsuarioEntity>> get_all() {
+        return usuarioService.get_all_not_deleted();
     }
 
     @GetMapping("/id")
-    public ResponseEntity<UsuarioEntity> get_usuario_by_id(int id) {
-        return usuarioService.get_usuario_by_id(id);
+    public ResponseEntity<UsuarioEntity> get_by_id(int id) {
+        return usuarioService.get_by_id(id);
     }
 
     @PostMapping
-    public ResponseEntity<UsuarioEntity> save_usuario(@RequestBody UsuarioEntity usuario) {
-        return usuarioService.save_usuario(usuario);
+    public ResponseEntity<UsuarioEntity> save(@RequestBody UsuarioEntity usuario) {
+        return usuarioService.save(usuario);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UsuarioEntity> update_usuario(@RequestBody UsuarioEntity usuario, @PathVariable int id) {
-        return usuarioService.update_usuario(usuario, id);
+    public ResponseEntity<UsuarioEntity> update(@RequestBody UsuarioEntity usuario, @PathVariable int id) {
+        return usuarioService.update(usuario, id);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<UsuarioEntity> delete_usuario(@PathVariable int id) {
-        return usuarioService.delete_usuario(id);
+    public ResponseEntity<UsuarioEntity> delete(@PathVariable int id) {
+        return usuarioService.delete(id);
     }
 }

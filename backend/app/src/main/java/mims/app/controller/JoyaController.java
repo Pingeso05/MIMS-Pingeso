@@ -11,6 +11,7 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping("/joya")
 @SuppressWarnings("unused")
+@CrossOrigin(origins = "*")
 public class JoyaController {
     /**
      * Esta clase representa el servicio de la entidad Joya
@@ -23,7 +24,7 @@ public class JoyaController {
     * @return ResponseEntity<ArrayList<JoyaEntity>>
     */
     @GetMapping
-    public ResponseEntity<ArrayList<JoyaEntity>> get_all_joyas() {
+    public ResponseEntity<ArrayList<JoyaEntity>> get_all() {
         return joyaService.get_all_joyas_not_deleted();
     }
 
@@ -33,7 +34,7 @@ public class JoyaController {
      * @return ResponseEntity<JoyaEntity>
      */
     @GetMapping("/{id}")
-    public ResponseEntity<JoyaEntity> get_joya_by_id(@PathVariable int id) {
+    public ResponseEntity<JoyaEntity> get_by_id(@PathVariable int id) {
         return joyaService.get_joya_by_id(id);
     }
 
@@ -43,7 +44,7 @@ public class JoyaController {
      * @return ResponseEntity<JoyaEntity> es la joya creada
      */
     @PostMapping
-    public ResponseEntity<JoyaEntity> save_joya(@RequestBody JoyaEntity joya) {
+    public ResponseEntity<JoyaEntity> save(@RequestBody JoyaEntity joya) {
         return joyaService.save_joya(joya);
     }
 
@@ -54,7 +55,7 @@ public class JoyaController {
      * @return ResponseEntity<JoyaEntity> es la joya actualizada
      */
     @PutMapping("/{id}")
-    public ResponseEntity<JoyaEntity> update_joya(@RequestBody JoyaEntity joya, @PathVariable int id) {
+    public ResponseEntity<JoyaEntity> update(@RequestBody JoyaEntity joya, @PathVariable int id) {
         return joyaService.update_joya(joya, id);
     }
 
@@ -64,7 +65,8 @@ public class JoyaController {
      * @return ResponseEntity<?> es la respuesta de la peticion
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete_joya(@PathVariable int id) {
+    public ResponseEntity<?> delete(@PathVariable int id) {
+
         return joyaService.soft_delete_joya(id);
     }
 }
