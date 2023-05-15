@@ -11,35 +11,35 @@ import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/inventario")
-@SuppressWarnings("unused")
 @CrossOrigin(origins = "*")
+@SuppressWarnings("unused")
 public class InventarioController {
 
     @Autowired
     private InventarioService inventarioService;
 
     @GetMapping
-    public ArrayList<DisplayInventarioModelInterface> get_all_inventarios() {
+    public ArrayList<DisplayInventarioModelInterface> get_all() {
         return inventarioService.get_all_inventarios_not_deleted();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<InventarioEntity> get_inventario_by_id(@PathVariable int id) {
+    public ResponseEntity<InventarioEntity> get_by_id(@PathVariable int id) {
         return inventarioService.get_inventario_by_id(id);
     }
 
     @PostMapping
-    public ResponseEntity<InventarioEntity> save_inventario(@RequestBody InventarioEntity inventario) {
+    public ResponseEntity<InventarioEntity> save(@RequestBody InventarioEntity inventario) {
         return inventarioService.save_inventario(inventario);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<InventarioEntity> update_inventario(@RequestBody InventarioEntity inventario, @PathVariable int id) {
+    public ResponseEntity<InventarioEntity> update(@RequestBody InventarioEntity inventario, @PathVariable int id) {
         return inventarioService.update_inventario(inventario, id);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<InventarioEntity> delete_inventario(@PathVariable int id) {
+    public ResponseEntity<InventarioEntity> delete(@PathVariable int id) {
         return inventarioService.delete_inventario(id);
     }
 }
