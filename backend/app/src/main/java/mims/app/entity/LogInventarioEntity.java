@@ -33,4 +33,8 @@ public class LogInventarioEntity {
     private java.sql.Timestamp fecha_registro;
 
     private boolean deleted;
+
+    public void setDeleted(boolean b) {
+        this.deleted = b;
+    }
 }
