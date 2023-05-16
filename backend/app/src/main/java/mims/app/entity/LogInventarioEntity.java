@@ -32,4 +32,5 @@ public class LogInventarioEntity {
     @Column(name = "fecha_registro", nullable = false)
     private java.sql.Timestamp fecha_registro;
 
+    private boolean deleted;
 }
