@@ -7,7 +7,6 @@ dist/
 
 # Dependencias de build
 .cache/
-public/
 *.env
 
 # Archivos temporales
