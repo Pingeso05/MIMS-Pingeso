@@ -121,7 +121,8 @@ const Inventario = () => {
                     <th>Local</th>
                     <th>Cantidad</th>
                     <th>Joya</th>
-                    <th>Precio</th>
+                    <th>Precio Costo</th>
+                    <th>Precio Real</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -132,6 +133,7 @@ const Inventario = () => {
                         <td>{producto.local}</td>
                         <td>{producto.cantidad}</td>
                         <td>{producto.joya}</td>
+                        <td>{producto.costo}</td>
                         <td>{producto.precio}</td>
                         <td>
                             <Button variant='primary' style={{ marginRight: '5px' }} onClick={() => handleChangeplus(producto)}> + </Button>

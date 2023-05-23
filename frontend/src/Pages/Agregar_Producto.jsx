@@ -6,6 +6,7 @@ import './AgregarProducto.css';
 const AgregarProducto = () => {
   const [nombreProducto, setNombreProducto] = useState('');
   const [precioCosto, setPrecioCosto] = useState('');
+  const [precioVenta, setPrecioVenta] = useState('');
   const [cantidad, setCantidad] = useState('');
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('');
   const [locacionSeleccionada, setLocacionSeleccionada] = useState('');
@@ -42,6 +43,7 @@ const AgregarProducto = () => {
     if (
       nombreProducto.trim() === '' ||
       precioCosto.trim() === '' ||
+      precioVenta.trim() === '' ||
       cantidad.trim() === '' ||
       categoriaSeleccionada.trim() === '' ||
       locacionSeleccionada.trim() === ''
@@ -51,27 +53,33 @@ const AgregarProducto = () => {
     }
 
     try {
-      
+      const currentDate = new Date();
       const response1 = await axios.post('http://localhost:8080/joya', {
         id_tipo_joya: categoriaSeleccionada,
         nombre: nombreProducto,
+        created_at: currentDate.toISOString(),
+        updated_at: currentDate.toISOString(),
         deleted: false
       });
       const joyaId = response1.data.id;
 
-      
+      const currentDate2 = new Date();
       await axios.post('http://localhost:8080/inventario', {
         id_locacion: locacionSeleccionada,
         id_joya: joyaId,
         id_tipo_joya: categoriaSeleccionada,
         cantidad: cantidad,
-        precio: precioCosto,
+        precio: precioVenta,
+        costo: precioCosto,
+        created_at: currentDate2.toISOString(),
+        updated_at: currentDate2.toISOString(),
         deleted: false
       });
 
      
       setNombreProducto('');
       setPrecioCosto('');
+      setPrecioVenta('');
       setCantidad('');
       setCategoriaSeleccionada('');
       setLocacionSeleccionada('');
@@ -110,10 +118,22 @@ const AgregarProducto = () => {
             <input
               type="number"
               min="0"
-              step="10"
+              step="1"
               id="precioCosto"
               value={precioCosto}
               onChange={(e) => setPrecioCosto(e.target.value)}
+            />
+          </div>
+
+          <div  >
+            <label htmlFor="precioVenta">Precio venta:</label>
+            <input
+              type="number"
+              min="0"
+              step="1"
+              id="precioVenta"
+              value={precioVenta}
+              onChange={(e) => setPrecioVenta(e.target.value)}
             />
           </div>
   
