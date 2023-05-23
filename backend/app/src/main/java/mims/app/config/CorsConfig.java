@@ -10,9 +10,15 @@ public class CorsConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("*") // Agrega el origen no seguro permitido
-                .allowedMethods("*")
-                .allowedHeaders("*")
+                .allowedOrigins("http://52.191.56.102:3000") // Agrega el origen no seguro permitido
+                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowedHeaders("Content-Type", "Authorization")
+                .allowCredentials(true)
+                .maxAge(3600);
+        registry.addMapping("/**")
+                .allowedOrigins("http://localhost:3000") // Agrega el origen no seguro permitido
+                .allowedMethods("GET", "POST", "PUT", "DELETE")
+                .allowedHeaders("Content-Type", "Authorization")
                 .allowCredentials(true)
                 .maxAge(3600);
     }
