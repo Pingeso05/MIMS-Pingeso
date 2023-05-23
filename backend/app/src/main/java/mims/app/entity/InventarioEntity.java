@@ -26,8 +26,11 @@ public class InventarioEntity {
         @Column(name = "cantidad")
         private int cantidad;
 
-        @Column(name = "precio")
+        @Column(name = "precio_venta")
         private float precio;
+        
+        @Column(name = "precio_costo")
+        private float costo;
 
         @Column(name = "id_tipo_joya")
         private int id_tipo_joya;
