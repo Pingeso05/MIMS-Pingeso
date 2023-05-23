@@ -15,7 +15,7 @@ const AgregarProducto = () => {
 
   const getLocaciones = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/locacion');
+      const res = await axios.get('http://52.191.56.102:8080/locacion');
       const locacionesUnicas = res.data;
       setLocaciones(locacionesUnicas);
     } catch (error) {
@@ -27,7 +27,7 @@ const AgregarProducto = () => {
 
   const getCategorias = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/tipojoya');
+      const res = await axios.get('http://52.191.56.102:8080/tipojoya');
       const categoriasUnicas = res.data;
       setCategorias(categoriasUnicas);
     } catch (error) {
@@ -54,7 +54,7 @@ const AgregarProducto = () => {
 
     try {
       const currentDate = new Date();
-      const response1 = await axios.post('http://localhost:8080/joya', {
+      const response1 = await axios.post('http://52.191.56.102:8080/joya', {
         id_tipo_joya: categoriaSeleccionada,
         nombre: nombreProducto,
         created_at: currentDate.toISOString(),
@@ -64,7 +64,7 @@ const AgregarProducto = () => {
       const joyaId = response1.data.id;
 
       const currentDate2 = new Date();
-      await axios.post('http://localhost:8080/inventario', {
+      await axios.post('http://52.191.56.102:8080/inventario', {
         id_locacion: locacionSeleccionada,
         id_joya: joyaId,
         id_tipo_joya: categoriaSeleccionada,
@@ -85,7 +85,7 @@ const AgregarProducto = () => {
       setLocacionSeleccionada('');
 
       alert('Producto agregado exitosamente');
-      window.location.href = 'http://localhost:3000/inventario';
+      window.location.href = 'http://52.191.56.102:3000/inventario';
     } catch (error) {
       console.log(error);
       alert('Ocurrió un error al agregar el producto');

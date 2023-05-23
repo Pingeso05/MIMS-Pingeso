@@ -15,7 +15,7 @@ const Inventario = () => {
 
   const getProductoReal = async (id) => {
     try {
-      const res = await axios.get('http://localhost:8080/inventario/' + id);
+      const res = await axios.get('http://52.191.56.102:8080/inventario/' + id);
       setProductoReal(res.data);
     } catch (error) {
       console.log(error);
@@ -24,7 +24,7 @@ const Inventario = () => {
 
   const getProductos = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/inventario');
+      const res = await axios.get('http://52.191.56.102:8080/inventario');
       setProductos(res.data);
     } catch (error) {
       console.log(error);
@@ -33,7 +33,7 @@ const Inventario = () => {
 
   const getCategorias = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/tipojoya');
+      const res = await axios.get('http://52.191.56.102:8080/tipojoya');
       const categoriasUnicas = [...new Set(res.data.map(categoria => categoria.nombre))];
       setCategorias(categoriasUnicas);
     } catch (error) {
@@ -43,7 +43,7 @@ const Inventario = () => {
 
   const handleUpdate = async (productoReal) => {
     try {
-      let url = 'http://localhost:8080/inventario/' + productoReal.id;
+      let url = 'http://52.191.56.102:8080/inventario/' + productoReal.id;
       const res = await axios.put(url, productoReal);
       if (res.status === 200) {
         getProductos();
