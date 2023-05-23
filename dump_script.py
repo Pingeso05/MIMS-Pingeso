@@ -60,7 +60,7 @@ updated_by = 1
 
 #for elemento in readings:
 #    print(elemento)
-"""
+
 query = "INSERT INTO mims.tipo_joya(nombre, material, deleted, created_at, created_by, updated_at, updated_by) VALUES ( %s, %s, FALSE, %s, %s, %s, %s)"
 for element in malibu_tipo_joyas:
     #print(element)
@@ -105,9 +105,8 @@ for elemento in readings:
 
 cursor.close()
 database.commit()
-"""
 
-
+cursor = database.cursor()
 query = "INSERT INTO mims.locacion(nombre, direccion, deleted, created_at, created_by, updated_at, updated_by) VALUES (%s, %s, FALSE, %s, %s, %s, %s)"
 nombre = "Bodega Maipu"
 direccion = "Av. Gabriel Gonzalez Videla #1928"
