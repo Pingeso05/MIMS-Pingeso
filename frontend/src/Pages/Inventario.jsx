@@ -86,31 +86,34 @@ const Inventario = () => {
   return (
     <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-inventario">
       <h1 style={{ fontSize: '48px' }}>Inventario</h1>
-      <Row style={{ marginTop: '20px' }}>
-        <Col>
-        <Link to="/inventario/agregar-producto">
-          <Button variant="primary" style={{ marginRight: '10px' }}>Agregar</Button>
-        </Link>
-          <Button variant="danger">Eliminar</Button>
-        </Col>
-      </Row>
+      
+        
+          
 
       <Row style={{ marginTop: '20px' }}>
-        <Col md={6} style={{ display: 'flex', alignItems: 'center' }}>
-          <select className='dropdown'
-            value={categoriaSeleccionada}
-            onChange={handleCategoriaChange}
-          >
-            <option value="">Todas las categorías</option>
-            {categorias.map((categoria, index) => (
-              <option value={categoria} key={index}>{categoria}</option>
-            ))}
-          </select>
+        <Col style={{ display: 'flex', alignItems: 'left' }}>
+          <Col md={6} style={{ display: 'flex', alignItems: 'left' }}>
+            <select className='dropdown'
+              value={categoriaSeleccionada}
+              onChange={handleCategoriaChange}
+            >
+              <option value="">Todas las categorías</option>
+              {categorias.map((categoria, index) => (
+                <option value={categoria} key={index}>{categoria}</option>
+              ))}
+            </select>
+          </Col>
+          <Col md={6} style={{ display: 'flex', alignItems: 'center' }}>
+            <span style={{ marginRight: '10px', fontWeight: 'bold' }}>Productos:</span>
+            <span>{filteredProductos.length}</span>
+          </Col>
         </Col>
-        <Col md={6} style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-          <span style={{ marginRight: '10px', fontWeight: 'bold' }}>Productos:</span>
-          <span>{filteredProductos.length}</span>
+        <Col md={6} style={{ display: 'flex', alignItems: 'left', justifyContent: 'flex-end' }}>
+          <Link to="/inventario/agregar-producto">
+            <Button variant="primary"  style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent'}}>Agregar Producto</Button>
+          </Link>    
         </Col>
+
       </Row>
       
           <div style={{ overflow: 'auto', maxHeight: '60vh', marginTop: '20px' }}>
@@ -122,7 +125,7 @@ const Inventario = () => {
                     <th>Cantidad</th>
                     <th>Joya</th>
                     <th>Precio Costo</th>
-                    <th>Precio Real</th>
+                    <th>Precio Venta</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -133,8 +136,8 @@ const Inventario = () => {
                         <td>{producto.local}</td>
                         <td>{producto.cantidad}</td>
                         <td>{producto.joya}</td>
-                        <td>{producto.costo}</td>
-                        <td>{producto.precio}</td>
+                        <td>{producto.precio_costo}</td>
+                        <td>{producto.precio_venta}</td>
                         <td>
                             <Button variant='primary' style={{ marginRight: '5px' }} onClick={() => handleChangeplus(producto)}> + </Button>
                             <Button variant='danger' style={{ marginLeft: '5px' }} onClick={() => handleChangeless(producto)}> - </Button>

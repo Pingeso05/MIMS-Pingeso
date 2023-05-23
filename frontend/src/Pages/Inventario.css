@@ -22,7 +22,13 @@
     border-radius: 5px;
     font-size: 14px;
 }
+.Button{
+    background-color: #D5418F;
+}
 .dropdown:hover {
     border-color: #EB6D1A;
   }
 
+  Button:hover{
+    border-color: #EB6D1A;
+  }

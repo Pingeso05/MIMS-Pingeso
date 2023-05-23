@@ -69,8 +69,8 @@ const AgregarProducto = () => {
         id_joya: joyaId,
         id_tipo_joya: categoriaSeleccionada,
         cantidad: cantidad,
-        precio: precioVenta,
-        costo: precioCosto,
+        precio_venta: precioVenta,
+        precio_costo: precioCosto,
         created_at: currentDate2.toISOString(),
         updated_at: currentDate2.toISOString(),
         deleted: false

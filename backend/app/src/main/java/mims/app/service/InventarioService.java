@@ -43,7 +43,8 @@ public class InventarioService {
         return inventarioRepository.findById(id).map(inventario_data -> {
             inventario_data.setCantidad(inventario.getCantidad());
             inventario_data.setId_joya(inventario.getId_joya());
-            inventario_data.setPrecio(inventario.getPrecio());
+            inventario_data.setPrecio_venta(inventario.getPrecio_venta());
+            inventario_data.setPrecio_costo(inventario.getPrecio_costo());
             inventario_data.setId_locacion(inventario.getId_locacion());
             inventario_data.setId_tipo_joya(inventario.getId_tipo_joya());
             InventarioEntity inventario_updated = inventarioRepository.save(inventario_data);

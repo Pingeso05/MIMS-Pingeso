@@ -2,7 +2,7 @@ import Inventario from './Pages/Inventario';
 import './App.css';
 import Container from 'react-bootstrap/Container';
 import Layout from './Components/Layout';
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import AgregarProducto from './Pages/Agregar_Producto';
 
 function App() {
@@ -10,6 +10,7 @@ function App() {
     <Layout>
       <Container>
         <Routes>
+          <Route path="/" element={<Navigate to="/inventario" />} />
           <Route path="/inventario" element={<Inventario />} />
           <Route path="/inventario/agregar-producto" element={<AgregarProducto />} />
           <Route path="/locaciones" element={<Inventario />} />
