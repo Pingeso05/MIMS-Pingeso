@@ -4,6 +4,7 @@ import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Link } from 'react-router-dom';
 import './Inventario.css';
 
 const Inventario = () => {
@@ -83,11 +84,13 @@ const Inventario = () => {
   const filteredProductos = categoriaSeleccionada ? productos.filter(producto => producto.tipo_joya === categoriaSeleccionada) : productos;
 
   return (
-    <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container">
+    <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-inventario">
       <h1 style={{ fontSize: '48px' }}>Inventario</h1>
       <Row style={{ marginTop: '20px' }}>
         <Col>
+        <Link to="/inventario/agregar-producto">
           <Button variant="primary" style={{ marginRight: '10px' }}>Agregar</Button>
+        </Link>
           <Button variant="danger">Eliminar</Button>
         </Col>
       </Row>
@@ -97,15 +100,6 @@ const Inventario = () => {
           <select className='dropdown'
             value={categoriaSeleccionada}
             onChange={handleCategoriaChange}
-            style={{
-              width: '250px',
-              height: '40px',
-              color: '#1A1D1F',
-              backgroundColor: '#FFFFFF',
-              border: '1px solid #EFEFEF',
-              borderRadius: '5px',
-              fontSize: '14px',
-            }}
           >
             <option value="">Todas las categorías</option>
             {categorias.map((categoria, index) => (
