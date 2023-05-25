@@ -141,6 +141,8 @@ const AgregarProducto = () => {
             <label htmlFor="cantidad">Cantidad:</label>
             <input
               type="number"
+              min="0"
+              step="1"
               id="cantidad"
               value={cantidad}
               onChange={(e) => setCantidad(e.target.value)}
