@@ -1,0 +1,67 @@
+.container-locacion{
+    background-color: rgba(255, 255, 255);
+    border-radius: 10px; 
+    padding-bottom: 10px;
+    height: 85vh;
+}
+
+.table_locaciones{
+    background-color: #ffffff;
+}
+
+.table_locaciones thead tr.cabeceras th {
+    position: sticky;
+    top: 0;
+    background-color: #F5F5F5;
+  }
+
+.cabeceras{
+    background-color: #F5F5F5;
+}
+
+.fila-dp {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+.left-col {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+.right-col {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.locaciones-label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+
+  @media (max-width: 768px) {
+    .table_locaciones {
+        overflow-x: auto;
+    }
+  
+    .table_locaciones th,
+    .table_locaciones td {
+        white-space: nowrap;
+    }
+    
+    .fila-dp {
+        flex-wrap: wrap;
+    }
+
+    .left-col,
+    .right-col {
+        flex-basis: 50%;
+        flex-grow: 1;
+        justify-content: center;
+    }
+  }

@@ -90,8 +90,8 @@ const Inventario = () => {
         
           
 
-      <Row style={{ marginTop: '20px' }}>
-        <Col style={{ display: 'flex', alignItems: 'left' }}>
+      <Row className="fila-dp" style={{ marginTop: '20px' }}>
+        <Col className="columna-dp" style={{ display: 'flex', alignItems: 'left' }}>
           <Col md={6} style={{ display: 'flex', alignItems: 'left' }}>
             <select className='dropdown'
               value={categoriaSeleccionada}
@@ -108,7 +108,7 @@ const Inventario = () => {
             <span>{filteredProductos.length}</span>
           </Col>
         </Col>
-        <Col md={6} style={{ display: 'flex', alignItems: 'left', justifyContent: 'flex-end' }}>
+        <Col className="agregar-pd d-flex justify-content-md-end" >
           <Link to="/inventario/agregar-producto">
             <Button variant="primary"  style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent'}}>Agregar Producto</Button>
           </Link>    
