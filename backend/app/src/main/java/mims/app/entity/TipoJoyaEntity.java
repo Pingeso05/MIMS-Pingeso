@@ -20,18 +20,6 @@ public class TipoJoyaEntity {
     @Column(name = "nombre", nullable = false)
     private String nombre;
 
-    @Column(name = "created_by", nullable = false)
-    private int created_by;
-
-    @Column(name = "updated_by", nullable = false)
-    private int updated_by;
-
-    @Column(name = "created_at", nullable = false)
-    private java.sql.Timestamp created_at;
-
-    @Column(name = "updated_at", nullable = false)
-    private java.sql.Timestamp updated_at;
-
     @Column(name = "material", nullable = false)
     private String material;
 

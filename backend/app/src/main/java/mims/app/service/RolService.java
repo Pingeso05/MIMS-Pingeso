@@ -28,8 +28,6 @@ public class RolService {
     public ResponseEntity<RolEntity> update(RolEntity rol, int id) {
         return rolRepository.findById(id).map(rol_data -> {
             rol_data.setNombre(rol.getNombre());
-            rol_data.setUpdated_at(rol.getUpdated_at());
-            rol_data.setUpdated_by(rol.getUpdated_by());
             rol_data.setDeleted(rol.getDeleted());
             RolEntity rol_updated = rolRepository.save(rol_data);
             return ResponseEntity.ok().body(rol_updated);
