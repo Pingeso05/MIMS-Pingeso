@@ -123,6 +123,7 @@ const Inventario = () => {
                     <th>#</th>
                     <th>Local</th>
                     <th>Cantidad</th>
+                    <th>Nombre</th>
                     <th>Joya</th>
                     <th>Precio Costo</th>
                     <th>Precio Venta</th>
@@ -135,6 +136,7 @@ const Inventario = () => {
                         <td>{index + 1}</td>
                         <td>{producto.local}</td>
                         <td>{producto.cantidad}</td>
+                        <td>{producto.nombre_producto}</td>
                         <td>{producto.joya}</td>
                         <td>{producto.precio_costo}</td>
                         <td>{producto.precio_venta}</td>

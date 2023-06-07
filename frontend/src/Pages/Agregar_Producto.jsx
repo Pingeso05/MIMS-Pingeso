@@ -12,12 +12,24 @@ const AgregarProducto = () => {
   const [locacionSeleccionada, setLocacionSeleccionada] = useState('');
   const [categorias, setCategorias] = useState([]);
   const [locaciones, setLocaciones] = useState([]);
+  const [joyas, setJoyas] = useState([]);
+  const [joyaSeleccionada, setJoyaSeleccionada] = useState('');
 
   const getLocaciones = async () => {
     try {
       const res = await axios.get('http://localhost:8080/locacion');
       const locacionesUnicas = res.data;
       setLocaciones(locacionesUnicas);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getJoyas = async () => {
+    try {
+      const res = await axios.get('http://localhost:8080/joya');
+      const joyasUnicas = res.data;
+      setJoyas(joyasUnicas);
     } catch (error) {
       console.log(error);
     }
@@ -41,6 +53,7 @@ const AgregarProducto = () => {
     event.preventDefault();
 
     if (
+      joyaSeleccionada.trim() === '' ||
       nombreProducto.trim() === '' ||
       precioCosto.trim() === '' ||
       precioVenta.trim() === '' ||
@@ -53,26 +66,15 @@ const AgregarProducto = () => {
     }
 
     try {
-      const currentDate = new Date();
-      const response1 = await axios.post('http://localhost:8080/joya', {
-        id_tipo_joya: categoriaSeleccionada,
-        nombre: nombreProducto,
-        created_at: currentDate.toISOString(),
-        updated_at: currentDate.toISOString(),
-        deleted: false
-      });
-      const joyaId = response1.data.id;
-
-      const currentDate2 = new Date();
+      
       await axios.post('http://localhost:8080/inventario', {
         id_locacion: locacionSeleccionada,
-        id_joya: joyaId,
+        id_joya: joyaSeleccionada,
+        nombre_producto: nombreProducto,
         id_tipo_joya: categoriaSeleccionada,
         cantidad: cantidad,
         precio_venta: precioVenta,
         precio_costo: precioCosto,
-        created_at: currentDate2.toISOString(),
-        updated_at: currentDate2.toISOString(),
         deleted: false
       });
 
@@ -95,6 +97,7 @@ const AgregarProducto = () => {
   useEffect(() => {
     getCategorias();
     getLocaciones();
+    getJoyas();
   }, []);
 
   return (
@@ -111,6 +114,22 @@ const AgregarProducto = () => {
               value={nombreProducto}
               onChange={(e) => setNombreProducto(e.target.value)}
             />
+          </div>
+
+          <div>
+            <label htmlFor="joya">Joya:</label>
+            <select
+              id="joya"
+              value={joyaSeleccionada}
+              onChange={(e) => setJoyaSeleccionada(e.target.value)}
+            >
+              <option value="">Seleccione una Joya</option>
+              {joyas.map((joya) => (
+                <option value={joya.id} key={joya.id}>
+                  {joya.nombre}
+                </option>
+              ))}
+            </select>
           </div>
   
           <div  >
