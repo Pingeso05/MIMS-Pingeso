@@ -20,7 +20,7 @@ function App() {
           
           <Route path="/locaciones" element={<Inventario />} />
           <Route path="/tipos-de-joya" element={<TipoJoya />} />
-          
+          <Route path="/tipos-de-joya/agregar-tipo" element={<AgregarTipoJoya />} />
           <Route path="/joyas" element={<Inventario />} />
         </Routes>
       </Container>

@@ -33,7 +33,7 @@ const AgregarTipoJoya = () => {
   };
 
   return (
-    <Container style={{ textAlign: 'center' }} className="container-tipojoya">
+    <Container style={{ textAlign: 'center' }} className="container-tipojoya-agregar">
       <div>
         <h2 className="titulo">Agregar Tipo de Joya</h2>
 

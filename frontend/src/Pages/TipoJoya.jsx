@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
-import './Inventario.css';
+import './TipoJoya.css';
 
 const TipoJoya = () => {
   const [tipos, setTipos] = useState([]);
@@ -44,7 +44,7 @@ const TipoJoya = () => {
   const filteredTipos = categoriaSeleccionada ? tipos.filter(tipo => tipo.material === categoriaSeleccionada || tipo.nombre.includes(categoriaSeleccionada)) : tipos;
 
   return (
-    <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-tipojoya">
+    <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-tipojoya-table">
       <h1 style={{ fontSize: '48px' }}>Tipos de Joya</h1>
 
       <Row style={{ marginTop: '20px' }}>
