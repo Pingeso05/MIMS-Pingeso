@@ -9,6 +9,7 @@ import Container from 'react-bootstrap/Container';
 import Layout from './Components/Layout';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Joya from './Pages/Joya';
+import EditarProducto from './Pages/InventarioEditar';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" element={<Navigate to="/inventario" />} />
           <Route path="/inventario" element={<Inventario />} />
           <Route path="/inventario/agregar-producto" element={<AgregarProducto />} />
+          <Route path="/inventario/editar-producto/:id" element={<EditarProducto />} />
           <Route path="/joyas" element={<Joya />} />
           <Route path="/joyas/agregar-joya" element={<AgregarJoya />} />
           <Route path="/locaciones" element={<Inventario />} />
