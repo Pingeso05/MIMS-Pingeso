@@ -88,7 +88,7 @@ const AgregarLocacion = () => {
             />
           </div>
   
-          <button type="submit">Agregar Producto</button>
+          <button type="submit">Agregar Local</button>
         </form>
         
         <div className="separador"> </div>
