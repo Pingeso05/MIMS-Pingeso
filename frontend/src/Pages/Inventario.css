@@ -8,6 +8,9 @@
 .table_productos{
     background-color: #ffffff;
 }
+my-fila:hover{
+    background-color: #F5F5F5;
+}
 
 .cabeceras{
     background-color: #F5F5F5;

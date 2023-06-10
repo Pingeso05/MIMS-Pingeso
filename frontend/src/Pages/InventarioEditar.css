@@ -1,0 +1,97 @@
+.container-product-edit {
+    width: 100%;
+    background-color: rgba(255, 255, 255);
+    margin-top: 50px;
+    max-width: 600px;
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+    padding-bottom: 20px;
+    box-sizing: border-box;
+    height: 80vh;
+    border-radius: 10px; 
+    padding-bottom: 10px;
+  }
+  
+  .titulo-edit {
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+  
+  form {
+    border: 2px solid #efefef;
+    border-radius: 10px;
+    padding: 30px;
+    min-width: 450px;
+    width: 100%; 
+    height: fit-content;
+    margin-bottom: 50px;
+    box-sizing: border-box;
+    background-color: transparent;
+  }
+  
+  form div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%; 
+    height: 9vh;
+  }
+  
+  label {
+    margin-bottom: 5px;
+  }
+  
+  input,
+  select {
+    width: 100%;
+    height: 40px;
+    color: #1a1d1f;
+    background-color: #ffffff;
+    border: 1px solid #efefef;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+
+  input:hover,
+  select:hover {
+    border-color: #EB6D1A;
+  }
+  
+  button[type='submit'] {
+    background-color: #d5418f;
+    border-radius: 10px;
+    color: #ffffff;
+    border: none;
+    width: 100%;
+    max-width: 250px;
+    height: 5vh;
+  }
+  
+  @media (max-width: 767px) {
+    .container-product {
+      width: 100%;
+      padding: 0 10px;
+      box-sizing: border-box;
+      margin-bottom: 10px; 
+      margin-top: 10px;
+      height: 90vh;
+    }
+  
+    form {
+      min-width: 300px; 
+      padding: 20px;
+      margin-bottom: 0;
+    }
+  
+    form div {
+      max-width: 100%; 
+      padding: 0 10px; 
+      margin-bottom: 20px;
+    }
+    .separador {
+      height: 10px;
+    }
+  }

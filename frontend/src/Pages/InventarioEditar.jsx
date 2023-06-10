@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
-import './AgregarProducto.css';
+import './InventarioEditar.css';
 
 const EditarProducto = () => {
   const { id } = useParams();
@@ -17,6 +17,7 @@ const EditarProducto = () => {
   const [locaciones, setLocaciones] = useState([]);
   const [joyas, setJoyas] = useState([]);
   const [joyaSeleccionada, setJoyaSeleccionada] = useState('');
+
 
   const getLocaciones = async () => {
     try {

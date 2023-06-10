@@ -6,8 +6,11 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
 import './Inventario.css';
+import { useNavigate } from 'react-router-dom';
+import React from 'react';
 
 const Inventario = () => {
+  const navigate = useNavigate();
   const [productos, setProductos] = useState([]);
   const [productoReal, setProductoReal] = useState(null);
   const [categorias, setCategorias] = useState([]);
@@ -20,6 +23,10 @@ const Inventario = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const getEditView = (id) => {
+    navigate('/inventario/editar-producto/' + id);
   };
 
   const getProductos = async () => {
@@ -122,6 +129,7 @@ const Inventario = () => {
                 <tr className='cabeceras'>
                     <th>#</th>
                     <th>Local</th>
+                    <th>Opciones</th>
                     <th>Cantidad</th>
                     <th>Nombre</th>
                     <th>Joya</th>
@@ -132,15 +140,19 @@ const Inventario = () => {
             </thead>
             <tbody>
                 {filteredProductos.map((producto, index) => (
-                    <tr key={index}>
+                    <tr key={index} >
                         <td>{index + 1}</td>
                         <td>{producto.local}</td>
+                        <td>
+                            <Button variant='success' onClick={() => getEditView(producto.id)} >Modificar</Button>
+                            <Button variant='success'>Venta</Button>
+                        </td>
                         <td>{producto.cantidad}</td>
                         <td>{producto.nombre_producto}</td>
                         <td>{producto.joya}</td>
                         <td>{producto.precio_costo}</td>
                         <td>{producto.precio_venta}</td>
-                        <td>
+                        <td style={{display:"flex", justifyContent: "space-between"}}>
                             <Button variant='primary' style={{ marginRight: '5px' }} onClick={() => handleChangeplus(producto)}> + </Button>
                             <Button variant='danger' style={{ marginLeft: '5px' }} onClick={() => handleChangeless(producto)}> - </Button>
                         </td>
