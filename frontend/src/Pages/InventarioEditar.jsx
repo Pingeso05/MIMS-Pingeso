@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
+import {Container, Col } from 'react-bootstrap';
 import './InventarioEditar.css';
+import { Row } from 'react-bootstrap';
 
 const EditarProducto = () => {
   const { id } = useParams();
@@ -53,13 +54,13 @@ const EditarProducto = () => {
     event.preventDefault();
 
     if (
-      joyaSeleccionada.trim() === '' ||
+      joyaSeleccionada === '' ||
       nombreProducto.trim() === '' ||
-      precioCosto.trim() === '' ||
-      precioVenta.trim() === '' ||
-      cantidad.trim() === '' ||
-      categoriaSeleccionada.trim() === '' ||
-      locacionSeleccionada.trim() === ''
+      precioCosto === '' ||
+      precioVenta === '' ||
+      cantidad === '' ||
+      categoriaSeleccionada === '' ||
+      locacionSeleccionada === ''
     ) {
       alert('Por favor, completa todos los campos');
       return;
@@ -122,7 +123,8 @@ const EditarProducto = () => {
         <h2 className="titulo">Editar Producto</h2>
 
         <form onSubmit={handleSubmit}>
-        <div>
+          
+          <div>
             <label htmlFor="nombreProducto">Nombre del Producto:</label>
             <input
               type="text"
@@ -131,7 +133,6 @@ const EditarProducto = () => {
               onChange={(e) => setNombreProducto(e.target.value)}
             />
           </div>
-
           <div>
             <label htmlFor="joya">Joya:</label>
             <select
@@ -147,7 +148,6 @@ const EditarProducto = () => {
               ))}
             </select>
           </div>
-  
           <div  >
             <label htmlFor="precioCosto">Precio costo:</label>
             <input
@@ -171,7 +171,8 @@ const EditarProducto = () => {
               onChange={(e) => setPrecioVenta(e.target.value)}
             />
           </div>
-  
+          
+          
           <div >
             <label htmlFor="cantidad">Cantidad:</label>
             <input
@@ -181,7 +182,6 @@ const EditarProducto = () => {
               onChange={(e) => setCantidad(e.target.value)}
             />
           </div>
-  
           <div>
             <label htmlFor="categoria">Categoría:</label>
             <select
@@ -197,7 +197,7 @@ const EditarProducto = () => {
               ))}
             </select>
           </div>
-  
+          
           <div>
             <label htmlFor="locacion">Locación:</label>
             <select
@@ -213,6 +213,7 @@ const EditarProducto = () => {
                 ))}
             </select>
           </div>
+          
 
           <button type="submit">Actualizar Producto</button>
         </form>
