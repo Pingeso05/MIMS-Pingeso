@@ -6,8 +6,11 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
 import './Inventario.css';
+import { useNavigate } from 'react-router-dom';
+import React from 'react';
 
 const Inventario = () => {
+  const navigate = useNavigate();
   const [productos, setProductos] = useState([]);
   const [productoReal, setProductoReal] = useState(null);
   const [categorias, setCategorias] = useState([]);
@@ -20,6 +23,10 @@ const Inventario = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const getEditView = (id) => {
+    navigate('/inventario/editar-producto/' + id);
   };
 
   const getProductos = async () => {
@@ -90,8 +97,8 @@ const Inventario = () => {
         
           
 
-      <Row style={{ marginTop: '20px' }}>
-        <Col style={{ display: 'flex', alignItems: 'left' }}>
+      <Row className="fila-dp" style={{ marginTop: '20px' }}>
+        <Col className="columna-dp" style={{ display: 'flex', alignItems: 'left' }}>
           <Col md={6} style={{ display: 'flex', alignItems: 'left' }}>
             <select className='dropdown'
               value={categoriaSeleccionada}
@@ -108,7 +115,7 @@ const Inventario = () => {
             <span>{filteredProductos.length}</span>
           </Col>
         </Col>
-        <Col md={6} style={{ display: 'flex', alignItems: 'left', justifyContent: 'flex-end' }}>
+        <Col className="agregar-pd d-flex justify-content-md-end" >
           <Link to="/inventario/agregar-producto">
             <Button variant="primary"  style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent'}}>Agregar Producto</Button>
           </Link>    
@@ -122,7 +129,10 @@ const Inventario = () => {
                 <tr className='cabeceras'>
                     <th>#</th>
                     <th>Local</th>
+                    <th>Opciones</th>
                     <th>Cantidad</th>
+                    <th>Nombre</th>
+                    <th>Tipo Joya</th>
                     <th>Joya</th>
                     <th>Precio Costo</th>
                     <th>Precio Venta</th>
@@ -131,14 +141,20 @@ const Inventario = () => {
             </thead>
             <tbody>
                 {filteredProductos.map((producto, index) => (
-                    <tr key={index}>
+                    <tr key={index} >
                         <td>{index + 1}</td>
                         <td>{producto.local}</td>
+                        <td>
+                            <Button variant='success' onClick={() => getEditView(producto.id)} >Modificar</Button>
+                            <Button variant='success'>Venta</Button>
+                        </td>
                         <td>{producto.cantidad}</td>
+                        <td>{producto.nombre_producto}</td>
+                        <td>{producto.tipo_joya}</td>
                         <td>{producto.joya}</td>
                         <td>{producto.precio_costo}</td>
                         <td>{producto.precio_venta}</td>
-                        <td>
+                        <td style={{display:"flex", justifyContent: "space-between"}}>
                             <Button variant='primary' style={{ marginRight: '5px' }} onClick={() => handleChangeplus(producto)}> + </Button>
                             <Button variant='danger' style={{ marginLeft: '5px' }} onClick={() => handleChangeless(producto)}> - </Button>
                         </td>

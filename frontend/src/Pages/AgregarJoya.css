@@ -1,4 +1,4 @@
-.container-product {
+.container-joya-agregar {
     width: 100%;
     background-color: rgba(255, 255, 255);
     margin-top: 50px;
@@ -11,14 +11,14 @@
     height: 80vh;
     border-radius: 10px; 
     padding-bottom: 10px;
-  }
-  
-  .titulo {
+}
+
+.titulo {
     margin-top: 20px;
     margin-bottom: 30px;
-  }
-  
-  form {
+}
+
+form {
     border: 2px solid #efefef;
     border-radius: 10px;
     padding: 30px;
@@ -28,22 +28,22 @@
     margin-bottom: 50px;
     box-sizing: border-box;
     background-color: transparent;
-  }
-  
-  form div {
+}
+
+form div {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     width: 100%; 
     height: 9vh;
-  }
-  
-  label {
+}
+
+label {
     margin-bottom: 5px;
-  }
-  
-  input,
-  select {
+}
+
+input,
+select {
     width: 100%;
     height: 40px;
     color: #1a1d1f;
@@ -53,14 +53,14 @@
     font-size: 14px;
     padding: 5px;
     margin-bottom: 10px;
-  }
+}
 
-  input:hover,
-  select:hover {
+input:hover,
+select:hover {
     border-color: #EB6D1A;
-  }
-  
-  button[type='submit'] {
+}
+
+button[type='submit'] {
     background-color: #d5418f;
     border-radius: 10px;
     color: #ffffff;
@@ -68,10 +68,10 @@
     width: 100%;
     max-width: 250px;
     height: 5vh;
-  }
-  
-  @media (max-width: 600px) {
-    .container-product {
+}
+
+@media (max-width: 767px) {
+    .container-tipojoya {
       width: 100%;
       padding: 0 10px;
       box-sizing: border-box;
@@ -79,13 +79,13 @@
       margin-top: 10px;
       height: 90vh;
     }
-  
+
     form {
       min-width: 300px; 
       padding: 20px;
       margin-bottom: 0;
     }
-  
+
     form div {
       max-width: 100%; 
       padding: 0 10px; 
@@ -94,4 +94,4 @@
     .separador {
       height: 10px;
     }
-  }
+}

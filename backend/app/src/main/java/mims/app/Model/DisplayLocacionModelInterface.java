@@ -4,10 +4,6 @@ package mims.app.Model;
 public interface DisplayLocacionModelInterface {
     int getId();
     String getNombre();
-    String getDescripcion();
     String getDireccion();
-    String getCreatedAt();
-    String getUpdatedAt();
-    String getCreatedBy();
-    String getUpdatedBy();
+
 }

@@ -31,8 +31,6 @@ public class UsuarioService {
             usuario_data.setNombre(usuario.getNombre());
             usuario_data.setApellido(usuario.getApellido());
             usuario_data.setRol(usuario.getRol());
-            usuario_data.setUpdated_at(usuario.getUpdated_at());
-            usuario_data.setUpdated_by(usuario.getUpdated_by());
             usuario_data.setDeleted(usuario.getDeleted());
             usuario_data.setRol(usuario.getRol());
             UsuarioEntity usuario_updated = usuarioRepository.save(usuario_data);

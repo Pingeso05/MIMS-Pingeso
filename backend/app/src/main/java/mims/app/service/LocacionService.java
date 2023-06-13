@@ -25,6 +25,7 @@ public class LocacionService {
     public ResponseEntity<LocacionEntity> update_locacion(LocacionEntity locacion, int id) {
         return locacionRepository.findById(id).map(locacion_data -> {
             locacion_data.setNombre(locacion.getNombre());
+            locacion_data.setDireccion(locacion.getDireccion());
             LocacionEntity locacion_updated = locacionRepository.save(locacion_data);
             return ResponseEntity.ok().body(locacion_updated);
         }).orElse(ResponseEntity.notFound().build());
