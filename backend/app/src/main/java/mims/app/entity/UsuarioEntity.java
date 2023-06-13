@@ -34,17 +34,6 @@ public class UsuarioEntity {
     @Column(name = "deleted")
     private boolean deleted;
 
-    @Column(name = "created_by")
-    private int created_by;
-
-    @Column(name = "updated_by")
-    private int updated_by;
-
-    @Column(name = "created_at")
-    private Date created_at;
-
-    @Column(name = "updated_at")
-    private Date updated_at;
 
     public void setDeleted(boolean b) {
         this.deleted = b;

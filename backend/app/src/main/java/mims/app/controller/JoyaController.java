@@ -1,5 +1,6 @@
 package mims.app.controller;
 
+import mims.app.Model.DisplayJoyaModelInterface;
 import mims.app.entity.JoyaEntity;
 import mims.app.service.JoyaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +21,12 @@ public class JoyaController {
     private JoyaService joyaService;
 
     /**
-    * Este metodo devuelve todas las joyas que no estan borradas
-    * @return ResponseEntity<ArrayList<JoyaEntity>>
-    */
+     * Este metodo devuelve todas las joyas que no estan borradas
+     *
+     * @return ResponseEntity<ArrayList < JoyaEntity>>
+     */
     @GetMapping
-    public ResponseEntity<ArrayList<JoyaEntity>> get_all() {
+    public ArrayList<DisplayJoyaModelInterface> get_all() {
         return joyaService.get_all_joyas_not_deleted();
     }
 

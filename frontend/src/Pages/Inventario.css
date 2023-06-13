@@ -8,6 +8,9 @@
 .table_productos{
     background-color: #ffffff;
 }
+my-fila:hover{
+    background-color: #F5F5F5;
+}
 
 .table_productos thead tr.cabeceras th {
     position: sticky;
@@ -28,13 +31,18 @@
     border-radius: 5px;
     font-size: 14px;
 }
+
 .Button{
     background-color: #D5418F;
 }
+
 .dropdown:hover {
     border-color: #EB6D1A;
-  }
+}
 
+Button:hover{
+    border-color: #EB6D1A;
+}
   @media (max-width: 600px) {
     .table_productos {
         overflow-x: auto;

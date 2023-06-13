@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Container from 'react-bootstrap/Container';
-import './AgregarProducto.css'; 
+import { useParams } from 'react-router-dom';
+import {Container, Col } from 'react-bootstrap';
+import './InventarioEditar.css';
+import { Row } from 'react-bootstrap';
 
-const AgregarProducto = () => {
+const EditarProducto = () => {
+  const { id } = useParams();
+
   const [nombreProducto, setNombreProducto] = useState('');
   const [precioCosto, setPrecioCosto] = useState('');
   const [precioVenta, setPrecioVenta] = useState('');
@@ -14,6 +18,7 @@ const AgregarProducto = () => {
   const [locaciones, setLocaciones] = useState([]);
   const [joyas, setJoyas] = useState([]);
   const [joyaSeleccionada, setJoyaSeleccionada] = useState('');
+
 
   const getLocaciones = async () => {
     try {
@@ -35,8 +40,6 @@ const AgregarProducto = () => {
     }
   };
 
-
-
   const getCategorias = async () => {
     try {
       const res = await axios.get('http://localhost:8080/tipojoya');
@@ -47,27 +50,24 @@ const AgregarProducto = () => {
     }
   };
 
-
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (
-      joyaSeleccionada.trim() === '' ||
+      joyaSeleccionada === '' ||
       nombreProducto.trim() === '' ||
-      precioCosto.trim() === '' ||
-      precioVenta.trim() === '' ||
-      cantidad.trim() === '' ||
-      categoriaSeleccionada.trim() === '' ||
-      locacionSeleccionada.trim() === ''
+      precioCosto === '' ||
+      precioVenta === '' ||
+      cantidad === '' ||
+      categoriaSeleccionada === '' ||
+      locacionSeleccionada === ''
     ) {
       alert('Por favor, completa todos los campos');
       return;
     }
 
     try {
-      
-      await axios.post('http://localhost:8080/inventario', {
+      await axios.put('http://localhost:8080/inventario/' + id, {
         id_locacion: locacionSeleccionada,
         id_joya: joyaSeleccionada,
         nombre_producto: nombreProducto,
@@ -78,7 +78,6 @@ const AgregarProducto = () => {
         deleted: false
       });
 
-     
       setNombreProducto('');
       setPrecioCosto('');
       setPrecioVenta('');
@@ -86,26 +85,45 @@ const AgregarProducto = () => {
       setCategoriaSeleccionada('');
       setLocacionSeleccionada('');
 
-      alert('Producto agregado exitosamente');
+      alert('Producto actualizado exitosamente');
       window.location.href = 'http://localhost:3000/inventario';
     } catch (error) {
       console.log(error);
-      alert('Ocurrió un error al agregar el producto');
+      alert('Ocurrió un error al actualizar el producto');
     }
   };
 
   useEffect(() => {
+    const getProducto = async () => {
+      try {
+        const res = await axios.get('http://localhost:8080/inventario/' + id);
+        const producto = res.data;
+
+        setNombreProducto(producto.nombre_producto);
+        setPrecioCosto(producto.precio_costo);
+        setPrecioVenta(producto.precio_venta);
+        setCantidad(producto.cantidad);
+        setCategoriaSeleccionada(producto.id_tipo_joya);
+        setLocacionSeleccionada(producto.id_locacion);
+        setJoyaSeleccionada(producto.id_joya);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getProducto();
     getCategorias();
     getLocaciones();
     getJoyas();
-  }, []);
+  }, [id]);
 
   return (
     <Container style={{ textAlign: 'center' }} className="container-product">
       <div>
-        <h2 className="titulo">Agregar Producto</h2>
-  
+        <h2 className="titulo">Editar Producto</h2>
+
         <form onSubmit={handleSubmit}>
+          
           <div>
             <label htmlFor="nombreProducto">Nombre del Producto:</label>
             <input
@@ -115,7 +133,6 @@ const AgregarProducto = () => {
               onChange={(e) => setNombreProducto(e.target.value)}
             />
           </div>
-
           <div>
             <label htmlFor="joya">Joya:</label>
             <select
@@ -131,7 +148,6 @@ const AgregarProducto = () => {
               ))}
             </select>
           </div>
-  
           <div  >
             <label htmlFor="precioCosto">Precio costo:</label>
             <input
@@ -155,19 +171,17 @@ const AgregarProducto = () => {
               onChange={(e) => setPrecioVenta(e.target.value)}
             />
           </div>
-  
+          
+          
           <div >
             <label htmlFor="cantidad">Cantidad:</label>
             <input
               type="number"
-              min="0"
-              step="1"
               id="cantidad"
               value={cantidad}
               onChange={(e) => setCantidad(e.target.value)}
             />
           </div>
-  
           <div>
             <label htmlFor="categoria">Categoría:</label>
             <select
@@ -183,7 +197,7 @@ const AgregarProducto = () => {
               ))}
             </select>
           </div>
-  
+          
           <div>
             <label htmlFor="locacion">Locación:</label>
             <select
@@ -199,13 +213,15 @@ const AgregarProducto = () => {
                 ))}
             </select>
           </div>
-          <button type="submit">Agregar Producto</button>
+          
+
+          <button type="submit">Actualizar Producto</button>
         </form>
-        
+
         <div className="separador"> </div>
       </div>
     </Container>
   );
 };
 
-export default AgregarProducto;
+export default EditarProducto;

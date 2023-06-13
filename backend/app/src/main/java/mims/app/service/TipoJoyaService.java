@@ -25,6 +25,7 @@ public class TipoJoyaService {
     public ResponseEntity<TipoJoyaEntity> update_tipojoya(TipoJoyaEntity tipojoya, int id) {
         return tipoJoyaRepository.findById(id).map(tipojoya_data -> {
             tipojoya_data.setNombre(tipojoya.getNombre());
+            tipojoya_data.setMaterial(tipojoya.getMaterial());
             TipoJoyaEntity tipojoya_updated = tipoJoyaRepository.save(tipojoya_data);
             return ResponseEntity.ok().body(tipojoya_updated);
         }).orElse(ResponseEntity.notFound().build());

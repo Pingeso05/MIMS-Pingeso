@@ -8,4 +8,5 @@ public interface DisplayInventarioModelInterface {
     public String getJoya();
     public String getTipo_joya();
     public String getLocal();
+    public String getNombre_producto();
 }

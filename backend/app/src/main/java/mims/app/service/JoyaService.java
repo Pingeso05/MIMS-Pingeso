@@ -1,5 +1,6 @@
 package mims.app.service;
 
+import mims.app.Model.DisplayJoyaModelInterface;
 import mims.app.entity.JoyaEntity;
 import mims.app.repository.JoyaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,8 @@ public class JoyaService {
      * Este metodo devuelve todas las joyas que no estan borradas
      * @return ResponseEntity<ArrayList<JoyaEntity>>
      */
-    public ResponseEntity<ArrayList<JoyaEntity>> get_all_joyas_not_deleted() {
-        return ResponseEntity.ok((ArrayList<JoyaEntity>) joyaRepository.findAllByDeletedFalse());
+    public ArrayList<DisplayJoyaModelInterface> get_all_joyas_not_deleted() {
+        return joyaRepository.findAllJoyasNotDeleted();
     }
 
     /**
