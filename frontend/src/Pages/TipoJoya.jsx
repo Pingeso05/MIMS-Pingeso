@@ -6,8 +6,10 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
 import './TipoJoya.css';
+import { useNavigate } from 'react-router-dom';
 
 const TipoJoya = () => {
+  const navigate = useNavigate();
   const [tipos, setTipos] = useState([]);
   const [categorias, setCategorias] = useState([]);
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('');
@@ -19,6 +21,9 @@ const TipoJoya = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+  const getEditView = (id) => {
+    navigate('/tipos-de-joya/editar/' + id);
   };
 
   const getCategorias = async () => {
@@ -77,6 +82,7 @@ const TipoJoya = () => {
         <thead >
             <tr className='cabeceras'>
                 <th>#</th>
+                <th>Opciones</th>
                 <th>Nombre</th>
                 <th>Material</th>
             </tr>
@@ -85,6 +91,7 @@ const TipoJoya = () => {
             {filteredTipos.map((tipo, index) => (
                 <tr key={index}>
                     <td>{index + 1}</td>
+                    <td><Button onClick={() => getEditView(tipo.id)}>Editar</Button> </td>
                     <td>{tipo.nombre}</td>
                     <td>{tipo.material}</td>
                 </tr>

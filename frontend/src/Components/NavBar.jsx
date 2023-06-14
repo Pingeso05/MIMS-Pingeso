@@ -63,6 +63,11 @@ const Navbar = () => {
               Joyas
             </Link>
           </li>
+          <li className="navbar__item">
+            <Link to="/inventario" className={`navbar__link ${pathname === '/inventario' ? 'active' : ''}`}>
+              Carga de datos
+            </Link>
+          </li>
         </ul>
       </div>
       <div className="navbar__right">

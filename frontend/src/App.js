@@ -11,6 +11,9 @@ import AgregarProducto from './Pages/Agregar_Producto';
 import EditarProducto from './Pages/InventarioEditar';
 import Locaciones from './Pages/Locaciones';
 import AgregarLocacion from './Pages/Agregar_Locacion';
+import EditarTipoJoya from './Pages/TipoJoyaEditar';
+import EditarLocacion from './Pages/LocacionEditar';
+import EditarJoya from './Pages/JoyaEditar';
 
 
 function App() {
@@ -28,8 +31,10 @@ function App() {
           <Route path="/tipos-de-joya/agregar-tipo" element={<AgregarTipoJoya />} />
           <Route path="/locaciones" element={<Locaciones />} />          
           <Route path="/locaciones/agregar-locacion" element={<AgregarLocacion />} />
-          <Route path="/tipos-de-joya" element={<Inventario />} />
+          <Route path="/locaciones/editar-locacion/:id" element={<EditarLocacion />} />
+          <Route path="/tipos-de-joya/editar/:id" element={<EditarTipoJoya />} />
           <Route path="/joyas" element={<Inventario />} />
+          <Route path="/joyas/editar/:id" element={<EditarJoya />} />
         </Routes>
       </Container>
     </Layout>
