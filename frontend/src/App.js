@@ -14,6 +14,7 @@ import AgregarLocacion from './Pages/Agregar_Locacion';
 import EditarTipoJoya from './Pages/TipoJoyaEditar';
 import EditarLocacion from './Pages/LocacionEditar';
 import EditarJoya from './Pages/JoyaEditar';
+import CargaDatos from './Pages/CargaDatos';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path="/tipos-de-joya/editar/:id" element={<EditarTipoJoya />} />
           <Route path="/joyas" element={<Inventario />} />
           <Route path="/joyas/editar/:id" element={<EditarJoya />} />
+          <Route path="/carga-datos" element={<CargaDatos />} />
         </Routes>
       </Container>
     </Layout>
