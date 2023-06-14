@@ -7,6 +7,7 @@ import Container from 'react-bootstrap/Container';
 import Layout from './Components/Layout';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Joya from './Pages/Joya';
+import AgregarProducto from './Pages/Agregar_Producto';
 import EditarProducto from './Pages/InventarioEditar';
 import Locaciones from './Pages/Locaciones';
 import AgregarLocacion from './Pages/Agregar_Locacion';
