@@ -8,7 +8,6 @@ import Layout from './Components/Layout';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Joya from './Pages/Joya';
 import EditarProducto from './Pages/InventarioEditar';
-import AgregarProducto from './Pages/Agregar_Producto';
 import Locaciones from './Pages/Locaciones';
 import AgregarLocacion from './Pages/Agregar_Locacion';
 
