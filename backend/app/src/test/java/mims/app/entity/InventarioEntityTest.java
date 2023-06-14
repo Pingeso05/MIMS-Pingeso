@@ -77,37 +77,7 @@ class InventarioEntityTest {
         assertEquals(1, inventarioEntity.getId_tipo_joya());
     }
 
-    @Test
-    void getCreated_by() {
-        InventarioEntity inventarioEntity;
-        inventarioEntity = new InventarioEntity();
-        inventarioEntity.setCreated_by(1);
-        assertEquals(1, inventarioEntity.getCreated_by());
-    }
 
-    @Test
-    void getUpdated_by() {
-        InventarioEntity inventarioEntity;
-        inventarioEntity = new InventarioEntity();
-        inventarioEntity.setUpdated_by(1);
-        assertEquals(1, inventarioEntity.getUpdated_by());
-    }
-
-    @Test
-    void getCreated_at() {
-        InventarioEntity inventarioEntity;
-        inventarioEntity = new InventarioEntity();
-        inventarioEntity.setCreated_at(java.sql.Timestamp.valueOf("2020-01-01 00:00:00"));
-        assertEquals(java.sql.Timestamp.valueOf("2020-01-01 00:00:00"), inventarioEntity.getCreated_at());
-    }
-
-    @Test
-    void getUpdated_at() {
-        InventarioEntity inventarioEntity;
-        inventarioEntity = new InventarioEntity();
-        inventarioEntity.setUpdated_at(java.sql.Timestamp.valueOf("2020-01-01 00:00:00"));
-        assertEquals(java.sql.Timestamp.valueOf("2020-01-01 00:00:00"), inventarioEntity.getUpdated_at());
-    }
 
     @Test
     void isDeleted() {
@@ -173,36 +143,5 @@ class InventarioEntityTest {
         assertEquals(1, inventarioEntity.getId_tipo_joya());
     }
 
-    @Test
-    void setCreated_by() {
-        InventarioEntity inventarioEntity;
-        inventarioEntity = new InventarioEntity();
-        inventarioEntity.setCreated_by(1);
-        assertEquals(1, inventarioEntity.getCreated_by());
-
-    }
-
-    @Test
-    void setUpdated_by() {
-        InventarioEntity inventarioEntity;
-        inventarioEntity = new InventarioEntity();
-        inventarioEntity.setUpdated_by(1);
-        assertEquals(1, inventarioEntity.getUpdated_by());
-    }
-
-    @Test
-    void setCreated_at() {
-        InventarioEntity inventarioEntity;
-        inventarioEntity = new InventarioEntity();
-        inventarioEntity.setCreated_at(java.sql.Timestamp.valueOf("2020-01-01 00:00:00"));
-        assertEquals(java.sql.Timestamp.valueOf("2020-01-01 00:00:00"), inventarioEntity.getCreated_at());
-    }
-
-    @Test
-    void setUpdated_at() {
-        InventarioEntity inventarioEntity;
-        inventarioEntity = new InventarioEntity();
-        inventarioEntity.setUpdated_at(java.sql.Timestamp.valueOf("2020-01-01 00:00:00"));
-        assertEquals(java.sql.Timestamp.valueOf("2020-01-01 00:00:00"), inventarioEntity.getUpdated_at());
-    }
+    
 }

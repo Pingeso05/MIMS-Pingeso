@@ -28,6 +28,104 @@ cursor = database.cursor()
 malibu_db = lw('STOCK MALIBU.xlsx')
 malibu_tipo_joyas = malibu_db.sheetnames
 
+
+#Bloque para Locaciones
+regiones = [
+    "Región de Arica y Parinacota",
+    "Región de Tarapacá",
+    "Región de Antofagasta",
+    "Región de Atacama",
+    "Región de Coquimbo",
+    "Región de Valparaíso",
+    "Región Metropolitana de Santiago",
+    "Región del Libertador General Bernardo O'Higgins",
+    "Región del Maule",
+    "Región de Ñuble",
+    "Región del Biobío",
+    "Región de La Araucanía",
+    "Región de Los Ríos",
+    "Región de Los Lagos",
+    "Región de Aysén del General Carlos Ibáñez del Campo",
+    "Región de Magallanes y de la Antártica Chilena"
+]
+
+comunas_por_region = [
+    [],  # Región de Arica y Parinacota
+    [],  # Región de Tarapacá
+    [],  # Región de Antofagasta
+    [],  # Región de Atacama
+    [],  # Región de Coquimbo
+    [],  # Región de Valparaíso
+    [],  # Región Metropolitana de Santiago
+    [],  # Región del Libertador General Bernardo O'Higgins
+    [],  # Región del Maule
+    [],  # Región de Ñuble
+    [],  # Región del Biobío
+    [],  # Región de La Araucanía
+    [],  # Región de Los Ríos
+    [],  # Región de Los Lagos
+    [],  # Región de Aysén del General Carlos Ibáñez del Campo
+    []   # Región de Magallanes y de la Antártica Chilena
+]
+
+comunas_por_region[0] = ["Arica", "Putre", "General Lagos"]
+comunas_por_region[1] = ["Iquique", "Alto Hospicio", "Pozo Almonte", "Camiña", "Colchane", "Huara", "Pica"]
+comunas_por_region[2] = ["Antofagasta", "Mejillones", "Sierra Gorda", "Taltal", "Calama", "Ollagüe", "San Pedro de Atacama"]
+comunas_por_region[3] = ["Copiapó", "Caldera", "Tierra Amarilla", "Chañaral", "Diego de Almagro", "Vallenar", "Alto del Carmen", "Freirina", "Huasco"]
+comunas_por_region[4] = ["La Serena", "Coquimbo", "Andacollo", "La Higuera", "Paihuano", "Vicuña", "Illapel", "Canela", "Los Vilos", "Salamanca", "Ovalle", "Combarbalá", "Monte Patria", "Punitaqui", "Río Hurtado"]
+comunas_por_region[6] = ["Santiago", "Cerrillos", "Cerro Navia", "Conchalí", "El Bosque", "Estación Central", "Huechuraba","Independencia", "La Cisterna", "La Granja", "La Florida", "La Pintana", "La Reina", "Las Condes", "Lo Barnechea", "Lo Espejo", "Lo Prado", "Macul", "Maipú", "Ñuñoa", "Pedro Aguirre Cerda", "Peñalolén", "Providencia", "Pudahuel", "Quilicura", "Quinta Normal", "Recoleta", "Renca", "San Joaquín", "San Miguel", "San Ramón", "Vitacura", "Puente Alto", "Pirque", "San José de Maipo", "Colina", "Lampa", "Tiltil", "San Bernardo", "Buin", "Calera de Tango", "Paine", "Melipilla", "Alhué", "Curacaví", "María Pinto", "San Pedro", "Talagante", "El Monte", "Isla de Maipo", "Padre Hurtado", "Peñaflor"]
+comunas_por_region[7] = ["Rancagua", "Codegua", "Coinco", "Coltauco", "Doñihue", "Graneros", "Las Cabras", "Machalí", "Malloa", "Mostazal", "Olivar", "Peumo", "Pichidegua", "Quinta de Tilcoco", "Rengo", "Requínoa", "San Vicente"]
+comunas_por_region[8] = ["Talca", "Constitución", "Curepto", "Empedrado", "Maule", "Pelarco", "Pencahue", "Río Claro", "San Clemente", "San Rafael"]
+comunas_por_region[9] = ["Chillán", "Bulnes", "Cobquecura", "Coelemu", "Coihueco", "Chillán Viejo", "El Carmen", "Ninhue", "Ñiquén", "Pemuco", "Pinto", "Portezuelo", "Quillón", "Quirihue", "Ránquil", "San Carlos", "San Fabián", "San Ignacio", "San Nicolás", "Treguaco", "Yungay"]
+comunas_por_region[10] = ["Concepción", "Coronel", "Chiguayante", "Florida", "Hualpén", "Hualqui", "Lota", "Penco", "San Pedro de la Paz", "Santa Juana", "Talcahuano", "Tomé", "Hualañé", "Laja", "Lebu", "Los Álamos", "Mulchén", "Nacimiento", "Negrete", "Quilaco", "Quilleco", "San Rosendo", "Santa Bárbara", "Tucapel", "Yumbel", "Arauco", "Cañete", "Contulmo", "Curanilahue", "Los Ángeles"]
+comunas_por_region[11] = ["Temuco", "Carahue", "Cunco", "Curarrehue", "Freire", "Galvarino", "Gorbea", "Lautaro", "Loncoche", "Melipeuco", "Nueva Imperial", "Padre las Casas", "Perquenco", "Pitrufquén", "Pucón", "Saavedra", "Teodoro Schmidt", "Toltén", "Vilcún", "Villarrica", "Cholchol"]
+comunas_por_region[12] = ["Valdivia", "Corral", "Lanco", "Los Lagos", "Máfil", "Mariquina", "Paillaco", "Panguipulli"]
+comunas_por_region[13] = ["Puerto Montt", "Calbuco", "Cochamó", "Fresia", "Frutillar", "Los Muermos", "Llanquihue", "Maullín", "Puerto Varas", "Castro", "Ancud", "Chonchi", "Curaco de Vélez", "Dalcahue", "Puqueldón", "Queilén", "Quellón", "Quemchi", "Quinchao"]
+comunas_por_region[14] = ["Coihaique", "Lago Verde", "Aysén", "Cisnes", "Guaitecas", "Cochrane", "O'Higgins", "Tortel"]
+comunas_por_region[15] = ["Punta Arenas", "Laguna Blanca", "Río Verde", "San Gregorio", "Cabo de Hornos", "Antártica"]
+
+regiones_table = ("CREATE TABLE IF NOT EXISTS regiones("+
+                    "id int NOT NULL AUTO_INCREMENT, "+
+                    "nombre varchar(255) NOT NULL, "+
+                    "PRIMARY KEY (id));")
+
+cursor.execute(regiones_table)
+cursor.close()
+database.commit()
+#comenzamos nuevamente
+cursor = database.cursor()
+comunas_table = ("CREATE TABLE IF NOT EXISTS comunas("+
+                    "id int NOT NULL AUTO_INCREMENT, "+
+                    "nombre varchar(255) NOT NULL, "+
+                    "id_region int NOT NULL, "+
+                    "PRIMARY KEY (id));")
+cursor.execute(comunas_table)
+cursor.close()
+database.commit()
+#comenzamos nuevamente
+cursor = database.cursor()
+
+query = "INSERT INTO mims.regiones (nombre) VALUES (%s)"
+#query2 = "INSERT INTO mims.comunas (nombre, id_region) VALUES (%s, (SELECT id FROM))"
+for element in regiones:
+    values = (element)
+    cursor.execute(query, values)
+cursor.close()
+database.commit()
+cursor = database.cursor()
+
+query = "INSERT INTO mims.comunas (nombre, id_region) VALUES (%s, %s)"
+for elemento in regiones:
+    id = regiones.index(elemento)
+    for comuna in comunas_por_region[id]:
+        nombre = comuna
+        values = (comuna, id)
+        cursor.execute(query, values)
+
+cursor.close()
+database.commit()
+cursor = database.cursor()
+   
 readings = []
 for elemento in malibu_tipo_joyas:
     hoja = malibu_db[elemento]
