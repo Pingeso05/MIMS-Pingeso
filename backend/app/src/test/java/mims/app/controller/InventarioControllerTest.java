@@ -112,8 +112,6 @@ public class InventarioControllerTest {
         inventario.setId_joya(1);
         inventario.setId_locacion(1);
         inventario.setId_tipo_joya(1);
-        inventario.setCreated_by(1);
-        inventario.setUpdated_by(1);
         inventario.setDeleted(false);
 
         ResponseEntity<InventarioEntity> response = inventarioController.save(inventario);
