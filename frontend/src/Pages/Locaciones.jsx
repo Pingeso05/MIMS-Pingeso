@@ -56,7 +56,7 @@ const Locaciones = () => {
                     <tr key={index}>
                         <td>{index + 1}</td>
                         <td>{locacion.nombre}</td>
-                        <td>dirección</td>
+                        <td>{locacion.direccion}</td>
                         <td>comuna</td>
                     </tr>
                 ))}
