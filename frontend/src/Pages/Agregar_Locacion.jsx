@@ -25,6 +25,7 @@ const AgregarLocacion = () => {
     try {
       const response1 = await axios.post('http://localhost:8080/locacion', {
         nombre: nombreLocacion,
+        direccion: direccion,
         deleted: false
       });
 
