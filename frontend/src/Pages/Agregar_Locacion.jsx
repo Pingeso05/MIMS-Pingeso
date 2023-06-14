@@ -44,7 +44,7 @@ const AgregarLocacion = () => {
       
 
   return (
-    <Container style={{ textAlign: 'center' }} className="container-product">
+    <Container style={{ textAlign: 'center' }} className="container-agregar-locacion">
       <div>
         <h2 className="titulo">Agregar Locación</h2>
   
