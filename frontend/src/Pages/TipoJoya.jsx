@@ -91,7 +91,7 @@ const TipoJoya = () => {
             {filteredTipos.map((tipo, index) => (
                 <tr key={index}>
                     <td>{index + 1}</td>
-                    <td><Button onClick={() => getEditView(tipo.id)}>Editar</Button> </td>
+                    <td><Button style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent'}} onClick={() => getEditView(tipo.id)}>Editar</Button> </td>
                     <td>{tipo.nombre}</td>
                     <td>{tipo.material}</td>
                 </tr>

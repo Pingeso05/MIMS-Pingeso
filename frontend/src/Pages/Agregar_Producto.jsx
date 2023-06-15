@@ -4,7 +4,6 @@ import Container from 'react-bootstrap/Container';
 import './AgregarProducto.css'; 
 
 const AgregarProducto = () => {
-  const [nombreProducto, setNombreProducto] = useState('');
   const [precioCosto, setPrecioCosto] = useState('');
   const [precioVenta, setPrecioVenta] = useState('');
   const [cantidad, setCantidad] = useState('');
@@ -54,7 +53,6 @@ const AgregarProducto = () => {
 
     if (
       joyaSeleccionada.trim() === '' ||
-      nombreProducto.trim() === '' ||
       precioCosto.trim() === '' ||
       precioVenta.trim() === '' ||
       cantidad.trim() === '' ||
@@ -70,7 +68,7 @@ const AgregarProducto = () => {
       await axios.post('http://localhost:8080/inventario', {
         id_locacion: locacionSeleccionada,
         id_joya: joyaSeleccionada,
-        nombre_producto: nombreProducto,
+        nombre_producto: '1',
         id_tipo_joya: categoriaSeleccionada,
         cantidad: cantidad,
         precio_venta: precioVenta,
@@ -79,7 +77,6 @@ const AgregarProducto = () => {
       });
 
      
-      setNombreProducto('');
       setPrecioCosto('');
       setPrecioVenta('');
       setCantidad('');
@@ -106,15 +103,6 @@ const AgregarProducto = () => {
         <h2 className="titulo">Agregar Producto</h2>
   
         <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="nombreProducto">Nombre del Producto:</label>
-            <input
-              type="text"
-              id="nombreProducto"
-              value={nombreProducto}
-              onChange={(e) => setNombreProducto(e.target.value)}
-            />
-          </div>
 
           <div>
             <label htmlFor="joya">Joya:</label>
