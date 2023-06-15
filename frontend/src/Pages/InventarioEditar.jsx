@@ -55,7 +55,6 @@ const EditarProducto = () => {
 
     if (
       joyaSeleccionada === '' ||
-      nombreProducto.trim() === '' ||
       precioCosto === '' ||
       precioVenta === '' ||
       cantidad === '' ||
@@ -99,7 +98,6 @@ const EditarProducto = () => {
         const res = await axios.get('http://localhost:8080/inventario/' + id);
         const producto = res.data;
 
-        setNombreProducto(producto.nombre_producto);
         setPrecioCosto(producto.precio_costo);
         setPrecioVenta(producto.precio_venta);
         setCantidad(producto.cantidad);
@@ -124,15 +122,6 @@ const EditarProducto = () => {
 
         <form onSubmit={handleSubmit}>
           
-          <div>
-            <label htmlFor="nombreProducto">Nombre del Producto:</label>
-            <input
-              type="text"
-              id="nombreProducto"
-              value={nombreProducto}
-              onChange={(e) => setNombreProducto(e.target.value)}
-            />
-          </div>
           <div>
             <label htmlFor="joya">Joya:</label>
             <select

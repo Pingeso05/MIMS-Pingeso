@@ -133,7 +133,7 @@ const Inventario = () => {
                         <td>{index + 1}</td>
                         <td>{producto.local}</td>
                         <td>
-                            <Button variant='success' onClick={() => getEditView(producto.id)} >Opreaciones de producto</Button>
+                            <Button variant='success' onClick={() => getEditView(producto.id)} >Operaciones de producto</Button>
                         </td>
                         <td>{producto.joya}</td>
                         <td>{Number(producto.cantidad).toLocaleString()}</td>
