@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="002d9310-7737-4d71-becf-975c407804cb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/app/src/test/java/mims/app/controller/JoyaControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/src/test/java/mims/app/entity/JoyaEntityTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/src/test/java/mims/app/service/JoyaServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/test/java/mims/app/controller/InventarioControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/test/java/mims/app/service/InventarioServiceTest.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2QtL1E6za3NqGqtnpMxumGTR0pF" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;desarrollo/alen&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="mims.app.controller" />
+      <recent name="mims.app.entity" />
+      <recent name="mims.app.service" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="JoyaControllerTest.testDeleteJoya" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="mims.app.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="mims.app.controller" />
+      <option name="MAIN_CLASS_NAME" value="mims.app.controller.JoyaControllerTest" />
+      <option name="METHOD_NAME" value="testDeleteJoya" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JoyaControllerTest.testGetAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="mims.app.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="mims.app.controller" />
+      <option name="MAIN_CLASS_NAME" value="mims.app.controller.JoyaControllerTest" />
+      <option name="METHOD_NAME" value="testGetAll" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JoyaControllerTest.testGetById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="mims.app.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="mims.app.controller" />
+      <option name="MAIN_CLASS_NAME" value="mims.app.controller.JoyaControllerTest" />
+      <option name="METHOD_NAME" value="testGetById" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JoyaControllerTest.testSaveJoya" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="mims.app.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="mims.app.controller" />
+      <option name="MAIN_CLASS_NAME" value="mims.app.controller.JoyaControllerTest" />
+      <option name="METHOD_NAME" value="testSaveJoya" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JoyaControllerTest.testUpdateJoya" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="mims.app.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="mims.app.controller" />
+      <option name="MAIN_CLASS_NAME" value="mims.app.controller.JoyaControllerTest" />
+      <option name="METHOD_NAME" value="testUpdateJoya" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.JoyaControllerTest.testGetAll" />
+        <item itemvalue="JUnit.JoyaControllerTest.testDeleteJoya" />
+        <item itemvalue="JUnit.JoyaControllerTest.testUpdateJoya" />
+        <item itemvalue="JUnit.JoyaControllerTest.testSaveJoya" />
+        <item itemvalue="JUnit.JoyaControllerTest.testGetById" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="002d9310-7737-4d71-becf-975c407804cb" name="Changes" comment="" />
+      <created>1686167715501</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1686167715501</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaServiceTest_save_joya.ic" NAME="JoyaServiceTest.save_joya Coverage Results" MODIFIED="1686869861070" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaControllerTest_testUpdateJoya.ic" NAME="JoyaControllerTest.testUpdateJoya Coverage Results" MODIFIED="1686870946728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaControllerTest_testDeleteJoya.ic" NAME="JoyaControllerTest.testDeleteJoya Coverage Results" MODIFIED="1686870976966" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaServiceTest_get_joya_by_id.ic" NAME="JoyaServiceTest.get_joya_by_id Coverage Results" MODIFIED="1686868833044" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaControllerTest_testGetAll.ic" NAME="JoyaControllerTest.testGetAll Coverage Results" MODIFIED="1686871136744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaServiceTest_get_all_joyas_not_deletedTest.ic" NAME="JoyaServiceTest.get_all_joyas_not_deletedTest Coverage Results" MODIFIED="1686870026354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaControllerTest_testGetById.ic" NAME="JoyaControllerTest.testGetById Coverage Results" MODIFIED="1686870828658" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaServiceTest_soft_delete_joya.ic" NAME="JoyaServiceTest.soft_delete_joya Coverage Results" MODIFIED="1686869939525" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$InventarioEntityTest.ic" NAME="InventarioEntityTest Coverage Results" MODIFIED="1686870459598" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.entity.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaControllerTest_testSaveJoya.ic" NAME="JoyaControllerTest.testSaveJoya Coverage Results" MODIFIED="1686870915322" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaServiceTest_update_joya.ic" NAME="JoyaServiceTest.update_joya Coverage Results" MODIFIED="1686869435131" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaEntityTest.ic" NAME="JoyaEntityTest Coverage Results" MODIFIED="1686870668729" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.entity.*</FILTER>
+    </SUITE>
+  </component>
+</project>
