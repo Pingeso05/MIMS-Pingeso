@@ -136,11 +136,11 @@ const Inventario = () => {
                             <Button variant='success' onClick={() => getEditView(producto.id)} >Opreaciones de producto</Button>
                         </td>
                         <td>{producto.joya}</td>
-                        <td>{producto.cantidad}</td>
+                        <td>{Number(producto.cantidad).toLocaleString()}</td>
                         <td>{producto.tipo_joya}</td>
                         
-                        <td>${producto.precio_costo}</td>
-                        <td>${producto.precio_venta}</td>
+                        <td>${Number(producto.precio_costo).toLocaleString()}</td>
+                        <td>${Number(producto.precio_venta).toLocaleString()}</td>
                     </tr>
                 ))}
 
