@@ -1,5 +1,6 @@
 package mims.app.service;
 
+import mims.app.entity.JoyaEntity;
 import mims.app.entity.TipoJoyaEntity;
 import mims.app.repository.TipoJoyaRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,6 +34,11 @@ class TipoJoyaServiceTest {
     void testGetAllTipoJoyasNotDeleted() {
         ArrayList<TipoJoyaEntity> tipoJoyas = new ArrayList<>();
         // Agregar lógica para crear objetos TipoJoyaEntity y agregarlos a la lista tipoJoyas
+        TipoJoyaEntity tipoJoya = new TipoJoyaEntity();
+        tipoJoya.setId(1);
+        tipoJoya.setNombre("Anillo");
+        tipoJoya.setDeleted(false);
+        tipoJoyas.add(tipoJoya);
 
         when(tipoJoyaRepository.findAllByDeletedFalse()).thenReturn(tipoJoyas);
 
@@ -48,8 +54,14 @@ class TipoJoyaServiceTest {
     @Test
     void testGetTipoJoyaById() {
         int id = 1;
-        TipoJoyaEntity tipoJoya = new TipoJoyaEntity();
+        ArrayList<TipoJoyaEntity> tipoJoyas = new ArrayList<>();
         // Agregar lógica para configurar la respuesta del repositorio y establecer el objeto TipoJoyaEntity
+        TipoJoyaEntity tipoJoya = new TipoJoyaEntity();
+        tipoJoya.setId(1);
+        tipoJoya.setNombre("Anillo");
+        tipoJoya.setDeleted(false);
+        tipoJoyas.add(tipoJoya);
+
 
         when(tipoJoyaRepository.findById(id)).thenReturn(Optional.of(tipoJoya));
 
@@ -65,8 +77,16 @@ class TipoJoyaServiceTest {
     @Test
     void testUpdateTipoJoya() {
         int id = 1;
-        TipoJoyaEntity tipoJoya = new TipoJoyaEntity();
+        String nombre = "Anillo 2";
+
         // Agregar lógica para configurar la respuesta del repositorio y establecer el objeto TipoJoyaEntity
+        ArrayList<TipoJoyaEntity> tipoJoyas = new ArrayList<>();
+        // Agregar lógica para configurar la respuesta del repositorio y establecer el objeto TipoJoyaEntity
+        TipoJoyaEntity tipoJoya = new TipoJoyaEntity();
+        tipoJoya.setId(1);
+        tipoJoya.setNombre("Anillo");
+        tipoJoya.setDeleted(false);
+        tipoJoyas.add(tipoJoya);
 
         when(tipoJoyaRepository.findById(id)).thenReturn(Optional.of(tipoJoya));
         when(tipoJoyaRepository.save(any(TipoJoyaEntity.class))).thenReturn(tipoJoya);
@@ -84,7 +104,11 @@ class TipoJoyaServiceTest {
     @Test
     void testSaveTipoJoya() {
         TipoJoyaEntity tipoJoya = new TipoJoyaEntity();
+        ArrayList<TipoJoyaEntity> tipoJoyas = new ArrayList<>();
         // Agregar lógica para configurar la respuesta del repositorio y establecer el objeto TipoJoyaEntity
+        tipoJoya.setId(1);
+        tipoJoya.setNombre("Anillo");
+        tipoJoya.setDeleted(false);
 
         when(tipoJoyaRepository.save(any(TipoJoyaEntity.class))).thenReturn(tipoJoya);
 
@@ -102,7 +126,12 @@ class TipoJoyaServiceTest {
         int id = 1;
         TipoJoyaEntity tipoJoya = new TipoJoyaEntity();
         // Agregar lógica para configurar la respuesta del repositorio y establecer el objeto TipoJoyaEntity
-
+        ArrayList<TipoJoyaEntity> tipoJoyas = new ArrayList<>();
+        // Agregar lógica para configurar la respuesta del repositorio y establecer el objeto TipoJoyaEntity
+        tipoJoya.setId(1);
+        tipoJoya.setNombre("Anillo");
+        tipoJoya.setDeleted(false);
+        tipoJoyas.add(tipoJoya);
         when(tipoJoyaRepository.findById(id)).thenReturn(Optional.of(tipoJoya));
         when(tipoJoyaRepository.save(any(TipoJoyaEntity.class))).thenReturn(tipoJoya);
 

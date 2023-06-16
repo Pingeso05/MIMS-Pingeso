@@ -5,13 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="002d9310-7737-4d71-becf-975c407804cb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/app/src/test/java/mims/app/controller/LocacionControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/src/test/java/mims/app/controller/TipoJoyaControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/src/test/java/mims/app/entity/LocacionEntityTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/src/test/java/mims/app/entity/TipoJoyaEntityTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/src/test/java/mims/app/service/LocacionServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/src/test/java/mims/app/service/TipoJoyaServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/src/test/java/mims/app/controller/InventarioControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/src/test/java/mims/app/service/InventarioServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/Model/DisplayRolModelInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/Model/JoyaModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/Model/TipoJoyaModelInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/controller/JoyaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/controller/JoyaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/controller/RolController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/entity/LogInventarioEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/entity/RolEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/repository/JoyaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/repository/JoyaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/repository/RolRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/service/JoyaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/service/JoyaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/service/RolService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/test/java/mims/app/service/TipoJoyaServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/test/java/mims/app/service/TipoJoyaServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,57 +77,12 @@
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="mims.app.controller" />
-      <recent name="mims.app.entity" />
       <recent name="mims.app.service" />
+      <recent name="mims.app.entity" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.InventarioEntityTest">
-    <configuration name="InventarioEntityTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="app" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="mims.app.entity.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="mims.app.entity" />
-      <option name="MAIN_CLASS_NAME" value="mims.app.entity.InventarioEntityTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="JoyaEntityTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="app" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="mims.app.entity.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="mims.app.entity" />
-      <option name="MAIN_CLASS_NAME" value="mims.app.entity.JoyaEntityTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LocacionEntityTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="app" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="mims.app.entity.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="mims.app.entity" />
-      <option name="MAIN_CLASS_NAME" value="mims.app.entity.LocacionEntityTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TipoJoyaControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager">
+    <configuration name="InventarioControllerTest.testDeleteInventario" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="app" />
       <extension name="coverage">
         <pattern>
@@ -128,13 +91,42 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="mims.app.controller" />
-      <option name="MAIN_CLASS_NAME" value="mims.app.controller.TipoJoyaControllerTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="mims.app.controller.InventarioControllerTest" />
+      <option name="METHOD_NAME" value="testDeleteInventario" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TipoJoyaEntityTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="mims.app in app" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="mims.app.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="mims.app" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="mims.app.controller in app" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="mims.app.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="mims.app.controller" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="mims.app.entity in app" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="app" />
       <extension name="coverage">
         <pattern>
@@ -143,19 +135,32 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="mims.app.entity" />
-      <option name="MAIN_CLASS_NAME" value="mims.app.entity.TipoJoyaEntityTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="mims.app.service in app" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="mims.app.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="mims.app.service" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.InventarioEntityTest" />
-        <item itemvalue="JUnit.TipoJoyaEntityTest" />
-        <item itemvalue="JUnit.JoyaEntityTest" />
-        <item itemvalue="JUnit.TipoJoyaControllerTest" />
-        <item itemvalue="JUnit.LocacionEntityTest" />
+        <item itemvalue="JUnit.mims.app in app" />
+        <item itemvalue="JUnit.mims.app.service in app" />
+        <item itemvalue="JUnit.mims.app.entity in app" />
+        <item itemvalue="JUnit.mims.app.controller in app" />
+        <item itemvalue="JUnit.InventarioControllerTest.testDeleteInventario" />
       </list>
     </recent_temporary>
   </component>
@@ -193,37 +198,28 @@
     <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaControllerTest.ic" NAME="JoyaControllerTest Coverage Results" MODIFIED="1686875394652" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>mims.app.controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/MIMS_Pingeso$LocacionEntityTest.ic" NAME="LocacionEntityTest Coverage Results" MODIFIED="1686876902629" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>mims.app.entity.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/MIMS_Pingeso$LocacionServiceTest_delete_locacion.ic" NAME="LocacionServiceTest.delete_locacion Coverage Results" MODIFIED="1686876151453" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$InventarioServiceTest_testUpdateInventario.ic" NAME="InventarioServiceTest.testUpdateInventario Coverage Results" MODIFIED="1686882485644" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>mims.app.service.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaServiceTest_save_joya.ic" NAME="JoyaServiceTest.save_joya Coverage Results" MODIFIED="1686869861070" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>mims.app.service.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaControllerTest_testUpdateJoya.ic" NAME="JoyaControllerTest.testUpdateJoya Coverage Results" MODIFIED="1686870946728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>mims.app.controller.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/MIMS_Pingeso$LocacionServiceTest_update_locacion.ic" NAME="LocacionServiceTest.update_locacion Coverage Results" MODIFIED="1686876106554" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>mims.app.service.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/MIMS_Pingeso$TipoJoyaControllerTest.ic" NAME="TipoJoyaControllerTest Coverage Results" MODIFIED="1686876978732" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>mims.app.controller.*</FILTER>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$InventarioServiceTest_testGetAllInventariosNotDeleted.ic" NAME="InventarioServiceTest.testGetAllInventariosNotDeleted Coverage Results" MODIFIED="1686882883586" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$TipoJoyaServiceTest_testUpdateTipoJoya.ic" NAME="TipoJoyaServiceTest.testUpdateTipoJoya Coverage Results" MODIFIED="1686883088725" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$InventarioServiceTest_testSaveInventario.ic" NAME="InventarioServiceTest.testSaveInventario Coverage Results" MODIFIED="1686883966275" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.service.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaServiceTest_get_joya_by_id.ic" NAME="JoyaServiceTest.get_joya_by_id Coverage Results" MODIFIED="1686868833044" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>mims.app.service.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaControllerTest_testGetAll.ic" NAME="JoyaControllerTest.testGetAll Coverage Results" MODIFIED="1686871136744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>mims.app.controller.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/MIMS_Pingeso$LocacionControllerTest.ic" NAME="LocacionControllerTest Coverage Results" MODIFIED="1686876537751" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>mims.app.controller.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/MIMS_Pingeso$LocacionServiceTest_save_locacion.ic" NAME="LocacionServiceTest.save_locacion Coverage Results" MODIFIED="1686876123763" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>mims.app.service.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaControllerTest_testSaveJoya.ic" NAME="JoyaControllerTest.testSaveJoya Coverage Results" MODIFIED="1686870915322" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$mims_app_controller_in_app.ic" NAME="mims.app.controller in app Coverage Results" MODIFIED="1686885227908" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>mims.app.controller.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/MIMS_Pingeso$LocacionServiceTest_get_all_locaciones_not_deleted.ic" NAME="LocacionServiceTest.get_all_locaciones_not_deleted Coverage Results" MODIFIED="1686876051570" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -232,11 +228,23 @@
     <SUITE FILE_PATH="coverage/MIMS_Pingeso$LocacionServiceTest_get_locacion_by_id.ic" NAME="LocacionServiceTest.get_locacion_by_id Coverage Results" MODIFIED="1686876071243" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>mims.app.service.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaServiceTest.ic" NAME="JoyaServiceTest Coverage Results" MODIFIED="1686875381810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$TipoJoyaServiceTest_testGetTipoJoyaById.ic" NAME="TipoJoyaServiceTest.testGetTipoJoyaById Coverage Results" MODIFIED="1686883032795" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>mims.app.service.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaControllerTest_testDeleteJoya.ic" NAME="JoyaControllerTest.testDeleteJoya Coverage Results" MODIFIED="1686870976966" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$TipoJoyaEntityTest.ic" NAME="TipoJoyaEntityTest Coverage Results" MODIFIED="1686877129969" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.entity.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$InventarioControllerTest_testGetInventarioById.ic" NAME="InventarioControllerTest.testGetInventarioById Coverage Results" MODIFIED="1686884931013" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>mims.app.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$InventarioControllerTest_testUpdateInventario.ic" NAME="InventarioControllerTest.testUpdateInventario Coverage Results" MODIFIED="1686885058245" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaServiceTest.ic" NAME="JoyaServiceTest Coverage Results" MODIFIED="1686884013128" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$mims_app_entity_in_app.ic" NAME="mims.app.entity in app Coverage Results" MODIFIED="1686885236093" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.entity.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaServiceTest_get_all_joyas_not_deletedTest.ic" NAME="JoyaServiceTest.get_all_joyas_not_deletedTest Coverage Results" MODIFIED="1686874704440" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>mims.app.service.*</FILTER>
@@ -250,15 +258,75 @@
     <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaServiceTest_soft_delete_joya.ic" NAME="JoyaServiceTest.soft_delete_joya Coverage Results" MODIFIED="1686869939525" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>mims.app.service.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/MIMS_Pingeso$InventarioEntityTest.ic" NAME="InventarioEntityTest Coverage Results" MODIFIED="1686870459598" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$InventarioEntityTest.ic" NAME="InventarioEntityTest Coverage Results" MODIFIED="1686877136611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>mims.app.entity.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/MIMS_Pingeso$LocacionEntityTest_testLocacionEntity.ic" NAME="LocacionEntityTest.testLocacionEntity Coverage Results" MODIFIED="1686876320752" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaServiceTest_update_joya.ic" NAME="JoyaServiceTest.update_joya Coverage Results" MODIFIED="1686869435131" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$TipoJoyaServiceTest_testSaveTipoJoya.ic" NAME="TipoJoyaServiceTest.testSaveTipoJoya Coverage Results" MODIFIED="1686883135102" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>mims.app.service.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaEntityTest.ic" NAME="JoyaEntityTest Coverage Results" MODIFIED="1686877018309" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>mims.app.entity.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$mims_app_service_in_app.ic" NAME="mims.app.service in app Coverage Results" MODIFIED="1686885239656" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$LocacionEntityTest.ic" NAME="LocacionEntityTest Coverage Results" MODIFIED="1686876902629" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.entity.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$InventarioServiceTest_testDeleteInventario.ic" NAME="InventarioServiceTest.testDeleteInventario Coverage Results" MODIFIED="1686883993298" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$LocacionServiceTest_delete_locacion.ic" NAME="LocacionServiceTest.delete_locacion Coverage Results" MODIFIED="1686876151453" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaServiceTest_save_joya.ic" NAME="JoyaServiceTest.save_joya Coverage Results" MODIFIED="1686869861070" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaControllerTest_testUpdateJoya.ic" NAME="JoyaControllerTest.testUpdateJoya Coverage Results" MODIFIED="1686870946728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$TipoJoyaControllerTest.ic" NAME="TipoJoyaControllerTest Coverage Results" MODIFIED="1686876978732" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaControllerTest_testGetAll.ic" NAME="JoyaControllerTest.testGetAll Coverage Results" MODIFIED="1686871136744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$LocacionControllerTest.ic" NAME="LocacionControllerTest Coverage Results" MODIFIED="1686876537751" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$InventarioServiceTest_testGetInventarioById.ic" NAME="InventarioServiceTest.testGetInventarioById Coverage Results" MODIFIED="1686883943221" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaControllerTest_testSaveJoya.ic" NAME="JoyaControllerTest.testSaveJoya Coverage Results" MODIFIED="1686870915322" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$InventarioControllerTest_testSaveInventario.ic" NAME="InventarioControllerTest.testSaveInventario Coverage Results" MODIFIED="1686884980578" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$AppApplication.ic" NAME="AppApplication Coverage Results" MODIFIED="1686885195357" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaControllerTest_testDeleteJoya.ic" NAME="JoyaControllerTest.testDeleteJoya Coverage Results" MODIFIED="1686870976966" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$InventarioControllerTest_testDeleteInventario.ic" NAME="InventarioControllerTest.testDeleteInventario Coverage Results" MODIFIED="1686885117248" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$LocacionServiceTest.ic" NAME="LocacionServiceTest Coverage Results" MODIFIED="1686884026074" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$mims_app_in_app.ic" NAME="mims.app in app Coverage Results" MODIFIED="1686885424878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$LocacionEntityTest_testLocacionEntity.ic" NAME="LocacionEntityTest.testLocacionEntity Coverage Results" MODIFIED="1686876320752" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$TipoJoyaServiceTest_testGetAllTipoJoyasNotDeleted.ic" NAME="TipoJoyaServiceTest.testGetAllTipoJoyasNotDeleted Coverage Results" MODIFIED="1686882968666" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$TipoJoyaServiceTest_testDeleteTipoJoya.ic" NAME="TipoJoyaServiceTest.testDeleteTipoJoya Coverage Results" MODIFIED="1686883171684" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.service.*</FILTER>
     </SUITE>
   </component>
 </project>
