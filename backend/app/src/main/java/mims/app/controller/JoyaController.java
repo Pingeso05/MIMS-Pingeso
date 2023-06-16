@@ -1,6 +1,7 @@
 package mims.app.controller;
 
 import mims.app.Model.DisplayJoyaModelInterface;
+import mims.app.Model.JoyaModel;
 import mims.app.entity.JoyaEntity;
 import mims.app.service.JoyaService;
 import org.springframework.beans.factory.annotation.Autowired;
