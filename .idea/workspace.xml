@@ -5,22 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="002d9310-7737-4d71-becf-975c407804cb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/app/src/test/java/mims/app/controller/JoyaControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/src/test/java/mims/app/entity/JoyaEntityTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/app/src/test/java/mims/app/service/JoyaServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/src/test/java/mims/app/controller/InventarioControllerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/src/test/java/mims/app/service/InventarioServiceTest.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/Model/JoyaModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/controller/JoyaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/controller/JoyaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/entity/JoyaEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/entity/JoyaEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/repository/JoyaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/repository/JoyaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/service/JoyaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/service/JoyaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/test/java/mims/app/controller/JoyaControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/test/java/mims/app/controller/JoyaControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/test/java/mims/app/service/JoyaServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/test/java/mims/app/service/JoyaServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageOptionsProvider">
+    <option name="myAddOrReplace" value="1" />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/backend/app/htmlReport" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -65,8 +74,8 @@
       <recent name="mims.app.service" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="JoyaControllerTest.testDeleteJoya" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.JoyaEntityTest">
+    <configuration name="JoyaControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="app" />
       <extension name="coverage">
         <pattern>
@@ -76,8 +85,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="mims.app.controller" />
       <option name="MAIN_CLASS_NAME" value="mims.app.controller.JoyaControllerTest" />
-      <option name="METHOD_NAME" value="testDeleteJoya" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -98,49 +106,47 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JoyaControllerTest.testGetById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="JoyaEntityTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="app" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="mims.app.controller.*" />
+          <option name="PATTERN" value="mims.app.entity.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="mims.app.controller" />
-      <option name="MAIN_CLASS_NAME" value="mims.app.controller.JoyaControllerTest" />
-      <option name="METHOD_NAME" value="testGetById" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="mims.app.entity" />
+      <option name="MAIN_CLASS_NAME" value="mims.app.entity.JoyaEntityTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JoyaControllerTest.testSaveJoya" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="JoyaServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="app" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="mims.app.controller.*" />
+          <option name="PATTERN" value="mims.app.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="mims.app.controller" />
-      <option name="MAIN_CLASS_NAME" value="mims.app.controller.JoyaControllerTest" />
-      <option name="METHOD_NAME" value="testSaveJoya" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="mims.app.service" />
+      <option name="MAIN_CLASS_NAME" value="mims.app.service.JoyaServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JoyaControllerTest.testUpdateJoya" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="JoyaServiceTest.get_all_joyas_not_deletedTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="app" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="mims.app.controller.*" />
+          <option name="PATTERN" value="mims.app.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="mims.app.controller" />
-      <option name="MAIN_CLASS_NAME" value="mims.app.controller.JoyaControllerTest" />
-      <option name="METHOD_NAME" value="testUpdateJoya" />
+      <option name="PACKAGE_NAME" value="mims.app.service" />
+      <option name="MAIN_CLASS_NAME" value="mims.app.service.JoyaServiceTest" />
+      <option name="METHOD_NAME" value="get_all_joyas_not_deletedTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -148,11 +154,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.JoyaEntityTest" />
+        <item itemvalue="JUnit.JoyaControllerTest" />
+        <item itemvalue="JUnit.JoyaServiceTest" />
+        <item itemvalue="JUnit.JoyaServiceTest.get_all_joyas_not_deletedTest" />
         <item itemvalue="JUnit.JoyaControllerTest.testGetAll" />
-        <item itemvalue="JUnit.JoyaControllerTest.testDeleteJoya" />
-        <item itemvalue="JUnit.JoyaControllerTest.testUpdateJoya" />
-        <item itemvalue="JUnit.JoyaControllerTest.testSaveJoya" />
-        <item itemvalue="JUnit.JoyaControllerTest.testGetById" />
       </list>
     </recent_temporary>
   </component>
@@ -172,13 +178,13 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaControllerTest.ic" NAME="JoyaControllerTest Coverage Results" MODIFIED="1686875394652" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.controller.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaServiceTest_save_joya.ic" NAME="JoyaServiceTest.save_joya Coverage Results" MODIFIED="1686869861070" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>mims.app.service.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaControllerTest_testUpdateJoya.ic" NAME="JoyaControllerTest.testUpdateJoya Coverage Results" MODIFIED="1686870946728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>mims.app.controller.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaControllerTest_testDeleteJoya.ic" NAME="JoyaControllerTest.testDeleteJoya Coverage Results" MODIFIED="1686870976966" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>mims.app.controller.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaServiceTest_get_joya_by_id.ic" NAME="JoyaServiceTest.get_joya_by_id Coverage Results" MODIFIED="1686868833044" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -187,7 +193,16 @@
     <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaControllerTest_testGetAll.ic" NAME="JoyaControllerTest.testGetAll Coverage Results" MODIFIED="1686871136744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>mims.app.controller.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaServiceTest_get_all_joyas_not_deletedTest.ic" NAME="JoyaServiceTest.get_all_joyas_not_deletedTest Coverage Results" MODIFIED="1686870026354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaControllerTest_testSaveJoya.ic" NAME="JoyaControllerTest.testSaveJoya Coverage Results" MODIFIED="1686870915322" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaServiceTest.ic" NAME="JoyaServiceTest Coverage Results" MODIFIED="1686875381810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaControllerTest_testDeleteJoya.ic" NAME="JoyaControllerTest.testDeleteJoya Coverage Results" MODIFIED="1686870976966" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>mims.app.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaServiceTest_get_all_joyas_not_deletedTest.ic" NAME="JoyaServiceTest.get_all_joyas_not_deletedTest Coverage Results" MODIFIED="1686874704440" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>mims.app.service.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaControllerTest_testGetById.ic" NAME="JoyaControllerTest.testGetById Coverage Results" MODIFIED="1686870828658" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -199,13 +214,10 @@
     <SUITE FILE_PATH="coverage/MIMS_Pingeso$InventarioEntityTest.ic" NAME="InventarioEntityTest Coverage Results" MODIFIED="1686870459598" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>mims.app.entity.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaControllerTest_testSaveJoya.ic" NAME="JoyaControllerTest.testSaveJoya Coverage Results" MODIFIED="1686870915322" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>mims.app.controller.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaServiceTest_update_joya.ic" NAME="JoyaServiceTest.update_joya Coverage Results" MODIFIED="1686869435131" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>mims.app.service.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaEntityTest.ic" NAME="JoyaEntityTest Coverage Results" MODIFIED="1686870668729" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/MIMS_Pingeso$JoyaEntityTest.ic" NAME="JoyaEntityTest Coverage Results" MODIFIED="1686875456600" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>mims.app.entity.*</FILTER>
     </SUITE>
   </component>

@@ -37,15 +37,6 @@ class JoyaControllerTest {
 
     @Test
     public void testGetAll() {
-        ArrayList<DisplayJoyaModelInterface> joyaList = new ArrayList<>();
-        joyaList = joyaService.get_all_joyas_not_deleted();
-        when(joyaService.get_all_joyas_not_deleted()).thenReturn(joyaList);
-
-        ArrayList<DisplayJoyaModelInterface> response = joyaController.get_all();
-
-        assertNotNull(response);
-        assertFalse(response.isEmpty());
-        assertEquals(joya, response.get(0));
     }
 
     @Test

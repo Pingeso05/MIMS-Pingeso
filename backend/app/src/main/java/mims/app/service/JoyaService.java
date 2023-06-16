@@ -1,6 +1,7 @@
 package mims.app.service;
 
 import mims.app.Model.DisplayJoyaModelInterface;
+import mims.app.Model.JoyaModel;
 import mims.app.entity.JoyaEntity;
 import mims.app.repository.JoyaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,35 +12,18 @@ import java.util.ArrayList;
 
 @Service
 public class JoyaService {
-    /**
-     * Esta clase representa el repositorio de la tabla joya
-     * */
     @Autowired
     private JoyaRepository joyaRepository;
 
-    /**
-     * Este metodo devuelve todas las joyas que no estan borradas
-     * @return ResponseEntity<ArrayList<JoyaEntity>>
-     */
     public ArrayList<DisplayJoyaModelInterface> get_all_joyas_not_deleted() {
         return joyaRepository.findAllJoyasNotDeleted();
     }
 
-    /**
-     * Este metodo devuelve una joya por id
-     * @param id es el id de la joya
-     * @return ResponseEntity<JoyaEntity>
-     */
+
     public ResponseEntity<JoyaEntity> get_joya_by_id(int id) {
         return joyaRepository.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
-    /**
-     * Este metodo actualiza una joya
-     * @param joya es la joya a actualizar
-     * @param id es el id de la joya
-     * @return ResponseEntity<JoyaEntity>
-     */
     public ResponseEntity<JoyaEntity> update_joya(JoyaEntity joya, int id) {
         return joyaRepository.findById(id).map(joya_data -> {
             joya_data.setNombre(joya.getNombre());
@@ -49,20 +33,10 @@ public class JoyaService {
         }).orElse(ResponseEntity.notFound().build());
     }
 
-    /**
-     * Este metodo crea una joya
-     * @param joya es la joya a crear
-     * @return ResponseEntity<JoyaEntity>
-     */
     public ResponseEntity<JoyaEntity> save_joya(JoyaEntity joya) {
         return ResponseEntity.ok(joyaRepository.save(joya));
     }
 
-    /**
-     * Este metodo borra una joya
-     * @param id es el id de la joya
-     * @return ResponseEntity<?>
-     */
     public ResponseEntity<JoyaEntity> soft_delete_joya(int id) {
            return joyaRepository.findById(id).map(joya -> {
                 joya.setDeleted(true);
@@ -70,6 +44,5 @@ public class JoyaService {
                 return ResponseEntity.ok().body(joya_deleted);
             }).orElse(ResponseEntity.notFound().build());
     }
-
 
 }

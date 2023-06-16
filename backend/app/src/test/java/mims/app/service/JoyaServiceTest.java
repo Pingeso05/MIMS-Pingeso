@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -36,22 +37,34 @@ class JoyaServiceTest {
 
     @Test
     void get_all_joyas_not_deletedTest() throws Exception {
-        JoyaEntity joya = new JoyaEntity();
-        joya.setNombre("hola");
-        joya.setId(1);
-        joya.setId_tipo_joya(1);
-        joya.setDeleted(false);
+        List<DisplayJoyaModelInterface> joyas = new ArrayList<>();
+        DisplayJoyaModelInterface joya = new DisplayJoyaModelInterface() {
+            @Override
+            public int getId() {
+                return 1;
+            }
 
-        ArrayList<DisplayJoyaModelInterface> joyaList = new ArrayList<>();
-        joyaList.add((DisplayJoyaModelInterface) joya);
+            @Override
+            public String getNombre() {
+                return "joya1";
+            }
 
-        when(joyaRepository.findAllJoyasNotDeleted()).thenReturn(joyaList);
+            @Override
+            public String getTipo_joya() {
+                return "tipo1";
+            }
+        };
+        joyas.add(joya);
 
-        ArrayList<DisplayJoyaModelInterface> response = joyaService.get_all_joyas_not_deleted();
+        // Dado que el método findAllJoyasNotDeleted se llamará
+        given(joyaRepository.findAllJoyasNotDeleted()).willReturn((ArrayList<DisplayJoyaModelInterface>) joyas);
 
-        assertNotNull(response);
-        assertFalse(response.isEmpty());
-        assertEquals(joya, response.get(0));
+        // Llamar a tu servicio y hacer alguna validación
+        List<DisplayJoyaModelInterface> result = joyaService.get_all_joyas_not_deleted();
+
+        // Aquí puedes agregar más validaciones, como si el contenido devuelto es correcto
+        assert(result.size() == 1);
+        assert(result.get(0).getNombre().equals("joya1"));
 
     }
 
