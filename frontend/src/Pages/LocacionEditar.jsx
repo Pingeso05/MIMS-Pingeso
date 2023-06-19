@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import './LocacionEditar.css';
+import {ruta_back, ruta_front} from '../utils/globals.js';
+import '../utils/globals.css';
 
 const EditarLocacion = () => {
   const { id } = useParams();
@@ -12,7 +14,7 @@ const EditarLocacion = () => {
 
   const getLocacion = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/locacion/' + id);
+      const res = await axios.get(ruta_back + 'locacion/' + id);
       const locacion = res.data;
 
       setNombre(locacion.nombre);
@@ -31,7 +33,7 @@ const EditarLocacion = () => {
     }
 
     try {
-      await axios.put('http://localhost:8080/locacion/' + id, {
+      await axios.put(ruta_back + 'locacion/' + id, {
         nombre: nombre,
         direccion: direccion,
       });
@@ -40,7 +42,7 @@ const EditarLocacion = () => {
       setDireccion('');
 
       alert('Locación actualizada exitosamente');
-      window.location.href = 'http://localhost:3000/locaciones';
+      window.location.href = ruta_front + 'locaciones';
     } catch (error) {
       console.log(error);
       alert('Ocurrió un error al actualizar la locación');
@@ -52,9 +54,9 @@ const EditarLocacion = () => {
   }, [id]);
 
   return (
-    <Container style={{ textAlign: 'center' }} className="container-locacion-edit">
+    <Container style={{ textAlign: 'center' }} className="container-add-edit">
       <div>
-        <h2 className="titulo-locacion-edit">Editar Locación</h2>
+        <h2 className="titulo">Editar Locación</h2>
 
         <form onSubmit={handleSubmit}>
           <div>

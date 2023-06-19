@@ -7,6 +7,8 @@ import Col from 'react-bootstrap/Col';
 import './Inventario.css';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
+import {ruta_back} from '../utils/globals.js';
+import '../utils/globals.css';
 
 const Inventario = () => {
   const navigate = useNavigate();
@@ -18,7 +20,7 @@ const Inventario = () => {
 
   const getLocaciones = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/locacion');
+      const res = await axios.get(ruta_back + 'locacion');
       const locacionesUnicas = [...new Set(res.data.map(locacion => locacion.nombre))];
       setLocaciones(locacionesUnicas);
     } catch (error) {
@@ -38,7 +40,7 @@ const Inventario = () => {
 
   const getProductos = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/inventario');
+      const res = await axios.get(ruta_back + 'inventario');
       setProductos(res.data);
     } catch (error) {
       console.log(error);
@@ -47,7 +49,7 @@ const Inventario = () => {
 
   const getCategorias = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/tipojoya');
+      const res = await axios.get(ruta_back + 'tipojoya');
       const categoriasUnicas = [...new Set(res.data.map(categoria => categoria.nombre))];
       setCategorias(categoriasUnicas);
     } catch (error) {
@@ -59,7 +61,7 @@ const Inventario = () => {
     const categoria = event.target.value;
     setCategoriaSeleccionada(categoria);
   };
-
+  
   useEffect(() => {
     getProductos();
     getCategorias();
@@ -71,8 +73,8 @@ const Inventario = () => {
   .filter(producto => (locacionSeleccionada ? producto.local === locacionSeleccionada : true));
 
   return (
-    <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-inventario">
-      <h1 style={{ fontSize: '48px' }}>Lista de productos</h1>
+    <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-table">
+      <h1 className='titulo' >Lista de productos</h1>
       
         
           
@@ -113,7 +115,7 @@ const Inventario = () => {
       </Row>
       
           <div style={{ overflow: 'auto', maxHeight: '60vh', marginTop: '20px' }}>
-            <Table bordered hover className='table_productos'>
+            <Table bordered hover className='table'>
             <thead >
                 <tr className='cabeceras'>
                     <th>#</th>

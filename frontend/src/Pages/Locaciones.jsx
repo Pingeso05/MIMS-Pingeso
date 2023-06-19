@@ -7,6 +7,8 @@ import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
 import './Locaciones.css';
 import { useNavigate } from 'react-router-dom';
+import {ruta_back} from '../utils/globals.js';
+import '../utils/globals.css';
 
 const Locaciones = () => {
   const navigate = useNavigate();
@@ -14,7 +16,7 @@ const Locaciones = () => {
 
   const getLocaciones = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/locacion');
+      const res = await axios.get(ruta_back + 'locacion');
       setLocaciones(res.data);
     } catch (error) {
       console.log(error);
@@ -31,8 +33,8 @@ const Locaciones = () => {
   }, []);
 
   return (
-    <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-locacion">
-      <h1 style={{ fontSize: '48px' }}>Locaciones</h1>      
+    <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-table">
+      <h1 className='titulo' >Locaciones</h1>      
 
       <Row className="fila-dp" style={{ marginTop: '20px' }}>
         <Col className="left-col" md={6}>
@@ -48,7 +50,7 @@ const Locaciones = () => {
       </Row>
       
           <div style={{ overflow: 'auto', maxHeight: '60vh', marginTop: '20px' }}>
-            <Table bordered hover className='table_locaciones'>
+            <Table bordered hover className='table'>
             <thead >
                 <tr className='cabeceras'>
                     <th>#</th>

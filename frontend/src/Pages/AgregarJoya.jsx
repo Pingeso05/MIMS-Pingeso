@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import './AgregarJoya.css';
+import {ruta_back, ruta_front} from '../utils/globals.js';
+import '../utils/globals.css';
 
 const AgregarJoya = () => {
   const [nombreJoya, setNombreJoya] = useState('');
@@ -10,7 +12,7 @@ const AgregarJoya = () => {
 
   const getTipos = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/tipojoya');
+      const res = await axios.get(ruta_back + 'tipojoya');
       setTipos(res.data);
     } catch (error) {
       console.log(error);
@@ -30,7 +32,7 @@ const AgregarJoya = () => {
     }
 
     try {
-      await axios.post('http://localhost:8080/joya', {
+      await axios.post(ruta_back + 'joya', {
         nombre: nombreJoya,
         id_tipo_joya: tipoJoya,
       });
@@ -39,7 +41,7 @@ const AgregarJoya = () => {
       setTipoJoya('');
 
       alert('Joya agregada exitosamente');
-      window.location.href = 'http://localhost:3000/joyas';
+      window.location.href = ruta_front + 'joyas';
     } catch (error) {
       console.log(error);
       alert('Ocurrió un error al agregar la joya');
@@ -47,7 +49,7 @@ const AgregarJoya = () => {
   };
 
   return (
-    <Container style={{ textAlign: 'center' }} className="container-joya-agregar">
+    <Container style={{ textAlign: 'center' }} className="container-add-edit">
       <div>
         <h2 className="titulo">Agregar Joya</h2>
 

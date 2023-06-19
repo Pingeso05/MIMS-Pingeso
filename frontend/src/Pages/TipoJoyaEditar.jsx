@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import './TipoJoyaEditar.css';
+import {ruta_back, ruta_front} from '../utils/globals.js';
+import '../utils/globals.css';
 
 const EditarTipoJoya = () => {
   const { id } = useParams();
@@ -12,7 +14,7 @@ const EditarTipoJoya = () => {
 
   const getTipoJoya = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/tipojoya/' + id);
+      const res = await axios.get(ruta_back + 'tipojoya/' + id);
       const tipoJoya = res.data;
 
       setNombre(tipoJoya.nombre);
@@ -31,7 +33,7 @@ const EditarTipoJoya = () => {
     }
 
     try {
-      await axios.put('http://localhost:8080/tipojoya/' + id, {
+      await axios.put(ruta_back + 'tipojoya/' + id, {
         nombre: nombre,
         material: material,
       });
@@ -40,7 +42,7 @@ const EditarTipoJoya = () => {
       setMaterial('');
 
       alert('Tipo de Joya actualizado exitosamente');
-      window.location.href = 'http://localhost:3000/tipos-de-joya';
+      window.location.href = ruta_front + 'tipos-de-joya';
     } catch (error) {
       console.log(error);
       alert('Ocurrió un error al actualizar el tipo de joya');
@@ -52,9 +54,9 @@ const EditarTipoJoya = () => {
   }, [id]);
 
   return (
-    <Container style={{ textAlign: 'center' }} className="container-tipo-edit">
+    <Container style={{ textAlign: 'center' }} className="container-add-edit">
       <div>
-        <h2 className="titulo-tipo-edit">Editar Tipo de Joya</h2>
+        <h2 className="titulo">Editar Tipo de Joya</h2>
 
         <form onSubmit={handleSubmit}>
           <div>

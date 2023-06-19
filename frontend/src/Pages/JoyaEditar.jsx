@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import './JoyaEditar.css';
+import {ruta_back, ruta_front} from '../utils/globals.js';
+import '../utils/globals.css';
 
 const EditarJoya = () => {
   const { id } = useParams();
@@ -13,7 +15,7 @@ const EditarJoya = () => {
 
   const getJoya = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/joya/' + id);
+      const res = await axios.get(ruta_back + 'joya/' + id);
       const joya = res.data;
 
       setNombre(joya.nombre);
@@ -25,7 +27,7 @@ const EditarJoya = () => {
 
   const getTiposDeJoya = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/tipojoya');
+      const res = await axios.get(ruta_back + 'tipojoya');
       const tiposDeJoyaUnicas = res.data;
       setTiposDeJoya(tiposDeJoyaUnicas);
     } catch (error) {
@@ -42,7 +44,7 @@ const EditarJoya = () => {
     }
 
     try {
-      await axios.put('http://localhost:8080/joya/' + id, {
+      await axios.put(ruta_back + 'joya/' + id, {
         nombre: nombre,
         id_tipo_joya: tipoJoyaSeleccionado,
       });
@@ -51,7 +53,7 @@ const EditarJoya = () => {
       setTipoJoyaSeleccionado('');
 
       alert('Joya actualizada exitosamente');
-      window.location.href = 'http://localhost:3000/joyas';
+      window.location.href = ruta_front + 'joyas';
     } catch (error) {
       console.log(error);
       alert('Ocurrió un error al actualizar la joya');
@@ -64,9 +66,9 @@ const EditarJoya = () => {
   }, [id]);
 
   return (
-    <Container style={{ textAlign: 'center' }} className="container-joya-edit">
+    <Container style={{ textAlign: 'center' }} className="container-add-edit">
       <div>
-        <h2 className="titulo-joya-edit">Editar Joya</h2>
+        <h2 className="titulo">Editar Joya</h2>
 
         <form onSubmit={handleSubmit}>
           <div>

@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import './AgregarLocacion.css'; 
+import {ruta_back, ruta_front} from '../utils/globals.js';
+import '../utils/globals.css';
 
 const AgregarLocacion = () => {
   const [nombreLocacion, setNombreLocacion] = useState('');
@@ -23,7 +25,7 @@ const AgregarLocacion = () => {
     }
 
     try {
-      const response1 = await axios.post('http://localhost:8080/locacion', {
+      await axios.post(ruta_back + 'locacion', {
         nombre: nombreLocacion,
         direccion: direccion,
         deleted: false
@@ -35,7 +37,7 @@ const AgregarLocacion = () => {
     setDireccion('');
 
     alert('Locación agregada exitosamente');
-    window.location.href = 'http://localhost:3000/locaciones';
+    window.location.href = ruta_front + 'locaciones';
   } catch (error) {
     console.log(error);
     alert('Ocurrió un error al agregar la locación');
@@ -44,7 +46,7 @@ const AgregarLocacion = () => {
       
 
   return (
-    <Container style={{ textAlign: 'center' }} className="container-agregar-locacion">
+    <Container style={{ textAlign: 'center' }} className="container-add-edit">
       <div>
         <h2 className="titulo">Agregar Locación</h2>
   

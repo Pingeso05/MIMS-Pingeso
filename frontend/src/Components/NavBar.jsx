@@ -33,6 +33,7 @@ import './navbar.css';
 import logo from '../images/logo-letras.png';
 import image_user from '../images/user.png';
 
+
 const Navbar = () => {
   const { pathname } = useLocation();
 

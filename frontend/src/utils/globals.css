@@ -1,0 +1,57 @@
+.container-add-edit{
+    width: 100%;
+    background-color: rgba(255, 255, 255);
+    margin-top: 50px;
+    max-width: 600px;
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+    padding-bottom: 20px;
+    box-sizing: border-box;
+    height: 80vh;
+    border-radius: 10px; 
+    padding-bottom: 10px;
+}
+
+.container-table{
+    background-color: rgba(255, 255, 255);
+    border-radius: 10px; 
+    padding-bottom: 10px;
+    height: 85vh;
+}
+
+.titulo {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: 48px;
+  }
+
+.table {
+    background-color: #ffffff;
+    border-collapse: collapse;
+}
+
+.table thead tr.cabeceras th {
+    position: sticky;
+    top: -1px;
+    background-color: #F5F5F5;
+  }
+
+
+
+  @media (max-width: 767px) {
+    .titulo{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 32px;
+    }
+    .container-table {
+      width: 100%;
+      padding: 0 5px;
+      box-sizing: border-box;
+      margin-bottom: 5px; 
+      margin-top: 5px;
+      height: 90vh;
+    }
+
+}
