@@ -6,8 +6,10 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
 import './Locaciones.css';
+import { useNavigate } from 'react-router-dom';
 
 const Locaciones = () => {
+  const navigate = useNavigate();
   const [locaciones, setLocaciones] = useState([]);
 
   const getLocaciones = async () => {
@@ -17,6 +19,10 @@ const Locaciones = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const getEditView = (id) => {
+    navigate('/locaciones/editar-locacion/' + id);
   };
 
 
@@ -46,6 +52,7 @@ const Locaciones = () => {
             <thead >
                 <tr className='cabeceras'>
                     <th>#</th>
+                    <th>Opciones</th>
                     <th>Nombre</th>
                     <th>Dirección</th>
                     <th>Comuna</th>
@@ -55,6 +62,7 @@ const Locaciones = () => {
                 {locaciones.map((locacion, index) => (
                     <tr key={index}>
                         <td>{index + 1}</td>
+                        <td><Button variant="primary" onClick={() => getEditView(locacion.id)} style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent'}}>Editar</Button></td>
                         <td>{locacion.nombre}</td>
                         <td>{locacion.direccion}</td>
                         <td>comuna</td>

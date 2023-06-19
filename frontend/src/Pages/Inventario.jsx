@@ -4,7 +4,6 @@ import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Link } from 'react-router-dom';
 import './Inventario.css';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
@@ -12,17 +11,25 @@ import React from 'react';
 const Inventario = () => {
   const navigate = useNavigate();
   const [productos, setProductos] = useState([]);
-  const [productoReal, setProductoReal] = useState(null);
   const [categorias, setCategorias] = useState([]);
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('');
+  const [locaciones, setLocaciones] = useState([]);
+  const [locacionSeleccionada, setLocacionSeleccionada] = useState('');
 
-  const getProductoReal = async (id) => {
+  const getLocaciones = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/inventario/' + id);
-      setProductoReal(res.data);
+      const res = await axios.get('http://localhost:8080/locacion');
+      const locacionesUnicas = [...new Set(res.data.map(locacion => locacion.nombre))];
+      setLocaciones(locacionesUnicas);
     } catch (error) {
       console.log(error);
+      console.log('error: No se pudieron obtener la locaciones!');
     }
+  };
+
+  const handleLocacionChange = (event) => {
+    const locacion = event.target.value;
+    setLocacionSeleccionada(locacion);
   };
 
   const getEditView = (id) => {
@@ -48,51 +55,24 @@ const Inventario = () => {
     }
   };
 
-  const handleUpdate = async (productoReal) => {
-    try {
-      let url = 'http://localhost:8080/inventario/' + productoReal.id;
-      const res = await axios.put(url, productoReal);
-      if (res.status === 200) {
-        getProductos();
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const handleCategoriaChange = (event) => {
     const categoria = event.target.value;
     setCategoriaSeleccionada(categoria);
   };
 
-  const handleChangeplus = async (producto) => {
-    await getProductoReal(producto.id);
-    setProductoReal((prevState) => {
-      const updatedProductoReal = { ...prevState, cantidad: prevState.cantidad + 1 };
-      handleUpdate(updatedProductoReal);
-      return updatedProductoReal;
-    });
-  };
-
-  const handleChangeless = async (producto) => {
-    await getProductoReal(producto.id);
-    setProductoReal((prevState) => {
-      const updatedProductoReal = { ...prevState, cantidad: prevState.cantidad - 1 };
-      handleUpdate(updatedProductoReal);
-      return updatedProductoReal;
-    });
-  };
-
   useEffect(() => {
     getProductos();
     getCategorias();
+    getLocaciones();
   }, []);
 
-  const filteredProductos = categoriaSeleccionada ? productos.filter(producto => producto.tipo_joya === categoriaSeleccionada) : productos;
+  const filteredProductos = productos
+  .filter(producto => (categoriaSeleccionada ? producto.tipo_joya === categoriaSeleccionada : true))
+  .filter(producto => (locacionSeleccionada ? producto.local === locacionSeleccionada : true));
 
   return (
     <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-inventario">
-      <h1 style={{ fontSize: '48px' }}>Inventario</h1>
+      <h1 style={{ fontSize: '48px' }}>Lista de productos</h1>
       
         
           
@@ -110,15 +90,24 @@ const Inventario = () => {
               ))}
             </select>
           </Col>
+          <Col md={6} style={{ display: 'flex', alignItems: 'left' }}>
+            <select className='dropdown'
+              value={locacionSeleccionada}
+              onChange={handleLocacionChange}
+            >
+              <option value="">Todas los locales</option>
+              {locaciones.map((locacion, index) => (
+                <option value={locacion} key={index}>{locacion}</option>
+              ))}
+            </select>
+          </Col>
           <Col md={6} style={{ display: 'flex', alignItems: 'center' }}>
             <span style={{ marginRight: '10px', fontWeight: 'bold' }}>Productos:</span>
             <span>{filteredProductos.length}</span>
           </Col>
         </Col>
         <Col className="agregar-pd d-flex justify-content-md-end" >
-          <Link to="/inventario/agregar-producto">
-            <Button variant="primary"  style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent'}}>Agregar Producto</Button>
-          </Link>    
+           
         </Col>
 
       </Row>
@@ -130,13 +119,12 @@ const Inventario = () => {
                     <th>#</th>
                     <th>Local</th>
                     <th>Opciones</th>
-                    <th>Cantidad</th>
-                    <th>Nombre</th>
-                    <th>Tipo Joya</th>
                     <th>Joya</th>
+                    <th>Cantidad</th>
+                    <th>Tipo Joya</th>
+                    
                     <th>Precio Costo</th>
                     <th>Precio Venta</th>
-                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -145,19 +133,14 @@ const Inventario = () => {
                         <td>{index + 1}</td>
                         <td>{producto.local}</td>
                         <td>
-                            <Button variant='success' onClick={() => getEditView(producto.id)} >Modificar</Button>
-                            <Button variant='success'>Venta</Button>
+                            <Button variant='success' onClick={() => getEditView(producto.id)} >Operaciones de producto</Button>
                         </td>
-                        <td>{producto.cantidad}</td>
-                        <td>{producto.nombre_producto}</td>
-                        <td>{producto.tipo_joya}</td>
                         <td>{producto.joya}</td>
-                        <td>{producto.precio_costo}</td>
-                        <td>{producto.precio_venta}</td>
-                        <td style={{display:"flex", justifyContent: "space-between"}}>
-                            <Button variant='primary' style={{ marginRight: '5px' }} onClick={() => handleChangeplus(producto)}> + </Button>
-                            <Button variant='danger' style={{ marginLeft: '5px' }} onClick={() => handleChangeless(producto)}> - </Button>
-                        </td>
+                        <td>{Number(producto.cantidad).toLocaleString()}</td>
+                        <td>{producto.tipo_joya}</td>
+                        
+                        <td>${Number(producto.precio_costo).toLocaleString()}</td>
+                        <td>${Number(producto.precio_venta).toLocaleString()}</td>
                     </tr>
                 ))}
 
