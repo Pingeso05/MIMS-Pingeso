@@ -82,22 +82,22 @@ const Inventario = () => {
       <Row className="fila-dp" style={{ marginTop: '20px' }}>
         <Col className="columna-dp" style={{ display: 'flex', alignItems: 'left' }}>
           <Col md={6} style={{ display: 'flex', alignItems: 'left' }}>
-            <select className='dropdown'
+            <select className='dropdown-tb'
               value={categoriaSeleccionada}
               onChange={handleCategoriaChange}
             >
-              <option value="">Todas las categorías</option>
+              <option value="">Categoría</option>
               {categorias.map((categoria, index) => (
                 <option value={categoria} key={index}>{categoria}</option>
               ))}
             </select>
           </Col>
           <Col md={6} style={{ display: 'flex', alignItems: 'left' }}>
-            <select className='dropdown'
+            <select className='dropdown-tb'
               value={locacionSeleccionada}
               onChange={handleLocacionChange}
             >
-              <option value="">Todas los locales</option>
+              <option value="">Local</option>
               {locaciones.map((locacion, index) => (
                 <option value={locacion} key={index}>{locacion}</option>
               ))}
@@ -114,40 +114,42 @@ const Inventario = () => {
 
       </Row>
       
-          <div style={{ overflow: 'auto', maxHeight: '60vh', marginTop: '20px' }}>
-            <Table bordered hover className='table'>
-            <thead >
-                <tr className='cabeceras'>
-                    <th>#</th>
-                    <th>Local</th>
-                    <th>Opciones</th>
-                    <th>Joya</th>
-                    <th>Cantidad</th>
-                    <th>Tipo Joya</th>
-                    
-                    <th>Precio Costo</th>
-                    <th>Precio Venta</th>
-                </tr>
+          <div style={{ overflowx: 'auto', maxHeight: '60vh', marginTop: '20px' }}>
+          <Table bordered hover className='table'>
+            <thead>
+              <tr className='cabeceras'>
+                <th>#</th>
+                <th>Joya</th>
+                <th>Cantidad</th>
+                <th>Tipo Joya</th>
+                <th>Local</th>
+                <th className='ocultar-columna'>Precio Costo</th>
+                <th className='ocultar-columna'>Precio Venta</th>
+                <th>Opciones</th>
+                
+              </tr>
             </thead>
             <tbody>
-                {filteredProductos.map((producto, index) => (
-                    <tr key={index} >
-                        <td>{index + 1}</td>
-                        <td>{producto.local}</td>
-                        <td>
-                            <Button variant='success' onClick={() => getEditView(producto.id)} >Operaciones de producto</Button>
-                        </td>
-                        <td>{producto.joya}</td>
-                        <td>{Number(producto.cantidad).toLocaleString()}</td>
-                        <td>{producto.tipo_joya}</td>
-                        
-                        <td>${Number(producto.precio_costo).toLocaleString()}</td>
-                        <td>${Number(producto.precio_venta).toLocaleString()}</td>
-                    </tr>
-                ))}
-
+              {filteredProductos.map((producto, index) => (
+                <tr key={index}>
+                  <td>
+                    {index + 1}
+                  </td>
+                  <td>
+                  {producto.joya}
+                  </td>
+                  <td>{Number(producto.cantidad).toLocaleString()}</td>
+                  <td>{producto.tipo_joya}</td>
+                  <td>{producto.local}</td>
+                  <td className='ocultar-columna'>${Number(producto.precio_costo).toLocaleString()}</td>
+                  <td className='ocultar-columna'>${Number(producto.precio_venta).toLocaleString()}</td>
+                  <td>
+                  <Button style={{width:'5px'}} variant='success' onClick={() => getEditView(producto.id)}>Op</Button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
-            </Table>    
+          </Table>  
         </div>
         </Container>
     );

@@ -55,24 +55,12 @@ const TipoJoya = () => {
       <h1 className='titulo' >Tipos de Joya</h1>
 
       <Row style={{ marginTop: '20px' }}>
-        <Col style={{ display: 'flex', alignItems: 'left' }}>
-          <Col md={6} style={{ display: 'flex', alignItems: 'left' }}>
-            <select className='dropdown'
-              value={categoriaSeleccionada}
-              onChange={handleCategoriaChange}
-            >
-              <option value="">Todos los tipos</option>
-              {categorias.map((categoria, index) => (
-                <option value={categoria} key={index}>{categoria}</option>
-              ))}
-            </select>
-          </Col>
-          <Col md={6} style={{ display: 'flex', alignItems: 'center' }}>
+          <Col className="left-col" md={6}>
             <span style={{ marginRight: '10px', fontWeight: 'bold' }}>Tipos:</span>
             <span>{filteredTipos.length}</span>
           </Col>
-        </Col>
-        <Col md={6} style={{ display: 'flex', alignItems: 'left', justifyContent: 'flex-end' }}>
+ 
+        <Col className="right-col" md={6} >
           <Link to="/tipos-de-joya/agregar-tipo">
             <Button variant="primary"  style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent'}}>Agregar Tipo Joya</Button>
           </Link>    

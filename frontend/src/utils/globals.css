@@ -13,11 +13,29 @@
     padding-bottom: 10px;
 }
 
+.dropdown-tb{
+    width: 250px;
+    height: 40px;
+    color: #1A1D1F;
+    background-color: #FFFFFF;
+    border: 1px solid #EFEFEF;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.dropdown-tb:hover {
+    border-color: #EB6D1A;
+}
+
 .container-table{
     background-color: rgba(255, 255, 255);
     border-radius: 10px; 
     padding-bottom: 10px;
     height: 85vh;
+}
+
+my-fila:hover{
+    background-color: #F5F5F5;
 }
 
 .titulo {
@@ -36,6 +54,19 @@
     top: -1px;
     background-color: #F5F5F5;
   }
+  
+.left-col {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+.right-col {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
 
 
 
@@ -51,7 +82,33 @@
       box-sizing: border-box;
       margin-bottom: 5px; 
       margin-top: 5px;
-      height: 90vh;
+      height: 80vh;
     }
 
+    .dropdown-tb{
+        width: 100px;
+        
+    }
+    .fila-dp {
+        flex-direction: column;
+      }
+    .columna-dp{
+        display: grid;
+        justify-content: space-around;
+        margin-bottom: 5px;
+    }
+    .agregar-pd{
+        display: flex;
+        justify-content: center;
+    }
+    .ocultar-columna {
+        display: none;
+        width: 0px;
+      }
+    .table{
+        font-size: 10px;
+    }
+    .table thead tr.cabeceras th {
+        top: -2px;
+      }
 }

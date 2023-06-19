@@ -56,31 +56,18 @@ const Joya = () => {
       <h1 className='titulo'>Joyas</h1>
 
       <Row style={{ marginTop: '20px' }}>
-        <Col style={{ display: 'flex', alignItems: 'left' }}>
-          <Col md={6} style={{ display: 'flex', alignItems: 'left' }}>
-            <select className='dropdown'
-              value={tipoSeleccionado}
-              onChange={handleTipoChange}
-            >
-              <option value="">Todos los tipos</option>
-              {tipos.map((tipo, index) => (
-                <option value={tipo} key={index}>{tipo}</option>
-              ))}
-            </select>
-          </Col>
-          <Col md={6} style={{ display: 'flex', alignItems: 'center' }}>
+          <Col className="left-col" md={6} >
             <span style={{ marginRight: '10px', fontWeight: 'bold' }}>Joyas:</span>
             <span>{filteredJoyas.length}</span>
           </Col>
-        </Col>
-        <Col md={6} style={{ display: 'flex', alignItems: 'left', justifyContent: 'flex-end' }}>
+        <Col className="right-col" md={6}>
           <Link to="/joyas/agregar-joya">
             <Button variant="primary"  style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent'}}>Agregar Joya</Button>
           </Link>    
         </Col>
       </Row>
 
-      <div style={{ overflow: 'auto', maxHeight: '60vh', marginTop: '20px' }}>
+      <div style={{ overflow: 'auto', maxHeight: '55vh', marginTop: '20px' }}>
         <Table bordered hover className='table'>
           <thead>
             <tr className='cabeceras'>

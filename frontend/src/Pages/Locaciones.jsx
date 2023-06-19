@@ -36,7 +36,7 @@ const Locaciones = () => {
     <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-table">
       <h1 className='titulo' >Locaciones</h1>      
 
-      <Row className="fila-dp" style={{ marginTop: '20px' }}>
+      <Row style={{ marginTop: '20px' }}>
         <Col className="left-col" md={6}>
           <span className="locaciones-label">Locaciones:</span>
           <span className="locaciones-count">{locaciones.length}</span>
