@@ -7,6 +7,7 @@ import Col from 'react-bootstrap/Col';
 import './Inventario.css';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
+import {ruta_back} from '../globals.js';
 
 const Inventario = () => {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ const Inventario = () => {
 
   const getLocaciones = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/locacion');
+      const res = await axios.get(ruta_back + 'locacion');
       const locacionesUnicas = [...new Set(res.data.map(locacion => locacion.nombre))];
       setLocaciones(locacionesUnicas);
     } catch (error) {
@@ -38,7 +39,7 @@ const Inventario = () => {
 
   const getProductos = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/inventario');
+      const res = await axios.get(ruta_back + 'inventario');
       setProductos(res.data);
     } catch (error) {
       console.log(error);
@@ -47,7 +48,7 @@ const Inventario = () => {
 
   const getCategorias = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/tipojoya');
+      const res = await axios.get(ruta_back + 'tipojoya');
       const categoriasUnicas = [...new Set(res.data.map(categoria => categoria.nombre))];
       setCategorias(categoriasUnicas);
     } catch (error) {

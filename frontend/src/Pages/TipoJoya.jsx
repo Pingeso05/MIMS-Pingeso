@@ -7,6 +7,7 @@ import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
 import './TipoJoya.css';
 import { useNavigate } from 'react-router-dom';
+import {ruta_back} from '../globals.js';
 
 const TipoJoya = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const TipoJoya = () => {
 
   const getTipos = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/tipojoya');
+      const res = await axios.get(ruta_back + 'tipojoya');
       setTipos(res.data);
     } catch (error) {
       console.log(error);
@@ -28,7 +29,7 @@ const TipoJoya = () => {
 
   const getCategorias = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/tipojoya');
+      const res = await axios.get(ruta_back + 'tipojoya');
       const categoriasUnicas = [...new Set(res.data.map(categoria => categoria.nombre))];
       setCategorias(categoriasUnicas);
     } catch (error) {

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import './AgregarProducto.css'; 
+import {ruta_back, ruta_front} from '../globals.js';
 
 const AgregarProducto = () => {
   const [precioCosto, setPrecioCosto] = useState('');
@@ -14,9 +15,10 @@ const AgregarProducto = () => {
   const [joyas, setJoyas] = useState([]);
   const [joyaSeleccionada, setJoyaSeleccionada] = useState('');
 
+
   const getLocaciones = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/locacion');
+      const res = await axios.get(ruta_back + 'locacion');
       const locacionesUnicas = res.data;
       setLocaciones(locacionesUnicas);
     } catch (error) {
@@ -26,7 +28,7 @@ const AgregarProducto = () => {
 
   const getJoyas = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/joya');
+      const res = await axios.get(ruta_back + 'joya');
       const joyasUnicas = res.data;
       setJoyas(joyasUnicas);
     } catch (error) {
@@ -38,7 +40,7 @@ const AgregarProducto = () => {
 
   const getCategorias = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/tipojoya');
+      const res = await axios.get(ruta_back + 'tipojoya');
       const categoriasUnicas = res.data;
       setCategorias(categoriasUnicas);
     } catch (error) {
@@ -65,7 +67,7 @@ const AgregarProducto = () => {
 
     try {
       
-      await axios.post('http://localhost:8080/inventario', {
+      await axios.post(ruta_back + 'inventario', {
         id_locacion: locacionSeleccionada,
         id_joya: joyaSeleccionada,
         nombre_producto: '1',
@@ -84,7 +86,7 @@ const AgregarProducto = () => {
       setLocacionSeleccionada('');
 
       alert('Producto agregado exitosamente');
-      window.location.href = 'http://localhost:3000/inventario';
+      window.location.href = ruta_front + 'inventario';
     } catch (error) {
       console.log(error);
       alert('Ocurrió un error al agregar el producto');

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import './AgregarTipoJoya.css';
+import {ruta_back, ruta_front} from '../globals.js';
 
 const AgregarTipoJoya = () => {
   const [nombreTipo, setNombreTipo] = useState('');
@@ -16,7 +17,7 @@ const AgregarTipoJoya = () => {
     }
 
     try {
-      await axios.post('http://localhost:8080/tipojoya', {
+      await axios.post(ruta_back + 'tipojoya', {
         nombre: nombreTipo,
         material: materialTipo,
       });
@@ -25,7 +26,7 @@ const AgregarTipoJoya = () => {
       setMaterialTipo('');
 
       alert('Tipo de joya agregado exitosamente');
-      window.location.href = 'http://localhost:3000/tipojoya';
+      window.location.href = ruta_front + 'tipojoya';
     } catch (error) {
       console.log(error);
       alert('Ocurrió un error al agregar el tipo de joya');

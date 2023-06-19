@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import './LocacionEditar.css';
+import {ruta_back, ruta_front} from '../globals.js';
 
 const EditarLocacion = () => {
   const { id } = useParams();
@@ -12,7 +13,7 @@ const EditarLocacion = () => {
 
   const getLocacion = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/locacion/' + id);
+      const res = await axios.get(ruta_back + 'locacion/' + id);
       const locacion = res.data;
 
       setNombre(locacion.nombre);
@@ -31,7 +32,7 @@ const EditarLocacion = () => {
     }
 
     try {
-      await axios.put('http://localhost:8080/locacion/' + id, {
+      await axios.put(ruta_back + 'locacion/' + id, {
         nombre: nombre,
         direccion: direccion,
       });
@@ -40,7 +41,7 @@ const EditarLocacion = () => {
       setDireccion('');
 
       alert('Locación actualizada exitosamente');
-      window.location.href = 'http://localhost:3000/locaciones';
+      window.location.href = ruta_front + 'locaciones';
     } catch (error) {
       console.log(error);
       alert('Ocurrió un error al actualizar la locación');

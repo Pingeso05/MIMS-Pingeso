@@ -7,6 +7,7 @@ import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
 import './Locaciones.css';
 import { useNavigate } from 'react-router-dom';
+import {ruta_back} from '../globals.js';
 
 const Locaciones = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const Locaciones = () => {
 
   const getLocaciones = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/locacion');
+      const res = await axios.get(ruta_back + 'locacion');
       setLocaciones(res.data);
     } catch (error) {
       console.log(error);
