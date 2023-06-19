@@ -7,7 +7,8 @@ import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
 import './Joya.css';
 import { useNavigate } from 'react-router-dom';
-import {ruta_back} from '../globals.js';
+import {ruta_back} from '../utils/globals.js';
+import '../utils/globals.css';
 
 const Joya = () => {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ const Joya = () => {
     const tipo = event.target.value;
     setTipoSeleccionado(tipo);
   };
-
+  
   useEffect(() => {
     getJoyas();
     getTipos();
@@ -51,8 +52,8 @@ const Joya = () => {
   const filteredJoyas = tipoSeleccionado ? joyas.filter(joya => joya.tipo_joya === tipoSeleccionado) : joyas;
 
   return (
-    <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-joya-table">
-      <h1 style={{ fontSize: '48px' }}>Joyas</h1>
+    <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-table">
+      <h1 className='titulo'>Joyas</h1>
 
       <Row style={{ marginTop: '20px' }}>
         <Col style={{ display: 'flex', alignItems: 'left' }}>
@@ -80,7 +81,7 @@ const Joya = () => {
       </Row>
 
       <div style={{ overflow: 'auto', maxHeight: '60vh', marginTop: '20px' }}>
-        <Table bordered hover className='table_joyas'>
+        <Table bordered hover className='table'>
           <thead>
             <tr className='cabeceras'>
               <th>#</th>

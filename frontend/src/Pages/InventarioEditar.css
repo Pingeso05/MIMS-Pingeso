@@ -1,22 +1,4 @@
-.container-product-edit {
-    width: 100%;
-    background-color: rgba(0, 255, 255);
-    margin-top: 50px;
-    max-width: 600px;
-    display: flex;
-    justify-content: center;
-    overflow: auto;
-    padding-bottom: 20px;
-    box-sizing: border-box;
-    height: 80vh;
-    border-radius: 10px; 
-    padding-bottom: 10px;
-  }
-  
-  .titulo-edit {
-    margin-top: 20px;
-    margin-bottom: 30px;
-  }
+
   
   form {
     border: 2px solid #efefef;

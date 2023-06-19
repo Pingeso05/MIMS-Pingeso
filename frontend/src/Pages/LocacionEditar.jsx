@@ -3,7 +3,8 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import './LocacionEditar.css';
-import {ruta_back, ruta_front} from '../globals.js';
+import {ruta_back, ruta_front} from '../utils/globals.js';
+import '../utils/globals.css';
 
 const EditarLocacion = () => {
   const { id } = useParams();
@@ -53,9 +54,9 @@ const EditarLocacion = () => {
   }, [id]);
 
   return (
-    <Container style={{ textAlign: 'center' }} className="container-locacion-edit">
+    <Container style={{ textAlign: 'center' }} className="container-add-edit">
       <div>
-        <h2 className="titulo-locacion-edit">Editar Locación</h2>
+        <h2 className="titulo">Editar Locación</h2>
 
         <form onSubmit={handleSubmit}>
           <div>

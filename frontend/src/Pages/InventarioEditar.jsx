@@ -3,7 +3,8 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import {Container} from 'react-bootstrap';
 import './InventarioEditar.css';
-import {ruta_back, ruta_front} from '../globals.js';
+import {ruta_back, ruta_front} from '../utils/globals.js';
+import '../utils/globals.css';
 
 const EditarProducto = () => {
   const { id } = useParams();
@@ -116,7 +117,7 @@ const EditarProducto = () => {
   }, [id]);
 
   return (
-    <Container style={{ textAlign: 'center' }} className="container-product">
+    <Container style={{ textAlign: 'center' }} className="container-add-edit">
       <div>
         <h2 className="titulo">Editar Producto</h2>
 

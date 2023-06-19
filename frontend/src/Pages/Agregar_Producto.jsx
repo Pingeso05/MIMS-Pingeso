@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import './AgregarProducto.css'; 
-import {ruta_back, ruta_front} from '../globals.js';
+import {ruta_back, ruta_front} from '../utils/globals.js';
+import '../utils/globals.css';
 
 const AgregarProducto = () => {
   const [precioCosto, setPrecioCosto] = useState('');
@@ -100,7 +101,7 @@ const AgregarProducto = () => {
   }, []);
 
   return (
-    <Container style={{ textAlign: 'center' }} className="container-product">
+    <Container style={{ textAlign: 'center' }} className="container-add-edit">
       <div>
         <h2 className="titulo">Agregar Producto</h2>
   

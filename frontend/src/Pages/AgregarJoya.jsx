@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import './AgregarJoya.css';
-import {ruta_back, ruta_front} from '../globals.js';
+import {ruta_back, ruta_front} from '../utils/globals.js';
+import '../utils/globals.css';
 
 const AgregarJoya = () => {
   const [nombreJoya, setNombreJoya] = useState('');
@@ -48,7 +49,7 @@ const AgregarJoya = () => {
   };
 
   return (
-    <Container style={{ textAlign: 'center' }} className="container-joya-agregar">
+    <Container style={{ textAlign: 'center' }} className="container-add-edit">
       <div>
         <h2 className="titulo">Agregar Joya</h2>
 

@@ -3,7 +3,8 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import './TipoJoyaEditar.css';
-import {ruta_back, ruta_front} from '../globals.js';
+import {ruta_back, ruta_front} from '../utils/globals.js';
+import '../utils/globals.css';
 
 const EditarTipoJoya = () => {
   const { id } = useParams();
@@ -53,9 +54,9 @@ const EditarTipoJoya = () => {
   }, [id]);
 
   return (
-    <Container style={{ textAlign: 'center' }} className="container-tipo-edit">
+    <Container style={{ textAlign: 'center' }} className="container-add-edit">
       <div>
-        <h2 className="titulo-tipo-edit">Editar Tipo de Joya</h2>
+        <h2 className="titulo">Editar Tipo de Joya</h2>
 
         <form onSubmit={handleSubmit}>
           <div>
