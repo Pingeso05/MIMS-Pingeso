@@ -17,9 +17,6 @@ public class InventarioEntity {
         @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
         private int id;
 
-        @Column(name = "nombre_producto")
-        private String nombre_producto;
-
         @Column(name = "id_locacion")
         private int id_locacion;
 

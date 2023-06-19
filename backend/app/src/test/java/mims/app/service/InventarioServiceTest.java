@@ -45,7 +45,6 @@ class InventarioServiceTest {
         inventario.setId_locacion(1);
         inventario.setId_tipo_joya(1);
         inventario.setId_joya(1);
-        inventario.setNombre_producto("holi");
         inventarios.add(inventario);
 
         when(inventarioRepository.findById(id)).thenReturn(Optional.of(inventario));
@@ -71,7 +70,6 @@ class InventarioServiceTest {
         inventario.setId_locacion(1);
         inventario.setId_tipo_joya(1);
         inventario.setId_joya(1);
-        inventario.setNombre_producto("holi");
         // Agregar lógica para configurar la respuesta del repositorio y establecer el objeto InventarioEntity
 
         when(inventarioRepository.findById(id)).thenReturn(Optional.of(inventario));
@@ -99,7 +97,6 @@ class InventarioServiceTest {
         inventario.setId_locacion(1);
         inventario.setId_tipo_joya(1);
         inventario.setId_joya(1);
-        inventario.setNombre_producto("holi");
         // Agregar lógica para configurar la respuesta del repositorio y establecer el objeto InventarioEntity
 
         when(inventarioRepository.save(any(InventarioEntity.class))).thenReturn(inventario);
@@ -126,7 +123,6 @@ class InventarioServiceTest {
         inventario.setId_locacion(1);
         inventario.setId_tipo_joya(1);
         inventario.setId_joya(1);
-        inventario.setNombre_producto("holi");
         inventarios.add(inventario);
 
         when(inventarioRepository.findById(id)).thenReturn(Optional.of(inventario));

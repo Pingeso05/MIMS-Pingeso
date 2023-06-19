@@ -42,7 +42,6 @@ public class InventarioService {
     public ResponseEntity<InventarioEntity> update_inventario(InventarioEntity inventario, int id) {
         return inventarioRepository.findById(id).map(inventario_data -> {
             inventario_data.setCantidad(inventario.getCantidad());
-            inventario_data.setNombre_producto(inventario.getNombre_producto());
             inventario_data.setId_joya(inventario.getId_joya());
             inventario_data.setPrecio_venta(inventario.getPrecio_venta());
             inventario_data.setPrecio_costo(inventario.getPrecio_costo());

@@ -36,7 +36,6 @@ class InventarioControllerTest {
         InventarioEntity producto = new InventarioEntity();
         producto.setId_joya(1);
         producto.setId_tipo_joya(1);
-        producto.setNombre_producto("holi");
         producto.setPrecio_costo(11);
         producto.setPrecio_venta(11);
         producto.setCantidad(1);
@@ -61,7 +60,6 @@ class InventarioControllerTest {
         InventarioEntity producto = new InventarioEntity();
         producto.setId_joya(1);
         producto.setId_tipo_joya(1);
-        producto.setNombre_producto("holi");
         producto.setPrecio_costo(11);
         producto.setPrecio_venta(11);
         producto.setCantidad(1);
@@ -86,7 +84,6 @@ class InventarioControllerTest {
         InventarioEntity producto = new InventarioEntity();
         producto.setId_joya(1);
         producto.setId_tipo_joya(1);
-        producto.setNombre_producto("holi");
         producto.setPrecio_costo(11);
         producto.setPrecio_venta(11);
         producto.setCantidad(1);
@@ -112,7 +109,6 @@ class InventarioControllerTest {
         InventarioEntity producto = new InventarioEntity();
         producto.setId_joya(1);
         producto.setId_tipo_joya(1);
-        producto.setNombre_producto("holi");
         producto.setPrecio_costo(11);
         producto.setPrecio_venta(11);
         producto.setCantidad(1);
