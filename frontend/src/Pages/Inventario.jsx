@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import {ruta_back} from '../utils/globals.js';
 import '../utils/globals.css';
+import { FaEye, FaEdit } from 'react-icons/fa';
+import { MdOutlineInventory } from "react-icons/md";
 
 const Inventario = () => {
   const navigate = useNavigate();
@@ -34,8 +36,17 @@ const Inventario = () => {
     setLocacionSeleccionada(locacion);
   };
 
-  const getEditView = (id) => {
+
+
+  const handleViewClick = () => {
+    
+  };
+  
+  const handleEditClick = (id) => {
     navigate('/inventario/editar-producto/' + id);
+  };
+  
+  const handleChangeClick = () => {
   };
 
   const getProductos = async () => {
@@ -144,7 +155,11 @@ const Inventario = () => {
                   <td className='ocultar-columna'>${Number(producto.precio_costo).toLocaleString()}</td>
                   <td className='ocultar-columna'>${Number(producto.precio_venta).toLocaleString()}</td>
                   <td>
-                  <Button style={{width:'5px'}} variant='success' onClick={() => getEditView(producto.id)}>Op</Button>
+                  <div>
+                    <FaEye title='Ver detalle' className='icono' onClick={handleViewClick} />
+                    <FaEdit title='Editar Producto' className='icono' onClick={() => handleEditClick(producto.id)} />
+                    <MdOutlineInventory title='Modificar inventario' className='icono' onClick={handleChangeClick} />
+                  </div>
                   </td>
                 </tr>
               ))}

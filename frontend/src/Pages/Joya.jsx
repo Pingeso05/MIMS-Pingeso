@@ -9,6 +9,7 @@ import './Joya.css';
 import { useNavigate } from 'react-router-dom';
 import {ruta_back} from '../utils/globals.js';
 import '../utils/globals.css';
+import { FaEdit } from 'react-icons/fa';
 
 const Joya = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const Joya = () => {
     }
   };
 
-  const getEditView = (id) => {
+  const handleEditClick = (id) => {
     navigate('/joyas/editar/' + id);
   };
 
@@ -62,7 +63,7 @@ const Joya = () => {
           </Col>
         <Col className="right-col" md={6}>
           <Link to="/joyas/agregar-joya">
-            <Button variant="primary"  style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent'}}>Agregar Joya</Button>
+            <Button variant="primary"  style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent', fontSize:'14px'}}>Agregar Joya</Button>
           </Link>    
         </Col>
       </Row>
@@ -72,20 +73,20 @@ const Joya = () => {
           <thead>
             <tr className='cabeceras'>
               <th>#</th>
-              <th>Opciones</th>
               <th>Nombre</th>
               <th>Tipo de Joya</th>
+              <th>Opciones</th>
             </tr>
           </thead>
           <tbody>
             {filteredJoyas.map((joya, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
-                <td>
-                  <Button variant="primary" onClick={() => getEditView(joya.id)} style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent'}}> Editar </Button>
-                </td>
                 <td>{joya.nombre}</td>
                 <td>{joya.tipo_joya}</td>
+                <td>
+                  <FaEdit title='Editar Joya' className='icono' onClick={() => handleEditClick(joya.id)} />
+                </td>
               </tr>
             ))}
           </tbody>

@@ -1,29 +1,4 @@
-
-
-
 .locaciones-label {
     margin-right: 10px;
     font-weight: bold;
 }
-
-  @media (max-width: 768px) {
-    .table_locaciones {
-        overflow-x: auto;
-    }
-  
-    .table_locaciones th,
-    .table_locaciones td {
-        white-space: nowrap;
-    }
-    
-    .fila-dp {
-        flex-wrap: wrap;
-    }
-
-    .left-col,
-    .right-col {
-        flex-basis: 50%;
-        flex-grow: 1;
-        justify-content: center;
-    }
-  }

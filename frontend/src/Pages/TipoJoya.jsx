@@ -9,6 +9,7 @@ import './TipoJoya.css';
 import { useNavigate } from 'react-router-dom';
 import {ruta_back} from '../utils/globals.js';
 import '../utils/globals.css';
+import { FaEdit } from 'react-icons/fa';
 
 const TipoJoya = () => {
   const navigate = useNavigate();
@@ -24,9 +25,11 @@ const TipoJoya = () => {
       console.log(error);
     }
   };
-  const getEditView = (id) => {
+
+  const handleEditClick = (id) => {
     navigate('/tipos-de-joya/editar/' + id);
   };
+
 
   const getCategorias = async () => {
     try {
@@ -62,7 +65,7 @@ const TipoJoya = () => {
  
         <Col className="right-col" md={6} >
           <Link to="/tipos-de-joya/agregar-tipo">
-            <Button variant="primary"  style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent'}}>Agregar Tipo Joya</Button>
+            <Button variant="primary"  style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent',fontSize:'14px'}}>Agregar Tipo Joya</Button>
           </Link>    
         </Col>
       </Row>
@@ -72,18 +75,20 @@ const TipoJoya = () => {
         <thead className='cabeceras'>
             <tr >
                 <th>#</th>
-                <th>Opciones</th>
                 <th>Nombre</th>
                 <th>Material</th>
+                <th>Opciones</th>
             </tr>
         </thead>
         <tbody>
             {filteredTipos.map((tipo, index) => (
                 <tr key={index}>
                     <td>{index + 1}</td>
-                    <td><Button style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent'}} onClick={() => getEditView(tipo.id)}>Editar</Button> </td>
                     <td>{tipo.nombre}</td>
                     <td>{tipo.material}</td>
+                    <td>
+                      <FaEdit title='Editar Tipo de Joya' className='icono' onClick={() => handleEditClick(tipo.id)} />
+                    </td>
                 </tr>
             ))}
 

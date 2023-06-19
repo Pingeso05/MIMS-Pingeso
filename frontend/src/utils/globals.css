@@ -13,6 +13,13 @@
     padding-bottom: 10px;
 }
 
+.container-table{
+    background-color: rgba(255, 255, 255);
+    border-radius: 10px; 
+    padding-bottom: 10px;
+    height: 85vh;
+}
+
 .dropdown-tb{
     width: 250px;
     height: 40px;
@@ -27,12 +34,7 @@
     border-color: #EB6D1A;
 }
 
-.container-table{
-    background-color: rgba(255, 255, 255);
-    border-radius: 10px; 
-    padding-bottom: 10px;
-    height: 85vh;
-}
+
 
 my-fila:hover{
     background-color: #F5F5F5;
@@ -68,6 +70,14 @@ my-fila:hover{
     justify-content: flex-end;
 }
 
+.icono {
+    margin-right: 8px;
+    color: #D5418F;
+  }
+  
+.icono:hover {
+    border: 1px solid #EB6D1A;
+}
 
 
   @media (max-width: 767px) {
@@ -111,4 +121,13 @@ my-fila:hover{
     .table thead tr.cabeceras th {
         top: -2px;
       }
+    .icono{
+        margin-right: 3px;
+    }
+    .left-col,
+    .right-col {
+        flex-basis: 50%;
+        flex-grow: 1;
+        justify-content: center;
+    }
 }
