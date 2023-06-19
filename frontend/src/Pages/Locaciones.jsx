@@ -67,7 +67,7 @@ const Locaciones = () => {
                         <td><Button variant="primary" onClick={() => getEditView(locacion.id)} style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent'}}>Editar</Button></td>
                         <td>{locacion.nombre}</td>
                         <td>{locacion.direccion}</td>
-                        <td>comuna</td>
+                        <td>{locacion.comuna}</td>
                     </tr>
                 ))}
 

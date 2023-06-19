@@ -169,21 +169,21 @@ database.commit()
 
 #Generamos las locaciones
 cursor = database.cursor()
-query = "INSERT INTO mims.locacion(nombre, direccion, deleted) VALUES (%s, %s, FALSE)"
+query = "INSERT INTO mims.locacion(nombre, direccion, deleted, comuna, region) VALUES (%s, %s, FALSE, (SELECT id FROM mims.comunas WHERE nombre = %s), (SELECT id_region FROM mims.comunas WHERE nombre = %s))"
 nombre = "Bodega Maipú"
 direccion = "Av. Gabriel Gonzalez Videla #1928"
-#comuna = "Maipú"
-val_query=(nombre, direccion)
+comuna = "Maipú"
+val_query=(nombre, direccion, comuna, comuna)
 cursor.execute(query, val_query)
 cursor.close()
 database.commit()
 
 cursor = database.cursor()
-query = "INSERT INTO mims.locacion(nombre, direccion, deleted) VALUES (%s, %s, FALSE)"
+query = "INSERT INTO mims.locacion(nombre, direccion, deleted, comuna, region) VALUES (%s, %s, FALSE, (SELECT id FROM mims.comunas WHERE nombre = %s), (SELECT id_region FROM mims.comunas WHERE nombre = %s))"
 nombre = "Tienda Ñuñoa"
 direccion = "Av. Itaila #1659"
-#comuna = "Ñuñoa"
-val_query=(nombre, direccion)
+comuna = "Ñuñoa"
+val_query=(nombre, direccion, comuna, comuna)
 cursor.execute(query, val_query)
 cursor.close()
 database.commit()
