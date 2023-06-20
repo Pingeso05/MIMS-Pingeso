@@ -41,13 +41,22 @@ for elemento in malibu_tipo_joyas:
             valores_fila = [elemento]
             i = 0
             for celda in fila:
-                if(i != 0):
+                print(celda.value)
+                if(i >0 and i<4):
                     if is_float(str(celda.value)):
                         valores_fila.append(int(celda.value))
                     else:
                         valores_fila.append(0)
+                elif(i==4):
+                    if (str(celda.value) == "nunca" or str(celda.value) == "Nunca" or str(celda.value) == "NUNCA"):
+                        valores_fila.append(1)
+                    else:
+                        valores_fila.append(0)
                 else:
-                    valores_fila.append((celda.value).capitalize())
+                    if(celda.value is None):
+                        valores_fila.append("Null")
+                    else:
+                        valores_fila.append((celda.value).capitalize())
                 i+=1
 
             readings.append(valores_fila)
@@ -203,15 +212,16 @@ database.commit()
 
 #Agregamos las joyas
 cursor = database.cursor()
-query = "INSERT INTO mims.joya(nombre, id_tipo_joya, deleted) VALUES ( %s, (SELECT id FROM mims.tipo_joya WHERE nombre = %s), FALSE)"
+query = "INSERT INTO mims.joya(nombre, id_tipo_joya, cost, is_unique, deleted) VALUES ( %s, (SELECT id FROM mims.tipo_joya WHERE nombre = %s), %s, %s, FALSE)"
 for valores in readings:
     nombre = valores[1]
     tipo_joya = valores[0]
-    val_query = (nombre, tipo_joya)
+    costo = valores[3]
+    isunique = valores[5]
+    val_query = (nombre, tipo_joya, costo, isunique)
     cursor.execute(query, val_query)
 cursor.close()
 database.commit()
-
 
 #Agregamos el inventario
 cursor = database.cursor()
@@ -222,7 +232,7 @@ for elemento in readings:
     cantidad = elemento[2]
     precio_venta = elemento[4]
     nombre = elemento[1]
-    val_query=(cantidad, precio_venta, nombre, nombre)
+    val_query=(cantidad, precio_venta, nombre)
     cursor.execute(query, val_query)
 cursor.close()
 database.commit()
