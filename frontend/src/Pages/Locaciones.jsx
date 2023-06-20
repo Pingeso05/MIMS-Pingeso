@@ -53,20 +53,18 @@ const Locaciones = () => {
             <Table bordered hover className='table'>
             <thead >
                 <tr className='cabeceras'>
-                    <th>#</th>
-                    <th>Opciones</th>
                     <th>Nombre</th>
                     <th>Dirección</th>
                     <th>Comuna</th>
+                    <th>Opciones</th>
                 </tr>
             </thead>
             <tbody>
                 {locaciones.map((locacion, index) => (
                     <tr key={index}>
-                        <td>{index + 1}</td>
                         <td>{locacion.nombre}</td>
                         <td>{locacion.direccion}</td>
-                        <td>comuna</td>
+                        <td>{locacion.comuna}</td>
                         <td>
                           <FaEdit title='Editar Locación' className='icono' onClick={() => handleEditClick(locacion.id)} />
                         </td>
