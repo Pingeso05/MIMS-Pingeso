@@ -51,14 +51,6 @@ button[type='submit'] {
 }
 
 @media (max-width: 767px) {
-    .container-tipojoya {
-      width: 100%;
-      padding: 0 10px;
-      box-sizing: border-box;
-      margin-bottom: 10px; 
-      margin-top: 10px;
-      height: 90vh;
-    }
 
     form {
       min-width: 300px; 

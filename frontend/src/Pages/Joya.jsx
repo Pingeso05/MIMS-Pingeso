@@ -9,6 +9,7 @@ import './Joya.css';
 import { useNavigate } from 'react-router-dom';
 import {ruta_back} from '../utils/globals.js';
 import '../utils/globals.css';
+import { FaEdit } from 'react-icons/fa';
 
 const Joya = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const Joya = () => {
     }
   };
 
-  const getEditView = (id) => {
+  const handleEditClick = (id) => {
     navigate('/joyas/editar/' + id);
   };
 
@@ -56,49 +57,36 @@ const Joya = () => {
       <h1 className='titulo'>Joyas</h1>
 
       <Row style={{ marginTop: '20px' }}>
-        <Col style={{ display: 'flex', alignItems: 'left' }}>
-          <Col md={6} style={{ display: 'flex', alignItems: 'left' }}>
-            <select className='dropdown'
-              value={tipoSeleccionado}
-              onChange={handleTipoChange}
-            >
-              <option value="">Todos los tipos</option>
-              {tipos.map((tipo, index) => (
-                <option value={tipo} key={index}>{tipo}</option>
-              ))}
-            </select>
-          </Col>
-          <Col md={6} style={{ display: 'flex', alignItems: 'center' }}>
+          <Col className="left-col" md={6} >
             <span style={{ marginRight: '10px', fontWeight: 'bold' }}>Joyas:</span>
             <span>{filteredJoyas.length}</span>
           </Col>
-        </Col>
-        <Col md={6} style={{ display: 'flex', alignItems: 'left', justifyContent: 'flex-end' }}>
+        <Col className="right-col" md={6}>
           <Link to="/joyas/agregar-joya">
-            <Button variant="primary"  style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent'}}>Agregar Joya</Button>
+            <Button variant="primary"  style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent', fontSize:'14px'}}>Agregar Joya</Button>
           </Link>    
         </Col>
       </Row>
 
-      <div style={{ overflow: 'auto', maxHeight: '60vh', marginTop: '20px' }}>
+      <div style={{ overflow: 'auto', maxHeight: '55vh', marginTop: '20px' }}>
         <Table bordered hover className='table'>
           <thead>
             <tr className='cabeceras'>
               <th>#</th>
-              <th>Opciones</th>
               <th>Nombre</th>
               <th>Tipo de Joya</th>
+              <th>Opciones</th>
             </tr>
           </thead>
           <tbody>
             {filteredJoyas.map((joya, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
-                <td>
-                  <Button variant="primary" onClick={() => getEditView(joya.id)} style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent'}}> Editar </Button>
-                </td>
                 <td>{joya.nombre}</td>
                 <td>{joya.tipo_joya}</td>
+                <td>
+                  <FaEdit title='Editar Joya' className='icono' onClick={() => handleEditClick(joya.id)} />
+                </td>
               </tr>
             ))}
           </tbody>
