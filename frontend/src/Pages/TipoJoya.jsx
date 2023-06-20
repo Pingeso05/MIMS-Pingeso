@@ -14,8 +14,6 @@ import { FaEdit } from 'react-icons/fa';
 const TipoJoya = () => {
   const navigate = useNavigate();
   const [tipos, setTipos] = useState([]);
-  const [categorias, setCategorias] = useState([]);
-  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('');
 
   const getTipos = async () => {
     try {
@@ -31,27 +29,11 @@ const TipoJoya = () => {
   };
 
 
-  const getCategorias = async () => {
-    try {
-      const res = await axios.get(ruta_back + 'tipojoya');
-      const categoriasUnicas = [...new Set(res.data.map(categoria => categoria.nombre))];
-      setCategorias(categoriasUnicas);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleCategoriaChange = (event) => {
-    const categoria = event.target.value;
-    setCategoriaSeleccionada(categoria);
-  };
 
   useEffect(() => {
     getTipos();
-    getCategorias();
   }, []);
 
-  const filteredTipos = categoriaSeleccionada ? tipos.filter(tipo => tipo.material === categoriaSeleccionada || tipo.nombre.includes(categoriaSeleccionada)) : tipos;
 
   return (
     <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-table">
@@ -60,7 +42,7 @@ const TipoJoya = () => {
       <Row style={{ marginTop: '20px' }}>
           <Col className="left-col" md={6}>
             <span style={{ marginRight: '10px', fontWeight: 'bold' }}>Tipos:</span>
-            <span>{filteredTipos.length}</span>
+            <span>{tipos.length}</span>
           </Col>
  
         <Col className="right-col" md={6} >
@@ -74,20 +56,20 @@ const TipoJoya = () => {
         <Table bordered hover className='table'>
         <thead className='cabeceras'>
             <tr >
-                <th>#</th>
                 <th>Nombre</th>
                 <th>Material</th>
                 <th>Opciones</th>
             </tr>
         </thead>
         <tbody>
-            {filteredTipos.map((tipo, index) => (
+            {tipos.map((tipo, index) => (
                 <tr key={index}>
-                    <td>{index + 1}</td>
                     <td>{tipo.nombre}</td>
                     <td>{tipo.material}</td>
                     <td>
+                      <div className='icono-columna'>
                       <FaEdit title='Editar Tipo de Joya' className='icono' onClick={() => handleEditClick(tipo.id)} />
+                      </div>
                     </td>
                 </tr>
             ))}

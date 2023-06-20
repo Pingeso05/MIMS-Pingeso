@@ -72,7 +72,6 @@ const Joya = () => {
         <Table bordered hover className='table'>
           <thead>
             <tr className='cabeceras'>
-              <th>#</th>
               <th>Nombre</th>
               <th>Tipo de Joya</th>
               <th>Opciones</th>
@@ -81,11 +80,13 @@ const Joya = () => {
           <tbody>
             {filteredJoyas.map((joya, index) => (
               <tr key={index}>
-                <td>{index + 1}</td>
                 <td>{joya.nombre}</td>
                 <td>{joya.tipo_joya}</td>
                 <td>
-                  <FaEdit title='Editar Joya' className='icono' onClick={() => handleEditClick(joya.id)} />
+                  <div className='icono-columna'>
+                    <FaEdit title='Editar Joya' className='icono' onClick={() => handleEditClick(joya.id)} />
+                  </div>
+                  
                 </td>
               </tr>
             ))}

@@ -40,6 +40,7 @@ my-fila:hover{
     background-color: #F5F5F5;
 }
 
+
 .titulo {
     margin-top: 20px;
     margin-bottom: 30px;
@@ -49,8 +50,12 @@ my-fila:hover{
 .table {
     background-color: #ffffff;
     border-collapse: collapse;
+    text-align: center;
 }
-
+.table td,
+.table th {
+  vertical-align: middle; 
+}
 .table thead tr.cabeceras th {
     position: sticky;
     top: -1px;
@@ -70,6 +75,9 @@ my-fila:hover{
     justify-content: flex-end;
 }
 
+.icono-columna{
+    align-items: center;
+}
 .icono {
     margin-right: 8px;
     color: #D5418F;
@@ -122,7 +130,9 @@ my-fila:hover{
         top: -2px;
       }
     .icono{
-        margin-right: 3px;
+        margin-bottom: 5px;
+        margin-right: 0px;
+        font-size: 16px;
     }
     .left-col,
     .right-col {
@@ -130,4 +140,9 @@ my-fila:hover{
         flex-grow: 1;
         justify-content: center;
     }
+    .icono-columna {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 }
