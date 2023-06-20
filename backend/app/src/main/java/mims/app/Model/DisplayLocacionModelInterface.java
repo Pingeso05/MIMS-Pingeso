@@ -5,5 +5,7 @@ public interface DisplayLocacionModelInterface {
     int getId();
     String getNombre();
     String getDireccion();
+    String getComuna();
+    String getRegion();
 
 }

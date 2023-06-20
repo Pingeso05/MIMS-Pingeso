@@ -1,5 +1,6 @@
 package mims.app.service;
 
+import mims.app.Model.DisplayLocacionModelInterface;
 import mims.app.entity.LocacionEntity;
 import mims.app.repository.LocacionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,8 @@ public class LocacionService {
     @Autowired
     private LocacionRepository locacionRepository;
 
-    public ResponseEntity<ArrayList<LocacionEntity>> get_all_locaciones_not_deleted() {
-        return ResponseEntity.ok((ArrayList<LocacionEntity>) locacionRepository.findAllByDeletedFalse());
+    public ArrayList<DisplayLocacionModelInterface> get_all_locaciones_not_deleted() {
+        return locacionRepository.findAllLocacion();
     }
 
     public ResponseEntity<LocacionEntity> get_locacion_by_id(int id) {
