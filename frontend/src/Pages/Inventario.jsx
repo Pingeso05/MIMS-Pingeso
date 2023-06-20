@@ -152,7 +152,7 @@ const Inventario = () => {
                   <td>{Number(producto.cantidad).toLocaleString()}</td>
                   <td>{producto.tipo_joya}</td>
                   <td>{producto.local}</td>
-                  <td className='ocultar-columna'>${Number(producto.precio_costo).toLocaleString()}</td>
+                  <td className='ocultar-columna'>${Number(producto.cost).toLocaleString()}</td>
                   <td className='ocultar-columna'>${Number(producto.precio_venta).toLocaleString()}</td>
                   <td>
                   <div>

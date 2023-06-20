@@ -35,8 +35,6 @@ class InventarioControllerTest {
         ArrayList<InventarioEntity> inventario = new ArrayList<>();
         InventarioEntity producto = new InventarioEntity();
         producto.setId_joya(1);
-        producto.setId_tipo_joya(1);
-        producto.setPrecio_costo(11);
         producto.setPrecio_venta(11);
         producto.setCantidad(1);
         producto.setId_locacion(1);
@@ -59,8 +57,6 @@ class InventarioControllerTest {
     void testSaveInventario() {
         InventarioEntity producto = new InventarioEntity();
         producto.setId_joya(1);
-        producto.setId_tipo_joya(1);
-        producto.setPrecio_costo(11);
         producto.setPrecio_venta(11);
         producto.setCantidad(1);
         producto.setId_locacion(1);
@@ -83,8 +79,6 @@ class InventarioControllerTest {
         int id = 1;
         InventarioEntity producto = new InventarioEntity();
         producto.setId_joya(1);
-        producto.setId_tipo_joya(1);
-        producto.setPrecio_costo(11);
         producto.setPrecio_venta(11);
         producto.setCantidad(1);
         producto.setId_locacion(1);
@@ -108,8 +102,6 @@ class InventarioControllerTest {
         ArrayList<InventarioEntity> inventario = new ArrayList<>();
         InventarioEntity producto = new InventarioEntity();
         producto.setId_joya(1);
-        producto.setId_tipo_joya(1);
-        producto.setPrecio_costo(11);
         producto.setPrecio_venta(11);
         producto.setCantidad(1);
         producto.setId_locacion(1);

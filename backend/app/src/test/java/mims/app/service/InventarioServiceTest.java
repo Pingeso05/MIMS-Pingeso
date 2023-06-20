@@ -41,9 +41,7 @@ class InventarioServiceTest {
         inventario.setDeleted(false);
         inventario.setCantidad(1);
         inventario.setPrecio_venta(11);
-        inventario.setPrecio_costo(11);
         inventario.setId_locacion(1);
-        inventario.setId_tipo_joya(1);
         inventario.setId_joya(1);
         inventarios.add(inventario);
 
@@ -66,9 +64,7 @@ class InventarioServiceTest {
         inventario.setDeleted(false);
         inventario.setCantidad(1);
         inventario.setPrecio_venta(11);
-        inventario.setPrecio_costo(11);
         inventario.setId_locacion(1);
-        inventario.setId_tipo_joya(1);
         inventario.setId_joya(1);
         // Agregar lógica para configurar la respuesta del repositorio y establecer el objeto InventarioEntity
 
@@ -93,9 +89,7 @@ class InventarioServiceTest {
         inventario.setDeleted(false);
         inventario.setCantidad(1);
         inventario.setPrecio_venta(11);
-        inventario.setPrecio_costo(11);
         inventario.setId_locacion(1);
-        inventario.setId_tipo_joya(1);
         inventario.setId_joya(1);
         // Agregar lógica para configurar la respuesta del repositorio y establecer el objeto InventarioEntity
 
@@ -119,9 +113,7 @@ class InventarioServiceTest {
         inventario.setDeleted(false);
         inventario.setCantidad(1);
         inventario.setPrecio_venta(11);
-        inventario.setPrecio_costo(11);
         inventario.setId_locacion(1);
-        inventario.setId_tipo_joya(1);
         inventario.setId_joya(1);
         inventarios.add(inventario);
 

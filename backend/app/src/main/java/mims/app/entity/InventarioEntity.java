@@ -28,12 +28,6 @@ public class InventarioEntity {
 
         @Column(name = "precio_venta")
         private float precio_venta;
-        
-        @Column(name = "precio_costo")
-        private float precio_costo;
-
-        @Column(name = "id_tipo_joya")
-        private int id_tipo_joya;
 
         private boolean deleted;
 

@@ -227,7 +227,7 @@ for elemento in readings:
     cursor.execute(query, val_query)
 cursor.close()
 database.commit()
-
+#fin
 
 database.close()
 print("Se han cargado los datos de manera correcta.")
