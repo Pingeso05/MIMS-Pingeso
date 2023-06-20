@@ -125,7 +125,7 @@ const Inventario = () => {
 
       </Row>
       
-          <div style={{ overflowx: 'auto', maxHeight: '60vh', marginTop: '20px' }}>
+          <div style={{ overflow: 'auto', maxHeight: '60vh', marginTop: '20px' }}>
           <Table bordered hover className='table'>
             <thead>
               <tr className='cabeceras'>
