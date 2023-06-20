@@ -1,7 +1,6 @@
 package mims.app.repository;
 
 import mims.app.Model.DisplayJoyaModelInterface;
-import mims.app.Model.JoyaModel;
 import mims.app.entity.JoyaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

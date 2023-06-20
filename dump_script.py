@@ -28,6 +28,33 @@ cursor = database.cursor()
 malibu_db = lw('STOCK MALIBU.xlsx')
 malibu_tipo_joyas = malibu_db.sheetnames
 
+#Generamos los datos para las tabla de joyas
+readings = []
+for elemento in malibu_tipo_joyas:
+    hoja = malibu_db[elemento]
+    numero_fila = 1 
+    for fila in hoja:
+        if numero_fila == 1 or fila[0].value is None or fila[0].value == '':
+            #print('primera o blanca')
+            numero_fila +=1
+        else:   
+            valores_fila = [elemento]
+            i = 0
+            for celda in fila:
+                if(i != 0):
+                    if is_float(str(celda.value)):
+                        valores_fila.append(int(celda.value))
+                    else:
+                        valores_fila.append(0)
+                else:
+                    valores_fila.append((celda.value).capitalize())
+                i+=1
+
+            readings.append(valores_fila)
+
+
+#for elemento in readings:
+#    print(elemento)
 
 #Bloque para Locaciones
 regiones = [
@@ -83,17 +110,13 @@ comunas_por_region[12] = ["Valdivia", "Corral", "Lanco", "Los Lagos", "Máfil", 
 comunas_por_region[13] = ["Puerto Montt", "Calbuco", "Cochamó", "Fresia", "Frutillar", "Los Muermos", "Llanquihue", "Maullín", "Puerto Varas", "Castro", "Ancud", "Chonchi", "Curaco de Vélez", "Dalcahue", "Puqueldón", "Queilén", "Quellón", "Quemchi", "Quinchao"]
 comunas_por_region[14] = ["Coihaique", "Lago Verde", "Aysén", "Cisnes", "Guaitecas", "Cochrane", "O'Higgins", "Tortel"]
 comunas_por_region[15] = ["Punta Arenas", "Laguna Blanca", "Río Verde", "San Gregorio", "Cabo de Hornos", "Antártica"]
-
+#Creamos las tablas
 regiones_table = ("CREATE TABLE IF NOT EXISTS regiones("+
                     "id int NOT NULL AUTO_INCREMENT, "+
                     "nombre varchar(255) NOT NULL, "+
                     "PRIMARY KEY (id));")
-
 cursor.execute(regiones_table)
-cursor.close()
-database.commit()
-#comenzamos nuevamente
-cursor = database.cursor()
+
 comunas_table = ("CREATE TABLE IF NOT EXISTS comunas("+
                     "id int NOT NULL AUTO_INCREMENT, "+
                     "nombre varchar(255) NOT NULL, "+
@@ -102,18 +125,38 @@ comunas_table = ("CREATE TABLE IF NOT EXISTS comunas("+
 cursor.execute(comunas_table)
 cursor.close()
 database.commit()
-#comenzamos nuevamente
-cursor = database.cursor()
 
+cursor = database.cursor()
+#limpiamos las tablas
+query = "TRUNCATE TABLE mims.regiones"
+cursor.execute(query)
+query = "TRUNCATE TABLE mims.comunas"
+cursor.execute(query)
+query = "TRUNCATE TABLE mims.locacion"
+cursor.execute(query)
+query = "TRUNCATE TABLE mims.tipo_joya"
+cursor.execute(query)
+query = "TRUNCATE TABLE mims.joya"
+cursor.execute(query)
+query = "TRUNCATE TABLE mims.inventario"
+cursor.execute(query)
+cursor.close()
+database.commit()
+
+
+
+#bloque para regiones y comunas
+#Poblamos la tabla region
+cursor = database.cursor()
 query = "INSERT INTO mims.regiones (nombre) VALUES (%s)"
-#query2 = "INSERT INTO mims.comunas (nombre, id_region) VALUES (%s, (SELECT id FROM))"
 for element in regiones:
     values = (element)
     cursor.execute(query, values)
 cursor.close()
 database.commit()
-cursor = database.cursor()
 
+#Poblamos la tabla comuna
+cursor = database.cursor()
 query = "INSERT INTO mims.comunas (nombre, id_region) VALUES (%s, %s)"
 for elemento in regiones:
     id = regiones.index(elemento)
@@ -121,97 +164,70 @@ for elemento in regiones:
         nombre = comuna
         values = (comuna, id)
         cursor.execute(query, values)
-
 cursor.close()
 database.commit()
+
+#Generamos las locaciones
 cursor = database.cursor()
-   
-readings = []
-for elemento in malibu_tipo_joyas:
-    hoja = malibu_db[elemento]
-    numero_fila = 1 
-    for fila in hoja:
-        if numero_fila == 1 or fila[0].value is None or fila[0].value == '':
-            #print('primera o blanca')
-            numero_fila +=1
-        else:   
-            valores_fila = [elemento]
-            i = 0
-            for celda in fila:
-                if(i != 0):
-                    if is_float(str(celda.value)):
-                        valores_fila.append(int(celda.value))
-                    else:
-                        valores_fila.append(0)
-                else:
-                    valores_fila.append(celda.value)
-                i+=1
+query = "INSERT INTO mims.locacion(nombre, direccion, deleted, comuna, region) VALUES (%s, %s, FALSE, (SELECT id FROM mims.comunas WHERE nombre = %s), (SELECT id_region FROM mims.comunas WHERE nombre = %s))"
+nombre = "Bodega Maipú"
+direccion = "Av. Gabriel Gonzalez Videla #1928"
+comuna = "Maipú"
+val_query=(nombre, direccion, comuna, comuna)
+cursor.execute(query, val_query)
+cursor.close()
+database.commit()
 
-            readings.append(valores_fila)
+cursor = database.cursor()
+query = "INSERT INTO mims.locacion(nombre, direccion, deleted, comuna, region) VALUES (%s, %s, FALSE, (SELECT id FROM mims.comunas WHERE nombre = %s), (SELECT id_region FROM mims.comunas WHERE nombre = %s))"
+nombre = "Tienda Ñuñoa"
+direccion = "Av. Itaila #1659"
+comuna = "Ñuñoa"
+val_query=(nombre, direccion, comuna, comuna)
+cursor.execute(query, val_query)
+cursor.close()
+database.commit()
 
-#print(malibu_tipo_joyas)
-created_at = dt.date.today()
-created_by = 1
-updated_at = dt.date.today()
-updated_by = 1
+#comenzamos con las joyas
 
-
-#for elemento in readings:
-#    print(elemento)
-
-query = "INSERT INTO mims.tipo_joya(nombre, material, deleted, created_at, created_by, updated_at, updated_by) VALUES ( %s, %s, FALSE, %s, %s, %s, %s)"
+#Creamos los tipos de joyas
+cursor = database.cursor()
+query = "INSERT INTO mims.tipo_joya(nombre, material, deleted) VALUES ( %s, %s, FALSE)"
 for element in malibu_tipo_joyas:
-    #print(element)
     name = element.capitalize()
     mat = "plata"
-    values = (name, mat, created_at, created_by, updated_at, updated_by)
+    values = (name, mat)
     cursor.execute(query, values)
-
-#cerramos el cursor
 cursor.close()
-#comitteamos los cambios
 database.commit()
-#comenzamos nuevamente
-cursor = database.cursor()
 
-query = "INSERT INTO mims.joya(nombre, id_tipo_joya, deleted, created_at, created_by, updated_at, updated_by) VALUES ( %s, (SELECT id FROM mims.tipo_joya WHERE nombre = %s), FALSE, %s, %s, %s, %s)"
+#Agregamos las joyas
+cursor = database.cursor()
+query = "INSERT INTO mims.joya(nombre, id_tipo_joya, deleted) VALUES ( %s, (SELECT id FROM mims.tipo_joya WHERE nombre = %s), FALSE)"
 for valores in readings:
     nombre = valores[1]
     tipo_joya = valores[0]
-    val_query = (nombre, tipo_joya, created_at, created_by, updated_at, updated_by)
+    val_query = (nombre, tipo_joya)
     cursor.execute(query, val_query)
-
-    
-#cerramos el cursor
 cursor.close()
-#comitteamos los cambios
 database.commit()
-#comenzamos nuevamente
-cursor = database.cursor()
 
-####guardar inventario como tal
+
+#Agregamos el inventario
+cursor = database.cursor()
 for element in readings:
     print(element)
-query = "INSERT INTO mims.inventario(cantidad, precio_costo, precio_venta, id_joya, id_locacion,  id_tipo_joya, deleted, created_at, created_by, updated_at, updated_by) VALUES ( %s, %s, %s, (SELECT id FROM mims.joya WHERE nombre = %s), 1,(SELECT id_tipo_joya FROM mims.joya WHERE nombre = %s), FALSE, %s, %s, %s, %s)"
+query = "INSERT INTO mims.inventario(cantidad, precio_costo, precio_venta, id_joya, id_locacion,  id_tipo_joya, deleted) VALUES ( %s, %s, %s, (SELECT id FROM mims.joya WHERE nombre = %s), 1,(SELECT id_tipo_joya FROM mims.joya WHERE nombre = %s), FALSE)"
 for elemento in readings:
     cantidad = elemento[2]
     precio_costo = elemento[3]
     precio_venta = elemento[4]
     nombre = elemento[1]
-    val_query=(cantidad, precio_costo, precio_venta, nombre, nombre, created_at, created_by, updated_at, updated_by)
+    val_query=(cantidad, precio_costo, precio_venta, nombre, nombre)
     cursor.execute(query, val_query)
-
 cursor.close()
 database.commit()
-
-cursor = database.cursor()
-query = "INSERT INTO mims.locacion(nombre, direccion, deleted, created_at, created_by, updated_at, updated_by) VALUES (%s, %s, FALSE, %s, %s, %s, %s)"
-nombre = "Bodega Maipu"
-direccion = "Av. Gabriel Gonzalez Videla #1928"
-val_query=(nombre, direccion, created_at, created_by, updated_at, updated_by)
-cursor.execute(query, val_query)
-cursor.close()
-database.commit()
+#fin
 
 database.close()
-print("finished")
+print("Se han cargado los datos de manera correcta.")
