@@ -217,13 +217,12 @@ database.commit()
 cursor = database.cursor()
 for element in readings:
     print(element)
-query = "INSERT INTO mims.inventario(cantidad, precio_costo, precio_venta, id_joya, id_locacion,  id_tipo_joya, deleted) VALUES ( %s, %s, %s, (SELECT id FROM mims.joya WHERE nombre = %s), 1,(SELECT id_tipo_joya FROM mims.joya WHERE nombre = %s), FALSE)"
+query = "INSERT INTO mims.inventario(cantidad, precio_venta, id_joya, id_locacion,  id_tipo_joya, deleted) VALUES ( %s, %s, (SELECT id FROM mims.joya WHERE nombre = %s), 1,(SELECT id_tipo_joya FROM mims.joya WHERE nombre = %s), FALSE)"
 for elemento in readings:
     cantidad = elemento[2]
-    precio_costo = elemento[3]
     precio_venta = elemento[4]
     nombre = elemento[1]
-    val_query=(cantidad, precio_costo, precio_venta, nombre, nombre)
+    val_query=(cantidad, precio_venta, nombre, nombre)
     cursor.execute(query, val_query)
 cursor.close()
 database.commit()
