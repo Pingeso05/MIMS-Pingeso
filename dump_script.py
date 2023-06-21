@@ -120,13 +120,13 @@ comunas_por_region[13] = ["Puerto Montt", "Calbuco", "Cochamó", "Fresia", "Frut
 comunas_por_region[14] = ["Coihaique", "Lago Verde", "Aysén", "Cisnes", "Guaitecas", "Cochrane", "O'Higgins", "Tortel"]
 comunas_por_region[15] = ["Punta Arenas", "Laguna Blanca", "Río Verde", "San Gregorio", "Cabo de Hornos", "Antártica"]
 #Creamos las tablas
-regiones_table = ("CREATE TABLE IF NOT EXISTS regiones("+
+regiones_table = ("CREATE TABLE IF NOT EXISTS region("+
                     "id int NOT NULL AUTO_INCREMENT, "+
                     "nombre varchar(255) NOT NULL, "+
                     "PRIMARY KEY (id));")
 cursor.execute(regiones_table)
 
-comunas_table = ("CREATE TABLE IF NOT EXISTS comunas("+
+comunas_table = ("CREATE TABLE IF NOT EXISTS comuna("+
                     "id int NOT NULL AUTO_INCREMENT, "+
                     "nombre varchar(255) NOT NULL, "+
                     "id_region int NOT NULL, "+
@@ -137,9 +137,9 @@ database.commit()
 
 cursor = database.cursor()
 #limpiamos las tablas
-query = "TRUNCATE TABLE mims.regiones"
+query = "TRUNCATE TABLE mims.region"
 cursor.execute(query)
-query = "TRUNCATE TABLE mims.comunas"
+query = "TRUNCATE TABLE mims.comuna"
 cursor.execute(query)
 query = "TRUNCATE TABLE mims.locacion"
 cursor.execute(query)
@@ -157,7 +157,7 @@ database.commit()
 #bloque para regiones y comunas
 #Poblamos la tabla region
 cursor = database.cursor()
-query = "INSERT INTO mims.regiones (nombre) VALUES (%s)"
+query = "INSERT INTO mims.region (nombre) VALUES (%s)"
 for element in regiones:
     values = (element)
     cursor.execute(query, values)
@@ -166,7 +166,7 @@ database.commit()
 
 #Poblamos la tabla comuna
 cursor = database.cursor()
-query = "INSERT INTO mims.comunas (nombre, id_region) VALUES (%s, %s)"
+query = "INSERT INTO mims.comuna (nombre, id_region) VALUES (%s, %s)"
 for elemento in regiones:
     id = regiones.index(elemento)
     for comuna in comunas_por_region[id]:
@@ -178,7 +178,7 @@ database.commit()
 
 #Generamos las locaciones
 cursor = database.cursor()
-query = "INSERT INTO mims.locacion(nombre, direccion, deleted, comuna, region) VALUES (%s, %s, FALSE, (SELECT id FROM mims.comunas WHERE nombre = %s), (SELECT id_region FROM mims.comunas WHERE nombre = %s))"
+query = "INSERT INTO mims.locacion(nombre, direccion, deleted, comuna, region) VALUES (%s, %s, FALSE, (SELECT id FROM mims.comuna WHERE nombre = %s), (SELECT id_region FROM mims.comuna WHERE nombre = %s))"
 nombre = "Bodega Maipú"
 direccion = "Av. Gabriel Gonzalez Videla #1928"
 comuna = "Maipú"
@@ -188,7 +188,7 @@ cursor.close()
 database.commit()
 
 cursor = database.cursor()
-query = "INSERT INTO mims.locacion(nombre, direccion, deleted, comuna, region) VALUES (%s, %s, FALSE, (SELECT id FROM mims.comunas WHERE nombre = %s), (SELECT id_region FROM mims.comunas WHERE nombre = %s))"
+query = "INSERT INTO mims.locacion(nombre, direccion, deleted, comuna, region) VALUES (%s, %s, FALSE, (SELECT id FROM mims.comuna WHERE nombre = %s), (SELECT id_region FROM mims.comuna WHERE nombre = %s))"
 nombre = "Tienda Ñuñoa"
 direccion = "Av. Itaila #1659"
 comuna = "Ñuñoa"
