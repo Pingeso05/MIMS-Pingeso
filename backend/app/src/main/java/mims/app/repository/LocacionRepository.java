@@ -15,7 +15,7 @@ public interface LocacionRepository extends JpaRepository<LocacionEntity, Intege
     
     public Iterable<LocacionEntity> findAllByDeletedFalse();
 
-    @Query(value = "SELECT locacion.id, locacion.nombre, locacion.direccion, comunas.nombre AS comuna, regiones.nombre AS region FROM mims.regiones, mims.locacion, mims.comunas WHERE locacion.comuna = comunas.id AND locacion.region = regiones.id", nativeQuery = true)
+    @Query(value = "SELECT locacion.id, locacion.nombre, locacion.direccion, comuna.nombre AS comuna, region.nombre AS region FROM mims.region, mims.locacion, mims.comuna WHERE locacion.comuna = comuna.id AND locacion.region = region.id", nativeQuery = true)
     public ArrayList<DisplayLocacionModelInterface> findAllLocacion();
 
 }

@@ -109,6 +109,7 @@ comunas_por_region[1] = ["Iquique", "Alto Hospicio", "Pozo Almonte", "Camiña", 
 comunas_por_region[2] = ["Antofagasta", "Mejillones", "Sierra Gorda", "Taltal", "Calama", "Ollagüe", "San Pedro de Atacama"]
 comunas_por_region[3] = ["Copiapó", "Caldera", "Tierra Amarilla", "Chañaral", "Diego de Almagro", "Vallenar", "Alto del Carmen", "Freirina", "Huasco"]
 comunas_por_region[4] = ["La Serena", "Coquimbo", "Andacollo", "La Higuera", "Paihuano", "Vicuña", "Illapel", "Canela", "Los Vilos", "Salamanca", "Ovalle", "Combarbalá", "Monte Patria", "Punitaqui", "Río Hurtado"]
+comunas_por_region[5] = ["Valparaíso", "Viña del Mar", "Concón", "Quilpué", "Villa Alemana", "Quintero", "Puchuncaví", "Casablanca", "Limache", "Olmué", "La Calera", "Hijuelas", "Nogales", "San Antonio", "Cartagena", "El Tabo", "El Quisco", "Algarrobo", "Santo Domingo", "San Felipe", "Los Andes", "Rinconada", "Calle Larga", "Panquehue", "Llaillay", "Putaendo", "Santa María", "La Ligua", "Cabildo", "Zapallar", "Papudo", "Petorca", "Quillota", "La Cruz", "San Esteban", "Puchuncaví"]
 comunas_por_region[6] = ["Santiago", "Cerrillos", "Cerro Navia", "Conchalí", "El Bosque", "Estación Central", "Huechuraba","Independencia", "La Cisterna", "La Granja", "La Florida", "La Pintana", "La Reina", "Las Condes", "Lo Barnechea", "Lo Espejo", "Lo Prado", "Macul", "Maipú", "Ñuñoa", "Pedro Aguirre Cerda", "Peñalolén", "Providencia", "Pudahuel", "Quilicura", "Quinta Normal", "Recoleta", "Renca", "San Joaquín", "San Miguel", "San Ramón", "Vitacura", "Puente Alto", "Pirque", "San José de Maipo", "Colina", "Lampa", "Tiltil", "San Bernardo", "Buin", "Calera de Tango", "Paine", "Melipilla", "Alhué", "Curacaví", "María Pinto", "San Pedro", "Talagante", "El Monte", "Isla de Maipo", "Padre Hurtado", "Peñaflor"]
 comunas_por_region[7] = ["Rancagua", "Codegua", "Coinco", "Coltauco", "Doñihue", "Graneros", "Las Cabras", "Machalí", "Malloa", "Mostazal", "Olivar", "Peumo", "Pichidegua", "Quinta de Tilcoco", "Rengo", "Requínoa", "San Vicente"]
 comunas_por_region[8] = ["Talca", "Constitución", "Curepto", "Empedrado", "Maule", "Pelarco", "Pencahue", "Río Claro", "San Clemente", "San Rafael"]
@@ -120,13 +121,13 @@ comunas_por_region[13] = ["Puerto Montt", "Calbuco", "Cochamó", "Fresia", "Frut
 comunas_por_region[14] = ["Coihaique", "Lago Verde", "Aysén", "Cisnes", "Guaitecas", "Cochrane", "O'Higgins", "Tortel"]
 comunas_por_region[15] = ["Punta Arenas", "Laguna Blanca", "Río Verde", "San Gregorio", "Cabo de Hornos", "Antártica"]
 #Creamos las tablas
-regiones_table = ("CREATE TABLE IF NOT EXISTS regiones("+
+regiones_table = ("CREATE TABLE IF NOT EXISTS region("+
                     "id int NOT NULL AUTO_INCREMENT, "+
                     "nombre varchar(255) NOT NULL, "+
                     "PRIMARY KEY (id));")
 cursor.execute(regiones_table)
 
-comunas_table = ("CREATE TABLE IF NOT EXISTS comunas("+
+comunas_table = ("CREATE TABLE IF NOT EXISTS comuna("+
                     "id int NOT NULL AUTO_INCREMENT, "+
                     "nombre varchar(255) NOT NULL, "+
                     "id_region int NOT NULL, "+
@@ -137,9 +138,9 @@ database.commit()
 
 cursor = database.cursor()
 #limpiamos las tablas
-query = "TRUNCATE TABLE mims.regiones"
+query = "TRUNCATE TABLE mims.region"
 cursor.execute(query)
-query = "TRUNCATE TABLE mims.comunas"
+query = "TRUNCATE TABLE mims.comuna"
 cursor.execute(query)
 query = "TRUNCATE TABLE mims.locacion"
 cursor.execute(query)
@@ -157,7 +158,7 @@ database.commit()
 #bloque para regiones y comunas
 #Poblamos la tabla region
 cursor = database.cursor()
-query = "INSERT INTO mims.regiones (nombre) VALUES (%s)"
+query = "INSERT INTO mims.region (nombre) VALUES (%s)"
 for element in regiones:
     values = (element)
     cursor.execute(query, values)
@@ -166,19 +167,20 @@ database.commit()
 
 #Poblamos la tabla comuna
 cursor = database.cursor()
-query = "INSERT INTO mims.comunas (nombre, id_region) VALUES (%s, %s)"
+query = "INSERT INTO mims.comuna (nombre, id_region) VALUES (%s, %s)"
 for elemento in regiones:
     id = regiones.index(elemento)
     for comuna in comunas_por_region[id]:
         nombre = comuna
-        values = (comuna, id)
+        id_region = id+1
+        values = (comuna, id_region)
         cursor.execute(query, values)
 cursor.close()
 database.commit()
 
 #Generamos las locaciones
 cursor = database.cursor()
-query = "INSERT INTO mims.locacion(nombre, direccion, deleted, comuna, region) VALUES (%s, %s, FALSE, (SELECT id FROM mims.comunas WHERE nombre = %s), (SELECT id_region FROM mims.comunas WHERE nombre = %s))"
+query = "INSERT INTO mims.locacion(nombre, direccion, deleted, comuna, region) VALUES (%s, %s, FALSE, (SELECT id FROM mims.comuna WHERE nombre = %s), (SELECT id_region FROM mims.comuna WHERE nombre = %s))"
 nombre = "Bodega Maipú"
 direccion = "Av. Gabriel Gonzalez Videla #1928"
 comuna = "Maipú"
@@ -188,7 +190,7 @@ cursor.close()
 database.commit()
 
 cursor = database.cursor()
-query = "INSERT INTO mims.locacion(nombre, direccion, deleted, comuna, region) VALUES (%s, %s, FALSE, (SELECT id FROM mims.comunas WHERE nombre = %s), (SELECT id_region FROM mims.comunas WHERE nombre = %s))"
+query = "INSERT INTO mims.locacion(nombre, direccion, deleted, comuna, region) VALUES (%s, %s, FALSE, (SELECT id FROM mims.comuna WHERE nombre = %s), (SELECT id_region FROM mims.comuna WHERE nombre = %s))"
 nombre = "Tienda Ñuñoa"
 direccion = "Av. Itaila #1659"
 comuna = "Ñuñoa"
