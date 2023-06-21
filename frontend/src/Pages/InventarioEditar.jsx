@@ -70,11 +70,8 @@ const EditarProducto = () => {
       await axios.put(ruta_back + 'inventario/' + id, {
         id_locacion: locacionSeleccionada,
         id_joya: joyaSeleccionada,
-        nombre_producto: nombreProducto,
-        id_tipo_joya: categoriaSeleccionada,
         cantidad: cantidad,
         precio_venta: precioVenta,
-        precio_costo: precioCosto,
         deleted: false
       });
 
