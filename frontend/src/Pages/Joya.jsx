@@ -16,7 +16,6 @@ const Joya = () => {
   const [joyas, setJoyas] = useState([]);
   const [tipos, setTipos] = useState([]);
   const [tipoSeleccionado, setTipoSeleccionado] = useState('');
-  const [refreshInterval, setRefreshInterval] = useState(null);
 
   const getJoyas = async () => {
     try {
@@ -27,17 +26,6 @@ const Joya = () => {
     }
   };
 
-  const startDataRefresh = () => {
-    const interval = setInterval(() => {
-      getJoyas();
-    }, 5000); 
-    setRefreshInterval(interval);
-  };
-
-  const stopDataRefresh = () => {
-    clearInterval(refreshInterval);
-    setRefreshInterval(null);
-  };
 
   const handleEditClick = (id) => {
     navigate('/joyas/editar/' + id);
@@ -61,10 +49,6 @@ const Joya = () => {
   useEffect(() => {
     getJoyas();
     getTipos();
-    startDataRefresh();
-    return () => {
-      stopDataRefresh(); 
-    };
   }, []);
 
   const filteredJoyas = tipoSeleccionado ? joyas.filter(joya => joya.tipo_joya === tipoSeleccionado) : joyas;

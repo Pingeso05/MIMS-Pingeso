@@ -22,7 +22,6 @@ const Inventario = () => {
   const [locacionSeleccionada, setLocacionSeleccionada] = useState('');
   const [showPopup, setShowPopup] = useState(false);
   const [productoSeleccionado, setProductoSelecionado] = useState(null);
-  const [refreshInterval, setRefreshInterval] = useState(null);
 
   const getLocaciones = async () => {
     try {
@@ -34,17 +33,7 @@ const Inventario = () => {
       console.log('error: No se pudieron obtener la locaciones!');
     }
   };
-  const startDataRefresh = () => {
-    const interval = setInterval(() => {
-      getProductos();
-    }, 5000); 
-    setRefreshInterval(interval);
-  };
 
-  const stopDataRefresh = () => {
-    clearInterval(refreshInterval);
-    setRefreshInterval(null);
-  };
 
   const handleLocacionChange = (event) => {
     const locacion = event.target.value;
@@ -66,8 +55,13 @@ const Inventario = () => {
     setShowPopup(true);
   };
 
-  const handlePopupSubmit = (action, location, quantity, description) => {
-    setShowPopup(false);
+  const handlePopupSubmit = async () => {
+    try {
+      await getProductos();
+    } catch (error) {
+      console.log(error);
+    }
+  setShowPopup(false);
   };
   
   const handleCancel = () => {
@@ -102,10 +96,6 @@ const Inventario = () => {
     getProductos();
     getCategorias();
     getLocaciones();
-    startDataRefresh();
-    return () => {
-      stopDataRefresh(); 
-    };
   }, []);
 
   const filteredProductos = productos
