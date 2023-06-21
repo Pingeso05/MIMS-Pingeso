@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ComunaService {
@@ -15,7 +16,7 @@ public class ComunaService {
     private ComunaRepository comunaRepository;
 
     public ResponseEntity<ArrayList<ComunaEntity>> get_all_comunas(){
-        return comunaRepository.get_all_comunas();
+        return (ResponseEntity<ArrayList<ComunaEntity>>) comunaRepository.findAll();
     }
 
     public ResponseEntity<ComunaEntity> get_comuna_by_id(int id) {

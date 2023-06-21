@@ -9,5 +9,4 @@ import java.util.ArrayList;
 
 @Repository
 public interface RegionRepository extends JpaRepository<RegionEntity, Integer> {
-    ResponseEntity<ArrayList<RegionEntity>> get_all_regions();
 }

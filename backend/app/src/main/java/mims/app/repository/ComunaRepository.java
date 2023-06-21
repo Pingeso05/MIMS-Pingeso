@@ -9,5 +9,4 @@ import java.util.ArrayList;
 
 @Repository
 public interface ComunaRepository extends JpaRepository<ComunaEntity, Integer> {
-    ResponseEntity<ArrayList<ComunaEntity>> get_all_comunas();
 }

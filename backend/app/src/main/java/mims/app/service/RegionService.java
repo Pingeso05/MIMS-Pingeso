@@ -15,7 +15,7 @@ public class RegionService {
     private RegionRepository regionRepository;
 
     public ResponseEntity<ArrayList<RegionEntity>> get_all_regions(){
-        return regionRepository.get_all_regions();
+        return (ResponseEntity<ArrayList<RegionEntity>>) regionRepository.findAll();
     }
 
     public ResponseEntity<RegionEntity> get_region_by_id(int id) {
