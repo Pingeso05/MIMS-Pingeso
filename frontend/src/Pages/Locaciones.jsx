@@ -6,14 +6,12 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
 import './Locaciones.css';
-import { useNavigate } from 'react-router-dom';
 import {ruta_back} from '../utils/globals.js';
 import '../utils/globals.css';
 import { FaEdit } from 'react-icons/fa';
 import Editar_Locacion from '../Popups/Editar_Locacion';
 
 const Locaciones = () => {
-  const navigate = useNavigate();
   const [locaciones, setLocaciones] = useState([]);
   const [showEditar, setShowEditar] = useState(false);
   const [id, setId] = useState('');
