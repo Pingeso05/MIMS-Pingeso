@@ -76,6 +76,7 @@ button[type='submit'] {
     width: 100%;
     max-width: 250px;
     height: 5vh;
+    margin-top: 5px;
 }
 .button-exit {
     background-color: rgba(7, 96, 196, 0.7);

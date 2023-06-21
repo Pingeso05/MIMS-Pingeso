@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="002d9310-7737-4d71-becf-975c407804cb" name="Changes" comment="" />
+    <list default="true" id="002d9310-7737-4d71-becf-975c407804cb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/Inventario.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/Inventario.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Popups/Modificar_Inventario.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Popups/Modificar_Inventario.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Popups/Modificar_Inventario.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Popups/Modificar_Inventario.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -171,7 +175,7 @@
       <workItem from="1687232722976" duration="2108000" />
       <workItem from="1687282336134" duration="1350000" />
       <workItem from="1687328488277" duration="1078000" />
-      <workItem from="1687363660388" duration="345000" />
+      <workItem from="1687363660388" duration="693000" />
     </task>
     <servers />
   </component>
