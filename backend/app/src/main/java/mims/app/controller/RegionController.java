@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @SuppressWarnings("unused")
@@ -18,7 +19,7 @@ public class RegionController {
     private RegionService regionService;
 
     @GetMapping
-    public ResponseEntity<ArrayList<RegionEntity>> get_all_regions(){
+    public ResponseEntity<List<RegionEntity>> get_all_regions(){
         return regionService.get_all_regions();
     }
 

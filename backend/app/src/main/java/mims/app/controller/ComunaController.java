@@ -18,8 +18,8 @@ public class ComunaController {
     private ComunaService comunaService;
 
     @GetMapping
-    public ResponseEntity<ArrayList<ComunaEntity>> get_all_comunas(){
-        return (ResponseEntity<ArrayList<ComunaEntity>>) comunaService.get_all_comunas();
+    public ResponseEntity<List<ComunaEntity>> get_all_comunas(){
+        return comunaService.get_all_comunas();
     }
 
     @GetMapping("/{id}")

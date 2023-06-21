@@ -15,8 +15,8 @@ public class ComunaService {
     @Autowired
     private ComunaRepository comunaRepository;
 
-    public ResponseEntity<ArrayList<ComunaEntity>> get_all_comunas(){
-        return (ResponseEntity<ArrayList<ComunaEntity>>) comunaRepository.findAll();
+    public ResponseEntity<List<ComunaEntity>> get_all_comunas(){
+        return ResponseEntity.ok(comunaRepository.findAll());
     }
 
     public ResponseEntity<ComunaEntity> get_comuna_by_id(int id) {

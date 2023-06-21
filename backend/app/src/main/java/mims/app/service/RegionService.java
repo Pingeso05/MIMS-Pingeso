@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class RegionService {
@@ -14,8 +15,8 @@ public class RegionService {
     @Autowired
     private RegionRepository regionRepository;
 
-    public ResponseEntity<ArrayList<RegionEntity>> get_all_regions(){
-        return (ResponseEntity<ArrayList<RegionEntity>>) regionRepository.findAll();
+    public ResponseEntity<List<RegionEntity>> get_all_regions(){
+        return ResponseEntity.ok(regionRepository.findAll());
     }
 
     public ResponseEntity<RegionEntity> get_region_by_id(int id) {
