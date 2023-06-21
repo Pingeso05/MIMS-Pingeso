@@ -5,7 +5,7 @@ import './Modificar_Inventario.css';
 import '../utils/globals';
 import {ruta_back} from '../utils/globals';
 
-const Popup = ({ product, onCancel, onSubmit }) => {
+const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [action, setAction] = useState('');
   const [location, setLocation] = useState('');
@@ -280,4 +280,4 @@ const Popup = ({ product, onCancel, onSubmit }) => {
   );
 };
 
-export default Popup;
+export default Modificar_Inventario;

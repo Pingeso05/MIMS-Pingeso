@@ -101,6 +101,7 @@ const AgregarLocacion = () => {
               value={region}
               onChange={(e) => handleSelectedRegion(e)}
             >
+              <option value="">Seleccione una Región</option>
               {regiones.map((region) => (
                 <option value={region.id} key={region.id}>{region.nombre}</option>
               ))}
@@ -114,6 +115,7 @@ const AgregarLocacion = () => {
                 value={comuna}
                 onChange={(e) => setComuna(e.target.value)}
               >
+                <option value="">Seleccione una Comuna</option>
                 {comunas.filter((comuna) => comuna.id_region === Number(selectedRegion)).map((comuna) => {
                   console.log('comuna.id_region:', comuna.id_region);
                   return <option value={comuna.id} key={comuna.id}>{comuna.nombre}</option>;

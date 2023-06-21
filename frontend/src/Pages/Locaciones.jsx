@@ -56,7 +56,7 @@ const Locaciones = () => {
                     <th>Nombre</th>
                     <th>Dirección</th>
                     <th>Comuna</th>
-                    <td>Region</td>
+                    <th>Region</th>
                     <th>Opciones</th>
                 </tr>
             </thead>

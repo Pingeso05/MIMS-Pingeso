@@ -10,7 +10,11 @@
     background: rgba(0, 0, 0, 0.5);
     z-index: 999;
   }
-  
+  .note-red {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
   .popup-header {
     padding-top: 5px;
     padding-bottom: 5px;
@@ -19,11 +23,36 @@
     justify-content: left;
   }
 
+
   .popup-body label {
     display: block;
     margin-top: 1rem;
   }
-  
+
+  .info-label {
+    font-size: 14px;
+    color: #3b3b3b;
+    text-align: left;
+    margin-bottom: 0;
+  }
+  .popup-body{
+    text-align: center;
+  }
+  .popup-body h3{
+    text-align: left;
+  }
+  .info-value {
+    font-size: 18px;
+    color: #252525;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 0;
+  }
+  .detalle-producto{
+    border: 2px solid #efefef;
+    border-radius: 10px;
+  }
+
   .popup-body select,
   .popup-body input {
     width: 100%;
