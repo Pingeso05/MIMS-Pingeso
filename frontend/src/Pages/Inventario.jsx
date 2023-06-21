@@ -11,6 +11,7 @@ import {ruta_back} from '../utils/globals.js';
 import '../utils/globals.css';
 import { FaEye, FaEdit } from 'react-icons/fa';
 import { MdOutlineInventory } from "react-icons/md";
+import Popup from '../Popups/Modificar_Inventario';
 
 const Inventario = () => {
   const navigate = useNavigate();
@@ -19,6 +20,9 @@ const Inventario = () => {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('');
   const [locaciones, setLocaciones] = useState([]);
   const [locacionSeleccionada, setLocacionSeleccionada] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
+  const [productoSeleccionado, setProductoSelecionado] = useState(null);
+  const [refreshInterval, setRefreshInterval] = useState(null);
 
   const getLocaciones = async () => {
     try {
@@ -29,6 +33,17 @@ const Inventario = () => {
       console.log(error);
       console.log('error: No se pudieron obtener la locaciones!');
     }
+  };
+  const startDataRefresh = () => {
+    const interval = setInterval(() => {
+      getProductos();
+    }, 5000); 
+    setRefreshInterval(interval);
+  };
+
+  const stopDataRefresh = () => {
+    clearInterval(refreshInterval);
+    setRefreshInterval(null);
   };
 
   const handleLocacionChange = (event) => {
@@ -46,7 +61,17 @@ const Inventario = () => {
     navigate('/inventario/editar-producto/' + id);
   };
   
-  const handleChangeClick = () => {
+  const handleChangeClick = (producto) => {
+    setProductoSelecionado(producto);
+    setShowPopup(true);
+  };
+
+  const handlePopupSubmit = (action, location, quantity, description) => {
+    setShowPopup(false);
+  };
+  
+  const handleCancel = () => {
+    setShowPopup(false);
   };
 
   const getProductos = async () => {
@@ -77,6 +102,10 @@ const Inventario = () => {
     getProductos();
     getCategorias();
     getLocaciones();
+    startDataRefresh();
+    return () => {
+      stopDataRefresh(); 
+    };
   }, []);
 
   const filteredProductos = productos
@@ -154,7 +183,7 @@ const Inventario = () => {
                   <div className='icono-columna'>
                     <FaEye title='Ver detalle' className='icono' onClick={handleViewClick} />
                     <FaEdit title='Editar Producto' className='icono' onClick={() => handleEditClick(producto.id)} />
-                    <MdOutlineInventory title='Modificar inventario' className='icono' onClick={handleChangeClick} />
+                    <MdOutlineInventory title='Modificar inventario' className='icono' onClick={() => handleChangeClick(producto)} />
                   </div>
                   </td>
                 </tr>
@@ -162,6 +191,14 @@ const Inventario = () => {
             </tbody>
           </Table>  
         </div>
+
+        {showPopup && (
+        <Popup
+          product={productoSeleccionado}
+          onCancel={() => setShowPopup(false)}
+          onSubmit={handlePopupSubmit}
+        />
+         )}
         </Container>
     );
   };

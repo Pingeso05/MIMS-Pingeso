@@ -53,7 +53,6 @@ const AgregarProducto = () => {
       await axios.post(ruta_back + 'inventario', {
         id_locacion: locacionSeleccionada,
         id_joya: joyaSeleccionada,
-        nombre_producto: '1',
         cantidad: cantidad,
         precio_venta: precioVenta,
         deleted: false
