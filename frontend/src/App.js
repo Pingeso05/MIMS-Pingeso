@@ -25,17 +25,13 @@ function App() {
           <Route path="/" element={<Navigate to="/inventario" />} />
           <Route path="/inventario" element={<Inventario />} />
           <Route path="/inventario/agregar-producto" element={<AgregarProducto />} />
-          <Route path="/inventario/editar-producto/:id" element={<EditarProducto />} />
           <Route path="/joyas" element={<Joya />} />
           <Route path="/joyas/agregar-joya" element={<AgregarJoya />} />
           <Route path="/tipos-de-joya" element={<TipoJoya />} />
           <Route path="/tipos-de-joya/agregar-tipo" element={<AgregarTipoJoya />} />
           <Route path="/locaciones" element={<Locaciones />} />          
           <Route path="/locaciones/agregar-locacion" element={<AgregarLocacion />} />
-          <Route path="/locaciones/editar-locacion/:id" element={<EditarLocacion />} />
-          <Route path="/tipos-de-joya/editar/:id" element={<EditarTipoJoya />} />
           <Route path="/joyas" element={<Inventario />} />
-          <Route path="/joyas/editar/:id" element={<EditarJoya />} />
           <Route path="/carga-datos" element={<CargaDatos />} />
         </Routes>
       </Container>
