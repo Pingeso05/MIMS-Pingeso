@@ -56,6 +56,7 @@ const Locaciones = () => {
                     <th>Nombre</th>
                     <th>Dirección</th>
                     <th>Comuna</th>
+                    <td>Region</td>
                     <th>Opciones</th>
                 </tr>
             </thead>
@@ -65,6 +66,7 @@ const Locaciones = () => {
                         <td>{locacion.nombre}</td>
                         <td>{locacion.direccion}</td>
                         <td>{locacion.comuna}</td>
+                        <td>{locacion.region}</td>
                         <td>
                         <div className='icono-columna'>
                           <FaEdit title='Editar Locación' className='icono' onClick={() => handleEditClick(locacion.id)} />
