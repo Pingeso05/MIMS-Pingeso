@@ -7,6 +7,7 @@ import '../utils/globals.css';
 
 const AgregarJoya = () => {
   const [nombreJoya, setNombreJoya] = useState('');
+  const [cost, setCost] = useState('');
   const [tipoJoya, setTipoJoya] = useState('');
   const [tipos, setTipos] = useState([]);
 
@@ -26,7 +27,7 @@ const AgregarJoya = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (nombreJoya.trim() === '' || tipoJoya.trim() === '') {
+    if (nombreJoya.trim() === '' || tipoJoya.trim() === '' || cost.trim() === '') {
       alert('Por favor, completa todos los campos');
       return;
     }
@@ -35,10 +36,12 @@ const AgregarJoya = () => {
       await axios.post(ruta_back + 'joya', {
         nombre: nombreJoya,
         id_tipo_joya: tipoJoya,
+        cost: cost,
       });
 
       setNombreJoya('');
       setTipoJoya('');
+      setCost('');
 
       alert('Joya agregada exitosamente');
       window.location.href = ruta_front + 'joyas';
@@ -61,6 +64,18 @@ const AgregarJoya = () => {
               id="nombreJoya"
               value={nombreJoya}
               onChange={(e) => setNombreJoya(e.target.value)}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="cost">Precio Costo:</label>
+            <input
+              type="number"
+              min="0"
+              step="1"
+              id="Precio costo"
+              value={cost}
+              onChange={(e) => setCost(e.target.value)}
             />
           </div>
 

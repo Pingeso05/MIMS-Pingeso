@@ -38,8 +38,8 @@ const Locaciones = () => {
 
       <Row style={{ marginTop: '20px' }}>
         <Col className="left-col" md={6}>
-          <span className="locaciones-label">Locaciones:</span>
-          <span className="locaciones-count">{locaciones.length}</span>
+          <span style={{ marginRight: '10px', fontWeight: 'bold' }}>Locaciones:</span>
+          <span >{locaciones.length}</span>
         </Col>
         <Col className="right-col" md={6}>
           <Link to="/locaciones/agregar-locacion">
@@ -66,7 +66,9 @@ const Locaciones = () => {
                         <td>{locacion.direccion}</td>
                         <td>{locacion.comuna}</td>
                         <td>
+                        <div className='icono-columna'>
                           <FaEdit title='Editar Locación' className='icono' onClick={() => handleEditClick(locacion.id)} />
+                        </div>
                         </td>
                     </tr>
                 ))}

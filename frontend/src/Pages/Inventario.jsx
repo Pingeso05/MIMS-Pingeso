@@ -1,4 +1,4 @@
-import { Table, Button } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
@@ -125,11 +125,10 @@ const Inventario = () => {
 
       </Row>
       
-          <div style={{ overflowx: 'auto', maxHeight: '60vh', marginTop: '20px' }}>
+          <div style={{ overflow: 'auto', maxHeight: '60vh', marginTop: '20px' }}>
           <Table bordered hover className='table'>
             <thead>
               <tr className='cabeceras'>
-                <th>#</th>
                 <th>Joya</th>
                 <th>Cantidad</th>
                 <th>Tipo Joya</th>
@@ -144,9 +143,6 @@ const Inventario = () => {
               {filteredProductos.map((producto, index) => (
                 <tr key={index}>
                   <td>
-                    {index + 1}
-                  </td>
-                  <td>
                   {producto.joya}
                   </td>
                   <td>{Number(producto.cantidad).toLocaleString()}</td>
@@ -155,7 +151,7 @@ const Inventario = () => {
                   <td className='ocultar-columna'>${Number(producto.cost).toLocaleString()}</td>
                   <td className='ocultar-columna'>${Number(producto.precio_venta).toLocaleString()}</td>
                   <td>
-                  <div>
+                  <div className='icono-columna'>
                     <FaEye title='Ver detalle' className='icono' onClick={handleViewClick} />
                     <FaEdit title='Editar Producto' className='icono' onClick={() => handleEditClick(producto.id)} />
                     <MdOutlineInventory title='Modificar inventario' className='icono' onClick={handleChangeClick} />

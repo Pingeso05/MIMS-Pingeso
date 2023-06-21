@@ -6,12 +6,9 @@ import {ruta_back, ruta_front} from '../utils/globals.js';
 import '../utils/globals.css';
 
 const AgregarProducto = () => {
-  const [precioCosto, setPrecioCosto] = useState('');
   const [precioVenta, setPrecioVenta] = useState('');
   const [cantidad, setCantidad] = useState('');
-  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('');
   const [locacionSeleccionada, setLocacionSeleccionada] = useState('');
-  const [categorias, setCategorias] = useState([]);
   const [locaciones, setLocaciones] = useState([]);
   const [joyas, setJoyas] = useState([]);
   const [joyaSeleccionada, setJoyaSeleccionada] = useState('');
@@ -38,28 +35,13 @@ const AgregarProducto = () => {
   };
 
 
-
-  const getCategorias = async () => {
-    try {
-      const res = await axios.get(ruta_back + 'tipojoya');
-      const categoriasUnicas = res.data;
-      setCategorias(categoriasUnicas);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (
       joyaSeleccionada.trim() === '' ||
-      precioCosto.trim() === '' ||
       precioVenta.trim() === '' ||
       cantidad.trim() === '' ||
-      categoriaSeleccionada.trim() === '' ||
       locacionSeleccionada.trim() === ''
     ) {
       alert('Por favor, completa todos los campos');
@@ -72,18 +54,14 @@ const AgregarProducto = () => {
         id_locacion: locacionSeleccionada,
         id_joya: joyaSeleccionada,
         nombre_producto: '1',
-        id_tipo_joya: categoriaSeleccionada,
         cantidad: cantidad,
         precio_venta: precioVenta,
-        precio_costo: precioCosto,
         deleted: false
       });
 
      
-      setPrecioCosto('');
       setPrecioVenta('');
       setCantidad('');
-      setCategoriaSeleccionada('');
       setLocacionSeleccionada('');
 
       alert('Producto agregado exitosamente');
@@ -95,7 +73,6 @@ const AgregarProducto = () => {
   };
 
   useEffect(() => {
-    getCategorias();
     getLocaciones();
     getJoyas();
   }, []);
@@ -122,18 +99,6 @@ const AgregarProducto = () => {
               ))}
             </select>
           </div>
-  
-          <div  >
-            <label htmlFor="precioCosto">Precio costo:</label>
-            <input
-              type="number"
-              min="0"
-              step="1"
-              id="precioCosto"
-              value={precioCosto}
-              onChange={(e) => setPrecioCosto(e.target.value)}
-            />
-          </div>
 
           <div  >
             <label htmlFor="precioVenta">Precio venta:</label>
@@ -157,22 +122,6 @@ const AgregarProducto = () => {
               value={cantidad}
               onChange={(e) => setCantidad(e.target.value)}
             />
-          </div>
-  
-          <div>
-            <label htmlFor="categoria">Categoría:</label>
-            <select
-              id="categoria"
-              value={categoriaSeleccionada}
-              onChange={(e) => setCategoriaSeleccionada(e.target.value)}
-            >
-              <option value="">Seleccione una categoría</option>
-              {categorias.map((categoria) => (
-                <option value={categoria.id} key={categoria.id}>
-                  {categoria.nombre}
-                </option>
-              ))}
-            </select>
           </div>
   
           <div>
