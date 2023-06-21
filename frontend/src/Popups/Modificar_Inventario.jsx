@@ -38,9 +38,10 @@ const Popup = ({ product, onCancel, onSubmit }) => {
   
   const handleSubmit = async (event) => {
     event.preventDefault();
+    await getProductoReal();
     if(action.trim() === "Mover Stock" || action.trim() === "Venta"){
-      if(product.cantidad - quantity < 0 ){
-        alert('Por favor, ingresa una cantidad menor a ' + (product.cantidad+1));
+      if(productoReal.cantidad - quantity < 0 ){
+        alert('Por favor, ingresa una cantidad menor a ' + (productoReal.cantidad+1));
         return;
       }
     }
@@ -164,7 +165,7 @@ const Popup = ({ product, onCancel, onSubmit }) => {
             await axios.put(ruta_back + 'inventario/' + product.id, {
               id_locacion: productoReal.id_locacion,
               id_joya: productoReal.id_joya,
-              cantidad: productoReal.cantidad + quantity,
+              cantidad: Number(productoReal.cantidad) + Number(quantity),
               precio_venta: productoReal.precio_venta,
               deleted: false
             }); 
@@ -227,11 +228,11 @@ const Popup = ({ product, onCancel, onSubmit }) => {
   useEffect(() => {
     getLocaciones();
     getProductoReal();
-  }, []);
+  }, [product]);
 
   const otrasLocaciones = locaciones.filter((locaciones) => locaciones.nombre !== product.local);
 
-  if (!isOpen) {
+  if (!isOpen || !productoReal) {
     return null;
   }
 
@@ -244,7 +245,7 @@ const Popup = ({ product, onCancel, onSubmit }) => {
             </div>
             <div className="popup-body">
               <h2>{product.joya}</h2>
-              <h2>{product.local} - Cantidad: {product.cantidad}</h2>           
+              <h2>{product.local} - Cantidad: {productoReal.cantidad}</h2>           
               <form onSubmit={handleSubmit}>
                 <label>¿Qué desea realizar?</label>
                 <select value={action} onChange={handleActionChange}>
