@@ -5,23 +5,25 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './Inventario.css';
-import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import {ruta_back} from '../utils/globals.js';
 import '../utils/globals.css';
 import { FaEye, FaEdit } from 'react-icons/fa';
 import { MdOutlineInventory } from "react-icons/md";
-import Popup from '../Popups/Modificar_Inventario';
+import Modificar_Inventario from '../Popups/Modificar_Inventario';
+import Editar_Inventario from '../Popups/Editar_Inventario';
+import Ver_Inventario from '../Popups/Ver_Inventario';
 
 const Inventario = () => {
-  const navigate = useNavigate();
   const [productos, setProductos] = useState([]);
   const [categorias, setCategorias] = useState([]);
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('');
   const [locaciones, setLocaciones] = useState([]);
   const [locacionSeleccionada, setLocacionSeleccionada] = useState('');
-  const [showPopup, setShowPopup] = useState(false);
-  const [productoSeleccionado, setProductoSelecionado] = useState(null);
+  const [showModificarInventario, setModificarInventario] = useState(false);
+  const [showEditarInventario, setEditarInventario] = useState(false);
+  const [productoSeleccionado, setProductoSeleccionado] = useState(null);
+  const [showInventario, setShowInventario] = useState(false);
 
   const getLocaciones = async () => {
     try {
@@ -42,17 +44,19 @@ const Inventario = () => {
 
 
 
-  const handleViewClick = () => {
-    
+  const handleViewClick = (producto) => {
+    setProductoSeleccionado(producto);
+    setShowInventario(true);
   };
   
-  const handleEditClick = (id) => {
-    navigate('/inventario/editar-producto/' + id);
+  const handleEditClick = (producto) => {
+    setProductoSeleccionado(producto);
+    setEditarInventario(true);
   };
   
   const handleChangeClick = (producto) => {
-    setProductoSelecionado(producto);
-    setShowPopup(true);
+    setProductoSeleccionado(producto);
+    setModificarInventario(true);
   };
 
   const handlePopupSubmit = async () => {
@@ -61,12 +65,10 @@ const Inventario = () => {
     } catch (error) {
       console.log(error);
     }
-  setShowPopup(false);
+  setModificarInventario(false);
+  setEditarInventario(false);
   };
-  
-  const handleCancel = () => {
-    setShowPopup(false);
-  };
+
 
   const getProductos = async () => {
     try {
@@ -171,8 +173,8 @@ const Inventario = () => {
                   <td className='ocultar-columna'>${Number(producto.precio_venta).toLocaleString()}</td>
                   <td>
                   <div className='icono-columna'>
-                    <FaEye title='Ver detalle' className='icono' onClick={handleViewClick} />
-                    <FaEdit title='Editar Producto' className='icono' onClick={() => handleEditClick(producto.id)} />
+                    <FaEye title='Ver detalle' className='icono' onClick={() => handleViewClick(producto)} />
+                    <FaEdit title='Editar Producto' className='icono' onClick={() => handleEditClick(producto)} />
                     <MdOutlineInventory title='Modificar inventario' className='icono' onClick={() => handleChangeClick(producto)} />
                   </div>
                   </td>
@@ -182,11 +184,26 @@ const Inventario = () => {
           </Table>  
         </div>
 
-        {showPopup && (
-        <Popup
+        {showModificarInventario && (
+        <Modificar_Inventario
           product={productoSeleccionado}
-          onCancel={() => setShowPopup(false)}
+          onCancel={() => setModificarInventario(false)}
           onSubmit={handlePopupSubmit}
+        />
+         )}
+
+        {showEditarInventario && (
+        <Editar_Inventario
+          id={productoSeleccionado.id}
+          onCancel={() => setEditarInventario(false)}
+          onSubmit={handlePopupSubmit}
+        />
+         )}
+        
+        {showInventario && (
+        <Ver_Inventario
+          id={productoSeleccionado.id}
+          onCancel={() => setShowInventario(false)}
         />
          )}
         </Container>
