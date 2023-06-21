@@ -10,8 +10,8 @@
 	</parent>
 	<groupId>mims</groupId>
 	<artifactId>app</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>app</name>
+	<version>2</version>
+	<name>mims</name>
 	<description>Inventory management system for malibu chile</description>
 	<properties>
 		<java.version>11</java.version>
