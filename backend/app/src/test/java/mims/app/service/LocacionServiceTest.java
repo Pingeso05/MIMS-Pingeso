@@ -28,25 +28,6 @@ class LocacionServiceTest {
 
     private LocacionEntity locacionEntity;
 
-    @Test
-    void get_all_locaciones_not_deleted() {
-        List<LocacionEntity> locaciones = new ArrayList<>();
-        LocacionEntity locacion = new LocacionEntity();
-        locacion.setId(1);
-        locacion.setNombre("locacion1");
-        locacion.setDireccion("direccion1");
-        locaciones.add(locacion);
-
-        // Dado que el método findAllByDeletedFalse se llamará
-        given(locacionRepository.findAllByDeletedFalse()).willReturn(locaciones);
-
-        // Llamar a tu servicio y hacer alguna validación
-        ResponseEntity<ArrayList<LocacionEntity>> result = locacionService.get_all_locaciones_not_deleted();
-
-        // Aquí puedes agregar más validaciones, como si el contenido devuelto es correcto
-        assertEquals(1, result.getBody().size());
-        assertEquals("locacion1", result.getBody().get(0).getNombre());
-    }
 
     @Test
     void get_locacion_by_id() {

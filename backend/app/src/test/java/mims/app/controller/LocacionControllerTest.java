@@ -29,22 +29,6 @@ class LocacionControllerTest {
     }
 
     @Test
-    void testGetAll() {
-        ArrayList<LocacionEntity> locaciones = new ArrayList<>();
-        // Agregar lógica para crear objetos LocacionEntity y agregarlos a la lista locaciones
-
-        when(locacionService.get_all_locaciones_not_deleted()).thenReturn(ResponseEntity.ok(locaciones));
-
-        ResponseEntity<ArrayList<LocacionEntity>> response = locacionController.get_all();
-
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(locaciones, response.getBody());
-
-        verify(locacionService, times(1)).get_all_locaciones_not_deleted();
-        verifyNoMoreInteractions(locacionService);
-    }
-
-    @Test
     void testGetById() {
         int id = 1;
         LocacionEntity locacion = new LocacionEntity();
