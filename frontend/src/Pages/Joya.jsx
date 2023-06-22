@@ -93,7 +93,7 @@ const Joya = () => {
               <tr key={index}>
                 <td>{joya.nombre}</td>
                 <td>{joya.tipo_joya}</td>
-                <td>{joya.cost}</td>
+                <td>${Number(joya.cost).toLocaleString()}</td>
                 <td>
                   <div className='icono-columna'>
                     <FaEdit title='Editar Joya' className='icono' onClick={() => handleEditClick(joya.id)} />
