@@ -23,14 +23,16 @@ public class JoyaEntity {
     @Column(name = "id_tipo_joya")
     private int id_tipo_joya;
 
+    @Column(name = "cost")
+    private int cost;
+
     @Column(name = "deleted")
     private boolean deleted;
 
     @Column(name = "is_unique")
     private boolean is_unique;
 
-    @Column(name = "cost")
-    private int cost;
+
 
     public void setDeleted(boolean b) {
         this.deleted = b;

@@ -14,6 +14,6 @@ public interface JoyaRepository extends JpaRepository<JoyaEntity, Integer> {
     public Iterable<JoyaEntity> findAllByDeletedFalse();
 
     //Esta query trae todas las joyas que no estan borradas y reemplaza el campo id por el nombre del tipo de joya
-    @Query(value = "SELECT joya.id, joya.nombre,joya.cost, tipo_joya.nombre AS tipo_joya FROM mims.joya, mims.tipo_joya WHERE joya.id_tipo_joya = tipo_joya.id AND joya.deleted = 0", nativeQuery = true)
+    @Query(value = "SELECT joya.id, joya.nombre, joya.cost AS cost, tipo_joya.nombre AS tipo_joya FROM mims.joya, mims.tipo_joya WHERE joya.id_tipo_joya = tipo_joya.id AND joya.deleted = 0", nativeQuery = true)
     public ArrayList<DisplayJoyaModelInterface> findAllJoyasNotDeleted();
 }
