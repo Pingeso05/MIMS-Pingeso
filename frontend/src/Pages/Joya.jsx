@@ -10,12 +10,16 @@ import { useNavigate } from 'react-router-dom';
 import {ruta_back} from '../utils/globals.js';
 import '../utils/globals.css';
 import { FaEdit } from 'react-icons/fa';
+import Editar_Joya from '../Popups/Editar_Joya';
 
 const Joya = () => {
   const navigate = useNavigate();
   const [joyas, setJoyas] = useState([]);
   const [tipos, setTipos] = useState([]);
   const [tipoSeleccionado, setTipoSeleccionado] = useState('');
+  const [showEditarJoya, setShowEditarJoya] = useState(false);
+  const [joyaSeleccionada, setJoyaSeleccionada] = useState(null);
+  const [editarJoya , setEditarJoya] = useState(false);
 
   const getJoyas = async () => {
     try {
@@ -25,10 +29,19 @@ const Joya = () => {
       console.log(error);
     }
   };
+  
+  const handleEditClick = (joya) => {
+    setJoyaSeleccionada(joya);
+    setShowEditarJoya(true);
+  };
 
-
-  const handleEditClick = (id) => {
-    navigate('/joyas/editar/' + id);
+  const handlePopupSubmit = async () => {
+      try {
+        await getJoyas();
+      } catch (error) {
+        console.log(error);
+      }
+    setShowEditarJoya(false);
   };
 
   const getTipos = async () => {
@@ -41,10 +54,6 @@ const Joya = () => {
     }
   };
 
-  const handleTipoChange = (event) => {
-    const tipo = event.target.value;
-    setTipoSeleccionado(tipo);
-  };
   
   useEffect(() => {
     getJoyas();
@@ -87,13 +96,21 @@ const Joya = () => {
                   <div className='icono-columna'>
                     <FaEdit title='Editar Joya' className='icono' onClick={() => handleEditClick(joya.id)} />
                   </div>
-                  
                 </td>
               </tr>
             ))}
           </tbody>
         </Table>    
       </div>
+
+        {showEditarJoya && (
+        <Editar_Joya
+          id={joyaSeleccionada}
+          onCancel={() => setShowEditarJoya(false)}
+          onSubmit={handlePopupSubmit}
+        />
+         )}
+
     </Container>
   );
 };
