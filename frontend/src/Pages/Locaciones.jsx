@@ -6,14 +6,15 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
 import './Locaciones.css';
-import { useNavigate } from 'react-router-dom';
 import {ruta_back} from '../utils/globals.js';
 import '../utils/globals.css';
 import { FaEdit } from 'react-icons/fa';
+import Editar_Locacion from '../Popups/Editar_Locacion';
 
 const Locaciones = () => {
-  const navigate = useNavigate();
   const [locaciones, setLocaciones] = useState([]);
+  const [showEditar, setShowEditar] = useState(false);
+  const [id, setId] = useState('');
 
   const getLocaciones = async () => {
     try {
@@ -25,7 +26,17 @@ const Locaciones = () => {
   };
 
   const handleEditClick = (id) => {
-    navigate('/locaciones/editar-locacion/' + id);
+    setId(id);
+    setShowEditar(true);
+  };
+
+  const handlePopupSubmit = async () => {
+    try {
+      await getLocaciones();
+    } catch (error) {
+      console.log(error);
+    }
+    setShowEditar(false);
   };
 
   useEffect(() => {
@@ -34,50 +45,60 @@ const Locaciones = () => {
 
   return (
     <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-table">
-      <h1 className='titulo' >Locaciones</h1>      
+      <div>
+        <h1 className='titulo' >Locaciones</h1>      
 
-      <Row style={{ marginTop: '20px' }}>
-        <Col className="left-col" md={6}>
-          <span style={{ marginRight: '10px', fontWeight: 'bold' }}>Locaciones:</span>
-          <span >{locaciones.length}</span>
-        </Col>
-        <Col className="right-col" md={6}>
-          <Link to="/locaciones/agregar-locacion">
-            <Button variant="primary" style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent',fontSize:'14px'}}>Agregar Locación</Button>
-          </Link>
-          
-        </Col>
-      </Row>
-      
-          <div style={{ overflow: 'auto', maxHeight: '60vh', marginTop: '20px' }}>
-            <Table bordered hover className='table'>
-            <thead >
-                <tr className='cabeceras'>
-                    <th>Nombre</th>
-                    <th>Dirección</th>
-                    <th>Comuna</th>
-                    <th>Region</th>
-                    <th>Opciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                {locaciones.map((locacion, index) => (
-                    <tr key={index}>
-                        <td>{locacion.nombre}</td>
-                        <td>{locacion.direccion}</td>
-                        <td>{locacion.comuna}</td>
-                        <td>{locacion.region}</td>
-                        <td>
-                        <div className='icono-columna'>
-                          <FaEdit title='Editar Locación' className='icono' onClick={() => handleEditClick(locacion.id)} />
-                        </div>
-                        </td>
-                    </tr>
-                ))}
+        <Row style={{ marginTop: '20px' }}>
+          <Col className="left-col" md={6}>
+            <span style={{ marginRight: '10px', fontWeight: 'bold' }}>Locaciones:</span>
+            <span >{locaciones.length}</span>
+          </Col>
+          <Col className="right-col" md={6}>
+            <Link to="/locaciones/agregar-locacion">
+              <Button variant="primary" style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent',fontSize:'14px'}}>Agregar Locación</Button>
+            </Link>
+            
+          </Col>
+        </Row>
+        
+            <div style={{ overflow: 'auto', maxHeight: '60vh', marginTop: '20px' }}>
+              <Table bordered hover className='table'>
+              <thead >
+                  <tr className='cabeceras'>
+                      <th>Nombre</th>
+                      <th>Dirección</th>
+                      <th>Comuna</th>
+                      <th>Region</th>
+                      <th>Opciones</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {locaciones.map((locacion, index) => (
+                      <tr key={index}>
+                          <td>{locacion.nombre}</td>
+                          <td>{locacion.direccion}</td>
+                          <td>{locacion.comuna}</td>
+                          <td>{locacion.region}</td>
+                          <td>
+                          <div className='icono-columna'>
+                            <FaEdit title='Editar Locación' className='icono' onClick={() => handleEditClick(locacion.id)} />
+                          </div>
+                          </td>
+                      </tr>
+                  ))}
 
-            </tbody>
-            </Table>    
+              </tbody>
+              </Table>    
+          </div>
         </div>
+
+        {showEditar && (
+        <Editar_Locacion
+          id={id}
+          onCancel={() => setShowEditar(false)}
+          onSubmit={handlePopupSubmit}
+        />
+         )}
         </Container>
     );
   };
