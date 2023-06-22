@@ -49,7 +49,16 @@ const AgregarProducto = () => {
     }
 
     try {
-      
+      const res = await axios.get(ruta_back + 'inventario');
+      const productos = res.data;
+      const res2 = await axios.get(ruta_back + 'joya/' + joyaSeleccionada);
+      const joya = res2.data.nombre;
+      const res3 = await axios.get(ruta_back + 'locacion/' + locacionSeleccionada);
+      const local = res3.data.nombre;
+      const buscarProd = productos
+      .filter(producto => (local ? producto.local === local : true))
+      .filter(producto => (joya ? producto.joya === joya : true));
+      if(buscarProd.length === 0){
       await axios.post(ruta_back + 'inventario', {
         id_locacion: locacionSeleccionada,
         id_joya: joyaSeleccionada,
@@ -65,6 +74,10 @@ const AgregarProducto = () => {
 
       alert('Producto agregado exitosamente');
       window.location.href = ruta_front + 'inventario';
+    } else {
+      alert('El producto ya existe en esta ubicación, por favor revise los datos');
+      return;
+    }
     } catch (error) {
       console.log(error);
       alert('Ocurrió un error al agregar el producto');

@@ -6,14 +6,15 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
 import './TipoJoya.css';
-import { useNavigate } from 'react-router-dom';
 import {ruta_back} from '../utils/globals.js';
 import '../utils/globals.css';
 import { FaEdit } from 'react-icons/fa';
+import Editar_Tipo_Joya from '../Popups/Editar_Tipo_Joya';
 
 const TipoJoya = () => {
-  const navigate = useNavigate();
   const [tipos, setTipos] = useState([]);
+  const [id, setId] = useState('');
+  const [showEditar, setShowEditar] = useState(false);
 
   const getTipos = async () => {
     try {
@@ -25,10 +26,18 @@ const TipoJoya = () => {
   };
 
   const handleEditClick = (id) => {
-    navigate('/tipos-de-joya/editar/' + id);
+    setId(id);
+    setShowEditar(true);
   };
 
-
+  const handlePopupSubmit = async () => {
+    try {
+      await getTipos();
+    } catch (error) {
+      console.log(error);
+    }
+    setShowEditar(false);
+  };
 
   useEffect(() => {
     getTipos();
@@ -77,6 +86,15 @@ const TipoJoya = () => {
         </tbody>
         </Table>    
     </div>
+
+    {showEditar && (
+        <Editar_Tipo_Joya
+          id={id}
+          onCancel={() => setShowEditar(false)}
+          onSubmit={handlePopupSubmit}
+        />
+         )}
+
     </Container>
   );
 };
