@@ -5,6 +5,5 @@ public interface DisplayJoyaModelInterface {
     int getId();
     String getNombre();
     String getTipo_joya();
-
-    String getCost();
+    int getCost();
 }
