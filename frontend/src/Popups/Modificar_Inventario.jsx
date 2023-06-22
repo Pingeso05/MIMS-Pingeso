@@ -13,6 +13,7 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
   const [description, setDescription] = useState('');
   const [locaciones, setLocaciones] = useState([]);
   const [productoReal, setProductoReal] = useState();
+  const [submitting, setSubmitting] = useState(false);
 
 
 
@@ -37,11 +38,17 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
   }
   
   const handleSubmit = async (event) => {
+    if (submitting) {
+      return; 
+    }
+    setSubmitting(true);
+
     event.preventDefault();
     await getProductoReal();
     if(action.trim() === "Mover Stock" || action.trim() === "Venta"){
       if(productoReal.cantidad - quantity < 0 ){
         alert('Por favor, ingresa una cantidad menor a ' + (productoReal.cantidad+1));
+        setSubmitting(false);
         return;
       }
     }
@@ -58,6 +65,7 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
       )
       {
         alert('Por favor, completa todos los campos');
+        setSubmitting(false);
         return;
       }
       try{
@@ -75,6 +83,7 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
         } catch (error) {
           console.log(error);
           alert('Ocurrió un error al modificar el inventario');
+          setSubmitting(false);
           return;
         }
         try {
@@ -99,11 +108,13 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
                 } catch (error) {
                   console.log(error);
                   alert('Ocurrió un error al modificar el inventario');
+                  setSubmitting(false);
                   return;
                 }
               } catch (error) {
                 console.log(error);
                 alert('Ocurrió un error al modificar el inventario');
+                setSubmitting(false);
                 return;
               }
             } else {
@@ -122,11 +133,13 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
               } catch (error) {
                 console.log(error);
                 alert('Ocurrió un error al modificar el inventario');
+                setSubmitting(false);
                 return;
             }
           }
           } catch (error) {
             console.log(error);
+            setSubmitting(false);
             return;
           }
           
@@ -134,6 +147,8 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
         } catch (error) {
           console.log(error);
           alert('Ocurrió un error al modificar el producto');
+          setSubmitting(false);
+          return;
         }
         alert('Se movieron correctamente ' + quantity + ' unidades de ' + product.joya +  ' desde ' + product.local + ' hacia ' + location);
         setIsOpen(false);
@@ -142,10 +157,12 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
         setQuantity('');
         setLocation('');
         setDescription('');
+        setSubmitting(false);
         return;
       } catch (error){
         console.log(error);
         alert('Ocurrió un error al modificar el inventario');
+        setSubmitting(false);
         return;
       }
       
@@ -158,6 +175,7 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
       )
         {
           alert('Por favor, completa todos los campos');
+          setSubmitting(false);
           return;
     }
         if(action.trim() === 'Compra'){
@@ -173,6 +191,7 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
           } catch (error) {
             console.log(error);
             alert('Ocurrió un error al agregar stock al inventario');
+            setSubmitting(false);
             return;
           }
         }
@@ -189,6 +208,7 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
           } catch (error) {
             console.log(error);
             alert('Ocurrió un error al agregar stock al inventario');
+            setSubmitting(false);
             return;
           }
         }
@@ -198,6 +218,7 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
         setQuantity('');
         setLocation('');
         setDescription('');
+        setSubmitting(false);
         return;
   }
 
@@ -271,7 +292,7 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
                 <input type="number" min="1" value={quantity} onChange={handleQuantityChange} />
                 <label>Ingrese una descripción:</label>
                 <input type="text" value={description} onChange={handleDescriptionChange} />
-                <button type='submit'>Enviar</button>
+                <button type='submit' disabled={submitting}>Enviar</button>
               </form>
             </div>
         </Container>
