@@ -84,6 +84,7 @@ const Joya = () => {
             <tr className='cabeceras'>
               <th>Nombre</th>
               <th>Tipo de Joya</th>
+              <th>Precio Costo</th>
               <th>Opciones</th>
             </tr>
           </thead>
@@ -92,6 +93,7 @@ const Joya = () => {
               <tr key={index}>
                 <td>{joya.nombre}</td>
                 <td>{joya.tipo_joya}</td>
+                <td>{joya.cost}</td>
                 <td>
                   <div className='icono-columna'>
                     <FaEdit title='Editar Joya' className='icono' onClick={() => handleEditClick(joya.id)} />
