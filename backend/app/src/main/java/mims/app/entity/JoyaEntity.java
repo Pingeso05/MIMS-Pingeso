@@ -24,7 +24,7 @@ public class JoyaEntity {
     private int id_tipo_joya;
 
     @Column(name = "cost")
-    private int cost;
+    private float cost;
 
     @Column(name = "deleted")
     private boolean deleted;
