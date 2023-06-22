@@ -60,8 +60,8 @@ const Editar_Locacion = ({ id, onCancel, onSubmit }) => {
 
     if (
       nombreLocacion.trim() === '' ||
-      regionOg.trim() === '' ||
-      comunaOg.trim() === '' || 
+      String(regionOg).trim() === '' ||
+      String(comunaOg).trim() === '' || 
       direccion.trim() === ''
     ) {
       alert('Por favor, completa todos los campos');
