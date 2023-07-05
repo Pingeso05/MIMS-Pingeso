@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Papa from 'papaparse';
-import axios from 'axios';
 
 function CsvUpload() {
   const [csvFile, setCsvFile] = useState();
@@ -37,6 +36,17 @@ function CsvUpload() {
     });
   }
 
+  const handleDownload = () => {
+    const downloadUrl = `${process.env.PUBLIC_URL}/resources/plantilla.csv`;
+  
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.setAttribute('download', 'plantilla.csv');
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  };
+
   return (
     <div>
       <h3>Upload your CSV file:</h3>
@@ -49,6 +59,7 @@ function CsvUpload() {
       />
       <br/>
       <button onClick={handleFileUpload}>Upload</button>
+      <button onClick={handleDownload}>Download</button>
     </div>
   );
 }
