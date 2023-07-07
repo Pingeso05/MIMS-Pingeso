@@ -28,9 +28,6 @@ public class UsuarioEntity {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "rol")
-    private int rol;
-
     @Column(name = "deleted")
     private boolean deleted;
 
@@ -39,9 +36,6 @@ public class UsuarioEntity {
         this.deleted = b;
     }
 
-    public void setRol(int rol) {
-        this.rol = rol;
-    }
 
     public boolean getDeleted() {
         return this.deleted;
