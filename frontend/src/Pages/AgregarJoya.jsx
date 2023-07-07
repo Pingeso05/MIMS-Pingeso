@@ -88,7 +88,7 @@ const AgregarJoya = () => {
             >
               <option value="">Selecciona un Tipo</option>
               {tipos.map((tipo, index) => (
-                <option value={tipo.id} key={tipo.id}>{tipo.nombre}</option>
+                <option value={tipo.id} key={tipo.id}>{tipo.nombre} - {tipo.material}</option>
               ))}
             </select>
           </div>
