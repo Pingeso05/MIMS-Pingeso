@@ -5,11 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="94ae9a6e-d285-4a37-bea9-d3217e4d9875" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/security/TokenUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/AppApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/AppApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/repository/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/repository/UsuarioRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/entity/UsuarioEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/entity/UsuarioEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/AgregarJoya.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/AgregarJoya.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/AgregarLocacion.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/AgregarLocacion.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/AgregarProducto.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/AgregarProducto.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/AgregarTipoJoya.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/AgregarTipoJoya.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/InventarioEditar.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/InventarioEditar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/JoyaEditar.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/JoyaEditar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/LocacionEditar.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/LocacionEditar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/TipoJoyaEditar.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/TipoJoyaEditar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/utils/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/utils/globals.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +71,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="mims.app.entity" />
+    </key>
+  </component>
   <component name="RunManager" selected="Spring Boot.AppApplication">
     <configuration name="WebSecurityConfig" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="mims.app.security.WebSecurityConfig" />
@@ -98,7 +115,8 @@
       <workItem from="1688785146982" duration="3551000" />
       <workItem from="1688789242681" duration="779000" />
       <workItem from="1688790048809" duration="1826000" />
-      <workItem from="1688791892764" duration="3662000" />
+      <workItem from="1688791892764" duration="4383000" />
+      <workItem from="1688832967946" duration="3480000" />
     </task>
     <servers />
   </component>

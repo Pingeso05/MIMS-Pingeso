@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 
 @Entity
 @Data
@@ -30,7 +31,6 @@ public class UsuarioEntity {
 
     @Column(name = "deleted")
     private boolean deleted;
-
 
     public void setDeleted(boolean b) {
         this.deleted = b;
