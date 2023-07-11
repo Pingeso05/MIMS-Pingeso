@@ -8,7 +8,8 @@ import '../utils/globals.css';
 const AgregarTipoJoya = () => {
   const [nombreTipo, setNombreTipo] = useState('');
   const [materialTipo, setMaterialTipo] = useState('');
-
+  const token = localStorage.getItem('accessToken');
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -21,6 +22,10 @@ const AgregarTipoJoya = () => {
       await axios.post(ruta_back + 'tipojoya', {
         nombre: nombreTipo,
         material: materialTipo,
+      },{
+        headers: {
+          Authorization: token, 
+        }
       });
 
       setNombreTipo('');

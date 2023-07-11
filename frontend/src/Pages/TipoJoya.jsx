@@ -15,10 +15,15 @@ const TipoJoya = () => {
   const [tipos, setTipos] = useState([]);
   const [id, setId] = useState('');
   const [showEditar, setShowEditar] = useState(false);
-
+  const token = localStorage.getItem('accessToken');
+  
   const getTipos = async () => {
     try {
-      const res = await axios.get(ruta_back + 'tipojoya');
+      const res = await axios.get(ruta_back + 'tipojoya',{
+        headers: {
+          Authorization: token, 
+        }
+      });
       setTipos(res.data);
     } catch (error) {
       console.log(error);

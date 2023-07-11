@@ -12,11 +12,15 @@ const AgregarProducto = () => {
   const [locaciones, setLocaciones] = useState([]);
   const [joyas, setJoyas] = useState([]);
   const [joyaSeleccionada, setJoyaSeleccionada] = useState('');
-
+  const token = localStorage.getItem('accessToken');
 
   const getLocaciones = async () => {
     try {
-      const res = await axios.get(ruta_back + 'locacion');
+      const res = await axios.get(ruta_back + 'locacion',{
+        headers: {
+          Authorization: token, 
+        }
+      });
       const locacionesUnicas = res.data;
       setLocaciones(locacionesUnicas);
     } catch (error) {
@@ -26,7 +30,11 @@ const AgregarProducto = () => {
 
   const getJoyas = async () => {
     try {
-      const res = await axios.get(ruta_back + 'joya');
+      const res = await axios.get(ruta_back + 'joya',{
+        headers: {
+          Authorization: token, 
+        }
+      });
       const joyasUnicas = res.data;
       setJoyas(joyasUnicas);
     } catch (error) {
@@ -49,11 +57,23 @@ const AgregarProducto = () => {
     }
 
     try {
-      const res = await axios.get(ruta_back + 'inventario');
+      const res = await axios.get(ruta_back + 'inventario',{
+        headers: {
+          Authorization: token, 
+        }
+      });
       const productos = res.data;
-      const res2 = await axios.get(ruta_back + 'joya/' + joyaSeleccionada);
+      const res2 = await axios.get(ruta_back + 'joya/' + joyaSeleccionada,{
+        headers: {
+          Authorization: token, 
+        }
+      });
       const joya = res2.data.nombre;
-      const res3 = await axios.get(ruta_back + 'locacion/' + locacionSeleccionada);
+      const res3 = await axios.get(ruta_back + 'locacion/' + locacionSeleccionada,{
+        headers: {
+          Authorization: token, 
+        }
+      });
       const local = res3.data.nombre;
       const buscarProd = productos
       .filter(producto => (local ? producto.local === local : true))
@@ -65,6 +85,10 @@ const AgregarProducto = () => {
         cantidad: cantidad,
         precio_venta: precioVenta,
         deleted: false
+      },{
+        headers: {
+          Authorization: token, 
+        }
       });
 
      

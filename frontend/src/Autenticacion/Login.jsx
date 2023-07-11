@@ -1,136 +1,109 @@
-import React, { useEffect, useState } from 'react';
-import Container from 'react-bootstrap/Container';
-import axios from 'axios';
+import React, { useState, useContext, useEffect } from 'react';
 import './Login.css';
 import logo from '../images/Logo_Mimstransparent.png';
-import {ruta_back} from '../utils/globals';
+import { useNavigate, NavLink, Navigate } from 'react-router-dom';
+import { ruta_back } from '../utils/globals';
+import { AuthProvider, useAuth } from '../context/AuthContext';
+import axios from 'axios';
+import { parseJwt } from '../misc/Helpers';
 
-const Login = ({ id, onSubmit }) => {
-  
+const Login = () => {
 
-  const [isOpen, setIsOpen] = useState(true);
-  const [costo, setCosto] = useState('');
-  const [joya, setJoya] = useState();
-  const [tiposJoya, setTiposJoya] = useState([]);
-  const [nombre, setNombre] = useState('');
-  const [joyaSeleccionada, setJoyaSeleccionada] = useState('');
-  const [tipoJoyaSeleccionado, setTipoJoyaSeleccionado] = useState('');
+  const { userIsAuthenticated, userLogin } = useAuth();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoggedIn, setLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
-  //Obtener la joya a editar
-  const getJoya = async () => {
-    try {
-      const res = await axios.get(ruta_back + 'joya/' + id);
-      const joyaR = res.data;
-      setJoya(joyaR);
-        setNombre(joyaR.nombre);
-        setCosto(joyaR.cost);
-        setTipoJoyaSeleccionado(joyaR.id_tipo_joya);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  useEffect(() => {
+    const isLoggedIn = userIsAuthenticated();
+    setLoggedIn(isLoggedIn);
+  }, [userIsAuthenticated]);
 
-    //Obtener los tipos de joya
-    const getTiposJoya = async () => {
-        try {
-        const res = await axios.get(ruta_back + 'tipojoya');
-        const tiposJoyaR = res.data;
-        setTiposJoya(tiposJoyaR);
-        }
-        catch (error) {
-            console.log(error);
-        }
-    };
-  
-    useEffect(() => {
-        getJoya();
-        getTiposJoya();
-    }, []);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    if (
-      nombre === '' || costo === ''
-    ) {
-      alert('Por favor, completa todos los campos');
+
+  const handleLogin = async () => {
+    if (email.trim() === '' || password.trim() === '') {
+      alert('Por favor, ingrese su correo electrónico y contraseña.');
       return;
     }
 
     try {
-        await axios.put(ruta_back + 'joya/' + id, {
-        nombre: nombre,
-        id_tipo_joya: tipoJoyaSeleccionado,
-        cost: costo,
-        deleted: false
+      const response = await axios.post(ruta_back + 'login', {
+        email: email,
+        password: password
       });
 
-  
-      setTipoJoyaSeleccionado('');
-      setNombre('');
-      setCosto('');
-      setIsOpen(false);
-      onSubmit();
-      alert('Producto actualizado exitosamente');
+      const accessToken = response.headers["authorization"];
+      
+      localStorage.setItem('accessToken', accessToken);
+      const currentDate = new Date();
+      const expirationDate = new Date(currentDate.getTime() + (30 * 24 * 60 * 60 * 1000)); 
+      const expirationTimestamp = expirationDate.getTime();
+      const userData = {
+        data: {
+          exp: expirationTimestamp,
+          nombre: response.data.user
+        }
+      };
+      userLogin(userData);
+
+      setEmail('');
+      setPassword('');
+      setLoggedIn(true);
+
+      if (response.data.message === 'Login Success') {
+        const lastPath = localStorage.getItem('lastPath') || '/';
+        navigate(lastPath, {
+          replace: true,
+        });
+      } 
     } catch (error) {
-      console.log(error);
-      console.log(error.response.data);
-      alert('Ocurrió un error al actualizar el producto');
-    }
+        alert('No encontramos un usuario con esas credenciales.');
+      }
+      
   };
 
-
-
-  if (!isOpen) {
-    return null;
-  }
-
+  if (isLoggedIn) {
+    return <Navigate to={'/'} />;
+  } else {
   return (
-    
-      <div className="login-container">
-        
-        <Container style={{ textAlign: 'center' }} className="container-login">
-            <div className="popup-body">
-            <div>  
-            <div className="note-red">
-              <img src={logo} alt="Logo" className="logo-login" />
-            </div>
-            <form onSubmit={handleSubmit} className='form-login'>
-
-                
-                <div  >
-                  <label htmlFor="costo">Email:</label>
-                  <input
-                    type="email"
-                    min="0"
-                    step="1"
-                    id="costo"
-                    value={costo}
-                    onChange={(e) => setCosto(e.target.value)}
-                  />
-                </div>
-                <div  >
-                  <label htmlFor="nombre">Contraseña:</label>
-                  <input
-                    type="password"
-                    id="nombre"
-                    value={nombre}
-                    onChange={(e) => setNombre(e.target.value)}
-                  />
-                </div>
-
-
-
-
-                <button type="submit">Iniciar Sesión</button>
-              </form>
-
-              <div className="separador"> </div>
-            </div>
-            </div>
-        </Container>
+    <div className="pagina-login">
+      <div id="loginform">
+        <h2 id="headerTitle">Iniciar Sesión</h2>
+        <div>
+          <div className="row">
+            <label>Email</label>
+            <input
+              name='email'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Ingrese su correo"
+              type='email'
+            />
+          </div>
+          <div className="row">
+            <label>Contraseña</label>
+            <input
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Ingrese su contraseña"
+              type="password"
+            />
+          </div>
+          <div className="row">
+            <button onClick={handleLogin}>Iniciar Sesión</button>
+          </div>
+        </div>
+        <div id="alternativeLogin">
+        <img src={logo} alt="Logo" className="logo-login" />
+       </div>
       </div>
-    
+      
+    </div>
   );
+  }
 };
 
 export default Login;

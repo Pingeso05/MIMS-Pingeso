@@ -44,10 +44,30 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authResult.getPrincipal();
         String token = TokenUtils.createToken(userDetails.getNombre(), userDetails.getUsername());
-
         response.addHeader("Authorization", "Bearer " + token);
+        response.setContentType("application/json");
+
+        String message = "Login Success";
+        String user = userDetails.getNombre();
+
+        String jsonResponse = "{\"message\": \"" + message + "\", \"user\": \"" + user + "\"}";
+        response.getWriter().write(jsonResponse);
         response.getWriter().flush();
 
         super.successfulAuthentication(request, response, chain, authResult);
     }
+
+
+    @Override
+    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
+                                              AuthenticationException failed)
+            throws IOException, ServletException {
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        response.setContentType("application/json");
+        String message = "Authentication failed";
+        String jsonResponse = "{\"message\": \"" + message + "\"}";
+        response.getWriter().write(jsonResponse);
+        response.getWriter().flush();
+    }
+
 }
