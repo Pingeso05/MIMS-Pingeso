@@ -1,11 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
 import './Login.css';
 import logo from '../images/Logo_Mimstransparent.png';
-import { useNavigate, NavLink, Navigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import { ruta_back } from '../utils/globals';
-import { AuthProvider, useAuth } from '../context/AuthContext';
+import {  useAuth } from '../context/AuthContext';
 import axios from 'axios';
-import { parseJwt } from '../misc/Helpers';
 
 const Login = () => {
 

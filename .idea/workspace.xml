@@ -6,20 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="835b27f2-3706-4a3c-9fc9-3c37dafb9c47" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/AppApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/AppApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/security/JWTAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/security/JWTAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/security/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/security/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Autenticacion/Login.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Autenticacion/Login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Autenticacion/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Autenticacion/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Components/NavBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/NavBar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Components/navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/navbar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/Inventario.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/Inventario.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +45,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "spring.configuration.checksum": "d2a57dc1d883fd21fb9951699df71cc7",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -79,7 +66,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1689031881482</updated>
-      <workItem from="1689031883095" duration="4971000" />
+      <workItem from="1689031883095" duration="5573000" />
+      <workItem from="1689052091682" duration="914000" />
     </task>
     <servers />
   </component>
