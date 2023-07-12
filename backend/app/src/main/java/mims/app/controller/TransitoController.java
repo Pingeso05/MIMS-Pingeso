@@ -1,11 +1,13 @@
 package mims.app.controller;
 
+import mims.app.Model.DisplayTransitoModel;
 import mims.app.entity.TransitoEntity;
 import mims.app.service.TransitoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +20,7 @@ public class TransitoController {
     private TransitoService transitoService;
 
     @GetMapping
-    public ResponseEntity<List<TransitoEntity>> get_all(){
+    public ResponseEntity<ArrayList<DisplayTransitoModel>> get_all(){
         return transitoService.get_all_transitos();
     }
 

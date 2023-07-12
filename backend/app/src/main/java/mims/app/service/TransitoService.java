@@ -1,11 +1,13 @@
 package mims.app.service;
 
+import mims.app.Model.DisplayTransitoModel;
 import mims.app.entity.TransitoEntity;
 import mims.app.repository.TransitoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -14,8 +16,8 @@ public class TransitoService {
     @Autowired
     private TransitoRepository transitoRepository;
 
-    public ResponseEntity<List<TransitoEntity>> get_all_transitos(){
-        return ResponseEntity.ok(transitoRepository.findAll());
+    public ResponseEntity<ArrayList<DisplayTransitoModel>> get_all_transitos(){
+        return ResponseEntity.ok(transitoRepository.findAllTransito());
     }
 
     public ResponseEntity<TransitoEntity> get_transito_by_id(int id) {
