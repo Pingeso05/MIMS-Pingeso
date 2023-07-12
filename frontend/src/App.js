@@ -15,6 +15,7 @@ import EditarTipoJoya from './Pages/TipoJoyaEditar';
 import EditarLocacion from './Pages/LocacionEditar';
 import EditarJoya from './Pages/JoyaEditar';
 import CargaDatos from './Pages/CargaDatos';
+import Transito from './Pages/Transito';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       <Container>
         <Routes>
           <Route path="/" element={<Navigate to="/inventario" />} />
+          <Route path="/transito" element={<Transito />} />
           <Route path="/inventario" element={<Inventario />} />
           <Route path="/inventario/agregar-producto" element={<AgregarProducto />} />
           <Route path="/joyas" element={<Joya />} />

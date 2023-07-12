@@ -14,7 +14,7 @@ import Modificar_Inventario from '../Popups/Modificar_Inventario';
 import Editar_Inventario from '../Popups/Editar_Inventario';
 import Ver_Inventario from '../Popups/Ver_Inventario';
 
-const Inventario = () => {
+const Transito = () => {
   const [productos, setProductos] = useState([]);
   const [categorias, setCategorias] = useState([]);
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('');
@@ -72,7 +72,7 @@ const Inventario = () => {
 
   const getProductos = async () => {
     try {
-      const res = await axios.get(ruta_back + 'inventario');
+      const res = await axios.get(ruta_back + 'transito');
       setProductos(res.data);
     } catch (error) {
       console.log(error);
@@ -164,12 +164,10 @@ const Inventario = () => {
               <tr className='cabeceras'>
                 <th>Joya</th>
                 <th>Cantidad</th>
-                <th>Tipo Joya</th>
                 <th>Origen</th>
                 <th>Destino</th>
                 <th>Numero transaccion</th>
                 <th>Fecha de salida</th>
-                <th>Fecha de recepcion</th>
                 <th>Responsable</th>
                 <th>Opciones</th>
                 
@@ -182,10 +180,11 @@ const Inventario = () => {
                   {producto.joya}
                   </td>
                   <td>{Number(producto.cantidad).toLocaleString()}</td>
-                  <td>{producto.tipo_joya}</td>
-                  <td>{producto.local}</td>
-                  <td className='ocultar-columna'>${Number(producto.cost).toLocaleString()}</td>
-                  <td className='ocultar-columna'>${Number(producto.precio_venta).toLocaleString()}</td>
+                  <td>{producto.origen}</td>
+                  <td>{producto.destino}</td>
+                  <td>{producto.numero_transaccion}</td>
+                  <td>{producto.fecha_salida}</td>
+                  <td>{producto.responsable}</td>
                   <td>
                   <div className='icono-columna'>
                     <FaEye title='Ver detalle' className='icono' onClick={() => handleViewClick(producto)} />
@@ -225,4 +224,4 @@ const Inventario = () => {
     );
   };
   
-  export default Inventario;
+  export default Transito;

@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
+    "nodemon": "^3.0.1",
     "papaparse": "^5.4.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
@@ -22,7 +23,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "nodemon app.js"
   },
   "eslintConfig": {
     "extends": [
