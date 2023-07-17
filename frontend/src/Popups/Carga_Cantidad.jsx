@@ -39,6 +39,15 @@ const Carga_Cantidad = ({ joyas, onCancel, onSubmit }) => {
             (item) => item.local?.trim() === locacionSeleccionada?.trim() &&
               joyas.some((joya) => joya.nombre === item.joya)
           );
+        // Obtener los componentes de la fecha (día, mes y año)
+        const fechaHoy = new Date();
+        const dia = String(fechaHoy.getDate()).padStart(2, '0');
+        const mes = String(fechaHoy.getMonth() + 1).padStart(2, '0'); // Sumamos 1 al mes ya que los meses en JavaScript empiezan desde 0 (enero es 0)
+        const anio = fechaHoy.getFullYear();
+
+        // Formatear la fecha en el formato deseado (dd/mm/aaaa)
+        const fechaHoyFormateada = dia+'/'+mes+'/'+anio;
+
         joyas.map(async (joya, index) => {
             const inventarioItem = inventarioFiltrado.find((item) => item.joya === joya.nombre);
 
@@ -50,6 +59,7 @@ const Carga_Cantidad = ({ joyas, onCancel, onSubmit }) => {
                 try{
                     const res = await axios.get(ruta_back + 'inventario/' + inventarioItem.id);
                     const producto_cambiar = res.data;
+                    console.log(producto_cambiar);
                     try{
                         await axios.put(ruta_back + 'inventario/' + producto_cambiar.id, {
                             id_locacion: producto_cambiar.id_locacion,
@@ -57,13 +67,34 @@ const Carga_Cantidad = ({ joyas, onCancel, onSubmit }) => {
                             cantidad: nuevaCantidad,
                             precio_venta: producto_cambiar.precio_venta,
                             deleted: false
-                        }); 
+                        });
+
+                        try{
+                          const res = await axios.get(ruta_back + 'locacion');
+                          const local = res.data.find((local) => local.nombre === locacionSeleccionada);
+                          console.log(locacionSeleccionada);
+                          console.log(local);
+                          await axios.post(ruta_back + 'log_inventario', {
+                            id_producto: producto_cambiar.id,
+                            nombre_producto: joya.nombre,
+                            tipo_producto: 1,
+                            nombre_locacion: producto_cambiar.id_locacion,
+                            cantidad: cantidadActual,
+                            tipo_transaccion: 'CARGA',
+                            fecha_transaccion: fechaHoyFormateada,
+                            valor_transaccion: 999999,
+                            responsable_transaccion: 'BASTIAN ONETTO',
+                          }); 
+                        }catch (error) {
+                          console.log(error);
+                          alert('Ocurrió un error al generar el log de inventario');
+                          return;
+                        }
                     } catch (error) {
                         console.log(error);
                         alert('Ocurrió un error al modificar el inventario');
                         return;
                     }
-
                 } catch (error) {
                     console.log('Error al actualizar el inventario:', error);
                 }
@@ -82,12 +113,37 @@ const Carga_Cantidad = ({ joyas, onCancel, onSubmit }) => {
                       precio_venta: producto_auxiliar.precio_venta,
                       deleted: false
                       });
+
+                      try{
+                        const res = await axios.get(ruta_back + 'inventario');
+                        const last = res.data[res.data.length - 1];
+                        console.log(last);
+                        console.log(joya.nombre);
+                        console.log(locacion.id);
+                        await axios.post(ruta_back + 'log_inventario', {
+                          id_producto: last.id,
+                          nombre_producto: joya.nombre,
+                          tipo_producto: 1,
+                          nombre_locacion: locacion.id,
+                          cantidad: parseInt(cantidades[index], 10),
+                          tipo_transaccion: 'CARGA',
+                          fecha_transaccion: fechaHoyFormateada,
+                          valor_transaccion: 999999,
+                          responsable_transaccion: 'BASTIAN ONETTO',
+                        }); 
+                      }catch (error) {
+                        console.log(error);
+                        alert('Ocurrió un error al generar el log de inventario');
+                        return;
+                      }
+
+
                 } catch (error) {
                     console.log('Error al actualizar el inventario:', error);
                 }
-            }
-        });
 
+        }
+      });
     } catch (error) {
       console.log(error);
     }

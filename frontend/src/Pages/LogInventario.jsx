@@ -73,6 +73,7 @@ const LogInventario = () => {
 const getLogInventario = async () => {
     try {
         const res = await axios.get(ruta_back + 'log_inventario');
+        const flippedRes = res.data.reverse();
         setLogInventario(res.data);
         console.log(res.data);
     } catch (error) {
