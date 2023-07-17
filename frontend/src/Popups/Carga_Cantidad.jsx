@@ -67,6 +67,24 @@ const Carga_Cantidad = ({ joyas, onCancel, onSubmit }) => {
                 } catch (error) {
                     console.log('Error al actualizar el inventario:', error);
                 }
+            } else {
+              try{
+                const res = await axios.get(ruta_back + 'locacion');
+                const locacion = res.data.find((locacion) => locacion.nombre === locacionSeleccionada);
+                const res2 = await axios.get(ruta_back + 'inventario');
+                const producto_auxiliar = res2.data.find((item) => joya.nombre === item.joya);
+                console.log("El producto auxiliar: " + {producto_auxiliar});
+
+                await axios.post(ruta_back + 'inventario', {
+                      id_locacion: locacion.id,
+                      id_joya: joya.id,
+                      cantidad: parseInt(cantidades[index], 10),
+                      precio_venta: producto_auxiliar.precio_venta,
+                      deleted: false
+                      });
+                } catch (error) {
+                    console.log('Error al actualizar el inventario:', error);
+                }
             }
         });
 
