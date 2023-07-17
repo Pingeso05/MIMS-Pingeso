@@ -197,3 +197,11 @@ my-fila:hover{
         align-items: center;
       }
 }
+.joya-row {
+    display: flex;
+    align-items: center;
+  }
+  
+  .joya-row h2 {
+    margin-right: 10px;
+  }

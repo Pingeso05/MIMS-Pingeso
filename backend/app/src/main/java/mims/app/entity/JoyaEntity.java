@@ -32,6 +32,9 @@ public class JoyaEntity {
     @Column(name = "cost")
     private int cost;
 
+    //@Column(name = "Code")
+    //private String code;
+    
     public void setDeleted(boolean b) {
         this.deleted = b;
     }
