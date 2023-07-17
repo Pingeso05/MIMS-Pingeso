@@ -53,25 +53,15 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
       }
     }
 
-    if (
-      action.trim() === "Mover Stock"
-      
-    )
-     {
-      if (
-        location.trim() === '' ||
-        quantity.trim() === '' ||
-        description.trim() === ''
-      )
-      {
+    if (action.trim() === "Mover Stock"){
+      if (location.trim() === '' || quantity.trim() === '' || description.trim() === ''){
         alert('Por favor, completa todos los campos');
         setSubmitting(false);
         return;
       }
-      try{
-
-      
+      try {
         try {
+          //Se rebaja el stock del producto en el local seleccionado
           await axios.put(ruta_back + 'inventario/' + product.id, {
             id_locacion: productoReal.id_locacion,
             id_joya: productoReal.id_joya,
@@ -79,10 +69,9 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
             precio_venta: productoReal.precio_venta,
             deleted: false
           }); 
-    
         } catch (error) {
           console.log(error);
-          alert('Ocurrió un error al modificar el inventario');
+          alert('Ocurrió un error al rebajar el inventario');
           setSubmitting(false);
           return;
         }
@@ -188,6 +177,31 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
               deleted: false
             }); 
           alert('Se añadió correctamente ' + quantity + ' unidades de ' + product.joya +  ' al local ' + product.local);
+            console.log(product)
+            console.log(productoReal)
+            console.log(quantity)
+
+            // Obtener la fecha de hoy
+            const fechaHoy = new Date();
+
+            // Obtener los componentes de la fecha (día, mes y año)
+            const dia = String(fechaHoy.getDate()).padStart(2, '0');
+            const mes = String(fechaHoy.getMonth() + 1).padStart(2, '0'); // Sumamos 1 al mes ya que los meses en JavaScript empiezan desde 0 (enero es 0)
+            const anio = fechaHoy.getFullYear();
+
+            // Formatear la fecha en el formato deseado (dd/mm/aaaa)
+            const fechaHoyFormateada = dia+'/'+mes+'/'+anio;
+            await axios.post(ruta_back + 'log_inventario', {
+              id_producto: product.id,
+              nombre_producto: product.joya,
+              tipo_producto: productoReal.id_joya,
+              nombre_locacion: productoReal.id_locacion,
+              cantidad: quantity,
+              tipo_transaccion: 'COMPRA',
+              fecha_transaccion: fechaHoyFormateada,
+              valor_transaccion: 99999,
+              responsable_transaccion: 'ALEN GALINDO',
+            });
           } catch (error) {
             console.log(error);
             alert('Ocurrió un error al agregar stock al inventario');
@@ -203,8 +217,31 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
               cantidad: productoReal.cantidad - quantity,
               precio_venta: productoReal.precio_venta,
               deleted: false
-            }); 
+            });
+
           alert('Se quitaron correctamente ' + quantity + ' unidades de ' + product.joya +  ' a ' + product.local);
+          // Obtener la fecha de hoy
+          const fechaHoy = new Date();
+
+          // Obtener los componentes de la fecha (día, mes y año)
+          const dia = String(fechaHoy.getDate()).padStart(2, '0');
+          const mes = String(fechaHoy.getMonth() + 1).padStart(2, '0'); // Sumamos 1 al mes ya que los meses en JavaScript empiezan desde 0 (enero es 0)
+          const anio = fechaHoy.getFullYear();
+
+          // Formatear la fecha en el formato deseado (dd/mm/aaaa)
+          const fechaHoyFormateada = dia+'/'+mes+'/'+anio;  
+          await axios.post(ruta_back + 'log_inventario', {
+              id_producto: product.id,
+              nombre_producto: product.joya,
+              tipo_producto: productoReal.id_joya,
+              nombre_locacion: productoReal.id_locacion,
+              cantidad: quantity,
+              tipo_transaccion: 'VENTA',
+              fecha_transaccion: fechaHoyFormateada,
+              valor_transaccion: 99999,
+              responsable_transaccion: 'ALEN GALINDO',
+            });
+
           } catch (error) {
             console.log(error);
             alert('Ocurrió un error al agregar stock al inventario');
@@ -221,6 +258,9 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
         setSubmitting(false);
         return;
   }
+
+  
+    
 
 
   };

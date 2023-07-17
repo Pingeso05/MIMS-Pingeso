@@ -55,6 +55,11 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="navbar__item">
+            <Link to="/registros" className={`navbar__link ${pathname === '/registros' ? 'active' : ''}`}>
+              Transacciones
+            </Link>
+          </li>
+          <li className="navbar__item">
             <Link to="/locaciones" className={`navbar__link ${pathname === '/locaciones' ? 'active' : ''}`}>
               Locaciones
             </Link>
