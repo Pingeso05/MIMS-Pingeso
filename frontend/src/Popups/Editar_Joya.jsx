@@ -107,7 +107,7 @@ const Editar_Joya = ({ id, onCancel, onSubmit }) => {
                   <input
                     type="number"
                     min="0"
-                    step="1"
+                    step="0.01"
                     id="costo"
                     value={costo}
                     onChange={(e) => setCosto(e.target.value)}
