@@ -13,16 +13,28 @@ const Editar_Inventario = ({ id, onCancel, onSubmit }) => {
   const [producto, setProducto] = useState();
   const [joya, setJoya] = useState();
   const [local, setLocal] = useState();
-
+  const token = localStorage.getItem('accessToken');
   
   const getProducto = async () => {
     try {
-      const res = await axios.get(ruta_back + 'inventario/' + id);
+      const res = await axios.get(ruta_back + 'inventario/' + id,{
+        headers: {
+          Authorization: token, 
+        }
+      });
       const productoR = res.data;
       setProducto(productoR);
-      const res2 = await axios.get(ruta_back + 'joya/' + productoR.id_joya);
+      const res2 = await axios.get(ruta_back + 'joya/' + productoR.id_joya,{
+        headers: {
+          Authorization: token, 
+        }
+      });
       setJoya(res2.data.nombre);
-      const res3 = await axios.get(ruta_back + 'locacion/' + productoR.id_locacion);
+      const res3 = await axios.get(ruta_back + 'locacion/' + productoR.id_locacion,{
+        headers: {
+          Authorization: token, 
+        }
+      });
       setLocal(res3.data.nombre);
       setPrecioVenta(productoR.precio_venta);
     } catch (error) {
@@ -44,13 +56,21 @@ const Editar_Inventario = ({ id, onCancel, onSubmit }) => {
     }
 
     try {
-      const productoTReal = (await axios.get(ruta_back + 'inventario/' + id)).data;
+      const productoTReal = (await axios.get(ruta_back + 'inventario/' + id,{
+        headers: {
+          Authorization: token, 
+        }
+      })).data;
       await axios.put(ruta_back + 'inventario/' + id, {
         id_locacion: productoTReal.id_locacion,
         id_joya: productoTReal.id_joya,
         cantidad: productoTReal.cantidad,
         precio_venta: precioVenta,
         deleted: false
+      },{
+        headers: {
+          Authorization: token, 
+        }
       });
 
   

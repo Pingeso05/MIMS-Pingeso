@@ -7,5 +7,4 @@ public interface DisplayUsuarioModelInterface {
     String getApellido();
     String getCorreo();
     String getTelefono();
-    String getRol();
 }

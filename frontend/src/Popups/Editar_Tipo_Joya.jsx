@@ -11,10 +11,15 @@ const Editar_Tipo_Joya = ({ id, onCancel, onSubmit }) => {
   const [isOpen, setIsOpen] = useState(true);
   const [nombre, setNombre] = useState('');
   const [material, setMaterial] = useState('');
+  const token = localStorage.getItem('accessToken');
 
   const getTipoJoya = async () => {
     try {
-      const res = await axios.get(ruta_back + 'tipojoya/' + id);
+      const res = await axios.get(ruta_back + 'tipojoya/' + id,{
+        headers: {
+          Authorization: token, 
+        }
+      });
       const tipoJoya = res.data;
 
       setNombre(tipoJoya.nombre);
@@ -36,6 +41,10 @@ const Editar_Tipo_Joya = ({ id, onCancel, onSubmit }) => {
       await axios.put(ruta_back + 'tipojoya/' + id, {
         nombre: nombre,
         material: material,
+      },{
+        headers: {
+          Authorization: token, 
+        }
       });
 
       setNombre('');

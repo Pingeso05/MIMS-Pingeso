@@ -15,10 +15,15 @@ const Locaciones = () => {
   const [locaciones, setLocaciones] = useState([]);
   const [showEditar, setShowEditar] = useState(false);
   const [id, setId] = useState('');
-
+  const token = localStorage.getItem('accessToken');
+  
   const getLocaciones = async () => {
     try {
-      const res = await axios.get(ruta_back + 'locacion');
+      const res = await axios.get(ruta_back + 'locacion',{
+        headers: {
+          Authorization: token, 
+        }
+      });
       setLocaciones(res.data);
     } catch (error) {
       console.log(error);

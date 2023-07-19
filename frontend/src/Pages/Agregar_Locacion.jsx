@@ -13,10 +13,15 @@ const AgregarLocacion = () => {
   const [regiones, setRegiones] = useState([]);
   const [direccion, setDireccion] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('');
+  const token = localStorage.getItem('accessToken');
 
   const getComunas = async () => {
     try {
-      const res = await axios.get(ruta_back + 'comuna');
+      const res = await axios.get(ruta_back + 'comuna',{
+        headers: {
+          Authorization: token, 
+        }
+      });
       setComunas(res.data);
     } catch (error) {
       console.log(error);
@@ -25,7 +30,11 @@ const AgregarLocacion = () => {
 
   const getRegiones = async () => {
     try {
-      const res = await axios.get(ruta_back + 'region');
+      const res = await axios.get(ruta_back + 'region',{
+        headers: {
+          Authorization: token, 
+        }
+      });
       setRegiones(res.data);
     } catch (error) {
       console.log(error);
@@ -63,6 +72,10 @@ const AgregarLocacion = () => {
         deleted: false,
         comuna: comuna,
         region: region,
+      },{
+        headers: {
+          Authorization: token, 
+        }
       });
 
       setNombreLocacion('');

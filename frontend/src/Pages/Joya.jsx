@@ -13,7 +13,6 @@ import { FaEdit } from 'react-icons/fa';
 import Editar_Joya from '../Popups/Editar_Joya';
 
 const Joya = () => {
-  const navigate = useNavigate();
   const [joyas, setJoyas] = useState([]);
   const [tipos, setTipos] = useState([]);
   const [tipoSeleccionado, setTipoSeleccionado] = useState('');
@@ -21,10 +20,15 @@ const Joya = () => {
   const [joyaSeleccionada, setJoyaSeleccionada] = useState(null);
   const [editarJoya, setEditarJoya] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const token = localStorage.getItem('accessToken');
 
   const getJoyas = async () => {
     try {
-      const res = await axios.get(ruta_back + 'joya');
+      const res = await axios.get(ruta_back + 'joya',{
+        headers: {
+          Authorization: token, 
+        }
+      });
       setJoyas(res.data);
       console.log(res.data);
     } catch (error) {
@@ -48,8 +52,12 @@ const Joya = () => {
 
   const getTipos = async () => {
     try {
-      const res = await axios.get(ruta_back + 'tipojoya');
-      const tiposUnicos = [...new Set(res.data.map((tipo) => tipo.nombre))];
+      const res = await axios.get(ruta_back + 'tipojoya',{
+        headers: {
+          Authorization: token, 
+        }
+      });
+      const tiposUnicos = [...new Set(res.data.map(tipo => tipo.nombre))];
       setTipos(tiposUnicos);
     } catch (error) {
       console.log(error);

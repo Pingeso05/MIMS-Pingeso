@@ -14,12 +14,16 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
   const [locaciones, setLocaciones] = useState([]);
   const [productoReal, setProductoReal] = useState();
   const [submitting, setSubmitting] = useState(false);
-
+  const token = localStorage.getItem('accessToken');
 
 
   const getLocaciones = async () => {
     try {
-      const res = await axios.get(ruta_back + 'locacion');
+      const res = await axios.get(ruta_back + 'locacion',{
+        headers: {
+          Authorization: token, // No incluye el prefijo "Bearer"
+        }
+      });
       const locacionesUnicas = res.data;
       setLocaciones(locacionesUnicas);
     } catch (error) {
@@ -29,7 +33,11 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
 
   const getProductoReal = async () => {
     try {
-      const res = await axios.get(ruta_back + 'inventario/' + product.id);
+      const res = await axios.get(ruta_back + 'inventario/' + product.id,{
+        headers: {
+          Authorization: token, // No incluye el prefijo "Bearer"
+        }
+      });
       const productoR = res.data;
       setProductoReal(productoR);
     } catch (error) {
@@ -91,6 +99,12 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
             responsable_transaccion: 'ALEN GALINDO',
           });
            
+          },{
+            headers: {
+              Authorization: token, // No incluye el prefijo "Bearer"
+            }
+          }); 
+    
         } catch (error) {
           console.log(error);
           alert('Ocurrió un error al rebajar el inventario');
@@ -99,14 +113,22 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
         }
         try {
           try {
-            const res = await axios.get(ruta_back + 'inventario');
+            const res = await axios.get(ruta_back + 'inventario',{
+              headers: {
+                Authorization: token, // No incluye el prefijo "Bearer"
+              }
+            });
             const productos = res.data;
             const filteredProducto = productos
               .filter(producto => (location ? producto.local === location : true))
               .filter(producto => (product.joya ? producto.joya === product.joya : true));
             if (filteredProducto.length > 0) {
               try {
-                const res = await axios.get(ruta_back + 'inventario/' + filteredProducto[0].id);
+                const res = await axios.get(ruta_back + 'inventario/' + filteredProducto[0].id,{
+                  headers: {
+                    Authorization: token, // No incluye el prefijo "Bearer"
+                  }
+                });
                 const producto_cambiar = res.data;
                 try{
                   await axios.put(ruta_back + 'inventario/' + producto_cambiar.id, {
@@ -115,27 +137,6 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
                     cantidad: Number(producto_cambiar.cantidad) + Number(quantity),
                     precio_venta: producto_cambiar.precio_venta,
                     deleted: false
-                  });
-                  // Obtener la fecha de hoy
-                  const fechaHoy = new Date();
-
-                  // Obtener los componentes de la fecha (día, mes y año)
-                  const dia = String(fechaHoy.getDate()).padStart(2, '0');
-                  const mes = String(fechaHoy.getMonth() + 1).padStart(2, '0'); // Sumamos 1 al mes ya que los meses en JavaScript empiezan desde 0 (enero es 0)
-                  const anio = fechaHoy.getFullYear();
-
-                  // Formatear la fecha en el formato deseado (dd/mm/aaaa)
-                  const fechaHoyFormateada = dia+'/'+mes+'/'+anio;
-                  await axios.post(ruta_back + 'log_inventario', {
-                    id_producto: product.id,
-                    nombre_producto: product.joya,
-                    tipo_producto: productoReal.id_joya,
-                    nombre_locacion: productoReal.id_locacion,
-                    cantidad: quantity,
-                    tipo_transaccion: 'ENTRADA',
-                    fecha_transaccion: fechaHoyFormateada,
-                    valor_transaccion: 99999,
-                    responsable_transaccion: 'ALEN GALINDO',
                   }); 
                 } catch (error) {
                   console.log(error);
@@ -151,7 +152,11 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
               }
             } else {
               try {
-                const res = await axios.get(ruta_back + 'locacion');
+                const res = await axios.get(ruta_back + 'locacion',{
+                  headers: {
+                    Authorization: token, // No incluye el prefijo "Bearer"
+                  }
+                });
                 const localReal = res.data
                   .filter(local => (location ? local.nombre === location : true))[0]
                 await axios.post(ruta_back + 'inventario', {
@@ -160,6 +165,10 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
                   cantidad: quantity,
                   precio_venta: productoReal.precio_venta,
                   deleted: false
+                },{
+                  headers: {
+                    Authorization: token, // No incluye el prefijo "Bearer"
+                  }
                 }); 
           
               } catch (error) {
@@ -218,6 +227,10 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
               cantidad: Number(productoReal.cantidad) + Number(quantity),
               precio_venta: productoReal.precio_venta,
               deleted: false
+            },{
+              headers: {
+                Authorization: token, // No incluye el prefijo "Bearer"
+              }
             }); 
           alert('Se añadió correctamente ' + quantity + ' unidades de ' + product.joya +  ' al local ' + product.local);
             console.log(product)
@@ -260,8 +273,7 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
               cantidad: productoReal.cantidad - quantity,
               precio_venta: productoReal.precio_venta,
               deleted: false
-            });
-
+            }); 
           alert('Se quitaron correctamente ' + quantity + ' unidades de ' + product.joya +  ' a ' + product.local);
           // Obtener la fecha de hoy
           const fechaHoy = new Date();

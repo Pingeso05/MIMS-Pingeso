@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './Inventario.css';
 import React from 'react';
-import {ruta_back} from '../utils/globals.js';
+import { ruta_back } from '../utils/globals.js';
 import '../utils/globals.css';
 import { FaEye, FaEdit } from 'react-icons/fa';
 import { MdOutlineInventory } from "react-icons/md";
@@ -25,10 +25,15 @@ const Inventario = () => {
   const [showEditarInventario, setEditarInventario] = useState(false);
   const [productoSeleccionado, setProductoSeleccionado] = useState(null);
   const [showInventario, setShowInventario] = useState(false);
+  const token = localStorage.getItem('accessToken');
 
   const getLocaciones = async () => {
     try {
-      const res = await axios.get(ruta_back + 'locacion');
+      const res = await axios.get(ruta_back + 'locacion', {
+        headers: {
+          Authorization: token, 
+        }
+      });
       const locacionesUnicas = [...new Set(res.data.map(locacion => locacion.nombre))];
       setLocaciones(locacionesUnicas);
     } catch (error) {
@@ -49,12 +54,12 @@ const Inventario = () => {
     setProductoSeleccionado(producto);
     setShowInventario(true);
   };
-  
+
   const handleEditClick = (producto) => {
     setProductoSeleccionado(producto);
     setEditarInventario(true);
   };
-  
+
   const handleChangeClick = (producto) => {
     setProductoSeleccionado(producto);
     setModificarInventario(true);
@@ -66,14 +71,18 @@ const Inventario = () => {
     } catch (error) {
       console.log(error);
     }
-  setModificarInventario(false);
-  setEditarInventario(false);
+    setModificarInventario(false);
+    setEditarInventario(false);
   };
 
 
   const getProductos = async () => {
     try {
-      const res = await axios.get(ruta_back + 'inventario');
+      const res = await axios.get(ruta_back + 'inventario', {
+        headers: {
+          Authorization: token, 
+        }
+      });
       setProductos(res.data);
     } catch (error) {
       console.log(error);
@@ -82,7 +91,11 @@ const Inventario = () => {
 
   const getCategorias = async () => {
     try {
-      const res = await axios.get(ruta_back + 'tipojoya');
+      const res = await axios.get(ruta_back + 'tipojoya',{
+        headers: {
+          Authorization: token, 
+        }
+      });
       const categoriasUnicas = [...new Set(res.data.map(categoria => categoria.nombre))];
       setCategorias(categoriasUnicas);
     } catch (error) {
@@ -94,7 +107,7 @@ const Inventario = () => {
     const categoria = event.target.value;
     setCategoriaSeleccionada(categoria);
   };
-  
+
   useEffect(() => {
     getProductos();
     getCategorias();
@@ -102,8 +115,10 @@ const Inventario = () => {
   }, []);
 
   const filteredProductos = productos
-  .filter(producto => (categoriaSeleccionada ? producto.tipo_joya === categoriaSeleccionada : true))
-  .filter(producto => (locacionSeleccionada ? producto.local === locacionSeleccionada : true));
+    .filter(producto => (categoriaSeleccionada ? producto.tipo_joya === categoriaSeleccionada : true))
+    .filter(producto => (locacionSeleccionada ? producto.local === locacionSeleccionada : true));
+
+
 
   return (
     <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-table">

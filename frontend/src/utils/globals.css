@@ -44,16 +44,16 @@
 }
 
 form {
-    border: 2px solid #efefef;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     border-radius: 10px;
     padding: 30px;
     min-width: 450px;
-    width: 100%; 
-    height: fit-content;
-    margin-bottom: 50px;
+    width: 100%;
     box-sizing: border-box;
     background-color: transparent;
-    justify-content: center;
   }
   
   form div {
@@ -76,7 +76,7 @@ button[type='submit'] {
     width: 100%;
     max-width: 250px;
     height: 5vh;
-    margin-top: 5px;
+    margin-top: 15px;
 }
 .button-exit {
     background-color: rgba(7, 96, 196, 0.7);
