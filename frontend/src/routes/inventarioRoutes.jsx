@@ -11,6 +11,8 @@ import AgregarProducto from '../Pages/Agregar_Producto';
 import Locaciones from '../Pages/Locaciones';
 import AgregarLocacion from '../Pages/Agregar_Locacion';
 import CargaDatos from '../Pages/CargaDatos';
+import LogInventario from '../Pages/LogInventario';
+import Transito from '../Pages/Transito';
 
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
           <Route path="/locaciones/agregar-locacion" element={<AgregarLocacion />} />
           <Route path="/joyas" element={<Inventario />} />
           <Route path="/carga-datos" element={<CargaDatos />} />
+          <Route path="/transito" element={<Transito/>} />
+          <Route path="/registros" element={<LogInventario/>} />
         </Routes>
       </Container>
     </Layout>

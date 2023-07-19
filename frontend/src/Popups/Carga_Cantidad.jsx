@@ -10,10 +10,14 @@ const Carga_Cantidad = ({ joyas, onCancel, onSubmit }) => {
   const [cantidades, setCantidades] = useState(joyas.map(() => ''));
   const [locacionSeleccionada, setLocacionSeleccionada] = useState('');
   const [locaciones, setLocaciones] = useState([]);
+  const token = localStorage.getItem('accessToken');
 
   const getLocaciones = async () => {
     try {
-      const res = await axios.get(ruta_back + 'locacion');
+      const res = await axios.get(ruta_back + 'locacion',{
+        headers: {
+          Authorization: token, 
+        }});
       const locacionesUnicas = [...new Set(res.data.map(locacion => locacion.nombre))];
       setLocaciones(locacionesUnicas);
     } catch (error) {
@@ -34,7 +38,11 @@ const Carga_Cantidad = ({ joyas, onCancel, onSubmit }) => {
     }
 
     try {
-        const inventario = await axios.get(ruta_back + 'inventario');
+        const inventario = await axios.get(ruta_back + 'inventario',{
+          headers: {
+            Authorization: token, 
+          }
+        });
         const inventarioFiltrado = inventario.data.filter(
             (item) => item.local?.trim() === locacionSeleccionada?.trim() &&
               joyas.some((joya) => joya.nombre === item.joya)
@@ -57,7 +65,11 @@ const Carga_Cantidad = ({ joyas, onCancel, onSubmit }) => {
                 const nuevaCantidad = cantidadActual + cantidadInventario;
             
                 try{
-                    const res = await axios.get(ruta_back + 'inventario/' + inventarioItem.id);
+                    const res = await axios.get(ruta_back + 'inventario/' + inventarioItem.id,{
+                      headers: {
+                        Authorization: token, 
+                      }
+                    });
                     const producto_cambiar = res.data;
                     console.log(producto_cambiar);
                     try{
@@ -67,10 +79,17 @@ const Carga_Cantidad = ({ joyas, onCancel, onSubmit }) => {
                             cantidad: nuevaCantidad,
                             precio_venta: producto_cambiar.precio_venta,
                             deleted: false
+                        },{
+                          headers: {
+                            Authorization: token, 
+                          }
                         });
 
                         try{
-                          const res = await axios.get(ruta_back + 'locacion');
+                          const res = await axios.get(ruta_back + 'locacion',{
+                            headers: {
+                              Authorization: token, 
+                            }});
                           const local = res.data.find((local) => local.nombre === locacionSeleccionada);
                           console.log(locacionSeleccionada);
                           console.log(local);
@@ -84,6 +103,10 @@ const Carga_Cantidad = ({ joyas, onCancel, onSubmit }) => {
                             fecha_transaccion: fechaHoyFormateada,
                             valor_transaccion: 999999,
                             responsable_transaccion: 'BASTIAN ONETTO',
+                          },{
+                            headers: {
+                              Authorization: token, 
+                            }
                           }); 
                         }catch (error) {
                           console.log(error);
@@ -100,11 +123,19 @@ const Carga_Cantidad = ({ joyas, onCancel, onSubmit }) => {
                 }
             } else {
               try{
-                const res = await axios.get(ruta_back + 'locacion');
+                const res = await axios.get(ruta_back + 'locacion',{
+                  headers: {
+                    Authorization: token, 
+                  }
+                });
                 const locacion = res.data.find((locacion) => locacion.nombre === locacionSeleccionada);
-                const res2 = await axios.get(ruta_back + 'inventario');
+                const res2 = await axios.get(ruta_back + 'inventario',{
+                  headers: {
+                    Authorization: token, 
+                  }
+                });
                 const producto_auxiliar = res2.data.find((item) => joya.nombre === item.joya);
-                console.log("El producto auxiliar: " + {producto_auxiliar});
+                //console.log("El producto auxiliar: " + {producto_auxiliar});
 
                 await axios.post(ruta_back + 'inventario', {
                       id_locacion: locacion.id,
@@ -112,10 +143,18 @@ const Carga_Cantidad = ({ joyas, onCancel, onSubmit }) => {
                       cantidad: parseInt(cantidades[index], 10),
                       precio_venta: producto_auxiliar.precio_venta,
                       deleted: false
+                      },{
+                        headers: {
+                          Authorization: token, 
+                        }
                       });
 
                       try{
-                        const res = await axios.get(ruta_back + 'inventario');
+                        const res = await axios.get(ruta_back + 'inventario',{
+                          headers: {
+                            Authorization: token, 
+                          }
+                        });
                         const last = res.data[res.data.length - 1];
                         console.log(last);
                         console.log(joya.nombre);
@@ -130,6 +169,10 @@ const Carga_Cantidad = ({ joyas, onCancel, onSubmit }) => {
                           fecha_transaccion: fechaHoyFormateada,
                           valor_transaccion: 999999,
                           responsable_transaccion: 'BASTIAN ONETTO',
+                        },{
+                          headers: {
+                            Authorization: token, 
+                          }
                         }); 
                       }catch (error) {
                         console.log(error);

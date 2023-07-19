@@ -15,7 +15,8 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
   const [productoReal, setProductoReal] = useState();
   const [submitting, setSubmitting] = useState(false);
   const token = localStorage.getItem('accessToken');
-
+  const user = localStorage.getItem('user');
+  const userData = JSON.parse(user); // Convertir el string a un objeto
 
   const getLocaciones = async () => {
     try {
@@ -76,6 +77,10 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
             cantidad: productoReal.cantidad - quantity,
             precio_venta: productoReal.precio_venta,
             deleted: false
+          }, {
+            headers: {
+              Authorization: token, 
+            }
           });
           // Obtener la fecha de hoy
           const fechaHoy = new Date();
@@ -97,13 +102,44 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
             fecha_transaccion: fechaHoyFormateada,
             valor_transaccion: 99999,
             responsable_transaccion: 'ALEN GALINDO',
-          });
+          }
            
-          },{
+          ,{
             headers: {
               Authorization: token, // No incluye el prefijo "Bearer"
             }
-          }); 
+          });
+          console.log(product)
+          console.log(productoReal)
+      
+          const res = await axios.get(ruta_back + 'joya/' + productoReal.id_joya,{
+            headers: {
+              Authorization: token, // No incluye el prefijo "Bearer"
+            }
+          });
+          const res2 = await axios.get(ruta_back + 'locacion',{
+            headers: {
+              Authorization: token, // No incluye el prefijo "Bearer"
+            }
+          });
+          const localReal = res2.data
+            .filter(local => (location ? local.nombre === location : true))[0]
+          console.log(userData);
+          await axios.post(ruta_back + 'transito', {
+            id_joya: productoReal.id_joya,
+            cantidad: Number(quantity),
+            id_tipo_joya: res.data.id_tipo_joya,
+            id_origen: productoReal.id_locacion,
+            id_destino: localReal.id,
+            fecha_salida: fechaHoyFormateada,
+            id_responsable: userData.data.id,
+            deleted: false,
+          },
+          {
+            headers:{
+              Authorization: token,
+            }
+          });
     
         } catch (error) {
           console.log(error);
@@ -137,6 +173,10 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
                     cantidad: Number(producto_cambiar.cantidad) + Number(quantity),
                     precio_venta: producto_cambiar.precio_venta,
                     deleted: false
+                  }, {
+                    headers: {
+                      Authorization: token, 
+                    }
                   }); 
                 } catch (error) {
                   console.log(error);

@@ -26,10 +26,15 @@ const LogInventario = () => {
   const [productoSeleccionado, setProductoSeleccionado] = useState(null);
   const [showInventario, setShowInventario] = useState(false);
   const [logInventario, setLogInventario] = useState([]);
+  const token = localStorage.getItem('accessToken');
 
   const getLocaciones = async () => {
     try {
-      const res = await axios.get(ruta_back + 'locacion');
+      const res = await axios.get(ruta_back + 'locacion', {
+        headers: {
+          Authorization: token, 
+        }
+      });
       const locacionesUnicas = [...new Set(res.data.map(locacion => locacion.nombre))];
       setLocaciones(locacionesUnicas);
     } catch (error) {
@@ -73,7 +78,11 @@ const LogInventario = () => {
 
 const getLogInventario = async () => {
     try {
-        const res = await axios.get(ruta_back + 'log_inventario');
+        const res = await axios.get(ruta_back + 'log_inventario', {
+          headers: {
+            Authorization: token, 
+          }
+        });
         const flippedRes = res.data.reverse();
         setLogInventario(res.data);
         console.log(res.data);
@@ -86,7 +95,11 @@ const getLogInventario = async () => {
 
   const getProductos = async () => {
     try {
-      const res = await axios.get(ruta_back + 'inventario');
+      const res = await axios.get(ruta_back + 'inventario', {
+        headers: {
+          Authorization: token, 
+        }
+      });
       setProductos(res.data);
     } catch (error) {
       console.log(error);
@@ -95,7 +108,11 @@ const getLogInventario = async () => {
 
   const getCategorias = async () => {
     try {
-      const res = await axios.get(ruta_back + 'tipojoya');
+      const res = await axios.get(ruta_back + 'tipojoya', {
+        headers: {
+          Authorization: token, 
+        }
+      });
       const categoriasUnicas = [...new Set(res.data.map(categoria => categoria.nombre))];
       setCategorias(categoriasUnicas);
     } catch (error) {

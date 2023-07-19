@@ -31,7 +31,6 @@ public class TransitoService {
     public ResponseEntity<TransitoEntity> update_transito(TransitoEntity transito, int id){
         return transitoRepository.findById(id).map(transito_data -> {
             transito_data.setCantidad(transito.getCantidad());
-            transito_data.setFecha_recepcion(transito.getFecha_recepcion());
             transito_data.setFecha_salida(transito.getFecha_salida());
             transito_data.setId_origen(transito.getId_origen());
             transito_data.setId_destino(transito.getId_destino());

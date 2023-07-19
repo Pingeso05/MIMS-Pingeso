@@ -51,4 +51,7 @@ public class UserDetailsImpl implements UserDetails {
     public String getNombre(){
         return usuario.getNombre();
     }
+    public int getId(){
+        return usuario.getId();
+    }
 }

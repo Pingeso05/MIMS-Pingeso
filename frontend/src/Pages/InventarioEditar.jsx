@@ -19,6 +19,7 @@ const EditarProducto = () => {
   const [locaciones, setLocaciones] = useState([]);
   const [joyas, setJoyas] = useState([]);
   const [joyaSeleccionada, setJoyaSeleccionada] = useState('');
+  const token = localStorage.getItem('accessToken');
 
 
   const getLocaciones = async () => {

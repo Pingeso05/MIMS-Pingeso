@@ -11,6 +11,7 @@ const EditarLocacion = () => {
 
   const [nombre, setNombre] = useState('');
   const [direccion, setDireccion] = useState('');
+  const token = localStorage.getItem('accessToken');
 
   const getLocacion = async () => {
     try {

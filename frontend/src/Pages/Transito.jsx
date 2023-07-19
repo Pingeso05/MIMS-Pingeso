@@ -26,10 +26,15 @@ const Transito = () => {
   const [showEditarInventario, setEditarInventario] = useState(false);
   const [productoSeleccionado, setProductoSeleccionado] = useState(null);
   const [showInventario, setShowInventario] = useState(false);
+  const token = localStorage.getItem('accessToken');
 
   const getLocaciones = async () => {
     try {
-      const res = await axios.get(ruta_back + 'locacion');
+      const res = await axios.get(ruta_back + 'locacion', {
+        headers: {
+          Authorization: token, 
+        }
+      });
       const locacionesUnicas = [...new Set(res.data.map(locacion => locacion.nombre))];
       setLocaciones(locacionesUnicas);
     } catch (error) {
@@ -78,7 +83,11 @@ const Transito = () => {
 
   const getProductos = async () => {
     try {
-      const res = await axios.get(ruta_back + 'transito');
+      const res = await axios.get(ruta_back + 'transito', {
+        headers: {
+          Authorization: token, 
+        }
+      });
       setProductos(res.data);
       console.log(res.data);
     } catch (error) {
@@ -88,7 +97,11 @@ const Transito = () => {
 
   const getCategorias = async () => {
     try {
-      const res = await axios.get(ruta_back + 'tipojoya');
+      const res = await axios.get(ruta_back + 'tipojoya', {
+        headers: {
+          Authorization: token, 
+        }
+      });
       const categoriasUnicas = [...new Set(res.data.map(categoria => categoria.nombre))];
       setCategorias(categoriasUnicas);
     } catch (error) {
@@ -171,12 +184,12 @@ const Transito = () => {
           <Table bordered hover className='table'>
             <thead>
               <tr className='cabeceras'>
+                <th>#</th>
                 <th>JOYA</th>
                 <th>TIPO JOYA</th>
                 <th>CANTIDAD</th>
                 <th>ORIGEN</th>
                 <th>DESTINO</th>
-                <th>NÚMERO TRANSACCION</th>
                 <th>FECHA SALIDA</th>
                 <th>RESPONSABLE</th>
                 <th>OPCIONES</th>
@@ -186,14 +199,12 @@ const Transito = () => {
             <tbody>
               {filteredProductos.map((producto, index) => (
                 <tr key={index}>
-                  <td>
-                  {producto.joya}
-                  </td>
+                  <td>{producto.id}</td>
+                  <td>{producto.joya}</td>
                   <td>{producto.tipo_producto}</td>
                   <td>{Number(producto.cantidad).toLocaleString()}</td>
                   <td>{producto.origen}</td>
                   <td>{producto.destino}</td>
-                  <td>{producto.numero_transaccion}</td>
                   <td>{producto.fecha_salida}</td>
                   <td>{producto.responsable}</td>
                   <td>

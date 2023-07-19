@@ -23,8 +23,8 @@ public class TransitoEntity {
     @Column(name = "cantidad", nullable = false)
     private int cantidad;
 
-    @Column(name = "tipo_producto", nullable = false)
-    private int tipo_producto;
+    @Column(name = "id_tipo_joya", nullable = false)
+    private int id_tipo_joya;
 
     @Column(name = "id_origen", nullable = false)
     private int id_origen;
@@ -32,14 +32,8 @@ public class TransitoEntity {
     @Column(name = "id_destino", nullable = false)
     private int id_destino;
 
-    @Column(name = "numero_transaccion", nullable = false)
-    private int numero_transaccion;
-
     @Column(name = "fecha_salida", nullable = false)
     private String fecha_salida;
-
-    @Column(name = "fecha_recepcion", nullable = false)
-    private String fecha_recepcion;
 
     @Column(name = "id_responsable", nullable = false)
     private int id_responsable;
