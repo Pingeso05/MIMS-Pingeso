@@ -46,11 +46,11 @@ const Locaciones = () => {
   return (
     <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-table">
       <div>
-        <h1 className='titulo' >Locaciones</h1>      
+        <h1 className='titulo' >LOCACIONES</h1>      
 
         <Row style={{ marginTop: '20px' }}>
           <Col className="left-col" md={6}>
-            <span style={{ marginRight: '10px', fontWeight: 'bold' }}>Locaciones:</span>
+            <span style={{ marginRight: '10px', fontWeight: 'bold' }}>LOCACIONES:</span>
             <span >{locaciones.length}</span>
           </Col>
           <Col className="right-col" md={6}>
@@ -65,11 +65,11 @@ const Locaciones = () => {
               <Table bordered hover className='table'>
               <thead >
                   <tr className='cabeceras'>
-                      <th>Nombre</th>
-                      <th>Dirección</th>
-                      <th>Comuna</th>
-                      <th>Region</th>
-                      <th>Opciones</th>
+                      <th>NOMBRE</th>
+                      <th>DIRECCION</th>
+                      <th>COMUNA</th>
+                      <th>REGIÓN</th>
+                      <th>OPCIONES</th>
                   </tr>
               </thead>
               <tbody>

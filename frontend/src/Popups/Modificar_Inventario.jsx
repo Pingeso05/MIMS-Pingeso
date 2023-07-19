@@ -364,7 +364,7 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
                     <select value={location}
                       onChange={handleLocationChange}
                     >
-                      <option value="">SELECCIONE TIPO DE TRANSACCION</option>
+                      <option value="">SELECCIONE DESTINO</option>
                       {otrasLocaciones.map((locacion, index) => (
                         <option value={locacion.nombre} key={index}>{locacion.nombre}</option>
                       ))}

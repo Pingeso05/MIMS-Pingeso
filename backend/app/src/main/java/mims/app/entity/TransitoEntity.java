@@ -23,6 +23,9 @@ public class TransitoEntity {
     @Column(name = "cantidad", nullable = false)
     private int cantidad;
 
+    @Column(name = "tipo_producto", nullable = false)
+    private int tipo_producto;
+
     @Column(name = "id_origen", nullable = false)
     private int id_origen;
 
