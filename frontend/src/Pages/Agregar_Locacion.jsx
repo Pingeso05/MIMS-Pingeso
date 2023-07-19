@@ -94,11 +94,11 @@ const AgregarLocacion = () => {
   return (
     <Container style={{ textAlign: 'center' }} className="container-add-edit">
       <div>
-        <h2 className="titulo">Agregar Locación</h2>
+        <h2 className="titulo">AGREGAR LOCACION</h2>
 
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="nombreProducto">Nombre de la Locación:</label>
+            <label htmlFor="nombreProducto">NOMBRE DE LOCACIÓN:</label>
             <input
               type="text"
               id="nombreLocacion"
@@ -108,13 +108,13 @@ const AgregarLocacion = () => {
           </div>
 
           <div>
-            <label htmlFor="region">Región:</label>
+            <label htmlFor="region">REGIÓN:</label>
             <select
               id="region"
               value={region}
               onChange={(e) => handleSelectedRegion(e)}
             >
-              <option value="">Seleccione una Región</option>
+              <option value="">SELECCIONE REGIÓN</option>
               {regiones.map((region) => (
                 <option value={region.id} key={region.id}>{region.nombre}</option>
               ))}
@@ -122,7 +122,7 @@ const AgregarLocacion = () => {
           </div>
 
           <div>
-            <label htmlFor="comuna">Comuna:</label>
+            <label htmlFor="comuna">COMUNA:</label>
             <select
                 id="comuna"
                 value={comuna}
@@ -138,7 +138,7 @@ const AgregarLocacion = () => {
           </div>
 
           <div>
-            <label htmlFor="direccion">Dirección:</label>
+            <label htmlFor="direccion">DIRECCIÓN:</label>
             <input
               type="text"
               id="direccion"
@@ -147,7 +147,7 @@ const AgregarLocacion = () => {
             />
           </div>
 
-          <button type="submit">Agregar Local</button>
+          <button type="submit">AGREGAR LOCACION</button>
         </form>
 
         <div className="separador"> </div>

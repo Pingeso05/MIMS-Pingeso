@@ -51,7 +51,7 @@ const TipoJoya = () => {
 
   return (
     <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-table">
-      <h1 className='titulo' >Tipos de Joya</h1>
+      <h1 className='titulo' >TIPOS DE JOYA</h1>
 
       <Row style={{ marginTop: '20px' }}>
           <Col className="left-col" md={6}>
@@ -70,9 +70,9 @@ const TipoJoya = () => {
         <Table bordered hover className='table'>
         <thead className='cabeceras'>
             <tr >
-                <th>Nombre</th>
-                <th>Material</th>
-                <th>Opciones</th>
+                <th>NOMBRE</th>
+                <th>MATERIAL</th>
+                <th>OPCIONES</th>
             </tr>
         </thead>
         <tbody>
