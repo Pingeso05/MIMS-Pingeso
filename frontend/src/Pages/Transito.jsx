@@ -132,8 +132,9 @@ const Transito = () => {
               ))}
             </select>
           </Col>
-          <Col md={6} style={{ display: 'flex', alignItems: 'left' }}>
+          <Col md={6} style={{ display: 'flex', alignItems: 'left'}}>
             <select className='dropdown-tb'
+              style={{ marginRight: '10px' }}
               value={locacion1Seleccionada}
               onChange={handleLocacion1Change}
             >
