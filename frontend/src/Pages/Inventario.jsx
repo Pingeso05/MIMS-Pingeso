@@ -13,6 +13,7 @@ import { MdOutlineInventory } from "react-icons/md";
 import Modificar_Inventario from '../Popups/Modificar_Inventario';
 import Editar_Inventario from '../Popups/Editar_Inventario';
 import Ver_Inventario from '../Popups/Ver_Inventario';
+import Button from 'react-bootstrap/Button';
 
 const Inventario = () => {
   const [productos, setProductos] = useState([]);
@@ -106,19 +107,19 @@ const Inventario = () => {
 
   return (
     <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-table">
-      <h1 className='titulo' >Lista de productos</h1>
+      <h1 className='titulo' >LISTA DE PRODUCTOS</h1>
       
         
           
 
-      <Row className="fila-dp" style={{ marginTop: '20px' }}>
-        <Col className="columna-dp" style={{ display: 'flex', alignItems: 'left' }}>
+      <Row className="fila-dp" style={{ marginTop: '10px' }}>
+        <Col className="columna-dp" style={{ padding:'5px',display: 'flex', alignItems: 'left' }}>
           <Col md={6} style={{ display: 'flex', alignItems: 'left' }}>
             <select className='dropdown-tb'
               value={categoriaSeleccionada}
               onChange={handleCategoriaChange}
             >
-              <option value="">Categoría</option>
+              <option value="">CATEGORÍA</option>
               {categorias.map((categoria, index) => (
                 <option value={categoria} key={index}>{categoria}</option>
               ))}
@@ -129,34 +130,34 @@ const Inventario = () => {
               value={locacionSeleccionada}
               onChange={handleLocacionChange}
             >
-              <option value="">Local</option>
+              <option value="">LOCAL</option>
               {locaciones.map((locacion, index) => (
                 <option value={locacion} key={index}>{locacion}</option>
               ))}
             </select>
           </Col>
-          <Col md={6} style={{ display: 'flex', alignItems: 'center' }}>
-            <span style={{ marginRight: '10px', fontWeight: 'bold' }}>Productos:</span>
-            <span>{filteredProductos.length}</span>
-          </Col>
-        </Col>
-        <Col className="agregar-pd d-flex justify-content-md-end" >
-           
+          
         </Col>
 
+      </Row>
+      <Row style={{padding:'10px'}}>
+        <Col md={6} style={{ display: 'flex', alignItems: 'center' }}>
+              <span style={{ marginRight: '10px', fontWeight: 'bold' }}>PRODUCTOS:</span>
+              <span>{filteredProductos.length}</span>
+        </Col>
       </Row>
       
           <div style={{ overflow: 'auto', maxHeight: '60vh', marginTop: '20px' }}>
           <Table bordered hover className='table'>
             <thead>
               <tr className='cabeceras'>
-                <th>Joya</th>
-                <th>Cantidad</th>
-                <th>Tipo Joya</th>
-                <th>Local</th>
-                <th className='ocultar-columna'>Precio Costo</th>
-                <th className='ocultar-columna'>Precio Venta</th>
-                <th>Opciones</th>
+                <th>JOYA</th>
+                <th>CANTIDAD</th>
+                <th>TIPO JOYA</th>
+                <th>LOCACION</th>
+                <th className='ocultar-columna'>PRECIO COSTO</th>
+                <th className='ocultar-columna'>PRECIO VENTA</th>
+                <th>OPCIONES</th>
                 
               </tr>
             </thead>
@@ -172,10 +173,15 @@ const Inventario = () => {
                   <td className='ocultar-columna'>${Number(producto.cost).toLocaleString()}</td>
                   <td className='ocultar-columna'>${Number(producto.precio_venta).toLocaleString()}</td>
                   <td>
-                  <div className='icono-columna'>
-                    <FaEye title='Ver detalle' className='icono' onClick={() => handleViewClick(producto)} />
-                    <FaEdit title='Editar Producto' className='icono' onClick={() => handleEditClick(producto)} />
-                    <MdOutlineInventory title='Modificar inventario' className='icono' onClick={() => handleChangeClick(producto)} />
+                  <div>
+                    <Row>
+                      <Col style={{padding:'1px'}}><Button variant="success" onClick={() => handleViewClick(producto)} style={{backgroundColor: 'success', borderRadius: '10', borderColor: 'transparent',fontSize:'10px'}}>DETALLE</Button></Col>
+                      <Col style={{padding:'1px'}}><Button variant="primary" onClick={() => handleEditClick(producto)} style={{backgroundColor: 'danger', borderRadius: '10', borderColor: 'transparent',fontSize:'10px'}}>EDITAR</Button></Col>
+                    </Row>
+                    <Row>
+                    <Col style={{padding:'1px'}}><Button variant="primary" onClick={() => handleChangeClick(producto)} style={{backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent',fontSize:'10px'}}>ACCIONES</Button></Col>
+                    </Row>
+                    
                   </div>
                   </td>
                 </tr>

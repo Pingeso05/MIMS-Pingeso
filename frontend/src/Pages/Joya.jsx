@@ -73,7 +73,7 @@ const Joya = () => {
 
   return (
     <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-table">
-      <h1 className="titulo">Joyas</h1>
+      <h1 className='titulo'>JOYAS</h1>
 
       <Row style={{ marginTop: '20px' }}>
         <Col className="left-col" md={6}>
@@ -107,11 +107,11 @@ const Joya = () => {
       <div style={{ overflow: 'auto', maxHeight: '55vh', marginTop: '20px' }}>
         <Table bordered hover className="table">
           <thead>
-            <tr className="cabeceras">
-              <th>Nombre</th>
-              <th>Tipo de Joya</th>
-              <th>Precio Costo</th>
-              <th>Opciones</th>
+            <tr className='cabeceras'>
+              <th>NOMBRE DE JOYA</th>
+              <th>TIPO JOYA</th>
+              <th>PRECIO COSTO?</th>
+              <th>OPCIONES</th>
             </tr>
           </thead>
           <tbody>

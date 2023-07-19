@@ -13,6 +13,7 @@ import { MdOutlineInventory } from "react-icons/md";
 import Modificar_Inventario from '../Popups/Modificar_Inventario';
 import Editar_Inventario from '../Popups/Editar_Inventario';
 import Ver_Inventario from '../Popups/Ver_Inventario';
+import Button from 'react-bootstrap/Button';
 
 const LogInventario = () => {
   const [productos, setProductos] = useState([]);
@@ -120,7 +121,7 @@ const getLogInventario = async () => {
 
   return (
     <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-table">
-      <h1 className='titulo' >Registros de transacciones</h1>
+      <h1 className='titulo' >REGISTRO DE TRANSACCIONES</h1>
       
         
           
@@ -132,7 +133,7 @@ const getLogInventario = async () => {
               value={categoriaSeleccionada}
               onChange={handleCategoriaChange}
             >
-              <option value="">Categoría</option>
+              <option value="">CATEGORÍA</option>
               {categorias.map((categoria, index) => (
                 <option value={categoria} key={index}>{categoria}</option>
               ))}
@@ -164,15 +165,14 @@ const getLogInventario = async () => {
           <Table bordered hover className='table'>
             <thead>
               <tr className='cabeceras'>
-                <th>Id transaccion</th>
-                <th>Id producto</th>
-                <th>Nombre producto</th>
-                <th>Fecha</th>
-                <th>Responsable transaccion</th>
-                <th>Cantidad</th>
-                <th>Tipo de transaccion</th>
-                <th>Nombre locacion</th>
-                <th>Acciones</th>
+                <th>ID TRANSACCION</th>
+                <th>ID PRODUCTO</th>
+                <th>NOMBRE PRODUCTO</th>
+                <th>FECHA</th>
+                <th>RESPONSABLE</th>
+                <th>CANTIDAD</th>
+                <th>TIPO TRANSACCION</th>
+                <th>ORIGEN TRANSACCION</th>
                 
               </tr>
             </thead>
@@ -189,41 +189,13 @@ const getLogInventario = async () => {
                   <td>{registro.cantidad}</td>
                   <td>{registro.transaccion}</td>
                   <td>{registro.nombre_locacion}</td>
-                  <td>
-                  <div className='icono-columna'>
-                    <FaEye title='Ver detalle' className='icono' />
-                    <FaEdit title='Editar Producto' className='icono'  />
-                    <MdOutlineInventory title='Modificar inventario' className='icono'  />
-                  </div>
-                  </td>
                 </tr>
               ))}
             </tbody>
           </Table>  
         </div>
 
-        {showModificarInventario && (
-        <Modificar_Inventario
-          product={productoSeleccionado}
-          onCancel={() => setModificarInventario(false)}
-          onSubmit={handlePopupSubmit}
-        />
-         )}
-
-        {showEditarInventario && (
-        <Editar_Inventario
-          id={productoSeleccionado.id}
-          onCancel={() => setEditarInventario(false)}
-          onSubmit={handlePopupSubmit}
-        />
-         )}
         
-        {showInventario && (
-        <Ver_Inventario
-          id={productoSeleccionado.id}
-          onCancel={() => setShowInventario(false)}
-        />
-         )}
         </Container>
     );
   };

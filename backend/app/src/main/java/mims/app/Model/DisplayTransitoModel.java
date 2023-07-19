@@ -9,4 +9,5 @@ public interface DisplayTransitoModel {
     public String getNumero_transaccion();
     public String getFecha_salida();
     public String getResponsable();
+    public String getTipo_producto();
 }
