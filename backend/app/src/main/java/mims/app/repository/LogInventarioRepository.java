@@ -13,7 +13,7 @@ public interface LogInventarioRepository extends JpaRepository<LogInventarioEnti
     @Query(value = "SELECT log_inventario.id, " +
                             "log_inventario.id_producto, " +
                             "joya.nombre AS nombre_producto, " +
-                            "log_inventario.responsable_transaccion, " +
+                            "usuario.nombre AS responsable_transaccion, " +
                             "log_inventario.fecha_transaccion, " +
                             "log_inventario.valor_transaccion, " +
                             "log_inventario.cantidad, " +
@@ -22,9 +22,11 @@ public interface LogInventarioRepository extends JpaRepository<LogInventarioEnti
                     "FROM mims.log_inventario, " +
                             "mims.inventario, " +
                             "mims.joya, " +
+                            "mims.usuario, " +
                             "mims.locacion " +
                     "WHERE log_inventario.id_producto = inventario.id " +
                         "AND inventario.id_joya = joya.id " +
+                        "AND log_inventario.responsable_transaccion = usuario.id " +
                         "AND log_inventario.id_locacion = locacion.id", nativeQuery = true)
     ArrayList<DisplayLogInventarioModelInterface> findAllLogInventario();
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useDeferredValue, useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import axios from 'axios';
 import './Modificar_Inventario.css';
@@ -101,7 +101,7 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
             tipo_transaccion: 'SALIDA',
             fecha_transaccion: fechaHoyFormateada,
             valor_transaccion: 99999,
-            responsable_transaccion: 'ALEN GALINDO',
+            responsable_transaccion: userData.data.id,
           }
            
           ,{
@@ -295,8 +295,13 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
               cantidad: quantity,
               tipo_transaccion: 'COMPRA',
               fecha_transaccion: fechaHoyFormateada,
-              valor_transaccion: 99999,
-              responsable_transaccion: 'ALEN GALINDO',
+              valor_transaccion: productoReal.precio_venta,
+              responsable_transaccion: userData.data.id,
+            },
+            {
+              headers:{
+                Authorization: token,
+              }
             });
           } catch (error) {
             console.log(error);

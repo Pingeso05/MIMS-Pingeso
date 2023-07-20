@@ -26,6 +26,8 @@ const CargaDatos = () => {
   const [locacionSeleccionada, setLocacionSeleccionada] = useState('');
   const [locaciones, setLocaciones] = useState([]);
   const token = localStorage.getItem('accessToken');
+  const user = localStorage.getItem('user');
+  const userData = JSON.parse(user); // Convertir el string a un objeto
 
 
   const getJoyas = async () => {

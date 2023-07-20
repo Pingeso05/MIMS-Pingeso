@@ -11,6 +11,8 @@ const Carga_Cantidad = ({ joyas, onCancel, onSubmit }) => {
   const [locacionSeleccionada, setLocacionSeleccionada] = useState('');
   const [locaciones, setLocaciones] = useState([]);
   const token = localStorage.getItem('accessToken');
+  const user = localStorage.getItem('user');
+  const userData = JSON.parse(user); // Convertir el string a un objeto
 
   const getLocaciones = async () => {
     try {
@@ -96,13 +98,13 @@ const Carga_Cantidad = ({ joyas, onCancel, onSubmit }) => {
                           await axios.post(ruta_back + 'log_inventario', {
                             id_producto: producto_cambiar.id,
                             nombre_producto: joya.nombre,
-                            tipo_producto: 1,
+                            tipo_producto: producto_cambiar.id_joya,
                             nombre_locacion: producto_cambiar.id_locacion,
                             cantidad: cantidadActual,
                             tipo_transaccion: 'CARGA',
                             fecha_transaccion: fechaHoyFormateada,
-                            valor_transaccion: 999999,
-                            responsable_transaccion: 'BASTIAN ONETTO',
+                            valor_transaccion: producto_cambiar.precio_venta,
+                            responsable_transaccion: userData.data.id,
                           },{
                             headers: {
                               Authorization: token, 
@@ -168,7 +170,7 @@ const Carga_Cantidad = ({ joyas, onCancel, onSubmit }) => {
                           tipo_transaccion: 'CARGA',
                           fecha_transaccion: fechaHoyFormateada,
                           valor_transaccion: 999999,
-                          responsable_transaccion: 'BASTIAN ONETTO',
+                          responsable_transaccion: userData.data.id,
                         },{
                           headers: {
                             Authorization: token, 
