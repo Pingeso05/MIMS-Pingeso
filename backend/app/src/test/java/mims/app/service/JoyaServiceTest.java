@@ -53,6 +53,12 @@ class JoyaServiceTest {
             public String getTipo_joya() {
                 return "tipo1";
             }
+
+            @Override
+            public float getCost() {
+                // TODO Auto-generated method stub
+                throw new UnsupportedOperationException("Unimplemented method 'getCost'");
+            }
         };
         joyas.add(joya);
 
