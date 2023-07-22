@@ -27,6 +27,7 @@ public class JoyaService {
         return joyaRepository.findById(id).map(joya_data -> {
             joya_data.setNombre(joya.getNombre());
             joya_data.setId_tipo_joya(joya.getId_tipo_joya());
+            joya_data.setCost(joya.getCost());
             JoyaEntity joya_updated = joyaRepository.save(joya_data);
             return ResponseEntity.ok().body(joya_updated);
         }).orElse(ResponseEntity.notFound().build());
