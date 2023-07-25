@@ -86,6 +86,11 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="navbar__item">
+            <Link to="/usuarios" className={`navbar__link ${pathname === '/usuarios' ? 'active' : ''}`}>
+              Usuarios
+            </Link>
+          </li>
+          <li className="navbar__item">
             <Link to="/inventario/agregar-producto" className={`navbar__link ${pathname === '/inventario/agregar-producto' ? 'active' : ''}`}>
               Agregar Producto
             </Link>

@@ -13,6 +13,8 @@ import AgregarLocacion from '../Pages/Agregar_Locacion';
 import CargaDatos from '../Pages/CargaDatos';
 import LogInventario from '../Pages/LogInventario';
 import Transito from '../Pages/Transito';
+import Administrar_Usuarios from '../Pages/Administrar_Usuarios';
+import AgregarUsuario from '../Pages/AgregarUsuario';
 
 
 function App() {
@@ -33,6 +35,8 @@ function App() {
           <Route path="/carga-datos" element={<CargaDatos />} />
           <Route path="/transito" element={<Transito/>} />
           <Route path="/registros" element={<LogInventario/>} />
+          <Route path="/usuarios" element={<Administrar_Usuarios/>} />
+          <Route path="/usuarios/agregar-usuario" element={<AgregarUsuario/>} />
         </Routes>
       </Container>
     </Layout>

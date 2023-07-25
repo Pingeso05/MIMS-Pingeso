@@ -1,5 +1,7 @@
 package mims.app.controller;
 
+import mims.app.Model.DisplayJoyaModelInterface;
+import mims.app.Model.DisplayUsuarioModelInterface;
 import mims.app.entity.UsuarioEntity;
 import mims.app.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +20,8 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @GetMapping
-    public ResponseEntity<ArrayList<UsuarioEntity>> get_all() {
-        return usuarioService.get_all_not_deleted();
+    public ArrayList<DisplayUsuarioModelInterface> get_all() {
+        return usuarioService.get_all_usuarios_not_deleted();
     }
 
     @GetMapping("/id")

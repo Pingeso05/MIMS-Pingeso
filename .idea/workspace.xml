@@ -5,13 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="835b27f2-3706-4a3c-9fc9-3c37dafb9c47" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/entity/RolEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/security/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/security/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/Model/DisplayUsuarioModelInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/Model/DisplayUsuarioModelInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/controller/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/entity/UsuarioEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/entity/UsuarioEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/repository/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/repository/UsuarioRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/service/UsuarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Components/NavBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/NavBar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/routes/inventarioRoutes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/routes/inventarioRoutes.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -31,26 +45,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;d2a57dc1d883fd21fb9951699df71cc7&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "jdk.selected.JAVA_MODULE": "corretto-11",
+    "last_opened_file_path": "C:/Users/Cristobal/Documents/DatabaseScript.java",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "spring.configuration.checksum": "d2a57dc1d883fd21fb9951699df71cc7",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager">
+}]]></component>
+  <component name="RunManager" selected="Spring Boot.AppApplication">
+    <configuration name="DatabaseScript" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="DatabaseScript" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AppApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="app" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="mims.app.AppApplication" />
@@ -58,6 +80,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.DatabaseScript" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -71,6 +98,8 @@
       <workItem from="1689052091682" duration="1622000" />
       <workItem from="1689201548252" duration="1118000" />
       <workItem from="1689202850051" duration="169000" />
+      <workItem from="1690262473399" duration="2941000" />
+      <workItem from="1690265435259" duration="1688000" />
     </task>
     <servers />
   </component>

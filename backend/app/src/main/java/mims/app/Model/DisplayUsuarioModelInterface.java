@@ -5,6 +5,6 @@ public interface DisplayUsuarioModelInterface {
     int getId();
     String getNombre();
     String getApellido();
-    String getCorreo();
-    String getTelefono();
+    String getEmail();
+    String getRol();
 }
