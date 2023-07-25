@@ -1,5 +1,6 @@
 package mims.app.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import mims.app.Model.DisplayJoyaModelInterface;
 import mims.app.Model.DisplayUsuarioModelInterface;
 import mims.app.entity.UsuarioEntity;
@@ -24,8 +25,8 @@ public class UsuarioController {
         return usuarioService.get_all_usuarios_not_deleted();
     }
 
-    @GetMapping("/id")
-    public ResponseEntity<UsuarioEntity> get_by_id(int id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<UsuarioEntity> get_by_id(@PathVariable Integer id) {
         return usuarioService.get_by_id(id);
     }
 
@@ -34,6 +35,11 @@ public class UsuarioController {
         return usuarioService.save(usuario);
     }
 
+    @PostMapping("/pass/{id}")
+    public ResponseEntity<UsuarioEntity> changepassword(@RequestBody JsonNode requestBody, @PathVariable Integer id) {
+        String password = requestBody.get("password").asText();
+        return usuarioService.changepassword(password, id);
+    }
     @PutMapping("/{id}")
     public ResponseEntity<UsuarioEntity> update(@RequestBody UsuarioEntity usuario, @PathVariable int id) {
         return usuarioService.update(usuario, id);

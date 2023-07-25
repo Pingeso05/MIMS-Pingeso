@@ -1,42 +1,96 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import {ruta_back, ruta_front} from '../utils/globals.js';
 import '../utils/globals.css';
 
 const AgregarUsuario = () => {
-  const [nombreTipo, setNombreTipo] = useState('');
-  const [materialTipo, setMaterialTipo] = useState('');
+  const [nombreSeleccionado, setNombreSeleccionado] = useState('');
+  const [apellidoSeleccionado, setApellidoSeleccionado] = useState('');
+  const [emailSeleccionado, setEmailSeleccionado] = useState('');
+  const [passwordSeleccionado, setPasswordSeleccionado] = useState('');
+  const [roles, setRoles] = useState([]);
+  const [rolSeleccionado, setRolSeleccionado] = useState('');
+  const [usuarios, setUsuarios] = useState([]);
   const token = localStorage.getItem('accessToken');
-  
+
+  const getUsuarios = async () => {
+    try {
+      const res = await axios.get(ruta_back + 'usuario',{
+        headers: {
+          Authorization: token, 
+        }
+      });
+      setUsuarios(res.data);
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getRoles = async () => {
+    try {
+      const res = await axios.get(ruta_back + 'rol',{
+        headers: {
+          Authorization: token, 
+        }
+      });
+      setRoles(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (nombreTipo.trim() === '' || materialTipo.trim() === '') {
+    if (nombreSeleccionado.trim() === '' || apellidoSeleccionado.trim() === '' || emailSeleccionado.trim() === '' || passwordSeleccionado.trim() === '' || rolSeleccionado.trim() === '') {
       alert('Por favor, completa todos los campos');
       return;
     }
 
     try {
-      await axios.post(ruta_back + 'tipojoya', {
-        nombre: nombreTipo,
-        material: materialTipo,
+      
+      getUsuarios();
+      const buscarEmail = usuarios
+      .filter(usuario => (emailSeleccionado ? usuario.email === emailSeleccionado : true));
+      if(buscarEmail.length === 0){
+      await axios.post(ruta_back + 'usuario', {
+        nombre: nombreSeleccionado,
+        apellido: apellidoSeleccionado,
+        email: emailSeleccionado,
+        password: passwordSeleccionado,
+        rol: rolSeleccionado,
+        deleted: false
       },{
         headers: {
           Authorization: token, 
         }
       });
 
-      setNombreTipo('');
-      setMaterialTipo('');
+     
+      setUsuarios([]);
+      setNombreSeleccionado('');
+      setApellidoSeleccionado('');
+      setEmailSeleccionado('');
+      setPasswordSeleccionado('');
+      setRolSeleccionado('');
+      alert('Usuario agregado exitosamente');
+      window.location.href = ruta_front + 'usuarios';
 
-      alert('Tipo de joya agregado exitosamente');
-      window.location.href = ruta_front + 'tipos-de-joya';
+    } else {
+      alert('El email ya está registrado, por favor utilice otro');
+      return;
+    }
     } catch (error) {
       console.log(error);
-      alert('Ocurrió un error al agregar el tipo de joya');
+      alert('Ocurrió un error al agregar el producto');
     }
+
   };
+
+  useEffect(() => {
+    getRoles();
+  }, []);
 
   return (
     <Container style={{ textAlign: 'center' }} className="container-add-edit">
@@ -45,28 +99,63 @@ const AgregarUsuario = () => {
 
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="nombreTipo">Nombre del Tipo:</label>
+            <label htmlFor="nombre">NOMBRE:</label>
             <input
               type="text"
-              id="nombreTipo"
-              value={nombreTipo}
-              onChange={(e) => setNombreTipo(e.target.value)}
+              id="nombre"
+              value={nombreSeleccionado}
+              onChange={(e) => setNombreSeleccionado(e.target.value)}
             />
           </div>
 
           <div>
-            <label htmlFor="materialTipo">Material:</label>
+            <label htmlFor="apellido">APELLIDO:</label>
             <input
               type="text"
-              id="materialTipo"
-              value={materialTipo}
-              onChange={(e) => setMaterialTipo(e.target.value)}
+              id="apellido"
+              value={apellidoSeleccionado}
+              onChange={(e) => setApellidoSeleccionado(e.target.value)}
             />
+          </div>
+
+          <div>
+            <label htmlFor="email">EMAIL:</label>
+            <input
+              type="email"
+              id="email"
+              value={emailSeleccionado}
+              onChange={(e) => setEmailSeleccionado(e.target.value)}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="password">CONTRASEÑA:</label>
+            <input
+              type="password"
+              id="password"
+              value={passwordSeleccionado}
+              onChange={(e) => setPasswordSeleccionado(e.target.value)}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="rol">ROL:</label>
+            <select
+              id="rol"
+              value={rolSeleccionado}
+              onChange={(e) => setRolSeleccionado(e.target.value)}
+            >
+              <option value="">SELECCIONE ROL</option>
+                {roles.map((rol,index) => (
+                  <option value={rol.id} key={index}>
+                    {rol.nombre}
+                  </option>
+                ))}
+            </select>
           </div>
 
           <button type="submit">Agregar Usuario</button>
         </form>
-
         <div className="separador"> </div>
       </div>
     </Container>

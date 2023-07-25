@@ -32,6 +32,15 @@ public class UsuarioService {
         return ResponseEntity.ok(usuarioRepository.save(usuario));
     }
 
+    public ResponseEntity<UsuarioEntity> changepassword(String password, int id){
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String contrasenaEncriptada = passwordEncoder.encode(password);
+        return usuarioRepository.findById(id).map(usuario_data -> {
+            usuario_data.setPassword(contrasenaEncriptada);
+            UsuarioEntity usuario_updated = usuarioRepository.save(usuario_data);
+            return ResponseEntity.ok().body(usuario_updated);
+        }).orElse(ResponseEntity.notFound().build());
+    }
     public ResponseEntity<UsuarioEntity> update(UsuarioEntity usuario, int id) {
         return usuarioRepository.findById(id).map(usuario_data -> {
             usuario_data.setNombre(usuario.getNombre());

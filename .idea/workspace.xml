@@ -5,15 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="835b27f2-3706-4a3c-9fc9-3c37dafb9c47" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/entity/RolEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/Model/DisplayUsuarioModelInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/Model/DisplayUsuarioModelInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/controller/UsuarioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/entity/UsuarioEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/entity/UsuarioEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/repository/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/repository/UsuarioRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/service/UsuarioService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Components/NavBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/NavBar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/routes/inventarioRoutes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/routes/inventarioRoutes.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/AgregarUsuario.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/AgregarUsuario.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +52,7 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "corretto-11",
     "last_opened_file_path": "C:/Users/Cristobal/Documents/DatabaseScript.java",
@@ -66,6 +65,13 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="mims.app.controller" />
+      <recent name="mims.app.service" />
+      <recent name="mims.app.repository" />
+    </key>
+  </component>
   <component name="RunManager" selected="Spring Boot.AppApplication">
     <configuration name="DatabaseScript" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="DatabaseScript" />
@@ -100,6 +106,7 @@
       <workItem from="1689202850051" duration="169000" />
       <workItem from="1690262473399" duration="2941000" />
       <workItem from="1690265435259" duration="1688000" />
+      <workItem from="1690305915907" duration="4181000" />
     </task>
     <servers />
   </component>
