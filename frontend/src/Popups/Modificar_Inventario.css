@@ -63,3 +63,25 @@
     width: 100%;
   }
   
+  /* Estilos específicos para la tabla de joyas */
+.tabla-joyas {
+  width: 100%; /* Ajustar el ancho de la tabla al 100% del contenedor */
+  border-collapse: collapse; /* Colapsar bordes de celda para que se vea más limpio */
+
+  th,
+  td {
+    border: 1px solid #ccc; /* Agregar bordes a las celdas */
+    padding: 8px; /* Ajustar el relleno (padding) de las celdas */
+    text-align: center; /* Centrar el contenido de las celdas */
+  }
+}
+
+/* Estilos específicos para el input de cantidad */
+.cantidad-input {
+  width: 50px; /* Ajustar el ancho del input de cantidad */
+  padding: 5px; /* Ajustar el relleno (padding) del input */
+  text-align: center; /* Centrar el contenido del input */
+  border: 1px solid #ccc; /* Agregar un borde al input */
+  border-radius: 5px; /* Agregar bordes redondeados */
+  margin-right: 5px; /* Añadir un pequeño margen a la derecha para separar las celdas */
+}
