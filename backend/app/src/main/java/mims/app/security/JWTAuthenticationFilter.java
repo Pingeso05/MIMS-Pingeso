@@ -49,8 +49,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         String message = "Login Success";
         String user = userDetails.getNombre();
-
-        String jsonResponse = "{\"message\": \"" + message + "\", \"user\": \"" + user + "\"}";
+        int userId = userDetails.getId();
+        String jsonResponse = "{\"message\": \"" + message + "\", \"user\": \"" + user + "\" , \"userId\": \"" + userId + "\"}";
         response.getWriter().write(jsonResponse);
         response.getWriter().flush();
 

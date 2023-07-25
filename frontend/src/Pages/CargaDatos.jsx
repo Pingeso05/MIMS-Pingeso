@@ -25,12 +25,18 @@ const CargaDatos = () => {
   const [showCargaCantidad, setShowCargaCantidad] = useState(false);
   const [locacionSeleccionada, setLocacionSeleccionada] = useState('');
   const [locaciones, setLocaciones] = useState([]);
-
+  const token = localStorage.getItem('accessToken');
+  const user = localStorage.getItem('user');
+  const userData = JSON.parse(user); // Convertir el string a un objeto
 
 
   const getJoyas = async () => {
     try {
-      const res = await axios.get(ruta_back + 'joya');
+      const res = await axios.get(ruta_back + 'joya',{
+        headers: {
+          Authorization: token, 
+        }
+      });
       setJoyas(res.data);
     } catch (error) {
       console.log(error);
@@ -60,7 +66,11 @@ const CargaDatos = () => {
 
   const getTipos = async () => {
     try {
-      const res = await axios.get(ruta_back + 'tipojoya');
+      const res = await axios.get(ruta_back + 'tipojoya',{
+        headers: {
+          Authorization: token, 
+        }
+      });
       const tiposUnicos = [...new Set(res.data.map((tipo) => tipo.nombre))];
       setTipos(tiposUnicos);
     } catch (error) {

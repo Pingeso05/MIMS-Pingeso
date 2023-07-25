@@ -12,6 +12,7 @@ const EditarJoya = () => {
   const [nombre, setNombre] = useState('');
   const [tipoJoyaSeleccionado, setTipoJoyaSeleccionado] = useState('');
   const [tiposDeJoya, setTiposDeJoya] = useState([]);
+  const token = localStorage.getItem('accessToken');
 
   const getJoya = async () => {
     try {
