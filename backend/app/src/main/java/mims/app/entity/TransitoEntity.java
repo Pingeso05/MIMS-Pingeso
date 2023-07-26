@@ -20,6 +20,9 @@ public class TransitoEntity {
     @Column(name = "id_joya", nullable = false)
     private int id_joya;
 
+    @Column(name = "id_inventario", nullable = false)
+    private int id_inventario;
+
     @Column(name = "cantidad", nullable = false)
     private int cantidad;
 

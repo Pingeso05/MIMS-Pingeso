@@ -125,7 +125,15 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
           const localReal = res2.data
             .filter(local => (location ? local.nombre === location : true))[0]
           console.log(userData);
+          console.log(productoReal.id_joya);
+          console.log(Number(quantity));
+          console.log(res.data.id_tipo_joya);
+          console.log(productoReal.id_locacion);
+          console.log(localReal.id);
+          console.log(fechaHoyFormateada);
+          console.log(userData.data.id);
           await axios.post(ruta_back + 'transito', {
+            id_inventario: product.id,
             id_joya: productoReal.id_joya,
             cantidad: Number(quantity),
             id_tipo_joya: res.data.id_tipo_joya,
@@ -143,91 +151,7 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
     
         } catch (error) {
           console.log(error);
-          alert('Ocurrió un error al rebajar el inventario');
-          setSubmitting(false);
-          return;
-        }
-        try {
-          try {
-            const res = await axios.get(ruta_back + 'inventario',{
-              headers: {
-                Authorization: token, // No incluye el prefijo "Bearer"
-              }
-            });
-            const productos = res.data;
-            const filteredProducto = productos
-              .filter(producto => (location ? producto.local === location : true))
-              .filter(producto => (product.joya ? producto.joya === product.joya : true));
-            if (filteredProducto.length > 0) {
-              try {
-                const res = await axios.get(ruta_back + 'inventario/' + filteredProducto[0].id,{
-                  headers: {
-                    Authorization: token, // No incluye el prefijo "Bearer"
-                  }
-                });
-                const producto_cambiar = res.data;
-                try{
-                  await axios.put(ruta_back + 'inventario/' + producto_cambiar.id, {
-                    id_locacion: producto_cambiar.id_locacion,
-                    id_joya: producto_cambiar.id_joya,
-                    cantidad: Number(producto_cambiar.cantidad) + Number(quantity),
-                    precio_venta: producto_cambiar.precio_venta,
-                    deleted: false
-                  }, {
-                    headers: {
-                      Authorization: token, 
-                    }
-                  }); 
-                } catch (error) {
-                  console.log(error);
-                  alert('Ocurrió un error al modificar el inventario');
-                  setSubmitting(false);
-                  return;
-                }
-              } catch (error) {
-                console.log(error);
-                alert('Ocurrió un error al modificar el inventario');
-                setSubmitting(false);
-                return;
-              }
-            } else {
-              try {
-                const res = await axios.get(ruta_back + 'locacion',{
-                  headers: {
-                    Authorization: token, // No incluye el prefijo "Bearer"
-                  }
-                });
-                const localReal = res.data
-                  .filter(local => (location ? local.nombre === location : true))[0]
-                await axios.post(ruta_back + 'inventario', {
-                  id_locacion: localReal.id,
-                  id_joya: productoReal.id_joya,
-                  cantidad: quantity,
-                  precio_venta: productoReal.precio_venta,
-                  deleted: false
-                },{
-                  headers: {
-                    Authorization: token, // No incluye el prefijo "Bearer"
-                  }
-                }); 
-          
-              } catch (error) {
-                console.log(error);
-                alert('Ocurrió un error al modificar el inventario');
-                setSubmitting(false);
-                return;
-            }
-          }
-          } catch (error) {
-            console.log(error);
-            setSubmitting(false);
-            return;
-          }
-          
-          
-        } catch (error) {
-          console.log(error);
-          alert('Ocurrió un error al modificar el producto');
+          alert('Ocurrió un error al hacer post en transito');
           setSubmitting(false);
           return;
         }
