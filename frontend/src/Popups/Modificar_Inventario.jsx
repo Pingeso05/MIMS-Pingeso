@@ -4,6 +4,7 @@ import axios from 'axios';
 import './Modificar_Inventario.css';
 import '../utils/globals';
 import {ruta_back} from '../utils/globals';
+import { alertaError, alertaSuccess, alertaWarning } from '../utils/alertas';
 
 const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -56,7 +57,7 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
     await getProductoReal();
     if(action.trim() === "Mover Stock" || action.trim() === "Venta"){
       if(productoReal.cantidad - quantity < 0 ){
-        alert('Por favor, ingresa una cantidad menor a ' + (productoReal.cantidad+1));
+        alertaWarning('Por favor, ingresa una cantidad menor a ' + (productoReal.cantidad+1));
         setSubmitting(false);
         return;
       }
@@ -64,7 +65,7 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
 
     if (action.trim() === "Mover Stock"){
       if (location.trim() === '' || quantity.trim() === '' || description.trim() === ''){
-        alert('Por favor, completa todos los campos');
+        alertaWarning('Por favor, completa todos los campos');
         setSubmitting(false);
         return;
       }
@@ -151,11 +152,11 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
     
         } catch (error) {
           console.log(error);
-          alert('Ocurrió un error al hacer post en transito');
+          alertaError('Ocurrió un error al hacer post en transito');
           setSubmitting(false);
           return;
         }
-        alert('Se movieron correctamente ' + quantity + ' unidades de ' + product.joya +  ' desde ' + product.local + ' hacia ' + location);
+        alertaSuccess('Se movieron correctamente ' + quantity + ' unidades de ' + product.joya +  ' desde ' + product.local + ' hacia ' + location);
         setIsOpen(false);
         onSubmit();
         setAction('');
@@ -166,7 +167,7 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
         return;
       } catch (error){
         console.log(error);
-        alert('Ocurrió un error al modificar el inventario');
+        alertaError('Ocurrió un error al modificar el inventario');
         setSubmitting(false);
         return;
       }
@@ -179,7 +180,7 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
         description.trim() === ''
       )
         {
-          alert('Por favor, completa todos los campos');
+          alertaWarning('Por favor, completa todos los campos');
           setSubmitting(false);
           return;
     }
@@ -196,7 +197,7 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
                 Authorization: token, // No incluye el prefijo "Bearer"
               }
             }); 
-          alert('Se añadió correctamente ' + quantity + ' unidades de ' + product.joya +  ' al local ' + product.local);
+          alertaSuccess('Se añadió correctamente ' + quantity + ' unidades de ' + product.joya +  ' al local ' + product.local);
             console.log(product)
             console.log(productoReal)
             console.log(quantity)
@@ -228,8 +229,7 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
               }
             });
           } catch (error) {
-            console.log(error);
-            alert('Ocurrió un error al agregar stock al inventario');
+            alertaError('Ocurrió un error al agregar stock al inventario');
             setSubmitting(false);
             return;
           }
@@ -247,7 +247,7 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
                 Authorization: token, // No incluye el prefijo "Bearer"
               }
             }); 
-          alert('Se vendieron' + quantity + ' unidades de ' + product.joya );
+          alertaSuccess('Se vendieron ' + quantity + ' unidades de ' + product.joya );
             // Obtener la fecha de hoy
             const fechaHoy = new Date();
 
@@ -276,7 +276,7 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
             });
           } catch (error) {
             console.log(error);
-            alert('Ocurrió un error al agregar stock al inventario');
+            alertaError('Ocurrió un error al agregar stock al inventario');
             setSubmitting(false);
             return;
           }

@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 import { alertaError } from '../utils/alertas';
 
 
-const Administrar_Usuarios = () => {
+const AdministrarUsuarios = () => {
   const [usuarios, setUsuarios] = useState([]);
   const [tipoSeleccionado, setTipoSeleccionado] = useState('');
   const [showEditarJoya, setShowEditarJoya] = useState(false);
@@ -66,14 +66,6 @@ const Administrar_Usuarios = () => {
       } 
     } catch (error) {
       alertaError('Ha ocurrido un error al eliminar al usuario');
-    }
-  };
-
-  const handlePopupSubmit = async () => {
-    try {
-      await getUsuarios();
-    } catch (error) {
-      console.log(error);
     }
   };
 
@@ -138,4 +130,4 @@ const Administrar_Usuarios = () => {
   );
 };
 
-export default Administrar_Usuarios;
+export default AdministrarUsuarios;

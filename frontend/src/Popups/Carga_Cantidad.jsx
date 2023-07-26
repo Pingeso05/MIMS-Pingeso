@@ -4,6 +4,7 @@ import axios from 'axios';
 import './Modificar_Inventario.css';
 import '../utils/globals';
 import { ruta_back, ruta_front } from '../utils/globals';
+import { alertaError, alertaSuccess, alertaWarning } from '../utils/alertas';
 
 const Carga_Cantidad = ({ joyas, onCancel, onSubmit }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -35,7 +36,7 @@ const Carga_Cantidad = ({ joyas, onCancel, onSubmit }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (cantidades.some((cantidad) => cantidad === '' || cantidad < 0)) {
-      alert('Recuerde introducir una cantidad válida para cada joya');
+      alertaWarning('Recuerde introducir una cantidad válida para cada joya');
       return;
     }
 
@@ -114,16 +115,16 @@ const Carga_Cantidad = ({ joyas, onCancel, onSubmit }) => {
                           
                         }catch (error) {
                           console.log(error);
-                          alert('Ocurrió un error al generar el log de inventario');
+                          alertaError('Ocurrió un error al generar el log de inventario');
                           return;
                         }
                     } catch (error) {
                         console.log(error);
-                        alert('Ocurrió un error al modificar el inventario');
+                        alertaError('Ocurrió un error al modificar el inventario');
                         return;
                     }
                 } catch (error) {
-                    console.log('Error al actualizar el inventario:', error);
+                    alertaError('Error al actualizar el inventario:');
                 }
             } else {
               try{
@@ -181,16 +182,16 @@ const Carga_Cantidad = ({ joyas, onCancel, onSubmit }) => {
 
                       }catch (error) {
                         console.log(error);
-                        alert('Ocurrió un error al generar el log de inventario');
+                        alertaError('Ocurrió un error al generar el log de inventario');
                         return;
                       }
                 } catch (error) {
-                    console.log('Error al actualizar el inventario:', error);
+                    alertaError('Error al actualizar el inventario:');
                 }
 
         }
       });      
-      alert('Se han cargado exitosamente los productos al inventario');
+      alertaSuccess('Se han cargado exitosamente los productos al inventario');
       //window.location.href = ruta_front + 'inventario';
     } catch (error) {
       console.log(error);

@@ -1,7 +1,7 @@
 import Navbar from './NavBar';
 import Navbar_Vendedor from './NavBar_Vendedor';
 
-const Layout_Vendedor = ({ children }) => {
+const LayoutVendedor = ({ children }) => {
   return (
     <>
       <Navbar_Vendedor />
@@ -9,4 +9,4 @@ const Layout_Vendedor = ({ children }) => {
     </>
   );
 }
-export default Layout_Vendedor;
+export default LayoutVendedor;

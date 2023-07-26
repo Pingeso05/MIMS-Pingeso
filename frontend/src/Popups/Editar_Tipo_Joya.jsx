@@ -4,6 +4,7 @@ import axios from 'axios';
 import './Modificar_Inventario.css';
 import '../utils/globals';
 import {ruta_back} from '../utils/globals';
+import { alertaError, alertaSuccess, alertaWarning } from '../utils/alertas';
 
 const Editar_Tipo_Joya = ({ id, onCancel, onSubmit }) => {
   
@@ -33,7 +34,7 @@ const Editar_Tipo_Joya = ({ id, onCancel, onSubmit }) => {
     event.preventDefault();
 
     if (nombre.trim() === '' || material.trim() === '') {
-      alert('Por favor, completa todos los campos');
+      alertaWarning('Por favor, completa todos los campos');
       return;
     }
 
@@ -51,10 +52,10 @@ const Editar_Tipo_Joya = ({ id, onCancel, onSubmit }) => {
       setMaterial('');
       onSubmit();
       setIsOpen(false);
-      alert('Tipo de Joya actualizado exitosamente');
+      alertaSuccess('Tipo de Joya actualizado exitosamente');
     } catch (error) {
       console.log(error);
-      alert('Ocurrió un error al actualizar el tipo de joya');
+      alertaError('Ocurrió un error al actualizar el tipo de joya');
     }
   };
 

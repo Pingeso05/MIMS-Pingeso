@@ -4,6 +4,7 @@ import axios from 'axios';
 import './Modificar_Inventario.css';
 import '../utils/globals';
 import {ruta_back} from '../utils/globals';
+import { alertaError, alertaSuccess, alertaWarning } from '../utils/alertas';
 
 const Editar_Joya = ({ id, onCancel, onSubmit }) => {
   
@@ -61,7 +62,7 @@ const Editar_Joya = ({ id, onCancel, onSubmit }) => {
     if (
       nombre === '' || costo === ''
     ) {
-      alert('Por favor, completa todos los campos');
+      alertaWarning('Por favor, completa todos los campos');
       return;
     }
 
@@ -83,11 +84,11 @@ const Editar_Joya = ({ id, onCancel, onSubmit }) => {
       setCosto('');
       setIsOpen(false);
       onSubmit();
-      alert('Producto actualizado exitosamente');
+      alertaSuccess('Producto actualizado exitosamente');
     } catch (error) {
       console.log(error);
       console.log(error.response.data);
-      alert('Ocurrió un error al actualizar el producto');
+      alertaError('Ocurrió un error al actualizar el producto');
     }
   };
 

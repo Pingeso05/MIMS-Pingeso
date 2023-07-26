@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import './AgregarLocacion.css';
 import { ruta_back, ruta_front } from '../utils/globals.js';
 import '../utils/globals.css';
-import { alertaSuccess } from '../utils/alertas';
+import { alertaError, alertaSuccess, alertaWarning } from '../utils/alertas';
 
 const AgregarLocacion = () => {
   const [nombreLocacion, setNombreLocacion] = useState('');
@@ -62,7 +62,7 @@ const AgregarLocacion = () => {
       comuna.trim() === '' ||
       direccion.trim() === ''
     ) {
-      alert('Por favor, completa todos los campos');
+      alertaWarning('Por favor, completa todos los campos');
       return;
     }
 
@@ -87,8 +87,7 @@ const AgregarLocacion = () => {
       alertaSuccess('Locación agregada exitosamente');
       window.location.href = ruta_front + 'admin/locaciones';
     } catch (error) {
-      console.log(error);
-      alert('Ocurrió un error al agregar la locación');
+      alertaError('Ocurrió un error al agregar la locación');
     }
   };
 

@@ -9,6 +9,7 @@ import React from 'react';
 import {ruta_back} from '../utils/globals.js';
 import '../utils/globals.css';
 import Button from 'react-bootstrap/Button';
+import { alertaError } from '../utils/alertas';
 
 const Transito = () => {
   const [productos, setProductos] = useState([]);
@@ -223,12 +224,12 @@ const Transito = () => {
                 }); 
               }catch (error) {
                 console.log(error);
-                alert('Ocurrió un error al generar el log de inventario');
+                alertaError('Ocurrió un error al generar el log de inventario');
                 return;
               }
             } catch (error) {
                 console.log(error);
-                alert('Ocurrió un error al modificar el inventario');
+                alertaError('Ocurrió un error al modificar el inventario');
                 return;
             }
 
@@ -236,7 +237,7 @@ const Transito = () => {
 
             //----------------------------
           } catch (error) {
-              console.log('Error al actualizar el inventario:', error);
+              alertaError('Error al actualizar el inventario:');
           }
 
       } else {
@@ -284,7 +285,7 @@ const Transito = () => {
                   }); 
                 }catch (error) {
                   console.log(error);
-                  alert('Ocurrió un error al generar el log de inventario');
+                  alertaError('Ocurrió un error al generar el log de inventario');
                   return;
                 }
 
