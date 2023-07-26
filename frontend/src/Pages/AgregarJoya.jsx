@@ -53,7 +53,7 @@ const AgregarJoya = () => {
       setCost('');
 
       alert('Joya agregada exitosamente');
-      window.location.href = ruta_front + 'joyas';
+      window.location.href = ruta_front + 'admin/joyas';
     } catch (error) {
       console.log(error);
       alert('Ocurrió un error al agregar la joya');

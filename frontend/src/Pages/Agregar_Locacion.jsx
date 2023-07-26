@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import './AgregarLocacion.css';
 import { ruta_back, ruta_front } from '../utils/globals.js';
 import '../utils/globals.css';
+import { alertaSuccess } from '../utils/alertas';
 
 const AgregarLocacion = () => {
   const [nombreLocacion, setNombreLocacion] = useState('');
@@ -83,8 +84,8 @@ const AgregarLocacion = () => {
       setComuna('');
       setDireccion('');
 
-      alert('Locación agregada exitosamente');
-      window.location.href = ruta_front + 'locaciones';
+      alertaSuccess('Locación agregada exitosamente');
+      window.location.href = ruta_front + 'admin/locaciones';
     } catch (error) {
       console.log(error);
       alert('Ocurrió un error al agregar la locación');

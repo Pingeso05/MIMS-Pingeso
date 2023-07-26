@@ -89,7 +89,7 @@ const Joya = () => {
           <span>{filteredJoyas.length}</span>
         </Col>
         <Col className="right-col" md={6}>
-          <Link to="/joyas/agregar-joya">
+          <Link to="/admin/joyas/agregar-joya">
             <Button
               variant="primary"
               style={{
