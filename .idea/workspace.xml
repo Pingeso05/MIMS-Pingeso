@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="835b27f2-3706-4a3c-9fc9-3c37dafb9c47" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/repository/LogInventarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/repository/LogInventarioRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/repository/TransitoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/repository/TransitoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/Transito.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/Transito.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/routes/vendedorRoutes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/routes/vendedorRoutes.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
