@@ -6,22 +6,17 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
 import './Joya.css';
-import { useNavigate } from 'react-router-dom';
 import { ruta_back } from '../utils/globals.js';
 import '../utils/globals.css';
-import { FaEdit } from 'react-icons/fa';
-import Editar_Joya from '../Popups/Editar_Joya';
 import Swal from 'sweetalert2';
 import { alertaError } from '../utils/alertas';
+import Editar_Usuario from '../Popups/Editar_Usuario';
 
 
 const AdministrarUsuarios = () => {
   const [usuarios, setUsuarios] = useState([]);
-  const [tipoSeleccionado, setTipoSeleccionado] = useState('');
-  const [showEditarJoya, setShowEditarJoya] = useState(false);
-  const [joyaSeleccionada, setJoyaSeleccionada] = useState(null);
-  const [editarJoya, setEditarJoya] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [showEditarUsuario, setShowEditarUsuario] = useState(false);
+  const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(false);
   const token = localStorage.getItem('accessToken');
 
   const getUsuarios = async () => {
@@ -37,6 +32,10 @@ const AdministrarUsuarios = () => {
     }
   };
 
+  const handleEditClick = (usuario) => {
+    setUsuarioSeleccionado(usuario);
+    setShowEditarUsuario(true);
+  };
 
   const handleDeleteClick = async (usuario) => {
     try {
@@ -69,7 +68,14 @@ const AdministrarUsuarios = () => {
     }
   };
 
-
+  const handlePopupSubmit = async () => {
+    try {
+      await getUsuarios();
+    } catch (error) {
+      alertaError("Error al obtener usuarios");
+    }
+    setShowEditarUsuario(false);
+  };
 
   useEffect(() => {
     getUsuarios();
@@ -113,7 +119,7 @@ const AdministrarUsuarios = () => {
                 <td style={{ width: '160px' }}>
                   <div >
                     <Row>
-                      <Col style={{padding:'2px'}}><Button variant="primary"  style={{backgroundColor: 'success', borderRadius: '10', borderColor: 'transparent',fontSize:'10px'}}>EDITAR</Button></Col>
+                      <Col style={{padding:'2px'}}><Button variant="primary" onClick={() => handleEditClick(usuario.id)}  style={{backgroundColor: 'success', borderRadius: '10', borderColor: 'transparent',fontSize:'10px'}}>EDITAR</Button></Col>
                       <Col><Button variant="danger" onClick={() => handleDeleteClick(usuario)} style={{backgroundColor: 'danger', borderRadius: '10', borderColor: 'transparent',fontSize:'10px'}}>ELIMINAR</Button></Col>
                     </Row>
                     
@@ -125,6 +131,13 @@ const AdministrarUsuarios = () => {
         </Table>
       </div>
 
+      {showEditarUsuario && (
+        <Editar_Usuario
+          id={usuarioSeleccionado}
+          onCancel={() => setShowEditarUsuario(false)}
+          onSubmit={handlePopupSubmit}
+        />
+      )}
 
     </Container>
   );

@@ -84,7 +84,7 @@ const Editar_Joya = ({ id, onCancel, onSubmit }) => {
       setCosto('');
       setIsOpen(false);
       onSubmit();
-      alertaSuccess('Producto actualizado exitosamente');
+      alertaSuccess('Joya actualizada exitosamente');
     } catch (error) {
       console.log(error);
       console.log(error.response.data);
@@ -154,7 +154,7 @@ const Editar_Joya = ({ id, onCancel, onSubmit }) => {
                 </div>
 
 
-                <button type="submit">Actualizar Producto</button>
+                <button type="submit">Actualizar Joya</button>
               </form>
 
               <div className="separador"> </div>
