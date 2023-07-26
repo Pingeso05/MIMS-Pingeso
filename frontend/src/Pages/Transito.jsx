@@ -396,8 +396,8 @@ const Transito = () => {
           
 
       <Row className="fila-dp" style={{ marginTop: '10px' }}>
-        <Col className="columna-dp" style={{ display: 'flex', alignItems: 'left' }}>
-          <Col md={6} style={{ display: 'flex', alignItems: 'left' }}>
+
+          <Col md={6} style={{ marginTop: '5px',display: 'flex', alignItems: 'left' }}>
             <select className='dropdown-tb'
               value={categoriaSeleccionada}
               onChange={handleCategoriaChange}
@@ -408,7 +408,7 @@ const Transito = () => {
               ))}
             </select>
           </Col>
-          <Col md={6} style={{ display: 'flex', alignItems: 'left'}}>
+          <Col md={6} style={{ marginTop: '5px', display: 'flex', alignItems: 'left'}}>
             <select className='dropdown-tb'
               style={{ marginRight: '10px' }}
               value={locacion1Seleccionada}
@@ -433,7 +433,7 @@ const Transito = () => {
             
           </Col>
           
-        </Col>
+
 
       </Row>
       <Row style={{padding:'10px'}}>

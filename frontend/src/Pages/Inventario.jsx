@@ -121,12 +121,12 @@ const Inventario = () => {
 
 
   return (
-    <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-table">
+    <Container style={{ marginTop: '30px', textAlign: 'center' }} className="container-table">
       <h1 className='titulo' >LISTA DE PRODUCTOS</h1>
       
       <Row className="fila-dp" style={{ marginTop: '10px' }}>
-        <Col className="columna-dp" style={{ padding:'5px',display: 'flex', alignItems: 'left' }}>
-          <Col md={6} style={{ display: 'flex', alignItems: 'left' }}>
+
+          <Col md={6} style={{ marginTop: '5px',display: 'flex', alignItems: 'left' }}>
             <select className='dropdown-tb'
               value={categoriaSeleccionada}
               onChange={handleCategoriaChange}
@@ -137,7 +137,8 @@ const Inventario = () => {
               ))}
             </select>
           </Col>
-          <Col md={6} style={{ display: 'flex', alignItems: 'left' }}>
+          
+          <Col md={6} style={{ marginTop: '5px',display: 'flex', alignItems: 'left' }}>
             <select className='dropdown-tb'
               value={locacionSeleccionada}
               onChange={handleLocacionChange}
@@ -149,7 +150,7 @@ const Inventario = () => {
             </select>
           </Col>
           
-        </Col>
+
 
       </Row>
       <Row style={{padding:'10px'}}>
