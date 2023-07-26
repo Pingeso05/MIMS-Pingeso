@@ -95,11 +95,11 @@ const Ver_Inventario = ({ id, onCancel}) => {
                     </h3>
                     <h3 >
                       <span className="info-label">Precio Costo:</span> <br />
-                      <span className="info-value">{precioCosto}</span>
+                      <span className="info-value">${precioCosto}</span>
                     </h3>
                     <h3 >
                       <span className="info-label">Precio Venta:</span> <br />
-                      <span className="info-value">{producto.precio_venta}</span>
+                      <span className="info-value">${producto.precio_venta}</span>
                     </h3>
                   </>
                 )}
