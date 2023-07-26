@@ -95,7 +95,7 @@ const Administrar_Usuarios = () => {
           </Col>
  
         <Col className="right-col" md={6} >
-          <Link to="/usuarios/agregar-usuario">
+          <Link to="/admin/usuarios/agregar-usuario">
             <Button variant="primary"  style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent',fontSize:'14px'}}>Agregar Usuario</Button>
           </Link>    
         </Col>
