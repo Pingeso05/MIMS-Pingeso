@@ -13,14 +13,23 @@ const Editar_Locacion = ({ id, onCancel, onSubmit }) => {
   const [comunas, setComunas] = useState([]);
   const [regiones, setRegiones] = useState([]);
   const [direccion, setDireccion] = useState('');
+  const token = localStorage.getItem('accessToken');
 
   const getLocacion = async () => {
     try {
-      const res = await axios.get(ruta_back + 'locacion/' + id);
+      const res = await axios.get(ruta_back + 'locacion/' + id,{
+        headers: {
+          Authorization: token, 
+        }
+      });
       const locacionR = res.data;
       setNombreLocacion(locacionR.nombre);
       setDireccion(locacionR.direccion);
-      const res2 = await axios.get(ruta_back + 'comuna/' + locacionR.comuna);
+      const res2 = await axios.get(ruta_back + 'comuna/' + locacionR.comuna,{
+        headers: {
+          Authorization: token, 
+        }
+      });
       const comunaRes = res2.data;
       setComuna(comunaRes.id);
       setRegion(comunaRes.id_region);
@@ -31,7 +40,11 @@ const Editar_Locacion = ({ id, onCancel, onSubmit }) => {
 
   const getComunas = async () => {
     try {
-      const res = await axios.get(ruta_back + 'comuna');
+      const res = await axios.get(ruta_back + 'comuna',{
+        headers: {
+          Authorization: token, 
+        }
+      });
       setComunas(res.data);
     } catch (error) {
       console.log(error);
@@ -40,7 +53,11 @@ const Editar_Locacion = ({ id, onCancel, onSubmit }) => {
 
   const getRegiones = async () => {
     try {
-      const res = await axios.get(ruta_back + 'region');
+      const res = await axios.get(ruta_back + 'region',{
+        headers: {
+          Authorization: token, 
+        }
+      });
       setRegiones(res.data);
     } catch (error) {
       console.log(error);
@@ -73,6 +90,10 @@ const Editar_Locacion = ({ id, onCancel, onSubmit }) => {
         deleted: false,
         comuna: comunaOg,
         region: regionOg,
+      },{
+        headers: {
+          Authorization: token, 
+        }
       });
 
       setNombreLocacion('');

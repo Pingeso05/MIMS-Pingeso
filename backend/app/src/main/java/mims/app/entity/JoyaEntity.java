@@ -30,8 +30,11 @@ public class JoyaEntity {
     private boolean is_unique;
 
     @Column(name = "cost")
-    private int cost;
+    private float cost;
 
+    //@Column(name = "Code")
+    //private String code;
+    
     public void setDeleted(boolean b) {
         this.deleted = b;
     }

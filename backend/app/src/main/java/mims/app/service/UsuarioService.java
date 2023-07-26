@@ -30,9 +30,7 @@ public class UsuarioService {
         return usuarioRepository.findById(id).map(usuario_data -> {
             usuario_data.setNombre(usuario.getNombre());
             usuario_data.setApellido(usuario.getApellido());
-            usuario_data.setRol(usuario.getRol());
             usuario_data.setDeleted(usuario.getDeleted());
-            usuario_data.setRol(usuario.getRol());
             UsuarioEntity usuario_updated = usuarioRepository.save(usuario_data);
             return ResponseEntity.ok().body(usuario_updated);
         }).orElse(ResponseEntity.notFound().build());

@@ -10,10 +10,15 @@ const AgregarJoya = () => {
   const [cost, setCost] = useState('');
   const [tipoJoya, setTipoJoya] = useState('');
   const [tipos, setTipos] = useState([]);
+  const token = localStorage.getItem('accessToken');
 
   const getTipos = async () => {
     try {
-      const res = await axios.get(ruta_back + 'tipojoya');
+      const res = await axios.get(ruta_back + 'tipojoya',{
+        headers: {
+          Authorization: token, 
+        }
+      });
       setTipos(res.data);
     } catch (error) {
       console.log(error);
@@ -37,6 +42,10 @@ const AgregarJoya = () => {
         nombre: nombreJoya,
         id_tipo_joya: tipoJoya,
         cost: cost,
+      },{
+        headers: {
+          Authorization: token, 
+        }
       });
 
       setNombreJoya('');

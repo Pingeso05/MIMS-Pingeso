@@ -28,14 +28,20 @@ function BasicExample() {
 export default BasicExample;
 */
 
-import { Link, useLocation } from 'react-router-dom';
+import { Link,  useLocation } from 'react-router-dom';
 import './navbar.css';
 import logo from '../images/logo-letras.png';
-import image_user from '../images/user.png';
+import { useAuth } from '../context/AuthContext';
+
 
 
 const Navbar = () => {
   const { pathname } = useLocation();
+  const { userLogout } = useAuth();
+  
+  const onLogout = () => {
+    userLogout();
+  }
 
   return (
     <nav className="navbar">
@@ -47,6 +53,16 @@ const Navbar = () => {
           <li className="navbar__item">
             <Link to="/inventario" className={`navbar__link ${pathname === '/inventario' ? 'active' : ''}`}>
               Inventario
+            </Link>
+          </li>
+          <li className="navbar__item">
+            <Link to="/transito" className={`navbar__link ${pathname === '/transito' ? 'active' : ''}`}>
+              Transito
+            </Link>
+          </li>
+          <li className="navbar__item">
+            <Link to="/registros" className={`navbar__link ${pathname === '/registros' ? 'active' : ''}`}>
+              Transacciones
             </Link>
           </li>
           <li className="navbar__item">
@@ -77,9 +93,13 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar__right">
-        <span className="navbar__username">User</span>
-        <img src={image_user} alt='User' className="navbar__profile-picture" />
-      </div>
+        <button
+            className="nav-item nav-link btn"
+            onClick={ onLogout }
+        >
+            Cerrar Sesión
+        </button>
+</div>
     </nav>
   );
 }

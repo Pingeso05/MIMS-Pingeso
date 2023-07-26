@@ -12,11 +12,15 @@ const AgregarProducto = () => {
   const [locaciones, setLocaciones] = useState([]);
   const [joyas, setJoyas] = useState([]);
   const [joyaSeleccionada, setJoyaSeleccionada] = useState('');
-
+  const token = localStorage.getItem('accessToken');
 
   const getLocaciones = async () => {
     try {
-      const res = await axios.get(ruta_back + 'locacion');
+      const res = await axios.get(ruta_back + 'locacion',{
+        headers: {
+          Authorization: token, 
+        }
+      });
       const locacionesUnicas = res.data;
       setLocaciones(locacionesUnicas);
     } catch (error) {
@@ -26,7 +30,11 @@ const AgregarProducto = () => {
 
   const getJoyas = async () => {
     try {
-      const res = await axios.get(ruta_back + 'joya');
+      const res = await axios.get(ruta_back + 'joya',{
+        headers: {
+          Authorization: token, 
+        }
+      });
       const joyasUnicas = res.data;
       setJoyas(joyasUnicas);
     } catch (error) {
@@ -49,11 +57,23 @@ const AgregarProducto = () => {
     }
 
     try {
-      const res = await axios.get(ruta_back + 'inventario');
+      const res = await axios.get(ruta_back + 'inventario',{
+        headers: {
+          Authorization: token, 
+        }
+      });
       const productos = res.data;
-      const res2 = await axios.get(ruta_back + 'joya/' + joyaSeleccionada);
+      const res2 = await axios.get(ruta_back + 'joya/' + joyaSeleccionada,{
+        headers: {
+          Authorization: token, 
+        }
+      });
       const joya = res2.data.nombre;
-      const res3 = await axios.get(ruta_back + 'locacion/' + locacionSeleccionada);
+      const res3 = await axios.get(ruta_back + 'locacion/' + locacionSeleccionada,{
+        headers: {
+          Authorization: token, 
+        }
+      });
       const local = res3.data.nombre;
       const buscarProd = productos
       .filter(producto => (local ? producto.local === local : true))
@@ -65,6 +85,10 @@ const AgregarProducto = () => {
         cantidad: cantidad,
         precio_venta: precioVenta,
         deleted: false
+      },{
+        headers: {
+          Authorization: token, 
+        }
       });
 
      
@@ -92,18 +116,18 @@ const AgregarProducto = () => {
   return (
     <Container style={{ textAlign: 'center' }} className="container-add-edit">
       <div>
-        <h2 className="titulo">Agregar Producto</h2>
+        <h2 className="titulo">AGREGAR PRODUCTO</h2>
   
         <form onSubmit={handleSubmit}>
 
           <div>
-            <label htmlFor="joya">Joya:</label>
+            <label htmlFor="joya">JOYA:</label>
             <select
               id="joya"
               value={joyaSeleccionada}
               onChange={(e) => setJoyaSeleccionada(e.target.value)}
             >
-              <option value="">Seleccione una Joya</option>
+              <option value="">SLECCIONE JOYA</option>
               {joyas.map((joya) => (
                 <option value={joya.id} key={joya.id}>
                   {joya.nombre}
@@ -113,7 +137,7 @@ const AgregarProducto = () => {
           </div>
 
           <div  >
-            <label htmlFor="precioVenta">Precio venta:</label>
+            <label htmlFor="precioVenta">PRECIO DE VENTA:</label>
             <input
               type="number"
               min="0"
@@ -125,7 +149,7 @@ const AgregarProducto = () => {
           </div>
   
           <div >
-            <label htmlFor="cantidad">Cantidad:</label>
+            <label htmlFor="cantidad">CANTIDAD:</label>
             <input
               type="number"
               min="0"
@@ -137,13 +161,13 @@ const AgregarProducto = () => {
           </div>
   
           <div>
-            <label htmlFor="locacion">Locación:</label>
+            <label htmlFor="locacion">LOCACIÓN:</label>
             <select
               id="locacion"
               value={locacionSeleccionada}
               onChange={(e) => setLocacionSeleccionada(e.target.value)}
             >
-              <option value="">Seleccione una Locación</option>
+              <option value="">SELECCIONE LOCACIÓN</option>
                 {locaciones.map((locacion) => (
                   <option value={locacion.id} key={locacion.id}>
                     {locacion.nombre}
@@ -151,7 +175,7 @@ const AgregarProducto = () => {
                 ))}
             </select>
           </div>
-          <button type="submit">Agregar Producto</button>
+          <button type="submit">AGREGAR PRODUCTO</button>
         </form>
         
         <div className="separador"> </div>

@@ -14,18 +14,35 @@ const Ver_Inventario = ({ id, onCancel}) => {
   const [local, setLocal] = useState();
   const [tipoJoya, setTipoJoya] = useState();
   const [precioCosto, setPrecioCosto] = useState();
+  const token = localStorage.getItem('accessToken');
 
   
   const getProducto = async () => {
     try {
-      const res = await axios.get(ruta_back + 'inventario/' + id);
+      const res = await axios.get(ruta_back + 'inventario/' + id,{
+        headers: {
+          Authorization: token, // No incluye el prefijo "Bearer"
+        }
+      });
       const productoR = res.data;
       setProducto(productoR);
-      const res2 = await axios.get(ruta_back + 'joya/' + productoR.id_joya);
+      const res2 = await axios.get(ruta_back + 'joya/' + productoR.id_joya,{
+        headers: {
+          Authorization: token, // No incluye el prefijo "Bearer"
+        }
+      });
       setJoya(res2.data.nombre);
-      const res3 = await axios.get(ruta_back + 'locacion/' + productoR.id_locacion);
+      const res3 = await axios.get(ruta_back + 'locacion/' + productoR.id_locacion,{
+        headers: {
+          Authorization: token, // No incluye el prefijo "Bearer"
+        }
+      });
       setLocal(res3.data.nombre);
-      const res4 = await axios.get(ruta_back + 'tipojoya/' + res2.data.id_tipo_joya);
+      const res4 = await axios.get(ruta_back + 'tipojoya/' + res2.data.id_tipo_joya,{
+        headers: {
+          Authorization: token, // No incluye el prefijo "Bearer"
+        }
+      });
       setTipoJoya(res4.data.nombre);
       setPrecioCosto(res2.data.cost);
     } catch (error) {
@@ -78,11 +95,11 @@ const Ver_Inventario = ({ id, onCancel}) => {
                     </h3>
                     <h3 >
                       <span className="info-label">Precio Costo:</span> <br />
-                      <span className="info-value">{precioCosto}</span>
+                      <span className="info-value">${precioCosto}</span>
                     </h3>
                     <h3 >
                       <span className="info-label">Precio Venta:</span> <br />
-                      <span className="info-value">{producto.precio_venta}</span>
+                      <span className="info-value">${producto.precio_venta}</span>
                     </h3>
                   </>
                 )}
