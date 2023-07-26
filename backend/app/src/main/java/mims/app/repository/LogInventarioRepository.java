@@ -13,7 +13,7 @@ public interface LogInventarioRepository extends JpaRepository<LogInventarioEnti
     @Query(value = "SELECT log_inventario.id, " +
                             "log_inventario.id_producto, " +
                             "joya.nombre AS nombre_producto, " +
-                            "usuario.nombre AS responsable_transaccion, " +
+                            "CONCAT(usuario.nombre, ' ', usuario.apellido) AS responsable_transaccion, " +
                             "log_inventario.fecha_transaccion, " +
                             "log_inventario.valor_transaccion, " +
                             "log_inventario.cantidad, " +
