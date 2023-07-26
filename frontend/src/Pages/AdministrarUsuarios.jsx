@@ -83,7 +83,7 @@ const AdministrarUsuarios = () => {
 
 
   return (
-    <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-table">
+    <Container style={{ marginTop: '30px', textAlign: 'center' }} className="container-table">
       <h1 className='titulo'>USUARIOS</h1>
 
       <Row style={{ marginTop: '20px' }}>
@@ -100,7 +100,7 @@ const AdministrarUsuarios = () => {
       </Row>
 
 
-      <div style={{ overflow: 'auto', maxHeight: '55vh', marginTop: '20px' }}>
+      <div className="div-table">
         <Table bordered hover className="table">
           <thead>
             <tr className='cabeceras'>

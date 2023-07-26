@@ -23,8 +23,6 @@ const CargaDatos = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedJoyas, setSelectedJoyas] = useState([]);
   const [showCargaCantidad, setShowCargaCantidad] = useState(false);
-  const [locacionSeleccionada, setLocacionSeleccionada] = useState('');
-  const [locaciones, setLocaciones] = useState([]);
   const token = localStorage.getItem('accessToken');
   const user = localStorage.getItem('user');
   const userData = JSON.parse(user); // Convertir el string a un objeto

@@ -49,7 +49,7 @@ const Locaciones = () => {
   }, []);
 
   return (
-    <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-table">
+    <Container style={{ marginTop: '30px', textAlign: 'center' }} className="container-table">
       <div>
         <h1 className='titulo' >LOCACIONES</h1>      
 
@@ -66,7 +66,7 @@ const Locaciones = () => {
           </Col>
         </Row>
         
-            <div style={{ overflow: 'auto', maxHeight: '60vh', marginTop: '20px' }}>
+            <div className='div-table'>
               <Table bordered hover className='table'>
               <thead >
                   <tr className='cabeceras'>
