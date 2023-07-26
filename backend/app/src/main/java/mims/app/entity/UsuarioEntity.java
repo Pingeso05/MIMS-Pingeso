@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 
 @Entity
 @Data
@@ -22,10 +23,10 @@ public class UsuarioEntity {
     @Column(name = "apellido")
     private String apellido;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "rol")
@@ -34,14 +35,10 @@ public class UsuarioEntity {
     @Column(name = "deleted")
     private boolean deleted;
 
-
     public void setDeleted(boolean b) {
         this.deleted = b;
     }
 
-    public void setRol(int rol) {
-        this.rol = rol;
-    }
 
     public boolean getDeleted() {
         return this.deleted;

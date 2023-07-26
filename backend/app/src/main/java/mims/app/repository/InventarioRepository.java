@@ -14,7 +14,7 @@ public interface InventarioRepository extends JpaRepository<InventarioEntity, In
 
         public Iterable<InventarioEntity> findAllByDeletedFalse();
 
-        @Query(value = "SELECT inventario.id, inventario.nombre_producto, inventario.cantidad, inventario.precio_costo, inventario.precio_venta, joya.nombre AS joya, tipo_joya.nombre AS tipo_joya, locacion.nombre AS local FROM mims.inventario, mims.joya, mims.locacion, mims.tipo_joya WHERE inventario.id_joya = joya.id AND inventario.id_tipo_joya = tipo_joya.id AND inventario.id_locacion = locacion.id", nativeQuery = true)
+        @Query(value = "SELECT inventario.id, inventario.cantidad, joya.cost, inventario.precio_venta, joya.nombre AS joya, tipo_joya.nombre AS tipo_joya, locacion.nombre AS local FROM mims.inventario, mims.joya, mims.locacion, mims.tipo_joya WHERE inventario.id_joya = joya.id AND joya.id_tipo_joya = tipo_joya.id AND inventario.id_locacion = locacion.id", nativeQuery = true)
         public ArrayList<DisplayInventarioModelInterface> findAllInventario();
 
         @Query(value = "UPDATE mims.inventario SET cantidad = cantidad + 1 WHERE id = :id", nativeQuery = true)

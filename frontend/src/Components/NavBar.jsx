@@ -28,13 +28,20 @@ function BasicExample() {
 export default BasicExample;
 */
 
-import { Link, useLocation } from 'react-router-dom';
+import { Link,  useLocation } from 'react-router-dom';
 import './navbar.css';
 import logo from '../images/logo-letras.png';
-import image_user from '../images/user.png';
+import { useAuth } from '../context/AuthContext';
+
+
 
 const Navbar = () => {
   const { pathname } = useLocation();
+  const { userLogout } = useAuth();
+  
+  const onLogout = () => {
+    userLogout();
+  }
 
   return (
     <nav className="navbar">
@@ -44,31 +51,60 @@ const Navbar = () => {
       <div className="navbar__center">
         <ul className="navbar__list">
           <li className="navbar__item">
-            <Link to="/inventario" className={`navbar__link ${pathname === '/inventario' ? 'active' : ''}`}>
+            <Link to="/admin/inventario" className={`navbar__link ${pathname === '/admin/inventario' ? 'active' : ''}`}>
               Inventario
             </Link>
           </li>
           <li className="navbar__item">
-            <Link to="/locaciones" className={`navbar__link ${pathname === '/locaciones' ? 'active' : ''}`}>
+            <Link to="/admin/transito" className={`navbar__link ${pathname === '/admin/transito' ? 'active' : ''}`}>
+              Transito
+            </Link>
+          </li>
+          <li className="navbar__item">
+            <Link to="/admin/registros" className={`navbar__link ${pathname === '/admin/registros' ? 'active' : ''}`}>
+              Transacciones
+            </Link>
+          </li>
+          <li className="navbar__item">
+            <Link to="/admin/locaciones" className={`navbar__link ${pathname === '/admin/locaciones' ? 'active' : ''}`}>
               Locaciones
             </Link>
           </li>
           <li className="navbar__item">
-            <Link to="/tipos-de-joya" className={`navbar__link ${pathname === '/tipos-de-joya' ? 'active' : ''}`}>
+            <Link to="/admin/tipos-de-joya" className={`navbar__link ${pathname === '/admin/tipos-de-joya' ? 'active' : ''}`}>
               Tipos de joya
             </Link>
           </li>
           <li className="navbar__item">
-            <Link to="/joyas" className={`navbar__link ${pathname === '/joyas' ? 'active' : ''}`}>
+            <Link to="/admin/joyas" className={`navbar__link ${pathname === '/admin/joyas' ? 'active' : ''}`}>
               Joyas
+            </Link>
+          </li>
+          <li className="navbar__item">
+            <Link to="/admin/carga-datos" className={`navbar__link ${pathname === '/admin/carga-datos' ? 'active' : ''}`}>
+              Carga de datos
+            </Link>
+          </li>
+          <li className="navbar__item">
+            <Link to="/admin/usuarios" className={`navbar__link ${pathname === '/admin/usuarios' ? 'active' : ''}`}>
+              Usuarios
+            </Link>
+          </li>
+          <li className="navbar__item">
+            <Link to="/admin/inventario/agregar-producto" className={`navbar__link ${pathname === '/admin/inventario/agregar-producto' ? 'active' : ''}`}>
+              Agregar Producto
             </Link>
           </li>
         </ul>
       </div>
       <div className="navbar__right">
-        <span className="navbar__username">User</span>
-        <img src={image_user} alt='User' className="navbar__profile-picture" />
-      </div>
+        <button
+            className="nav-item nav-link btn"
+            onClick={ onLogout }
+        >
+            Cerrar Sesión
+        </button>
+</div>
     </nav>
   );
 }

@@ -62,24 +62,6 @@ class InventarioEntityTest {
     }
 
     @Test
-    void getPrecio_costo() {
-        InventarioEntity inventarioEntity;
-        inventarioEntity = new InventarioEntity();
-        inventarioEntity.setPrecio_costo(1);
-        assertEquals(1, inventarioEntity.getPrecio_costo());
-    }
-
-    @Test
-    void getId_tipo_joya() {
-        InventarioEntity inventarioEntity;
-        inventarioEntity = new InventarioEntity();
-        inventarioEntity.setId_tipo_joya(1);
-        assertEquals(1, inventarioEntity.getId_tipo_joya());
-    }
-
-
-
-    @Test
     void isDeleted() {
         InventarioEntity inventarioEntity;
         inventarioEntity = new InventarioEntity();
@@ -127,21 +109,6 @@ class InventarioEntityTest {
         assertEquals(1, inventarioEntity.getPrecio_venta());
     }
 
-    @Test
-    void setPrecio_costo() {
-        InventarioEntity inventarioEntity;
-        inventarioEntity = new InventarioEntity();
-        inventarioEntity.setPrecio_costo(1);
-        assertEquals(1, inventarioEntity.getPrecio_costo());
-    }
-
-    @Test
-    void setId_tipo_joya() {
-        InventarioEntity inventarioEntity;
-        inventarioEntity = new InventarioEntity();
-        inventarioEntity.setId_tipo_joya(1);
-        assertEquals(1, inventarioEntity.getId_tipo_joya());
-    }
 
     
 }

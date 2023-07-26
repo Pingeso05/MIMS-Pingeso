@@ -2,15 +2,24 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import './AgregarJoya.css';
+import {ruta_back, ruta_front} from '../utils/globals.js';
+import '../utils/globals.css';
+import { alertaError, alertaSuccess, alertaWarning } from '../utils/alertas';
 
 const AgregarJoya = () => {
   const [nombreJoya, setNombreJoya] = useState('');
+  const [cost, setCost] = useState('');
   const [tipoJoya, setTipoJoya] = useState('');
   const [tipos, setTipos] = useState([]);
+  const token = localStorage.getItem('accessToken');
 
   const getTipos = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/tipojoya');
+      const res = await axios.get(ruta_back + 'tipojoya',{
+        headers: {
+          Authorization: token, 
+        }
+      });
       setTipos(res.data);
     } catch (error) {
       console.log(error);
@@ -24,30 +33,36 @@ const AgregarJoya = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (nombreJoya.trim() === '' || tipoJoya.trim() === '') {
-      alert('Por favor, completa todos los campos');
+    if (nombreJoya.trim() === '' || tipoJoya.trim() === '' || cost.trim() === '') {
+      alertaWarning('Por favor, completa todos los campos');
       return;
     }
 
     try {
-      await axios.post('http://localhost:8080/joya', {
+      await axios.post(ruta_back + 'joya', {
         nombre: nombreJoya,
         id_tipo_joya: tipoJoya,
+        cost: cost,
+      },{
+        headers: {
+          Authorization: token, 
+        }
       });
 
       setNombreJoya('');
       setTipoJoya('');
+      setCost('');
 
-      alert('Joya agregada exitosamente');
-      window.location.href = 'http://localhost:3000/joyas';
+      alertaSuccess('Joya agregada exitosamente');
+      window.location.href = ruta_front + 'admin/joyas';
     } catch (error) {
       console.log(error);
-      alert('Ocurrió un error al agregar la joya');
+      alertaError('Ocurrió un error al agregar la joya');
     }
   };
 
   return (
-    <Container style={{ textAlign: 'center' }} className="container-joya-agregar">
+    <Container style={{ textAlign: 'center' }} className="container-add-edit">
       <div>
         <h2 className="titulo">Agregar Joya</h2>
 
@@ -63,6 +78,18 @@ const AgregarJoya = () => {
           </div>
 
           <div>
+            <label htmlFor="cost">Precio Costo:</label>
+            <input
+              type="number"
+              min="0"
+              step="1"
+              id="Precio costo"
+              value={cost}
+              onChange={(e) => setCost(e.target.value)}
+            />
+          </div>
+
+          <div>
             <label htmlFor="tipoJoya">Tipo de Joya:</label>
             <select
               id="tipoJoya"
@@ -71,7 +98,7 @@ const AgregarJoya = () => {
             >
               <option value="">Selecciona un Tipo</option>
               {tipos.map((tipo, index) => (
-                <option value={tipo.id} key={tipo.id}>{tipo.nombre}</option>
+                <option value={tipo.id} key={tipo.id}>{tipo.nombre} - {tipo.material}</option>
               ))}
             </select>
           </div>

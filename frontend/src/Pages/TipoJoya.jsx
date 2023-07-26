@@ -6,93 +6,100 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
 import './TipoJoya.css';
+import {ruta_back} from '../utils/globals.js';
+import '../utils/globals.css';
+import { FaEdit } from 'react-icons/fa';
+import Editar_Tipo_Joya from '../Popups/Editar_Tipo_Joya';
 
 const TipoJoya = () => {
   const [tipos, setTipos] = useState([]);
-  const [categorias, setCategorias] = useState([]);
-  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('');
-
+  const [id, setId] = useState('');
+  const [showEditar, setShowEditar] = useState(false);
+  const token = localStorage.getItem('accessToken');
+  
   const getTipos = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/tipojoya');
+      const res = await axios.get(ruta_back + 'tipojoya',{
+        headers: {
+          Authorization: token, 
+        }
+      });
       setTipos(res.data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const getCategorias = async () => {
+  const handleEditClick = (id) => {
+    setId(id);
+    setShowEditar(true);
+  };
+
+  const handlePopupSubmit = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/tipojoya');
-      const categoriasUnicas = [...new Set(res.data.map(categoria => categoria.nombre))];
-      setCategorias(categoriasUnicas);
+      await getTipos();
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const handleCategoriaChange = (event) => {
-    const categoria = event.target.value;
-    setCategoriaSeleccionada(categoria);
+    setShowEditar(false);
   };
 
   useEffect(() => {
     getTipos();
-    getCategorias();
   }, []);
 
-  const filteredTipos = categoriaSeleccionada ? tipos.filter(tipo => tipo.material === categoriaSeleccionada || tipo.nombre.includes(categoriaSeleccionada)) : tipos;
 
   return (
-    <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-tipojoya-table">
-      <h1 style={{ fontSize: '48px' }}>Tipos de Joya</h1>
+    <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-table">
+      <h1 className='titulo' >TIPOS DE JOYA</h1>
 
       <Row style={{ marginTop: '20px' }}>
-        <Col style={{ display: 'flex', alignItems: 'left' }}>
-          <Col md={6} style={{ display: 'flex', alignItems: 'left' }}>
-            <select className='dropdown'
-              value={categoriaSeleccionada}
-              onChange={handleCategoriaChange}
-            >
-              <option value="">Todos los tipos</option>
-              {categorias.map((categoria, index) => (
-                <option value={categoria} key={index}>{categoria}</option>
-              ))}
-            </select>
-          </Col>
-          <Col md={6} style={{ display: 'flex', alignItems: 'center' }}>
+          <Col className="left-col" md={6}>
             <span style={{ marginRight: '10px', fontWeight: 'bold' }}>Tipos:</span>
-            <span>{filteredTipos.length}</span>
+            <span>{tipos.length}</span>
           </Col>
-        </Col>
-        <Col md={6} style={{ display: 'flex', alignItems: 'left', justifyContent: 'flex-end' }}>
-          <Link to="/tipos-de-joya/agregar-tipo">
-            <Button variant="primary"  style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent'}}>Agregar Tipo Joya</Button>
+ 
+        <Col className="right-col" md={6} >
+          <Link to="/admin/tipos-de-joya/agregar-tipo">
+            <Button variant="primary"  style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent',fontSize:'14px'}}>Agregar Tipo Joya</Button>
           </Link>    
         </Col>
       </Row>
 
       <div style={{ overflow: 'auto', maxHeight: '60vh', marginTop: '20px' }}>
-        <Table bordered hover className='table_tipos'>
-        <thead >
-            <tr className='cabeceras'>
-                <th>#</th>
-                <th>Nombre</th>
-                <th>Material</th>
+        <Table bordered hover className='table'>
+        <thead className='cabeceras'>
+            <tr >
+                <th>NOMBRE</th>
+                <th>MATERIAL</th>
+                <th>OPCIONES</th>
             </tr>
         </thead>
         <tbody>
-            {filteredTipos.map((tipo, index) => (
+            {tipos.map((tipo, index) => (
                 <tr key={index}>
-                    <td>{index + 1}</td>
                     <td>{tipo.nombre}</td>
                     <td>{tipo.material}</td>
+                    <td>
+                      <div className='icono-columna'>
+                      <FaEdit title='Editar Tipo de Joya' className='icono' onClick={() => handleEditClick(tipo.id)} />
+                      </div>
+                    </td>
                 </tr>
             ))}
 
         </tbody>
         </Table>    
     </div>
+
+    {showEditar && (
+        <Editar_Tipo_Joya
+          id={id}
+          onCancel={() => setShowEditar(false)}
+          onSubmit={handlePopupSubmit}
+        />
+         )}
+
     </Container>
   );
 };

@@ -1,5 +1,6 @@
 package mims.app.controller;
 
+import mims.app.Model.DisplayLocacionModelInterface;
 import mims.app.entity.LocacionEntity;
 import mims.app.service.LocacionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class LocacionController {
     private LocacionService locacionService;
 
     @GetMapping
-    public ResponseEntity<ArrayList<LocacionEntity>> get_all() {
+    public ArrayList<DisplayLocacionModelInterface> get_all() {
         return locacionService.get_all_locaciones_not_deleted();
     }
 

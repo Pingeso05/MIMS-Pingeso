@@ -2,22 +2,26 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import './AgregarProducto.css'; 
+import {ruta_back, ruta_front} from '../utils/globals.js';
+import '../utils/globals.css';
+import { alertaError, alertaSuccess, alertaWarning } from '../utils/alertas';
 
 const AgregarProducto = () => {
-  const [nombreProducto, setNombreProducto] = useState('');
-  const [precioCosto, setPrecioCosto] = useState('');
   const [precioVenta, setPrecioVenta] = useState('');
   const [cantidad, setCantidad] = useState('');
-  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('');
   const [locacionSeleccionada, setLocacionSeleccionada] = useState('');
-  const [categorias, setCategorias] = useState([]);
   const [locaciones, setLocaciones] = useState([]);
   const [joyas, setJoyas] = useState([]);
   const [joyaSeleccionada, setJoyaSeleccionada] = useState('');
+  const token = localStorage.getItem('accessToken');
 
   const getLocaciones = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/locacion');
+      const res = await axios.get(ruta_back + 'locacion',{
+        headers: {
+          Authorization: token, 
+        }
+      });
       const locacionesUnicas = res.data;
       setLocaciones(locacionesUnicas);
     } catch (error) {
@@ -27,7 +31,11 @@ const AgregarProducto = () => {
 
   const getJoyas = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/joya');
+      const res = await axios.get(ruta_back + 'joya',{
+        headers: {
+          Authorization: token, 
+        }
+      });
       const joyasUnicas = res.data;
       setJoyas(joyasUnicas);
     } catch (error) {
@@ -36,94 +44,91 @@ const AgregarProducto = () => {
   };
 
 
-
-  const getCategorias = async () => {
-    try {
-      const res = await axios.get('http://localhost:8080/tipojoya');
-      const categoriasUnicas = res.data;
-      setCategorias(categoriasUnicas);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (
       joyaSeleccionada.trim() === '' ||
-      nombreProducto.trim() === '' ||
-      precioCosto.trim() === '' ||
       precioVenta.trim() === '' ||
       cantidad.trim() === '' ||
-      categoriaSeleccionada.trim() === '' ||
       locacionSeleccionada.trim() === ''
     ) {
-      alert('Por favor, completa todos los campos');
+      alertaWarning('Por favor, completa todos los campos');
       return;
     }
 
     try {
-      
-      await axios.post('http://localhost:8080/inventario', {
+      const res = await axios.get(ruta_back + 'inventario',{
+        headers: {
+          Authorization: token, 
+        }
+      });
+      const productos = res.data;
+      const res2 = await axios.get(ruta_back + 'joya/' + joyaSeleccionada,{
+        headers: {
+          Authorization: token, 
+        }
+      });
+      const joya = res2.data.nombre;
+      const res3 = await axios.get(ruta_back + 'locacion/' + locacionSeleccionada,{
+        headers: {
+          Authorization: token, 
+        }
+      });
+      const local = res3.data.nombre;
+      const buscarProd = productos
+      .filter(producto => (local ? producto.local === local : true))
+      .filter(producto => (joya ? producto.joya === joya : true));
+      if(buscarProd.length === 0){
+      await axios.post(ruta_back + 'inventario', {
         id_locacion: locacionSeleccionada,
         id_joya: joyaSeleccionada,
-        nombre_producto: nombreProducto,
-        id_tipo_joya: categoriaSeleccionada,
         cantidad: cantidad,
         precio_venta: precioVenta,
-        precio_costo: precioCosto,
         deleted: false
+      },{
+        headers: {
+          Authorization: token, 
+        }
       });
 
      
-      setNombreProducto('');
-      setPrecioCosto('');
       setPrecioVenta('');
       setCantidad('');
-      setCategoriaSeleccionada('');
       setLocacionSeleccionada('');
 
-      alert('Producto agregado exitosamente');
-      window.location.href = 'http://localhost:3000/inventario';
+      alertaSuccess('Producto agregado exitosamente');
+      window.location.href = ruta_front + 'admin/inventario';
+    } else {
+      alertaWarning('El producto ya existe en esta ubicación, por favor revise los datos');
+      return;
+    }
     } catch (error) {
       console.log(error);
-      alert('Ocurrió un error al agregar el producto');
+      alertaError('Ocurrió un error al agregar el producto');
     }
   };
 
   useEffect(() => {
-    getCategorias();
     getLocaciones();
     getJoyas();
   }, []);
 
   return (
-    <Container style={{ textAlign: 'center' }} className="container-product">
+    <Container style={{ textAlign: 'center' }} className="container-add-edit">
       <div>
-        <h2 className="titulo">Agregar Producto</h2>
+        <h2 className="titulo">AGREGAR PRODUCTO</h2>
   
         <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="nombreProducto">Nombre del Producto:</label>
-            <input
-              type="text"
-              id="nombreProducto"
-              value={nombreProducto}
-              onChange={(e) => setNombreProducto(e.target.value)}
-            />
-          </div>
 
           <div>
-            <label htmlFor="joya">Joya:</label>
+            <label htmlFor="joya">JOYA:</label>
             <select
               id="joya"
               value={joyaSeleccionada}
               onChange={(e) => setJoyaSeleccionada(e.target.value)}
             >
-              <option value="">Seleccione una Joya</option>
+              <option value="">SLECCIONE JOYA</option>
               {joyas.map((joya) => (
                 <option value={joya.id} key={joya.id}>
                   {joya.nombre}
@@ -131,21 +136,9 @@ const AgregarProducto = () => {
               ))}
             </select>
           </div>
-  
-          <div  >
-            <label htmlFor="precioCosto">Precio costo:</label>
-            <input
-              type="number"
-              min="0"
-              step="1"
-              id="precioCosto"
-              value={precioCosto}
-              onChange={(e) => setPrecioCosto(e.target.value)}
-            />
-          </div>
 
           <div  >
-            <label htmlFor="precioVenta">Precio venta:</label>
+            <label htmlFor="precioVenta">PRECIO DE VENTA:</label>
             <input
               type="number"
               min="0"
@@ -157,7 +150,7 @@ const AgregarProducto = () => {
           </div>
   
           <div >
-            <label htmlFor="cantidad">Cantidad:</label>
+            <label htmlFor="cantidad">CANTIDAD:</label>
             <input
               type="number"
               min="0"
@@ -169,29 +162,13 @@ const AgregarProducto = () => {
           </div>
   
           <div>
-            <label htmlFor="categoria">Categoría:</label>
-            <select
-              id="categoria"
-              value={categoriaSeleccionada}
-              onChange={(e) => setCategoriaSeleccionada(e.target.value)}
-            >
-              <option value="">Seleccione una categoría</option>
-              {categorias.map((categoria) => (
-                <option value={categoria.id} key={categoria.id}>
-                  {categoria.nombre}
-                </option>
-              ))}
-            </select>
-          </div>
-  
-          <div>
-            <label htmlFor="locacion">Locación:</label>
+            <label htmlFor="locacion">LOCACIÓN:</label>
             <select
               id="locacion"
               value={locacionSeleccionada}
               onChange={(e) => setLocacionSeleccionada(e.target.value)}
             >
-              <option value="">Seleccione una Locación</option>
+              <option value="">SELECCIONE LOCACIÓN</option>
                 {locaciones.map((locacion) => (
                   <option value={locacion.id} key={locacion.id}>
                     {locacion.nombre}
@@ -199,7 +176,7 @@ const AgregarProducto = () => {
                 ))}
             </select>
           </div>
-          <button type="submit">Agregar Producto</button>
+          <button type="submit">AGREGAR PRODUCTO</button>
         </form>
         
         <div className="separador"> </div>

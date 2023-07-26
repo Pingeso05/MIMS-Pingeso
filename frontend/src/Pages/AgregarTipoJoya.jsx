@@ -2,11 +2,14 @@ import { useState } from 'react';
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import './AgregarTipoJoya.css';
+import {ruta_back, ruta_front} from '../utils/globals.js';
+import '../utils/globals.css';
 
 const AgregarTipoJoya = () => {
   const [nombreTipo, setNombreTipo] = useState('');
   const [materialTipo, setMaterialTipo] = useState('');
-
+  const token = localStorage.getItem('accessToken');
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -16,16 +19,20 @@ const AgregarTipoJoya = () => {
     }
 
     try {
-      await axios.post('http://localhost:8080/tipojoya', {
+      await axios.post(ruta_back + 'tipojoya', {
         nombre: nombreTipo,
         material: materialTipo,
+      },{
+        headers: {
+          Authorization: token, 
+        }
       });
 
       setNombreTipo('');
       setMaterialTipo('');
 
       alert('Tipo de joya agregado exitosamente');
-      window.location.href = 'http://localhost:3000/tipojoya';
+      window.location.href = ruta_front + 'admin/tipos-de-joya';
     } catch (error) {
       console.log(error);
       alert('Ocurrió un error al agregar el tipo de joya');
@@ -33,7 +40,7 @@ const AgregarTipoJoya = () => {
   };
 
   return (
-    <Container style={{ textAlign: 'center' }} className="container-tipojoya-agregar">
+    <Container style={{ textAlign: 'center' }} className="container-add-edit">
       <div>
         <h2 className="titulo">Agregar Tipo de Joya</h2>
 

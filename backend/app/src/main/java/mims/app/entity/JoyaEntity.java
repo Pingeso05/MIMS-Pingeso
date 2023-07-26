@@ -6,16 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Data
 @Table(name = "joya")
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-/**
- * Esta clase representa la tabla joya
- * */
 public class JoyaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +26,15 @@ public class JoyaEntity {
     @Column(name = "deleted")
     private boolean deleted;
 
+    @Column(name = "is_unique")
+    private boolean is_unique;
+
+    @Column(name = "cost")
+    private float cost;
+
+    //@Column(name = "Code")
+    //private String code;
+    
     public void setDeleted(boolean b) {
         this.deleted = b;
     }

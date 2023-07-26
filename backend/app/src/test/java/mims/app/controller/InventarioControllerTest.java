@@ -1,24 +1,22 @@
 package mims.app.controller;
+
 import mims.app.Model.DisplayInventarioModelInterface;
 import mims.app.entity.InventarioEntity;
 import mims.app.service.InventarioService;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-@RunWith(MockitoJUnitRunner.class)
-public class InventarioControllerTest {
+class InventarioControllerTest {
 
     @Mock
     private InventarioService inventarioService;
@@ -26,136 +24,97 @@ public class InventarioControllerTest {
     @InjectMocks
     private InventarioController inventarioController;
 
-    @Before
-    public void setUp() {
-        // Configurar el comportamiento del servicio simulado (mock) según sea necesario
-        // por ejemplo, cuando se llame a inventarioService.get_all_inventarios_not_deleted(), devolver una lista simulada de inventarios
-        // cuando se llame a inventarioService.get_inventario_by_id(id), devolver un ResponseEntity simulado de InventarioEntity
-        // ...
-
-        // Ejemplo de configuración para el método get_all()
-        ArrayList<DisplayInventarioModelInterface> inventarios = new ArrayList<>();
-        inventarios.add(new DisplayInventarioModelInterface() {
-            @Override
-            public int getId() {
-                return 0;
-            }
-
-            @Override
-            public int getCantidad() {
-                return 0;
-            }
-
-            @Override
-            public float getPrecio_venta() {
-                return 0;
-            }
-
-            @Override
-            public float getPrecio_costo() {
-                return 0;
-            }
-
-            @Override
-            public String getJoya() {
-                return null;
-            }
-
-            @Override
-            public String getTipo_joya() {
-                return null;
-            }
-
-            @Override
-            public String getLocal() {
-                return null;
-            }
-        });
-        when(inventarioService.get_all_inventarios_not_deleted()).thenReturn(inventarios);
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    public void testGetAll() {
-        ArrayList<DisplayInventarioModelInterface> result = inventarioController.get_all();
-
-        // Verificar que el servicio simulado fue llamado correctamente
-        verify(inventarioService, times(1)).get_all_inventarios_not_deleted();
-
-        // Verificar que el resultado no es nulo
-        assertEquals(1, result.size());
-    }
-
-    @Test
-    public void testGetById() {
+    void testGetInventarioById() {
         int id = 1;
-        InventarioEntity inventario = new InventarioEntity();
-        inventario.setId(id);
-        ResponseEntity<InventarioEntity> responseEntity = ResponseEntity.ok(inventario);
+        ArrayList<InventarioEntity> inventario = new ArrayList<>();
+        InventarioEntity producto = new InventarioEntity();
+        producto.setId_joya(1);
+        producto.setPrecio_venta(11);
+        producto.setCantidad(1);
+        producto.setId_locacion(1);
+        producto.setDeleted(false);
+        inventario.add(producto);
 
-        when(inventarioService.get_inventario_by_id(id)).thenReturn(responseEntity);
+        when(inventarioService.get_inventario_by_id(id)).thenReturn(ResponseEntity.ok(producto));
 
-        ResponseEntity<InventarioEntity> result = inventarioController.get_by_id(id);
+        ResponseEntity<InventarioEntity> response = inventarioController.get_by_id(id);
 
-        // Verificar que el servicio simulado fue llamado correctamente
-        verify(inventarioService, times(1)).get_inventario_by_id(id);
-
-        // Verificar el resultado esperado
-        assertEquals(responseEntity, result);
-    }
-
-    @Test
-    public void testSave() {
-        InventarioEntity inventario = new InventarioEntity();
-        inventario.setCantidad(1);
-        inventario.setPrecio_venta(1);
-        inventario.setPrecio_costo(1);
-        inventario.setId_joya(1);
-        inventario.setId_locacion(1);
-        inventario.setId_tipo_joya(1);
-        inventario.setDeleted(false);
-
-        ResponseEntity<InventarioEntity> response = inventarioController.save(inventario);
-
-        // Verificar que el servicio simulado fue llamado correctamente
-        verify(inventarioService, times(1)).save_inventario(inventario);
-
-        // Verificar el resultado esperado
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(inventario, response.getBody());
+        assertEquals(producto, response.getBody());
+
+        verify(inventarioService, times(1)).get_inventario_by_id(id);
+        verifyNoMoreInteractions(inventarioService);
+    }
+
+
+    @Test
+    void testSaveInventario() {
+        InventarioEntity producto = new InventarioEntity();
+        producto.setId_joya(1);
+        producto.setPrecio_venta(11);
+        producto.setCantidad(1);
+        producto.setId_locacion(1);
+        producto.setDeleted(false);
+        // Agregar lógica para configurar la respuesta del servicio y establecer el objeto InventarioEntity
+
+        when(inventarioService.save_inventario(producto)).thenReturn(ResponseEntity.ok(producto));
+
+        ResponseEntity<InventarioEntity> response = inventarioController.save(producto);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(producto, response.getBody());
+
+        verify(inventarioService, times(1)).save_inventario(producto);
+        verifyNoMoreInteractions(inventarioService);
     }
 
     @Test
-    public void testUpdate() {
+    void testUpdateInventario() {
         int id = 1;
-        InventarioEntity inventario = new InventarioEntity();
-        ResponseEntity<InventarioEntity> responseEntity = ResponseEntity.ok(inventario);
+        InventarioEntity producto = new InventarioEntity();
+        producto.setId_joya(1);
+        producto.setPrecio_venta(11);
+        producto.setCantidad(1);
+        producto.setId_locacion(1);
+        producto.setDeleted(false);
+        // Agregar lógica para configurar la respuesta del servicio y establecer el objeto InventarioEntity
 
-        when(inventarioService.update_inventario(inventario, id)).thenReturn(responseEntity);
+        when(inventarioService.update_inventario(producto, id)).thenReturn(ResponseEntity.ok(producto));
 
-        ResponseEntity<InventarioEntity> result = inventarioController.update(inventario, id);
+        ResponseEntity<InventarioEntity> response = inventarioController.update(producto, id);
 
-        // Verificar que el servicio simulado fue llamado correctamente
-        verify(inventarioService, times(1)).update_inventario(inventario, id);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(producto, response.getBody());
 
-        // Verificar el resultado esperado
-        assertEquals(responseEntity, result);
+        verify(inventarioService, times(1)).update_inventario(producto, id);
+        verifyNoMoreInteractions(inventarioService);
     }
 
     @Test
-    public void testDelete() {
+    void testDeleteInventario() {
         int id = 1;
-        InventarioEntity inventario = new InventarioEntity();
-        ResponseEntity<InventarioEntity> responseEntity = ResponseEntity.ok(inventario);
+        ArrayList<InventarioEntity> inventario = new ArrayList<>();
+        InventarioEntity producto = new InventarioEntity();
+        producto.setId_joya(1);
+        producto.setPrecio_venta(11);
+        producto.setCantidad(1);
+        producto.setId_locacion(1);
+        producto.setDeleted(false);
+        inventario.add(producto);
 
-        when(inventarioService.delete_inventario(id)).thenReturn(responseEntity);
+        when(inventarioService.delete_inventario(id)).thenReturn(ResponseEntity.ok().build());
 
-        ResponseEntity<InventarioEntity> result = inventarioController.delete(id);
+        ResponseEntity<InventarioEntity> response = inventarioController.delete(id);
 
-        // Verificar que el servicio simulado fue llamado correctamente
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+
         verify(inventarioService, times(1)).delete_inventario(id);
-
-        // Verificar el resultado esperado
-        assertEquals(responseEntity, result);
+        verifyNoMoreInteractions(inventarioService);
     }
-
 }

@@ -23,6 +23,13 @@ public class LocacionEntity {
         @Column(name = "direccion")
         private String direccion;
 
+        @Column(name = "comuna")
+        private int comuna;
+
+        @Column(name = "region")
+        private int region;
+
+
         private boolean deleted;
 
         public void setDeleted(boolean b) {

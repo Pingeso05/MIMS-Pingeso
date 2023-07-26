@@ -1,37 +1,88 @@
-import { Table, Button } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Link } from 'react-router-dom';
 import './Inventario.css';
-import { useNavigate } from 'react-router-dom';
 import React from 'react';
+import { ruta_back } from '../utils/globals.js';
+import '../utils/globals.css';
+import { FaEye, FaEdit } from 'react-icons/fa';
+import { MdOutlineInventory } from "react-icons/md";
+import Modificar_Inventario from '../Popups/Modificar_Inventario';
+import Editar_Inventario from '../Popups/Editar_Inventario';
+import Ver_Inventario from '../Popups/Ver_Inventario';
+import Button from 'react-bootstrap/Button';
 
 const Inventario = () => {
-  const navigate = useNavigate();
   const [productos, setProductos] = useState([]);
-  const [productoReal, setProductoReal] = useState(null);
   const [categorias, setCategorias] = useState([]);
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('');
+  const [locaciones, setLocaciones] = useState([]);
+  const [locacionSeleccionada, setLocacionSeleccionada] = useState('');
+  const [showModificarInventario, setModificarInventario] = useState(false);
+  const [showEditarInventario, setEditarInventario] = useState(false);
+  const [productoSeleccionado, setProductoSeleccionado] = useState(null);
+  const [showInventario, setShowInventario] = useState(false);
+  const token = localStorage.getItem('accessToken');
 
-  const getProductoReal = async (id) => {
+  const getLocaciones = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/inventario/' + id);
-      setProductoReal(res.data);
+      const res = await axios.get(ruta_back + 'locacion', {
+        headers: {
+          Authorization: token, 
+        }
+      });
+      const locacionesUnicas = [...new Set(res.data.map(locacion => locacion.nombre))];
+      setLocaciones(locacionesUnicas);
     } catch (error) {
       console.log(error);
+      console.log('error: No se pudieron obtener la locaciones!');
     }
   };
 
-  const getEditView = (id) => {
-    navigate('/inventario/editar-producto/' + id);
+
+  const handleLocacionChange = (event) => {
+    const locacion = event.target.value;
+    setLocacionSeleccionada(locacion);
   };
+
+
+
+  const handleViewClick = (producto) => {
+    setProductoSeleccionado(producto);
+    setShowInventario(true);
+  };
+
+  const handleEditClick = (producto) => {
+    setProductoSeleccionado(producto);
+    setEditarInventario(true);
+  };
+
+  const handleChangeClick = (producto) => {
+    setProductoSeleccionado(producto);
+    setModificarInventario(true);
+  };
+
+  const handlePopupSubmit = async () => {
+    try {
+      await getProductos();
+    } catch (error) {
+      console.log(error);
+    }
+    setModificarInventario(false);
+    setEditarInventario(false);
+  };
+
 
   const getProductos = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/inventario');
+      const res = await axios.get(ruta_back + 'inventario', {
+        headers: {
+          Authorization: token, 
+        }
+      });
       setProductos(res.data);
     } catch (error) {
       console.log(error);
@@ -40,21 +91,13 @@ const Inventario = () => {
 
   const getCategorias = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/tipojoya');
+      const res = await axios.get(ruta_back + 'tipojoya',{
+        headers: {
+          Authorization: token, 
+        }
+      });
       const categoriasUnicas = [...new Set(res.data.map(categoria => categoria.nombre))];
       setCategorias(categoriasUnicas);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleUpdate = async (productoReal) => {
-    try {
-      let url = 'http://localhost:8080/inventario/' + productoReal.id;
-      const res = await axios.put(url, productoReal);
-      if (res.status === 200) {
-        getProductos();
-      }
     } catch (error) {
       console.log(error);
     }
@@ -65,105 +108,122 @@ const Inventario = () => {
     setCategoriaSeleccionada(categoria);
   };
 
-  const handleChangeplus = async (producto) => {
-    await getProductoReal(producto.id);
-    setProductoReal((prevState) => {
-      const updatedProductoReal = { ...prevState, cantidad: prevState.cantidad + 1 };
-      handleUpdate(updatedProductoReal);
-      return updatedProductoReal;
-    });
-  };
-
-  const handleChangeless = async (producto) => {
-    await getProductoReal(producto.id);
-    setProductoReal((prevState) => {
-      const updatedProductoReal = { ...prevState, cantidad: prevState.cantidad - 1 };
-      handleUpdate(updatedProductoReal);
-      return updatedProductoReal;
-    });
-  };
-
   useEffect(() => {
     getProductos();
     getCategorias();
+    getLocaciones();
   }, []);
 
-  const filteredProductos = categoriaSeleccionada ? productos.filter(producto => producto.tipo_joya === categoriaSeleccionada) : productos;
+  const filteredProductos = productos
+    .filter(producto => (categoriaSeleccionada ? producto.tipo_joya === categoriaSeleccionada : true))
+    .filter(producto => (locacionSeleccionada ? producto.local === locacionSeleccionada : true));
+
+
 
   return (
-    <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-inventario">
-      <h1 style={{ fontSize: '48px' }}>Inventario</h1>
+    <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-table">
+      <h1 className='titulo' >LISTA DE PRODUCTOS</h1>
       
-        
-          
-
-      <Row className="fila-dp" style={{ marginTop: '20px' }}>
-        <Col className="columna-dp" style={{ display: 'flex', alignItems: 'left' }}>
+      <Row className="fila-dp" style={{ marginTop: '10px' }}>
+        <Col className="columna-dp" style={{ padding:'5px',display: 'flex', alignItems: 'left' }}>
           <Col md={6} style={{ display: 'flex', alignItems: 'left' }}>
-            <select className='dropdown'
+            <select className='dropdown-tb'
               value={categoriaSeleccionada}
               onChange={handleCategoriaChange}
             >
-              <option value="">Todas las categorías</option>
+              <option value="">CATEGORÍA</option>
               {categorias.map((categoria, index) => (
                 <option value={categoria} key={index}>{categoria}</option>
               ))}
             </select>
           </Col>
-          <Col md={6} style={{ display: 'flex', alignItems: 'center' }}>
-            <span style={{ marginRight: '10px', fontWeight: 'bold' }}>Productos:</span>
-            <span>{filteredProductos.length}</span>
+          <Col md={6} style={{ display: 'flex', alignItems: 'left' }}>
+            <select className='dropdown-tb'
+              value={locacionSeleccionada}
+              onChange={handleLocacionChange}
+            >
+              <option value="">LOCAL</option>
+              {locaciones.map((locacion, index) => (
+                <option value={locacion} key={index}>{locacion}</option>
+              ))}
+            </select>
           </Col>
-        </Col>
-        <Col className="agregar-pd d-flex justify-content-md-end" >
-          <Link to="/inventario/agregar-producto">
-            <Button variant="primary"  style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent'}}>Agregar Producto</Button>
-          </Link>    
+          
         </Col>
 
       </Row>
+      <Row style={{padding:'10px'}}>
+        <Col md={6} style={{ display: 'flex', alignItems: 'center' }}>
+              <span style={{ marginRight: '10px', fontWeight: 'bold' }}>PRODUCTOS:</span>
+              <span>{filteredProductos.length}</span>
+        </Col>
+      </Row>
       
           <div style={{ overflow: 'auto', maxHeight: '60vh', marginTop: '20px' }}>
-            <Table bordered hover className='table_productos'>
-            <thead >
-                <tr className='cabeceras'>
-                    <th>#</th>
-                    <th>Local</th>
-                    <th>Opciones</th>
-                    <th>Cantidad</th>
-                    <th>Nombre</th>
-                    <th>Tipo Joya</th>
-                    <th>Joya</th>
-                    <th>Precio Costo</th>
-                    <th>Precio Venta</th>
-                    <th>Acciones</th>
-                </tr>
+          <Table bordered hover className='table'>
+            <thead>
+              <tr className='cabeceras'>
+                <th>JOYA</th>
+                <th>CANTIDAD</th>
+                <th>TIPO JOYA</th>
+                <th>LOCACION</th>
+                <th className='ocultar-columna'>PRECIO COSTO</th>
+                <th className='ocultar-columna'>PRECIO VENTA</th>
+                <th>OPCIONES</th>
+                
+              </tr>
             </thead>
             <tbody>
-                {filteredProductos.map((producto, index) => (
-                    <tr key={index} >
-                        <td>{index + 1}</td>
-                        <td>{producto.local}</td>
-                        <td>
-                            <Button variant='success' onClick={() => getEditView(producto.id)} >Modificar</Button>
-                            <Button variant='success'>Venta</Button>
-                        </td>
-                        <td>{producto.cantidad}</td>
-                        <td>{producto.nombre_producto}</td>
-                        <td>{producto.tipo_joya}</td>
-                        <td>{producto.joya}</td>
-                        <td>{producto.precio_costo}</td>
-                        <td>{producto.precio_venta}</td>
-                        <td style={{display:"flex", justifyContent: "space-between"}}>
-                            <Button variant='primary' style={{ marginRight: '5px' }} onClick={() => handleChangeplus(producto)}> + </Button>
-                            <Button variant='danger' style={{ marginLeft: '5px' }} onClick={() => handleChangeless(producto)}> - </Button>
-                        </td>
-                    </tr>
-                ))}
-
+              {filteredProductos.map((producto, index) => (
+                <tr key={index}>
+                  <td>
+                  {producto.joya}
+                  </td>
+                  <td>{Number(producto.cantidad).toLocaleString()}</td>
+                  <td>{producto.tipo_joya}</td>
+                  <td>{producto.local}</td>
+                  <td className='ocultar-columna'>${Number(producto.cost).toLocaleString()}</td>
+                  <td className='ocultar-columna'>${Number(producto.precio_venta).toLocaleString()}</td>
+                  <td>
+                  <div>
+                    <Row>
+                      <Col style={{padding:'1px'}}><Button variant="success" onClick={() => handleViewClick(producto)} style={{backgroundColor: 'success', borderRadius: '10', borderColor: 'transparent',fontSize:'10px'}}>DETALLE</Button></Col>
+                      <Col style={{padding:'1px'}}><Button variant="primary" onClick={() => handleEditClick(producto)} style={{backgroundColor: 'danger', borderRadius: '10', borderColor: 'transparent',fontSize:'10px'}}>EDITAR</Button></Col>
+                    </Row>
+                    <Row>
+                    <Col style={{padding:'1px'}}><Button variant="primary" onClick={() => handleChangeClick(producto)} style={{backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent',fontSize:'10px'}}>ACCIONES</Button></Col>
+                    </Row>
+                    
+                  </div>
+                  </td>
+                </tr>
+              ))}
             </tbody>
-            </Table>    
+          </Table>  
         </div>
+
+        {showModificarInventario && (
+        <Modificar_Inventario
+          product={productoSeleccionado}
+          onCancel={() => setModificarInventario(false)}
+          onSubmit={handlePopupSubmit}
+        />
+         )}
+
+        {showEditarInventario && (
+        <Editar_Inventario
+          id={productoSeleccionado.id}
+          onCancel={() => setEditarInventario(false)}
+          onSubmit={handlePopupSubmit}
+        />
+         )}
+        
+        {showInventario && (
+        <Ver_Inventario
+          id={productoSeleccionado.id}
+          onCancel={() => setShowInventario(false)}
+        />
+         )}
         </Container>
     );
   };

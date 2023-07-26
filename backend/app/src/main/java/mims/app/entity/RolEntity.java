@@ -1,28 +1,16 @@
 package mims.app.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Data
-@Table(name = "rol")
-@AllArgsConstructor
-@NoArgsConstructor
+@Table(name = "roles")
 public class RolEntity {
     @Id
-    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "nombre")
+    @Column(name = "nombre", nullable = false)
     private String nombre;
-
-    @Column(name = "deleted")
-    private boolean deleted;
-
-    public boolean getDeleted() {
-        return this.deleted;
-    }
 }

@@ -6,24 +6,57 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from 'react-router-dom';
 import './Joya.css';
+import { useNavigate } from 'react-router-dom';
+import { ruta_back } from '../utils/globals.js';
+import '../utils/globals.css';
+import { FaEdit } from 'react-icons/fa';
+import Editar_Joya from '../Popups/Editar_Joya';
 
 const Joya = () => {
   const [joyas, setJoyas] = useState([]);
   const [tipos, setTipos] = useState([]);
   const [tipoSeleccionado, setTipoSeleccionado] = useState('');
+  const [showEditarJoya, setShowEditarJoya] = useState(false);
+  const [joyaSeleccionada, setJoyaSeleccionada] = useState(null);
+  const [editarJoya, setEditarJoya] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const token = localStorage.getItem('accessToken');
 
   const getJoyas = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/joya');
+      const res = await axios.get(ruta_back + 'joya',{
+        headers: {
+          Authorization: token, 
+        }
+      });
       setJoyas(res.data);
+      console.log(res.data);
     } catch (error) {
       console.log(error);
     }
   };
 
+  const handleEditClick = (joya) => {
+    setJoyaSeleccionada(joya);
+    setShowEditarJoya(true);
+  };
+
+  const handlePopupSubmit = async () => {
+    try {
+      await getJoyas();
+    } catch (error) {
+      console.log(error);
+    }
+    setShowEditarJoya(false);
+  };
+
   const getTipos = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/tipojoya');
+      const res = await axios.get(ruta_back + 'tipojoya',{
+        headers: {
+          Authorization: token, 
+        }
+      });
       const tiposUnicos = [...new Set(res.data.map(tipo => tipo.nombre))];
       setTipos(tiposUnicos);
     } catch (error) {
@@ -31,69 +64,94 @@ const Joya = () => {
     }
   };
 
-  const handleTipoChange = (event) => {
-    const tipo = event.target.value;
-    setTipoSeleccionado(tipo);
-  };
-
   useEffect(() => {
     getJoyas();
     getTipos();
   }, []);
 
-  const filteredJoyas = tipoSeleccionado ? joyas.filter(joya => joya.tipo_joya === tipoSeleccionado) : joyas;
+  const filteredJoyas = tipoSeleccionado
+    ? joyas.filter(
+        (joya) =>
+          joya.tipo_joya === tipoSeleccionado &&
+          joya.nombre.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : joyas.filter((joya) =>
+        joya.nombre.toLowerCase().includes(searchQuery.toLowerCase())
+      );
 
   return (
-    <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-joya-table">
-      <h1 style={{ fontSize: '48px' }}>Joyas</h1>
+    <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-table">
+      <h1 className='titulo'>JOYAS</h1>
 
       <Row style={{ marginTop: '20px' }}>
-        <Col style={{ display: 'flex', alignItems: 'left' }}>
-          <Col md={6} style={{ display: 'flex', alignItems: 'left' }}>
-            <select className='dropdown'
-              value={tipoSeleccionado}
-              onChange={handleTipoChange}
-            >
-              <option value="">Todos los tipos</option>
-              {tipos.map((tipo, index) => (
-                <option value={tipo} key={index}>{tipo}</option>
-              ))}
-            </select>
-          </Col>
-          <Col md={6} style={{ display: 'flex', alignItems: 'center' }}>
-            <span style={{ marginRight: '10px', fontWeight: 'bold' }}>Joyas:</span>
-            <span>{filteredJoyas.length}</span>
-          </Col>
+        <Col className="left-col" md={6}>
+          <span style={{ marginRight: '10px', fontWeight: 'bold' }}>Joyas:</span>
+          <span>{filteredJoyas.length}</span>
         </Col>
-        <Col md={6} style={{ display: 'flex', alignItems: 'left', justifyContent: 'flex-end' }}>
-          <Link to="/joyas/agregar-joya">
-            <Button variant="primary"  style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent'}}>Agregar Joya</Button>
-          </Link>    
+        <Col className="right-col" md={6}>
+          <Link to="/admin/joyas/agregar-joya">
+            <Button
+              variant="primary"
+              style={{
+                marginRight: '10px',
+                backgroundColor: '#D5418F',
+                borderRadius: '10',
+                borderColor: 'transparent',
+                fontSize: '14px',
+              }}
+            >
+              Agregar Joya
+            </Button>
+          </Link>
+          <input
+            type="text"
+            placeholder="Buscar por nombre"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
         </Col>
       </Row>
 
-      <div style={{ overflow: 'auto', maxHeight: '60vh', marginTop: '20px' }}>
-        <Table bordered hover className='table_joyas'>
+      <div style={{ overflow: 'auto', maxHeight: '55vh', marginTop: '20px' }}>
+        <Table bordered hover className="table">
           <thead>
             <tr className='cabeceras'>
-              <th>#</th>
-              <th>Nombre</th>
-              <th>Tipo de Joya</th>
+              <th>NOMBRE DE JOYA</th>
+              <th>TIPO JOYA</th>
+              <th>PRECIO COSTO?</th>
+              <th>OPCIONES</th>
             </tr>
           </thead>
           <tbody>
             {filteredJoyas.map((joya, index) => (
               <tr key={index}>
-                <td>{index + 1}</td>
                 <td>{joya.nombre}</td>
                 <td>{joya.tipo_joya}</td>
+                <td>${joya.cost}</td>
+                <td>
+                  <div className="icono-columna">
+                    <FaEdit
+                      title="Editar Joya"
+                      className="icono"
+                      onClick={() => handleEditClick(joya.id)}
+                    />
+                  </div>
+                </td>
               </tr>
             ))}
           </tbody>
-        </Table>    
+        </Table>
       </div>
+
+      {showEditarJoya && (
+        <Editar_Joya
+          id={joyaSeleccionada}
+          onCancel={() => setShowEditarJoya(false)}
+          onSubmit={handlePopupSubmit}
+        />
+      )}
     </Container>
   );
 };
-  
+
 export default Joya;

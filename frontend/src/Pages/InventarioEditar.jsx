@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import {Container, Col } from 'react-bootstrap';
+import {Container} from 'react-bootstrap';
 import './InventarioEditar.css';
-import { Row } from 'react-bootstrap';
+import {ruta_back, ruta_front} from '../utils/globals.js';
+import '../utils/globals.css';
 
 const EditarProducto = () => {
   const { id } = useParams();
@@ -18,11 +19,12 @@ const EditarProducto = () => {
   const [locaciones, setLocaciones] = useState([]);
   const [joyas, setJoyas] = useState([]);
   const [joyaSeleccionada, setJoyaSeleccionada] = useState('');
+  const token = localStorage.getItem('accessToken');
 
 
   const getLocaciones = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/locacion');
+      const res = await axios.get(ruta_back + 'locacion');
       const locacionesUnicas = res.data;
       setLocaciones(locacionesUnicas);
     } catch (error) {
@@ -32,7 +34,7 @@ const EditarProducto = () => {
 
   const getJoyas = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/joya');
+      const res = await axios.get(ruta_back + 'joya');
       const joyasUnicas = res.data;
       setJoyas(joyasUnicas);
     } catch (error) {
@@ -42,7 +44,7 @@ const EditarProducto = () => {
 
   const getCategorias = async () => {
     try {
-      const res = await axios.get('http://localhost:8080/tipojoya');
+      const res = await axios.get(ruta_back + 'tipojoya');
       const categoriasUnicas = res.data;
       setCategorias(categoriasUnicas);
     } catch (error) {
@@ -55,7 +57,6 @@ const EditarProducto = () => {
 
     if (
       joyaSeleccionada === '' ||
-      nombreProducto.trim() === '' ||
       precioCosto === '' ||
       precioVenta === '' ||
       cantidad === '' ||
@@ -67,14 +68,11 @@ const EditarProducto = () => {
     }
 
     try {
-      await axios.put('http://localhost:8080/inventario/' + id, {
+      await axios.put(ruta_back + 'inventario/' + id, {
         id_locacion: locacionSeleccionada,
         id_joya: joyaSeleccionada,
-        nombre_producto: nombreProducto,
-        id_tipo_joya: categoriaSeleccionada,
         cantidad: cantidad,
         precio_venta: precioVenta,
-        precio_costo: precioCosto,
         deleted: false
       });
 
@@ -86,7 +84,7 @@ const EditarProducto = () => {
       setLocacionSeleccionada('');
 
       alert('Producto actualizado exitosamente');
-      window.location.href = 'http://localhost:3000/inventario';
+      window.location.href = ruta_front + 'inventario';
     } catch (error) {
       console.log(error);
       alert('Ocurrió un error al actualizar el producto');
@@ -96,10 +94,9 @@ const EditarProducto = () => {
   useEffect(() => {
     const getProducto = async () => {
       try {
-        const res = await axios.get('http://localhost:8080/inventario/' + id);
+        const res = await axios.get(ruta_back + 'inventario/' + id);
         const producto = res.data;
 
-        setNombreProducto(producto.nombre_producto);
         setPrecioCosto(producto.precio_costo);
         setPrecioVenta(producto.precio_venta);
         setCantidad(producto.cantidad);
@@ -118,21 +115,12 @@ const EditarProducto = () => {
   }, [id]);
 
   return (
-    <Container style={{ textAlign: 'center' }} className="container-product">
+    <Container style={{ textAlign: 'center' }} className="container-add-edit">
       <div>
         <h2 className="titulo">Editar Producto</h2>
 
         <form onSubmit={handleSubmit}>
           
-          <div>
-            <label htmlFor="nombreProducto">Nombre del Producto:</label>
-            <input
-              type="text"
-              id="nombreProducto"
-              value={nombreProducto}
-              onChange={(e) => setNombreProducto(e.target.value)}
-            />
-          </div>
           <div>
             <label htmlFor="joya">Joya:</label>
             <select
