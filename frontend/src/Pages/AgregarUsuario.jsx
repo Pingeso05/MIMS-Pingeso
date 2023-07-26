@@ -3,6 +3,7 @@ import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import {ruta_back, ruta_front} from '../utils/globals.js';
 import '../utils/globals.css';
+import { Alert } from 'react-bootstrap';
 
 const AgregarUsuario = () => {
   const [nombreSeleccionado, setNombreSeleccionado] = useState('');
@@ -50,9 +51,10 @@ const AgregarUsuario = () => {
 
     try {
       
-      getUsuarios();
       const buscarEmail = usuarios
       .filter(usuario => (emailSeleccionado ? usuario.email === emailSeleccionado : true));
+
+      console.log(buscarEmail);
       if(buscarEmail.length === 0){
       await axios.post(ruta_back + 'usuario', {
         nombre: nombreSeleccionado,
@@ -78,8 +80,8 @@ const AgregarUsuario = () => {
       window.location.href = ruta_front + 'usuarios';
 
     } else {
-      alert('El email ya está registrado, por favor utilice otro');
-      return;
+      
+      return <Alert severity="error">This is an error alert — check it out!</Alert>;
     }
     } catch (error) {
       console.log(error);
@@ -90,6 +92,7 @@ const AgregarUsuario = () => {
 
   useEffect(() => {
     getRoles();
+    getUsuarios();
   }, []);
 
   return (

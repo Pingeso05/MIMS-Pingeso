@@ -29,7 +29,6 @@ const Administrar_Usuarios = () => {
         }
       });
       setUsuarios(res.data);
-      console.log(res.data);
     } catch (error) {
       console.log(error);
     }
