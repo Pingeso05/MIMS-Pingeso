@@ -150,6 +150,10 @@ query = "TRUNCATE TABLE mims.joya"
 cursor.execute(query)
 query = "TRUNCATE TABLE mims.inventario"
 cursor.execute(query)
+query = "TRUNCATE TABLE mims.log_inventario"
+cursor.execute(query)
+query = "TRUNCATE TABLE mims.transito"
+cursor.execute(query)
 cursor.close()
 database.commit()
 
@@ -240,5 +244,10 @@ cursor.close()
 database.commit()
 #fin
 
+cursor = database.cursor()
+query = "Insert Into mims.usuario (apellido, deleted, email, nombre, password) VALUES ('Onetto', 0, 'bastian.onetto@usach.cl', 'Bastian', '$2a$10$C0MRvu9C9YXKI0x.A.gxeepIFnQDwfmUjUDK66kc/OlrM5yDbN7HK');"
+cursor.execute(query)
+cursor.close()
+database.commit()
 database.close()
 print("Se han cargado los datos de manera correcta.")

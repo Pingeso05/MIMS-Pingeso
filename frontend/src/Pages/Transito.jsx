@@ -126,6 +126,7 @@ const Transito = () => {
       console.log("no se pudo obtener el producto");
       console.log(error);
     }
+    setT(Date.now());
   };
 
   const handleRecibir = async (producto) => {
@@ -301,6 +302,7 @@ const Transito = () => {
       Authorization: token, // No incluye el prefijo "Bearer"
     }
   });
+  setT(Date.now());
   };
 
 
@@ -330,7 +332,7 @@ const Transito = () => {
     getProductos();
     getCategorias();
     getLocaciones();
-  }, [T,]);
+  }, [T]);
 
   const filteredProductos = productos
   .filter(producto => (categoriaSeleccionada ? producto.tipo_producto === categoriaSeleccionada : true))

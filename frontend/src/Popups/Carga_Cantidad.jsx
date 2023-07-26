@@ -59,9 +59,10 @@ const Carga_Cantidad = ({ joyas, onCancel, onSubmit }) => {
         const fechaHoyFormateada = dia+'/'+mes+'/'+anio;
 
         joyas.map(async (joya, index) => {
-            const inventarioItem = inventarioFiltrado.find((item) => item.joya === joya.nombre);
+            var inventarioItem = inventarioFiltrado.find((item) => item.joya === joya.nombre);
 
             if (inventarioItem) {
+              //console.log(inventarioItem);
                 const cantidadInventario = inventarioItem.cantidad;
                 const cantidadActual = parseInt(cantidades[index], 10);
                 const nuevaCantidad = cantidadActual + cantidadInventario;
@@ -110,6 +111,7 @@ const Carga_Cantidad = ({ joyas, onCancel, onSubmit }) => {
                               Authorization: token, 
                             }
                           }); 
+                          
                         }catch (error) {
                           console.log(error);
                           alert('Ocurrió un error al generar el log de inventario');
@@ -176,6 +178,7 @@ const Carga_Cantidad = ({ joyas, onCancel, onSubmit }) => {
                             Authorization: token, 
                           }
                         }); 
+
                       }catch (error) {
                         console.log(error);
                         alert('Ocurrió un error al generar el log de inventario');
@@ -186,15 +189,15 @@ const Carga_Cantidad = ({ joyas, onCancel, onSubmit }) => {
                 }
 
         }
-      });
+      });      
+      alert('Se han cargado exitosamente los productos al inventario');
+      //window.location.href = ruta_front + 'inventario';
     } catch (error) {
       console.log(error);
     }
-
     setIsOpen(false);
     onSubmit();
-    alert('Se han cargado exitosamente los productos al inventario');
-    window.location.href = ruta_front + 'inventario';
+
   };
 
   const handleCancel = () => {

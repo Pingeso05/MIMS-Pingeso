@@ -239,22 +239,26 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
             await axios.put(ruta_back + 'inventario/' + product.id, {
               id_locacion: productoReal.id_locacion,
               id_joya: productoReal.id_joya,
-              cantidad: productoReal.cantidad - quantity,
+              cantidad: Number(productoReal.cantidad) - Number(quantity),
               precio_venta: productoReal.precio_venta,
               deleted: false
+            },{
+              headers: {
+                Authorization: token, // No incluye el prefijo "Bearer"
+              }
             }); 
-          alert('Se quitaron correctamente ' + quantity + ' unidades de ' + product.joya +  ' a ' + product.local);
-          // Obtener la fecha de hoy
-          const fechaHoy = new Date();
+          alert('Se vendieron' + quantity + ' unidades de ' + product.joya );
+            // Obtener la fecha de hoy
+            const fechaHoy = new Date();
 
-          // Obtener los componentes de la fecha (día, mes y año)
-          const dia = String(fechaHoy.getDate()).padStart(2, '0');
-          const mes = String(fechaHoy.getMonth() + 1).padStart(2, '0'); // Sumamos 1 al mes ya que los meses en JavaScript empiezan desde 0 (enero es 0)
-          const anio = fechaHoy.getFullYear();
+            // Obtener los componentes de la fecha (día, mes y año)
+            const dia = String(fechaHoy.getDate()).padStart(2, '0');
+            const mes = String(fechaHoy.getMonth() + 1).padStart(2, '0'); // Sumamos 1 al mes ya que los meses en JavaScript empiezan desde 0 (enero es 0)
+            const anio = fechaHoy.getFullYear();
 
-          // Formatear la fecha en el formato deseado (dd/mm/aaaa)
-          const fechaHoyFormateada = dia+'/'+mes+'/'+anio;  
-          await axios.post(ruta_back + 'log_inventario', {
+            // Formatear la fecha en el formato deseado (dd/mm/aaaa)
+            const fechaHoyFormateada = dia+'/'+mes+'/'+anio;
+            await axios.post(ruta_back + 'log_inventario', {
               id_producto: product.id,
               nombre_producto: product.joya,
               tipo_producto: productoReal.id_joya,
@@ -262,10 +266,14 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
               cantidad: quantity,
               tipo_transaccion: 'VENTA',
               fecha_transaccion: fechaHoyFormateada,
-              valor_transaccion: 99999,
-              responsable_transaccion: 'ALEN GALINDO',
+              valor_transaccion: productoReal.precio_venta,
+              responsable_transaccion: userData.data.id,
+            },
+            {
+              headers:{
+                Authorization: token,
+              }
             });
-
           } catch (error) {
             console.log(error);
             alert('Ocurrió un error al agregar stock al inventario');
