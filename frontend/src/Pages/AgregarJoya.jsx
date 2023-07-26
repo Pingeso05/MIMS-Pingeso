@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import './AgregarJoya.css';
 import {ruta_back, ruta_front} from '../utils/globals.js';
 import '../utils/globals.css';
+import { alertaError, alertaSuccess, alertaWarning } from '../utils/alertas';
 
 const AgregarJoya = () => {
   const [nombreJoya, setNombreJoya] = useState('');
@@ -33,7 +34,7 @@ const AgregarJoya = () => {
     event.preventDefault();
 
     if (nombreJoya.trim() === '' || tipoJoya.trim() === '' || cost.trim() === '') {
-      alert('Por favor, completa todos los campos');
+      alertaWarning('Por favor, completa todos los campos');
       return;
     }
 
@@ -52,11 +53,11 @@ const AgregarJoya = () => {
       setTipoJoya('');
       setCost('');
 
-      alert('Joya agregada exitosamente');
-      window.location.href = ruta_front + 'joyas';
+      alertaSuccess('Joya agregada exitosamente');
+      window.location.href = ruta_front + 'admin/joyas';
     } catch (error) {
       console.log(error);
-      alert('Ocurrió un error al agregar la joya');
+      alertaError('Ocurrió un error al agregar la joya');
     }
   };
 

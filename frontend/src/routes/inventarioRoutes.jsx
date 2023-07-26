@@ -5,7 +5,7 @@ import AgregarJoya from '../Pages/AgregarJoya';
 import '../App.css';
 import Container from 'react-bootstrap/Container';
 import Layout from '../Components/Layout';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Router, Routes, Route, Navigate } from 'react-router-dom';
 import Joya from '../Pages/Joya';
 import AgregarProducto from '../Pages/Agregar_Producto';
 import Locaciones from '../Pages/Locaciones';
@@ -13,7 +13,7 @@ import AgregarLocacion from '../Pages/Agregar_Locacion';
 import CargaDatos from '../Pages/CargaDatos';
 import LogInventario from '../Pages/LogInventario';
 import Transito from '../Pages/Transito';
-import Administrar_Usuarios from '../Pages/Administrar_Usuarios';
+import AdministrarUsuarios from '../Pages/AdministrarUsuarios';
 import AgregarUsuario from '../Pages/AgregarUsuario';
 
 
@@ -35,7 +35,7 @@ function InventarioRoutes() {
           <Route path="/carga-datos" element={<CargaDatos />} />
           <Route path="/transito" element={<Transito/>} />
           <Route path="/registros" element={<LogInventario/>} />
-          <Route path="/usuarios" element={<Administrar_Usuarios/>} />
+          <Route path="/usuarios" element={<AdministrarUsuarios/>} />
           <Route path="/usuarios/agregar-usuario" element={<AgregarUsuario/>} />
           
         </Routes>

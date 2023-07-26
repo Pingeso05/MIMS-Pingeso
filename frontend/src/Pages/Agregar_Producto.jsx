@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import './AgregarProducto.css'; 
 import {ruta_back, ruta_front} from '../utils/globals.js';
 import '../utils/globals.css';
+import { alertaError, alertaSuccess, alertaWarning } from '../utils/alertas';
 
 const AgregarProducto = () => {
   const [precioVenta, setPrecioVenta] = useState('');
@@ -52,7 +53,7 @@ const AgregarProducto = () => {
       cantidad.trim() === '' ||
       locacionSeleccionada.trim() === ''
     ) {
-      alert('Por favor, completa todos los campos');
+      alertaWarning('Por favor, completa todos los campos');
       return;
     }
 
@@ -96,15 +97,15 @@ const AgregarProducto = () => {
       setCantidad('');
       setLocacionSeleccionada('');
 
-      alert('Producto agregado exitosamente');
-      window.location.href = ruta_front + 'inventario';
+      alertaSuccess('Producto agregado exitosamente');
+      window.location.href = ruta_front + 'admin/inventario';
     } else {
-      alert('El producto ya existe en esta ubicación, por favor revise los datos');
+      alertaWarning('El producto ya existe en esta ubicación, por favor revise los datos');
       return;
     }
     } catch (error) {
       console.log(error);
-      alert('Ocurrió un error al agregar el producto');
+      alertaError('Ocurrió un error al agregar el producto');
     }
   };
 

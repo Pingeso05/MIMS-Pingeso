@@ -9,6 +9,8 @@ import React from 'react';
 import {ruta_back} from '../utils/globals.js';
 import '../utils/globals.css';
 import Button from 'react-bootstrap/Button';
+import { alertaError } from '../utils/alertas';
+import Swal from 'sweetalert2';
 
 const Transito = () => {
   const [productos, setProductos] = useState([]);
@@ -60,250 +62,297 @@ const Transito = () => {
   };
 
   const handleDevolver = async (producto) => {
-    console.log(producto);
     try {
-      const res = await axios.get(ruta_back + 'transito/' + producto.id,{
-        headers: {
-          Authorization: token, // No incluye el prefijo "Bearer"
-        }
+      const result = await Swal.fire({
+        title: '¿Estás seguro de cancelar el traslado de ' + producto.joya + ' hacia ' + producto.destino + '?',
+        text: "El stock volverá a su lugar de origen.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Salir',
+        confirmButtonText: 'Confirmar'
       });
-      const p = res.data;
-      console.log("Aqui va el p:");
-      console.log(p);
-      const res2 = await axios.get(ruta_back + 'inventario/' + p.id_inventario,{
-        headers: {
-          Authorization: token, // No incluye el prefijo "Bearer"
+  
+      if (result.isConfirmed) {
+        try {
+          const res = await axios.get(ruta_back + 'transito/' + producto.id,{
+            headers: {
+              Authorization: token, // No incluye el prefijo "Bearer"
+            }
+          });
+          const p = res.data;
+          console.log("Aqui va el p:");
+          console.log(p);
+          const res2 = await axios.get(ruta_back + 'inventario/' + p.id_inventario,{
+            headers: {
+              Authorization: token, // No incluye el prefijo "Bearer"
+            }
+          });
+          const p2 = res2.data;
+          console.log("Aqui va el p2:");
+          console.log(p2);
+          await axios.put(ruta_back + 'inventario/' + p2.id,{
+              id_locacion: p2.id_locacion,
+              id_joya: p2.id_joya,
+              cantidad: p2.cantidad + p.cantidad,
+              precio_venta: p2.precio_venta,
+              deleted: false
+            },{headers: {
+              Authorization: token, // No incluye el prefijo "Bearer"
+            }
+          });
+          await axios.delete(ruta_back + 'transito/' + p.id,{
+            headers: {
+              Authorization: token, // No incluye el prefijo "Bearer"
+            }
+          });
+          // Obtener la fecha de hoy
+          const fechaHoy = new Date();
+          // Obtener los componentes de la fecha (día, mes y año)
+          const dia = String(fechaHoy.getDate()).padStart(2, '0');
+          const mes = String(fechaHoy.getMonth() + 1).padStart(2, '0'); // Sumamos 1 al mes ya que los meses en JavaScript empiezan desde 0 (enero es 0)
+          const anio = fechaHoy.getFullYear();
+    
+          // Formatear la fecha en el formato deseado (dd/mm/aaaa)
+          
+          const fechaHoyFormateada = dia+'/'+mes+'/'+anio;
+    
+          await axios.post(ruta_back + 'log_inventario', {
+            id_producto: p2.id,
+            nombre_producto: producto.joya,
+            tipo_producto: p2.id,
+            nombre_locacion: p2.id_locacion,
+            cantidad: p.cantidad,
+            tipo_transaccion: 'RETORNO',
+            fecha_transaccion: fechaHoyFormateada,
+            valor_transaccion: 0,
+            responsable_transaccion: userData.data.id,
+          }
+          ,{
+            headers: {
+              Authorization: token, // No incluye el prefijo "Bearer"
+            }
+          });
+    
+          
+        } catch (error) {
+          alertaError("No se pudo obtener el producto");
         }
-      });
-      const p2 = res2.data;
-      console.log("Aqui va el p2:");
-      console.log(p2);
-      await axios.put(ruta_back + 'inventario/' + p2.id,{
-          id_locacion: p2.id_locacion,
-          id_joya: p2.id_joya,
-          cantidad: p2.cantidad + p.cantidad,
-          precio_venta: p2.precio_venta,
-          deleted: false
-        },{headers: {
-          Authorization: token, // No incluye el prefijo "Bearer"
-        }
-      });
-      await axios.delete(ruta_back + 'transito/' + p.id,{
-        headers: {
-          Authorization: token, // No incluye el prefijo "Bearer"
-        }
-      });
-      // Obtener la fecha de hoy
-      const fechaHoy = new Date();
-      // Obtener los componentes de la fecha (día, mes y año)
-      const dia = String(fechaHoy.getDate()).padStart(2, '0');
-      const mes = String(fechaHoy.getMonth() + 1).padStart(2, '0'); // Sumamos 1 al mes ya que los meses en JavaScript empiezan desde 0 (enero es 0)
-      const anio = fechaHoy.getFullYear();
+        setT(Date.now());
 
-      // Formatear la fecha en el formato deseado (dd/mm/aaaa)
-      
-      const fechaHoyFormateada = dia+'/'+mes+'/'+anio;
-
-      await axios.post(ruta_back + 'log_inventario', {
-        id_producto: p2.id,
-        nombre_producto: producto.joya,
-        tipo_producto: p2.id,
-        nombre_locacion: p2.id_locacion,
-        cantidad: p.cantidad,
-        tipo_transaccion: 'RETORNO',
-        fecha_transaccion: fechaHoyFormateada,
-        valor_transaccion: 0,
-        responsable_transaccion: userData.data.id,
-      }
-      ,{
-        headers: {
-          Authorization: token, // No incluye el prefijo "Bearer"
-        }
-      });
-
-      
+        Swal.fire(
+          'Traslado Cancelado',
+          'El traslado ha sido cancelado con éxito',
+          'success'
+        );
+      } 
     } catch (error) {
-      console.log("no se pudo obtener el producto");
-      console.log(error);
+      alertaError('Ha ocurrido un error al cancelar el traslado');
     }
-    setT(Date.now());
   };
+    
+    
 
   const handleRecibir = async (producto) => {
     try {
-      const res = await axios.get(ruta_back + 'transito/' + producto.id,{
-        headers: {
-          Authorization: token, // No incluye el prefijo "Bearer"
-        }
+      const result = await Swal.fire({
+        title: '¿Estás seguro qué recepcionaste el producto ' + producto.joya + ' en ' + producto.destino + '?',
+        text: "El stock se añadirá al lugar de destino.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Confirmar'
       });
-      const p = res.data;
-      console.log("Aqui va el p:");
-      console.log(p);
-      const res2 = await axios.get(ruta_back + 'inventario/' + p.id_inventario,{
-        headers: {
-          Authorization: token, // No incluye el prefijo "Bearer"
-        }
-      });
-      const p2 = res2.data;
-      console.log("Aqui va el p2:");
-      console.log(p2);
-      const inventario = await axios.get(ruta_back + 'inventario',{
-        headers: {
-          Authorization: token, 
-        }
-      });
-      const res_locacion = await axios.get(ruta_back + 'locacion/' + p.id_destino,{
-        headers: {
-          Authorization: token,
-        }
-      });
-      const res_nombre_joya = await axios.get(ruta_back + 'joya/' + p2.id_joya,{
-        headers: {
-          Authorization: token,
-        }
-      });
-      const joyaSeleccionada = res_nombre_joya.data.nombre;
-      const locacionSeleccionada = res_locacion.data.nombre;
-      const inventarioItem = inventario.data.filter(
-          (item) => item.local?.trim() === locacionSeleccionada?.trim() && 
-          item.joya?.trim() === joyaSeleccionada?.trim()
-            
-        )[0];
-      // Obtener los componentes de la fecha (día, mes y año)
-      const fechaHoy = new Date();
-      const dia = String(fechaHoy.getDate()).padStart(2, '0');
-      const mes = String(fechaHoy.getMonth() + 1).padStart(2, '0'); // Sumamos 1 al mes ya que los meses en JavaScript empiezan desde 0 (enero es 0)
-      const anio = fechaHoy.getFullYear();
-
-      // Formatear la fecha en el formato deseado (dd/mm/aaaa)
-      const fechaHoyFormateada = dia+'/'+mes+'/'+anio;
-
-      if (inventarioItem) {
-          const cantidadInventario = inventarioItem.cantidad;
-          const cantidadActual = p.cantidad;
-          const nuevaCantidad = cantidadActual + cantidadInventario;
-          console.log("Inventario Item");
-          console.log(inventarioItem);
-          try{
-            const res = await axios.get(ruta_back + 'inventario/' + inventarioItem.id,{
-                headers: {
-                  Authorization: token, 
-                }
-              });
-            const producto_cambiar = res.data;
-            console.log(producto_cambiar);
-            try{
-              await axios.put(ruta_back + 'inventario/' + producto_cambiar.id, {
-                  id_locacion: producto_cambiar.id_locacion,
-                  id_joya: producto_cambiar.id_joya,
-                  cantidad: nuevaCantidad,
-                  precio_venta: producto_cambiar.precio_venta,
-                  deleted: false
-              },{
-                headers: {
-                  Authorization: token, 
-                }
-              });
-
-              try{
-                  await axios.post(ruta_back + 'log_inventario', {
-                  id_producto: producto_cambiar.id,
-                  nombre_producto: producto.joya,
-                  tipo_producto: producto_cambiar.id_joya,
-                  nombre_locacion: producto_cambiar.id_locacion,
-                  cantidad: cantidadActual,
-                  tipo_transaccion: 'RECEPCION',
-                  fecha_transaccion: fechaHoyFormateada,
-                  valor_transaccion: producto_cambiar.precio_venta,
-                  responsable_transaccion: userData.data.id,
-                },{
-                  headers: {
-                    Authorization: token, 
-                  }
-                }); 
-              }catch (error) {
-                console.log(error);
-                alert('Ocurrió un error al generar el log de inventario');
-                return;
-              }
-            } catch (error) {
-                console.log(error);
-                alert('Ocurrió un error al modificar el inventario');
-                return;
+  
+      if (result.isConfirmed) {
+        try {
+          const res = await axios.get(ruta_back + 'transito/' + producto.id,{
+            headers: {
+              Authorization: token, // No incluye el prefijo "Bearer"
             }
-
-
-
-            //----------------------------
-          } catch (error) {
-              console.log('Error al actualizar el inventario:', error);
-          }
-
-      } else {
-        try{
-          const res2 = await axios.get(ruta_back + 'inventario',{
+          });
+          const p = res.data;
+          console.log("Aqui va el p:");
+          console.log(p);
+          const res2 = await axios.get(ruta_back + 'inventario/' + p.id_inventario,{
+            headers: {
+              Authorization: token, // No incluye el prefijo "Bearer"
+            }
+          });
+          const p2 = res2.data;
+          console.log("Aqui va el p2:");
+          console.log(p2);
+          const inventario = await axios.get(ruta_back + 'inventario',{
             headers: {
               Authorization: token, 
             }
           });
-          const producto_auxiliar = res2.data.find((item) => producto.joya === item.joya);
-          //console.log("El producto auxiliar: " + {producto_auxiliar});
-          await axios.post(ruta_back + 'inventario', {
-                id_locacion: p.id_destino,
-                id_joya: p2.id_joya,
-                cantidad: p.cantidad,
-                precio_venta: producto_auxiliar.precio_venta,
-                deleted: false
-                },{
-                  headers: {
-                    Authorization: token, 
-                  }
-                });
-
-                try{
-                  const res = await axios.get(ruta_back + 'inventario',{
+          const res_locacion = await axios.get(ruta_back + 'locacion/' + p.id_destino,{
+            headers: {
+              Authorization: token,
+            }
+          });
+          const res_nombre_joya = await axios.get(ruta_back + 'joya/' + p2.id_joya,{
+            headers: {
+              Authorization: token,
+            }
+          });
+          const joyaSeleccionada = res_nombre_joya.data.nombre;
+          const locacionSeleccionada = res_locacion.data.nombre;
+          const inventarioItem = inventario.data.filter(
+              (item) => item.local?.trim() === locacionSeleccionada?.trim() && 
+              item.joya?.trim() === joyaSeleccionada?.trim()
+                
+            )[0];
+          // Obtener los componentes de la fecha (día, mes y año)
+          const fechaHoy = new Date();
+          const dia = String(fechaHoy.getDate()).padStart(2, '0');
+          const mes = String(fechaHoy.getMonth() + 1).padStart(2, '0'); // Sumamos 1 al mes ya que los meses en JavaScript empiezan desde 0 (enero es 0)
+          const anio = fechaHoy.getFullYear();
+    
+          // Formatear la fecha en el formato deseado (dd/mm/aaaa)
+          const fechaHoyFormateada = dia+'/'+mes+'/'+anio;
+    
+          if (inventarioItem) {
+              const cantidadInventario = inventarioItem.cantidad;
+              const cantidadActual = p.cantidad;
+              const nuevaCantidad = cantidadActual + cantidadInventario;
+              console.log("Inventario Item");
+              console.log(inventarioItem);
+              try{
+                const res = await axios.get(ruta_back + 'inventario/' + inventarioItem.id,{
                     headers: {
                       Authorization: token, 
                     }
                   });
-                  const last = res.data[res.data.length - 1];
-                  await axios.post(ruta_back + 'log_inventario', {
-                    id_producto: last.id,
-                    nombre_producto: producto.joya,
-                    tipo_producto: 1,
-                    nombre_locacion: p.id_destino,
-                    cantidad: p.cantidad,
-                    tipo_transaccion: 'RECEPCION',
-                    fecha_transaccion: fechaHoyFormateada,
-                    valor_transaccion: 0,
-                    responsable_transaccion: userData.data.id,
+                const producto_cambiar = res.data;
+                console.log(producto_cambiar);
+                try{
+                  await axios.put(ruta_back + 'inventario/' + producto_cambiar.id, {
+                      id_locacion: producto_cambiar.id_locacion,
+                      id_joya: producto_cambiar.id_joya,
+                      cantidad: nuevaCantidad,
+                      precio_venta: producto_cambiar.precio_venta,
+                      deleted: false
                   },{
                     headers: {
                       Authorization: token, 
                     }
-                  }); 
-                }catch (error) {
-                  console.log(error);
-                  alert('Ocurrió un error al generar el log de inventario');
-                  return;
+                  });
+    
+                  try{
+                      await axios.post(ruta_back + 'log_inventario', {
+                      id_producto: producto_cambiar.id,
+                      nombre_producto: producto.joya,
+                      tipo_producto: producto_cambiar.id_joya,
+                      nombre_locacion: producto_cambiar.id_locacion,
+                      cantidad: cantidadActual,
+                      tipo_transaccion: 'RECEPCION',
+                      fecha_transaccion: fechaHoyFormateada,
+                      valor_transaccion: producto_cambiar.precio_venta,
+                      responsable_transaccion: userData.data.id,
+                    },{
+                      headers: {
+                        Authorization: token, 
+                      }
+                    }); 
+                  }catch (error) {
+                    console.log(error);
+                    alertaError('Ocurrió un error al generar el log de inventario');
+                    return;
+                  }
+                } catch (error) {
+                    console.log(error);
+                    alertaError('Ocurrió un error al modificar el inventario');
+                    return;
                 }
-
-
-          } catch (error) {
-              console.log('Error al actualizar el inventario:', error);
+    
+    
+    
+                //----------------------------
+              } catch (error) {
+                  alertaError('Error al actualizar el inventario:');
+              }
+    
+          } else {
+            try{
+              const res2 = await axios.get(ruta_back + 'inventario',{
+                headers: {
+                  Authorization: token, 
+                }
+              });
+              const producto_auxiliar = res2.data.find((item) => producto.joya === item.joya);
+              //console.log("El producto auxiliar: " + {producto_auxiliar});
+              await axios.post(ruta_back + 'inventario', {
+                    id_locacion: p.id_destino,
+                    id_joya: p2.id_joya,
+                    cantidad: p.cantidad,
+                    precio_venta: producto_auxiliar.precio_venta,
+                    deleted: false
+                    },{
+                      headers: {
+                        Authorization: token, 
+                      }
+                    });
+    
+                    try{
+                      const res = await axios.get(ruta_back + 'inventario',{
+                        headers: {
+                          Authorization: token, 
+                        }
+                      });
+                      const last = res.data[res.data.length - 1];
+                      await axios.post(ruta_back + 'log_inventario', {
+                        id_producto: last.id,
+                        nombre_producto: producto.joya,
+                        tipo_producto: 1,
+                        nombre_locacion: p.id_destino,
+                        cantidad: p.cantidad,
+                        tipo_transaccion: 'RECEPCION',
+                        fecha_transaccion: fechaHoyFormateada,
+                        valor_transaccion: 0,
+                        responsable_transaccion: userData.data.id,
+                      },{
+                        headers: {
+                          Authorization: token, 
+                        }
+                      }); 
+                    }catch (error) {
+                      console.log(error);
+                      alertaError('Ocurrió un error al generar el log de inventario');
+                      return;
+                    }
+    
+    
+              } catch (error) {
+                  alertaError('Error al actualizar el inventario:');
+              }
+    
           }
-
+      } catch (error) {
+        console.log(error);
       }
-  } catch (error) {
-    console.log(error);
-  }
-  await axios.delete(ruta_back + 'transito/' + producto.id,{
-    headers: {
-      Authorization: token, // No incluye el prefijo "Bearer"
+      await axios.delete(ruta_back + 'transito/' + producto.id,{
+        headers: {
+          Authorization: token, // No incluye el prefijo "Bearer"
+        }
+      });
+      setT(Date.now());
+        Swal.fire(
+          'Producto Recepcionado',
+          'El producto ha sido recepcionado con exito',
+          'success'
+        );
+      } 
+    } catch (error) {
+      alertaError('Ha ocurrido un error al recepcionar el producto.');
     }
-  });
-  setT(Date.now());
   };
+    
+  
 
 
 

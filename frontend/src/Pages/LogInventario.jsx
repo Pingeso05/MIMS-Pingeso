@@ -8,12 +8,6 @@ import './Inventario.css';
 import React from 'react';
 import { ruta_back } from '../utils/globals.js';
 import '../utils/globals.css';
-import { FaEye, FaEdit } from 'react-icons/fa';
-import { MdOutlineInventory } from "react-icons/md";
-import Modificar_Inventario from '../Popups/Modificar_Inventario';
-import Editar_Inventario from '../Popups/Editar_Inventario';
-import Ver_Inventario from '../Popups/Ver_Inventario';
-import Button from 'react-bootstrap/Button';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -23,10 +17,6 @@ const LogInventario = () => {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('');
   const [locaciones, setLocaciones] = useState([]);
   const [locacionSeleccionada, setLocacionSeleccionada] = useState('');
-  const [showModificarInventario, setModificarInventario] = useState(false);
-  const [showEditarInventario, setEditarInventario] = useState(false);
-  const [productoSeleccionado, setProductoSeleccionado] = useState(null);
-  const [showInventario, setShowInventario] = useState(false);
   const [logInventario, setLogInventario] = useState([]);
   const [fechaSeleccionada, setFechaSeleccionada] = useState(null);
   const token = localStorage.getItem('accessToken');
@@ -46,15 +36,6 @@ const LogInventario = () => {
     }
   };
 
-  const handlePopupSubmit = async () => {
-    try {
-      await getProductos();
-    } catch (error) {
-      console.log(error);
-    }
-    setModificarInventario(false);
-    setEditarInventario(false);
-  };
 
   const getLogInventario = async () => {
     try {

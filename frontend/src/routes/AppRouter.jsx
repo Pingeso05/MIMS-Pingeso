@@ -1,13 +1,12 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Router, Routes, Route, Navigate } from 'react-router-dom';
 import InventarioRoutes from './inventarioRoutes';
 import VendedorRoutes from './vendedorRoutes';
 import Login from '../Autenticacion/Login';
-import { AuthProvider } from '../context/AuthContext';
 import PrivateRoute from '../misc/PrivateRoute';
 import { useAuth } from '../context/AuthContext';
 
 export const AppRouter = () => {
-  const { userIsAuthenticated, getRol } = useAuth();
+  const { getRol } = useAuth();
   const rol = getRol();
 
   return (
