@@ -11,6 +11,9 @@ import { ruta_back } from '../utils/globals.js';
 import '../utils/globals.css';
 import { FaEdit } from 'react-icons/fa';
 import Editar_Joya from '../Popups/Editar_Joya';
+import Swal from 'sweetalert2';
+import { alertaError } from '../utils/alertas';
+
 
 const Administrar_Usuarios = () => {
   const [usuarios, setUsuarios] = useState([]);
@@ -35,6 +38,36 @@ const Administrar_Usuarios = () => {
   };
 
 
+  const handleDeleteClick = async (usuario) => {
+    try {
+      const result = await Swal.fire({
+        title: '¿Estás seguro de eliminar al usuario ' + usuario.nombre + ' ' + usuario.apellido + '?',
+        text: "Esta acción no se podrá revertir",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Eliminar'
+      });
+  
+      if (result.isConfirmed) {
+        const res = await axios.delete(ruta_back + 'usuario/' + usuario.id, {
+          headers: {
+            Authorization: token,
+          }
+        });
+        getUsuarios();
+        Swal.fire(
+          'Usuario Eliminado',
+          'El usuario ha sido eliminado con éxito',
+          'success'
+        );
+      } 
+    } catch (error) {
+      alertaError('Ha ocurrido un error al eliminar al usuario');
+    }
+  };
 
   const handlePopupSubmit = async () => {
     try {
@@ -76,6 +109,7 @@ const Administrar_Usuarios = () => {
               <th>NOMBRE</th>
               <th>CORREO</th>
               <th>ROL</th>
+              <th>ACCIONES</th>
             </tr>
           </thead>
           <tbody>
@@ -84,7 +118,15 @@ const Administrar_Usuarios = () => {
                 <td>{usuario.nombre} {usuario.apellido}</td>
                 <td>{usuario.email}</td>
                 <td>{usuario.rol}</td>
-                
+                <td style={{ width: '160px' }}>
+                  <div >
+                    <Row>
+                      <Col style={{padding:'2px'}}><Button variant="primary"  style={{backgroundColor: 'success', borderRadius: '10', borderColor: 'transparent',fontSize:'10px'}}>EDITAR</Button></Col>
+                      <Col><Button variant="danger" onClick={() => handleDeleteClick(usuario)} style={{backgroundColor: 'danger', borderRadius: '10', borderColor: 'transparent',fontSize:'10px'}}>ELIMINAR</Button></Col>
+                    </Row>
+                    
+                  </div>
+                  </td>
               </tr>
             ))}
           </tbody>

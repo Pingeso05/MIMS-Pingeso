@@ -3,7 +3,7 @@ import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import {ruta_back, ruta_front} from '../utils/globals.js';
 import '../utils/globals.css';
-import { Alert } from 'react-bootstrap';
+import { alertaSuccess, alertaError, alertaWarning } from '../utils/alertas.jsx';
 
 const AgregarUsuario = () => {
   const [nombreSeleccionado, setNombreSeleccionado] = useState('');
@@ -23,7 +23,6 @@ const AgregarUsuario = () => {
         }
       });
       setUsuarios(res.data);
-      console.log(res.data);
     } catch (error) {
       console.log(error);
     }
@@ -45,7 +44,7 @@ const AgregarUsuario = () => {
     event.preventDefault();
 
     if (nombreSeleccionado.trim() === '' || apellidoSeleccionado.trim() === '' || emailSeleccionado.trim() === '' || passwordSeleccionado.trim() === '' || rolSeleccionado.trim() === '') {
-      alert('Por favor, completa todos los campos');
+      alertaWarning('Por favor, completa todos los campos');
       return;
     }
 
@@ -76,16 +75,18 @@ const AgregarUsuario = () => {
       setEmailSeleccionado('');
       setPasswordSeleccionado('');
       setRolSeleccionado('');
-      alert('Usuario agregado exitosamente');
-      window.location.href = ruta_front + 'usuarios';
-
+      alertaSuccess("Usuario agregado exitosamente");
+      setTimeout(() => {
+        window.location.href = ruta_front + 'usuarios';
+      }, 2000);
     } else {
       
-      return <Alert severity="error">This is an error alert — check it out!</Alert>;
+      alertaError('El email ya está registrado');
+      return;
     }
     } catch (error) {
       console.log(error);
-      alert('Ocurrió un error al agregar el producto');
+      alertaError('Ocurrió un error al agregar el producto');
     }
 
   };

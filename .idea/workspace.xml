@@ -6,8 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="835b27f2-3706-4a3c-9fc9-3c37dafb9c47" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/security/JWTAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/security/JWTAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/security/UserDetailsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app/src/main/java/mims/app/security/UserDetailsImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Autenticacion/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Autenticacion/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Components/NavBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/NavBar.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/Pages/Administrar_Usuarios.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/Administrar_Usuarios.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/Pages/AgregarUsuario.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/AgregarUsuario.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/context/AuthContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/context/AuthContext.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/misc/PrivateRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/misc/PrivateRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/routes/AppRouter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/routes/AppRouter.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/routes/inventarioRoutes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/routes/inventarioRoutes.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +113,7 @@
       <workItem from="1690262473399" duration="2941000" />
       <workItem from="1690265435259" duration="1688000" />
       <workItem from="1690305915907" duration="4181000" />
-      <workItem from="1690324883026" duration="618000" />
+      <workItem from="1690324883026" duration="2693000" />
     </task>
     <servers />
   </component>

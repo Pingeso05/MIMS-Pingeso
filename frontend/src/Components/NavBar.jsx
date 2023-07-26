@@ -51,47 +51,47 @@ const Navbar = () => {
       <div className="navbar__center">
         <ul className="navbar__list">
           <li className="navbar__item">
-            <Link to="/inventario" className={`navbar__link ${pathname === '/inventario' ? 'active' : ''}`}>
+            <Link to="/admin/inventario" className={`navbar__link ${pathname === '/admin/inventario' ? 'active' : ''}`}>
               Inventario
             </Link>
           </li>
           <li className="navbar__item">
-            <Link to="/transito" className={`navbar__link ${pathname === '/transito' ? 'active' : ''}`}>
+            <Link to="/admin/transito" className={`navbar__link ${pathname === '/admin/transito' ? 'active' : ''}`}>
               Transito
             </Link>
           </li>
           <li className="navbar__item">
-            <Link to="/registros" className={`navbar__link ${pathname === '/registros' ? 'active' : ''}`}>
+            <Link to="/admin/registros" className={`navbar__link ${pathname === '/admin/registros' ? 'active' : ''}`}>
               Transacciones
             </Link>
           </li>
           <li className="navbar__item">
-            <Link to="/locaciones" className={`navbar__link ${pathname === '/locaciones' ? 'active' : ''}`}>
+            <Link to="/admin/locaciones" className={`navbar__link ${pathname === '/admin/locaciones' ? 'active' : ''}`}>
               Locaciones
             </Link>
           </li>
           <li className="navbar__item">
-            <Link to="/tipos-de-joya" className={`navbar__link ${pathname === '/tipos-de-joya' ? 'active' : ''}`}>
+            <Link to="/admin/tipos-de-joya" className={`navbar__link ${pathname === '/admin/tipos-de-joya' ? 'active' : ''}`}>
               Tipos de joya
             </Link>
           </li>
           <li className="navbar__item">
-            <Link to="/joyas" className={`navbar__link ${pathname === '/joyas' ? 'active' : ''}`}>
+            <Link to="/admin/joyas" className={`navbar__link ${pathname === '/admin/joyas' ? 'active' : ''}`}>
               Joyas
             </Link>
           </li>
           <li className="navbar__item">
-            <Link to="/carga-datos" className={`navbar__link ${pathname === '/carga-datos' ? 'active' : ''}`}>
+            <Link to="/admin/carga-datos" className={`navbar__link ${pathname === '/admin/carga-datos' ? 'active' : ''}`}>
               Carga de datos
             </Link>
           </li>
           <li className="navbar__item">
-            <Link to="/usuarios" className={`navbar__link ${pathname === '/usuarios' ? 'active' : ''}`}>
+            <Link to="/admin/usuarios" className={`navbar__link ${pathname === '/admin/usuarios' ? 'active' : ''}`}>
               Usuarios
             </Link>
           </li>
           <li className="navbar__item">
-            <Link to="/inventario/agregar-producto" className={`navbar__link ${pathname === '/inventario/agregar-producto' ? 'active' : ''}`}>
+            <Link to="/admin/inventario/agregar-producto" className={`navbar__link ${pathname === '/admin/inventario/agregar-producto' ? 'active' : ''}`}>
               Agregar Producto
             </Link>
           </li>
