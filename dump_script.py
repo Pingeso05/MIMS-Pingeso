@@ -104,9 +104,9 @@ comunas_por_region = [
     []   # Región de Magallanes y de la Antártica Chilena
 ]
 
-comunas_por_region[0] = ["Arica", "Putre", "General Lagos"]
+comunas_por_region[0] = ["Arica", "Camarones", "Putre", "General Lagos"]
 comunas_por_region[1] = ["Iquique", "Alto Hospicio", "Pozo Almonte", "Camiña", "Colchane", "Huara", "Pica"]
-comunas_por_region[2] = ["Antofagasta", "Mejillones", "Sierra Gorda", "Taltal", "Calama", "Ollagüe", "San Pedro de Atacama"]
+comunas_por_region[2] = ["Antofagasta", "Mejillones", "Sierra Gorda", "Taltal", "Calama", "Ollagüe", "San Pedro de Atacama", "Tocopilla", "María Elena"]
 comunas_por_region[3] = ["Copiapó", "Caldera", "Tierra Amarilla", "Chañaral", "Diego de Almagro", "Vallenar", "Alto del Carmen", "Freirina", "Huasco"]
 comunas_por_region[4] = ["La Serena", "Coquimbo", "Andacollo", "La Higuera", "Paihuano", "Vicuña", "Illapel", "Canela", "Los Vilos", "Salamanca", "Ovalle", "Combarbalá", "Monte Patria", "Punitaqui", "Río Hurtado"]
 comunas_por_region[5] = ["Valparaíso", "Viña del Mar", "Concón", "Quilpué", "Villa Alemana", "Quintero", "Puchuncaví", "Casablanca", "Limache", "Olmué", "La Calera", "Hijuelas", "Nogales", "San Antonio", "Cartagena", "El Tabo", "El Quisco", "Algarrobo", "Santo Domingo", "San Felipe", "Los Andes", "Rinconada", "Calle Larga", "Panquehue", "Llaillay", "Putaendo", "Santa María", "La Ligua", "Cabildo", "Zapallar", "Papudo", "Petorca", "Quillota", "La Cruz", "San Esteban", "Puchuncaví"]
@@ -115,11 +115,11 @@ comunas_por_region[7] = ["Rancagua", "Codegua", "Coinco", "Coltauco", "Doñihue"
 comunas_por_region[8] = ["Talca", "Constitución", "Curepto", "Empedrado", "Maule", "Pelarco", "Pencahue", "Río Claro", "San Clemente", "San Rafael"]
 comunas_por_region[9] = ["Chillán", "Bulnes", "Cobquecura", "Coelemu", "Coihueco", "Chillán Viejo", "El Carmen", "Ninhue", "Ñiquén", "Pemuco", "Pinto", "Portezuelo", "Quillón", "Quirihue", "Ránquil", "San Carlos", "San Fabián", "San Ignacio", "San Nicolás", "Treguaco", "Yungay"]
 comunas_por_region[10] = ["Concepción", "Coronel", "Chiguayante", "Florida", "Hualpén", "Hualqui", "Lota", "Penco", "San Pedro de la Paz", "Santa Juana", "Talcahuano", "Tomé", "Hualañé", "Laja", "Lebu", "Los Álamos", "Mulchén", "Nacimiento", "Negrete", "Quilaco", "Quilleco", "San Rosendo", "Santa Bárbara", "Tucapel", "Yumbel", "Arauco", "Cañete", "Contulmo", "Curanilahue", "Los Ángeles"]
-comunas_por_region[11] = ["Temuco", "Carahue", "Cunco", "Curarrehue", "Freire", "Galvarino", "Gorbea", "Lautaro", "Loncoche", "Melipeuco", "Nueva Imperial", "Padre las Casas", "Perquenco", "Pitrufquén", "Pucón", "Saavedra", "Teodoro Schmidt", "Toltén", "Vilcún", "Villarrica", "Cholchol"]
-comunas_por_region[12] = ["Valdivia", "Corral", "Lanco", "Los Lagos", "Máfil", "Mariquina", "Paillaco", "Panguipulli"]
+comunas_por_region[11] = ["Temuco", "Carahue", "Cunco", "Curarrehue", "Freire", "Galvarino", "Gorbea", "Lautaro", "Loncoche", "Melipeuco", "Nueva Imperial", "Padre las Casas", "Perquenco", "Pitrufquén", "Pucón", "Saavedra", "Teodoro Schmidt", "Toltén", "Vilcún", "Villarrica", "Cholchol", "Angol", "Collipulli", "Curacautín", "Ercilla", "Lonquimay", "Los Sauces", "Lumaco", "Purén", "Renaico", "Traiguén", "Victoria"]
+comunas_por_region[12] = ["Valdivia", "Corral", "Lanco", "Los Lagos", "Máfil", "Mariquina", "Paillaco", "Panguipulli", "La Unión", "Futrono", "Lago Ranco", "Río Bueno"]
 comunas_por_region[13] = ["Puerto Montt", "Calbuco", "Cochamó", "Fresia", "Frutillar", "Los Muermos", "Llanquihue", "Maullín", "Puerto Varas", "Castro", "Ancud", "Chonchi", "Curaco de Vélez", "Dalcahue", "Puqueldón", "Queilén", "Quellón", "Quemchi", "Quinchao"]
-comunas_por_region[14] = ["Coihaique", "Lago Verde", "Aysén", "Cisnes", "Guaitecas", "Cochrane", "O'Higgins", "Tortel"]
-comunas_por_region[15] = ["Punta Arenas", "Laguna Blanca", "Río Verde", "San Gregorio", "Cabo de Hornos", "Antártica"]
+comunas_por_region[14] = ["Coihaique", "Lago Verde", "Aysén", "Cisnes", "Guaitecas", "Cochrane", "O'Higgins", "Tortel", "Chile Chico", "Río Ibáñez"]
+comunas_por_region[15] = ["Punta Arenas", "Laguna Blanca", "Río Verde", "San Gregorio", "Cabo de Hornos", "Antártica", "Porvenir", "Primavera", "Timaukel", "Natales", "Torres del Paine"]
 #Creamos las tablas
 regiones_table = ("CREATE TABLE IF NOT EXISTS region("+
                     "id int NOT NULL AUTO_INCREMENT, "+
@@ -153,6 +153,10 @@ cursor.execute(query)
 query = "TRUNCATE TABLE mims.log_inventario"
 cursor.execute(query)
 query = "TRUNCATE TABLE mims.transito"
+cursor.execute(query)
+query = "TRUNCATE TABLE mims.roles"
+cursor.execute(query)
+query = "TRUNCATE TABLE mims.usuario"
 cursor.execute(query)
 cursor.close()
 database.commit()
@@ -244,8 +248,16 @@ cursor.close()
 database.commit()
 #fin
 
+
+
+
 cursor = database.cursor()
-query = "Insert Into mims.usuario (apellido, deleted, email, nombre, password) VALUES ('Onetto', 0, 'bastian.onetto@usach.cl', 'Bastian', '$2a$10$C0MRvu9C9YXKI0x.A.gxeepIFnQDwfmUjUDK66kc/OlrM5yDbN7HK');"
+
+query = "Insert Into mims.roles (nombre, id) VALUES ('Administrador', 0);"
+cursor.execute(query)
+query = "Insert Into mims.roles (nombre, id) VALUES ('Vendedor', 1);"
+cursor.execute(query)
+query = "Insert Into mims.usuario (apellido, deleted, email, nombre, password, rol) VALUES ('Onetto', 0, 'bastian.onetto@usach.cl', 'Bastian', '$2a$10$C0MRvu9C9YXKI0x.A.gxeepIFnQDwfmUjUDK66kc/OlrM5yDbN7HK', 0);"
 cursor.execute(query)
 cursor.close()
 database.commit()
