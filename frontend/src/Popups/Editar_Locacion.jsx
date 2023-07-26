@@ -4,6 +4,7 @@ import axios from 'axios';
 import './Modificar_Inventario.css';
 import '../utils/globals';
 import { ruta_back } from '../utils/globals';
+import { alertaError, alertaSuccess, alertaWarning } from '../utils/alertas';
 
 const Editar_Locacion = ({ id, onCancel, onSubmit }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -79,7 +80,7 @@ const Editar_Locacion = ({ id, onCancel, onSubmit }) => {
       String(comunaOg).trim() === '' ||
       direccion.trim() === ''
     ) {
-      alert('Por favor, completa todos los campos');
+      alertaWarning('Por favor, completa todos los campos');
       return;
     }
 
@@ -102,10 +103,9 @@ const Editar_Locacion = ({ id, onCancel, onSubmit }) => {
       setDireccion('');
       onSubmit();
       setIsOpen(false);
-      alert('Locación editada exitosamente');
+      alertaSuccess('Locación editada exitosamente');
     } catch (error) {
-      console.log(error);
-      alert('Ocurrió un error al agregar la locación');
+      alertaError('Ocurrió un error al agregar la locación');
     }
   };
 

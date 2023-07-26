@@ -55,15 +55,6 @@ const CargaDatos = () => {
     toggleSelectedJoya(joya);
   };
 
-  const handlePopupSubmit = async () => {
-    try {
-      await getJoyas();
-    } catch (error) {
-      console.log(error);
-    }
-    setShowEditarJoya(false);
-  };
-
   const getTipos = async () => {
     try {
       const res = await axios.get(ruta_back + 'tipojoya',{
@@ -94,7 +85,7 @@ const CargaDatos = () => {
 
   return (
     <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-table">
-      <h1 className="titulo">Carga de Inventario</h1>
+      <h1 className="titulo">CARGA DE INVENTARIO</h1>
 
       <Row style={{ marginTop: '20px' }}>
         <Col className="left-col" md={6}>
@@ -115,10 +106,10 @@ const CargaDatos = () => {
         <Table bordered hover className="table">
           <thead>
             <tr className="cabeceras">
-              <th>Nombre</th>
-              <th>Tipo de Joya</th>
-              <th>Precio Costo</th>
-              <th>Seleccionar</th>
+              <th>NOMBRE</th>
+              <th>TIPO DE JOYA</th>
+              <th>PRECIO COSTO</th>
+              <th>SELECCIÓN</th>
             </tr>
           </thead>
           <tbody>
@@ -126,7 +117,7 @@ const CargaDatos = () => {
               <tr key={index}>
                 <td>{joya.nombre}</td>
                 <td>{joya.tipo_joya}</td>
-                <td>${joya.cost}</td>
+                <td>${Number(joya.cost)}</td>
                 <td>
                   <input
                     type="checkbox"

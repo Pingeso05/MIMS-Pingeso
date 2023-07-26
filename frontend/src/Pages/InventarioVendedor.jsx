@@ -8,21 +8,17 @@ import './Inventario.css';
 import React from 'react';
 import { ruta_back } from '../utils/globals.js';
 import '../utils/globals.css';
-import { FaEye, FaEdit } from 'react-icons/fa';
-import { MdOutlineInventory } from "react-icons/md";
-import Modificar_Inventario from '../Popups/Modificar_Inventario';
-import Editar_Inventario from '../Popups/Editar_Inventario';
 import Ver_Inventario from '../Popups/Ver_Inventario';
 import Button from 'react-bootstrap/Button';
+import Venta_Inventario from '../Popups/Venta_Inventario';
 
-const Inventario = () => {
+const InventarioVendedor = () => {
   const [productos, setProductos] = useState([]);
   const [categorias, setCategorias] = useState([]);
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('');
   const [locaciones, setLocaciones] = useState([]);
   const [locacionSeleccionada, setLocacionSeleccionada] = useState('');
-  const [showModificarInventario, setModificarInventario] = useState(false);
-  const [showEditarInventario, setEditarInventario] = useState(false);
+  const [showVentaInventario, setShowVentaInventario] = useState(false);
   const [productoSeleccionado, setProductoSeleccionado] = useState(null);
   const [showInventario, setShowInventario] = useState(false);
   const token = localStorage.getItem('accessToken');
@@ -55,14 +51,10 @@ const Inventario = () => {
     setShowInventario(true);
   };
 
-  const handleEditClick = (producto) => {
-    setProductoSeleccionado(producto);
-    setEditarInventario(true);
-  };
 
   const handleChangeClick = (producto) => {
     setProductoSeleccionado(producto);
-    setModificarInventario(true);
+    setShowVentaInventario(true);
   };
 
   const handlePopupSubmit = async () => {
@@ -71,8 +63,7 @@ const Inventario = () => {
     } catch (error) {
       console.log(error);
     }
-    setModificarInventario(false);
-    setEditarInventario(false);
+    setShowVentaInventario(false);
   };
 
 
@@ -137,7 +128,6 @@ const Inventario = () => {
               ))}
             </select>
           </Col>
-          
           <Col md={6} style={{ marginTop: '5px',display: 'flex', alignItems: 'left' }}>
             <select className='dropdown-tb'
               value={locacionSeleccionada}
@@ -150,7 +140,6 @@ const Inventario = () => {
             </select>
           </Col>
           
-
 
       </Row>
       <Row style={{padding:'10px'}}>
@@ -189,11 +178,9 @@ const Inventario = () => {
                   <div>
                     <Row>
                       <Col style={{padding:'1px'}}><Button variant="success" onClick={() => handleViewClick(producto)} style={{backgroundColor: 'success', borderRadius: '10', borderColor: 'transparent',fontSize:'10px'}}>DETALLE</Button></Col>
-                      <Col style={{padding:'1px'}}><Button variant="primary" onClick={() => handleEditClick(producto)} style={{backgroundColor: 'danger', borderRadius: '10', borderColor: 'transparent',fontSize:'10px'}}>EDITAR</Button></Col>
+                      <Col style={{padding:'1px'}}><Button variant="primary" onClick={() => handleChangeClick(producto)} style={{backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent',fontSize:'10px'}}>VENTA</Button></Col>
                     </Row>
-                    <Row>
-                    <Col style={{padding:'1px'}}><Button variant="primary" onClick={() => handleChangeClick(producto)} style={{backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent',fontSize:'10px'}}>ACCIONES</Button></Col>
-                    </Row>
+                 
                     
                   </div>
                   </td>
@@ -203,18 +190,12 @@ const Inventario = () => {
           </Table>  
         </div>
 
-        {showModificarInventario && (
-        <Modificar_Inventario
-          product={productoSeleccionado}
-          onCancel={() => setModificarInventario(false)}
-          onSubmit={handlePopupSubmit}
-        />
-         )}
 
-        {showEditarInventario && (
-        <Editar_Inventario
-          id={productoSeleccionado.id}
-          onCancel={() => setEditarInventario(false)}
+
+        {showVentaInventario && (
+        <Venta_Inventario
+          product={productoSeleccionado}
+          onCancel={() => setShowVentaInventario(false)}
           onSubmit={handlePopupSubmit}
         />
          )}
@@ -229,4 +210,4 @@ const Inventario = () => {
     );
   };
   
-  export default Inventario;
+  export default InventarioVendedor;

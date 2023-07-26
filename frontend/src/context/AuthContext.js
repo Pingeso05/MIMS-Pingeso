@@ -16,6 +16,18 @@ export function AuthProvider({ children }) {
     return JSON.parse(localStorage.getItem('user'));
   };
 
+  const getRol = () => {
+    try {
+      const storedUser = JSON.parse(localStorage.getItem('user'));
+      if (storedUser && storedUser.data && storedUser.data.rol !== undefined) {
+        return storedUser.data.rol;
+      }
+    } catch (error) {
+      return null; // Si no hay usuario almacenado o no se puede determinar el rol, retornar null
+    }
+    
+  };
+
   const userIsAuthenticated = () => {
     const storedUser = localStorage.getItem('user');
     if (!storedUser) {
@@ -49,6 +61,7 @@ export function AuthProvider({ children }) {
       value={{
         user,
         getUser,
+        getRol,
         userIsAuthenticated,
         userLogin,
         userLogout,

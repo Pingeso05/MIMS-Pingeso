@@ -4,6 +4,7 @@ import axios from 'axios';
 import './Modificar_Inventario.css';
 import '../utils/globals';
 import {ruta_back} from '../utils/globals';
+import { alertaError, alertaSuccess, alertaWarning } from '../utils/alertas';
 
 const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -56,7 +57,7 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
     await getProductoReal();
     if(action.trim() === "Mover Stock" || action.trim() === "Venta"){
       if(productoReal.cantidad - quantity < 0 ){
-        alert('Por favor, ingresa una cantidad menor a ' + (productoReal.cantidad+1));
+        alertaWarning('Por favor, ingresa una cantidad menor a ' + (productoReal.cantidad+1));
         setSubmitting(false);
         return;
       }
@@ -64,7 +65,7 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
 
     if (action.trim() === "Mover Stock"){
       if (location.trim() === '' || quantity.trim() === '' || description.trim() === ''){
-        alert('Por favor, completa todos los campos');
+        alertaWarning('Por favor, completa todos los campos');
         setSubmitting(false);
         return;
       }
@@ -125,7 +126,15 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
           const localReal = res2.data
             .filter(local => (location ? local.nombre === location : true))[0]
           console.log(userData);
+          console.log(productoReal.id_joya);
+          console.log(Number(quantity));
+          console.log(res.data.id_tipo_joya);
+          console.log(productoReal.id_locacion);
+          console.log(localReal.id);
+          console.log(fechaHoyFormateada);
+          console.log(userData.data.id);
           await axios.post(ruta_back + 'transito', {
+            id_inventario: product.id,
             id_joya: productoReal.id_joya,
             cantidad: Number(quantity),
             id_tipo_joya: res.data.id_tipo_joya,
@@ -143,95 +152,11 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
     
         } catch (error) {
           console.log(error);
-          alert('Ocurrió un error al rebajar el inventario');
+          alertaError('Ocurrió un error al hacer post en transito');
           setSubmitting(false);
           return;
         }
-        try {
-          try {
-            const res = await axios.get(ruta_back + 'inventario',{
-              headers: {
-                Authorization: token, // No incluye el prefijo "Bearer"
-              }
-            });
-            const productos = res.data;
-            const filteredProducto = productos
-              .filter(producto => (location ? producto.local === location : true))
-              .filter(producto => (product.joya ? producto.joya === product.joya : true));
-            if (filteredProducto.length > 0) {
-              try {
-                const res = await axios.get(ruta_back + 'inventario/' + filteredProducto[0].id,{
-                  headers: {
-                    Authorization: token, // No incluye el prefijo "Bearer"
-                  }
-                });
-                const producto_cambiar = res.data;
-                try{
-                  await axios.put(ruta_back + 'inventario/' + producto_cambiar.id, {
-                    id_locacion: producto_cambiar.id_locacion,
-                    id_joya: producto_cambiar.id_joya,
-                    cantidad: Number(producto_cambiar.cantidad) + Number(quantity),
-                    precio_venta: producto_cambiar.precio_venta,
-                    deleted: false
-                  }, {
-                    headers: {
-                      Authorization: token, 
-                    }
-                  }); 
-                } catch (error) {
-                  console.log(error);
-                  alert('Ocurrió un error al modificar el inventario');
-                  setSubmitting(false);
-                  return;
-                }
-              } catch (error) {
-                console.log(error);
-                alert('Ocurrió un error al modificar el inventario');
-                setSubmitting(false);
-                return;
-              }
-            } else {
-              try {
-                const res = await axios.get(ruta_back + 'locacion',{
-                  headers: {
-                    Authorization: token, // No incluye el prefijo "Bearer"
-                  }
-                });
-                const localReal = res.data
-                  .filter(local => (location ? local.nombre === location : true))[0]
-                await axios.post(ruta_back + 'inventario', {
-                  id_locacion: localReal.id,
-                  id_joya: productoReal.id_joya,
-                  cantidad: quantity,
-                  precio_venta: productoReal.precio_venta,
-                  deleted: false
-                },{
-                  headers: {
-                    Authorization: token, // No incluye el prefijo "Bearer"
-                  }
-                }); 
-          
-              } catch (error) {
-                console.log(error);
-                alert('Ocurrió un error al modificar el inventario');
-                setSubmitting(false);
-                return;
-            }
-          }
-          } catch (error) {
-            console.log(error);
-            setSubmitting(false);
-            return;
-          }
-          
-          
-        } catch (error) {
-          console.log(error);
-          alert('Ocurrió un error al modificar el producto');
-          setSubmitting(false);
-          return;
-        }
-        alert('Se movieron correctamente ' + quantity + ' unidades de ' + product.joya +  ' desde ' + product.local + ' hacia ' + location);
+        alertaSuccess('Se movieron correctamente ' + quantity + ' unidades de ' + product.joya +  ' desde ' + product.local + ' hacia ' + location);
         setIsOpen(false);
         onSubmit();
         setAction('');
@@ -242,7 +167,7 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
         return;
       } catch (error){
         console.log(error);
-        alert('Ocurrió un error al modificar el inventario');
+        alertaError('Ocurrió un error al modificar el inventario');
         setSubmitting(false);
         return;
       }
@@ -255,7 +180,7 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
         description.trim() === ''
       )
         {
-          alert('Por favor, completa todos los campos');
+          alertaWarning('Por favor, completa todos los campos');
           setSubmitting(false);
           return;
     }
@@ -272,7 +197,7 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
                 Authorization: token, // No incluye el prefijo "Bearer"
               }
             }); 
-          alert('Se añadió correctamente ' + quantity + ' unidades de ' + product.joya +  ' al local ' + product.local);
+          alertaSuccess('Se añadió correctamente ' + quantity + ' unidades de ' + product.joya +  ' al local ' + product.local);
             console.log(product)
             console.log(productoReal)
             console.log(quantity)
@@ -304,8 +229,7 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
               }
             });
           } catch (error) {
-            console.log(error);
-            alert('Ocurrió un error al agregar stock al inventario');
+            alertaError('Ocurrió un error al agregar stock al inventario');
             setSubmitting(false);
             return;
           }
@@ -315,22 +239,26 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
             await axios.put(ruta_back + 'inventario/' + product.id, {
               id_locacion: productoReal.id_locacion,
               id_joya: productoReal.id_joya,
-              cantidad: productoReal.cantidad - quantity,
+              cantidad: Number(productoReal.cantidad) - Number(quantity),
               precio_venta: productoReal.precio_venta,
               deleted: false
+            },{
+              headers: {
+                Authorization: token, // No incluye el prefijo "Bearer"
+              }
             }); 
-          alert('Se quitaron correctamente ' + quantity + ' unidades de ' + product.joya +  ' a ' + product.local);
-          // Obtener la fecha de hoy
-          const fechaHoy = new Date();
+          alertaSuccess('Se vendieron ' + quantity + ' unidades de ' + product.joya );
+            // Obtener la fecha de hoy
+            const fechaHoy = new Date();
 
-          // Obtener los componentes de la fecha (día, mes y año)
-          const dia = String(fechaHoy.getDate()).padStart(2, '0');
-          const mes = String(fechaHoy.getMonth() + 1).padStart(2, '0'); // Sumamos 1 al mes ya que los meses en JavaScript empiezan desde 0 (enero es 0)
-          const anio = fechaHoy.getFullYear();
+            // Obtener los componentes de la fecha (día, mes y año)
+            const dia = String(fechaHoy.getDate()).padStart(2, '0');
+            const mes = String(fechaHoy.getMonth() + 1).padStart(2, '0'); // Sumamos 1 al mes ya que los meses en JavaScript empiezan desde 0 (enero es 0)
+            const anio = fechaHoy.getFullYear();
 
-          // Formatear la fecha en el formato deseado (dd/mm/aaaa)
-          const fechaHoyFormateada = dia+'/'+mes+'/'+anio;  
-          await axios.post(ruta_back + 'log_inventario', {
+            // Formatear la fecha en el formato deseado (dd/mm/aaaa)
+            const fechaHoyFormateada = dia+'/'+mes+'/'+anio;
+            await axios.post(ruta_back + 'log_inventario', {
               id_producto: product.id,
               nombre_producto: product.joya,
               tipo_producto: productoReal.id_joya,
@@ -338,13 +266,17 @@ const Modificar_Inventario = ({ product, onCancel, onSubmit }) => {
               cantidad: quantity,
               tipo_transaccion: 'VENTA',
               fecha_transaccion: fechaHoyFormateada,
-              valor_transaccion: 99999,
-              responsable_transaccion: 'ALEN GALINDO',
+              valor_transaccion: productoReal.precio_venta,
+              responsable_transaccion: userData.data.id,
+            },
+            {
+              headers:{
+                Authorization: token,
+              }
             });
-
           } catch (error) {
             console.log(error);
-            alert('Ocurrió un error al agregar stock al inventario');
+            alertaError('Ocurrió un error al agregar stock al inventario');
             setSubmitting(false);
             return;
           }

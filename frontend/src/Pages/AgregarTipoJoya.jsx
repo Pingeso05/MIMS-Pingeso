@@ -32,7 +32,7 @@ const AgregarTipoJoya = () => {
       setMaterialTipo('');
 
       alert('Tipo de joya agregado exitosamente');
-      window.location.href = ruta_front + 'tipos-de-joya';
+      window.location.href = ruta_front + 'admin/tipos-de-joya';
     } catch (error) {
       console.log(error);
       alert('Ocurrió un error al agregar el tipo de joya');

@@ -43,7 +43,8 @@ const Login = () => {
         data: {
           exp: expirationTimestamp,
           nombre: response.data.user,
-          id: Number(response.data.userId)
+          id: Number(response.data.userId),
+          rol: Number(response.data.rol)
         }
       };
       userLogin(userData);

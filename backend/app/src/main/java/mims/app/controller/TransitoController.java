@@ -25,7 +25,7 @@ public class TransitoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TransitoEntity> get_by_id(int id){
+    public ResponseEntity<TransitoEntity> get_by_id(@PathVariable int id){
         return transitoService.get_transito_by_id(id);
     }
 

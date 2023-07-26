@@ -23,11 +23,14 @@ public class UsuarioEntity {
     @Column(name = "apellido")
     private String apellido;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
+
+    @Column(name = "rol")
+    private int rol;
 
     @Column(name = "deleted")
     private boolean deleted;

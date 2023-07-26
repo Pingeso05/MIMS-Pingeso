@@ -89,7 +89,7 @@ const Joya = () => {
           <span>{filteredJoyas.length}</span>
         </Col>
         <Col className="right-col" md={6}>
-          <Link to="/joyas/agregar-joya">
+          <Link to="/admin/joyas/agregar-joya">
             <Button
               variant="primary"
               style={{
@@ -118,7 +118,7 @@ const Joya = () => {
             <tr className='cabeceras'>
               <th>NOMBRE DE JOYA</th>
               <th>TIPO JOYA</th>
-              <th>PRECIO COSTO?</th>
+              <th>PRECIO COSTO</th>
               <th>OPCIONES</th>
             </tr>
           </thead>
@@ -127,7 +127,7 @@ const Joya = () => {
               <tr key={index}>
                 <td>{joya.nombre}</td>
                 <td>{joya.tipo_joya}</td>
-                <td>${joya.cost}</td>
+                <td>${Number(joya.cost)}</td>
                 <td>
                   <div className="icono-columna">
                     <FaEdit

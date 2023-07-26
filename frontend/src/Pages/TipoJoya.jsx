@@ -60,7 +60,7 @@ const TipoJoya = () => {
           </Col>
  
         <Col className="right-col" md={6} >
-          <Link to="/tipos-de-joya/agregar-tipo">
+          <Link to="/admin/tipos-de-joya/agregar-tipo">
             <Button variant="primary"  style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent',fontSize:'14px'}}>Agregar Tipo Joya</Button>
           </Link>    
         </Col>

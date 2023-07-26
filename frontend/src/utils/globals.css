@@ -139,7 +139,7 @@ my-fila:hover{
 }
 
 
-  @media (max-width: 767px) {
+  @media (max-width: 1024px) {
     .titulo{
         margin-top: 10px;
         margin-bottom: 10px;
@@ -155,7 +155,7 @@ my-fila:hover{
     }
 
     .dropdown-tb{
-        width: 100px;
+        width: 200px;
         
     }
     .fila-dp {

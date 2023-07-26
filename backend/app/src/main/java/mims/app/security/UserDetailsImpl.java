@@ -23,6 +23,11 @@ public class UserDetailsImpl implements UserDetails {
         return usuario.getPassword();
     }
 
+
+    public int getRol() {
+        return usuario.getRol();
+    }
+
     @Override
     public String getUsername() {
         return usuario.getEmail();

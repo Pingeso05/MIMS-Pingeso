@@ -4,6 +4,7 @@ import axios from 'axios';
 import './Modificar_Inventario.css';
 import '../utils/globals';
 import {ruta_back} from '../utils/globals';
+import { alertaError, alertaSuccess, alertaWarning } from '../utils/alertas';
 
 const Editar_Inventario = ({ id, onCancel, onSubmit }) => {
   
@@ -51,7 +52,7 @@ const Editar_Inventario = ({ id, onCancel, onSubmit }) => {
     if (
       precioVenta === ''
     ) {
-      alert('Por favor, completa todos los campos');
+      alertaWarning('Por favor, completa todos los campos');
       return;
     }
 
@@ -77,10 +78,10 @@ const Editar_Inventario = ({ id, onCancel, onSubmit }) => {
       setPrecioVenta('');
       setIsOpen(false);
       onSubmit();
-      alert('Producto actualizado exitosamente');
+      alertaSuccess('Producto actualizado exitosamente');
     } catch (error) {
       console.log(error);
-      alert('Ocurrió un error al actualizar el producto');
+      alertaError('Ocurrió un error al actualizar el producto');
     }
   };
 

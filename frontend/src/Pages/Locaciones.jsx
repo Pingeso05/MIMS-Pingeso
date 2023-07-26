@@ -59,7 +59,7 @@ const Locaciones = () => {
             <span >{locaciones.length}</span>
           </Col>
           <Col className="right-col" md={6}>
-            <Link to="/locaciones/agregar-locacion">
+            <Link to="/admin/locaciones/agregar-locacion">
               <Button variant="primary" style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent',fontSize:'14px'}}>Agregar Locación</Button>
             </Link>
             
