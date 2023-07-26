@@ -8,11 +8,6 @@ import './Inventario.css';
 import React from 'react';
 import {ruta_back} from '../utils/globals.js';
 import '../utils/globals.css';
-import { FaEye, FaEdit } from 'react-icons/fa';
-import { MdOutlineInventory } from "react-icons/md";
-import Modificar_Inventario from '../Popups/Modificar_Inventario';
-import Editar_Inventario from '../Popups/Editar_Inventario';
-import Ver_Inventario from '../Popups/Ver_Inventario';
 import Button from 'react-bootstrap/Button';
 
 const Transito = () => {
@@ -22,11 +17,11 @@ const Transito = () => {
   const [locaciones, setLocaciones] = useState([]);
   const [locacion1Seleccionada, setLocacion1Seleccionada] = useState('');
   const [locacion2Seleccionada, setLocacion2Seleccionada] = useState('');
-  const [showModificarInventario, setModificarInventario] = useState(false);
-  const [showEditarInventario, setEditarInventario] = useState(false);
-  const [productoSeleccionado, setProductoSeleccionado] = useState(null);
-  const [showInventario, setShowInventario] = useState(false);
+  const [T, setT] = useState(null);
+  const [productoInventario, setProductoInventario] = useState(null); // [producto, setProducto
   const token = localStorage.getItem('accessToken');
+  const user = localStorage.getItem('user');
+  const userData = JSON.parse(user);
 
   const getLocaciones = async () => {
     try {
@@ -42,8 +37,6 @@ const Transito = () => {
       console.log('error: No se pudieron obtener la locaciones!');
     }
   };
-
-
   const handleLocacion1Change = (event) => {
     const locacion1 = event.target.value;
     setLocacion1Seleccionada(locacion1);
@@ -52,35 +45,6 @@ const Transito = () => {
     const locacion2 = event.target.value;
     setLocacion1Seleccionada(locacion2);
   };
-
-
-
-  const handleViewClick = (producto) => {
-    setProductoSeleccionado(producto);
-    setShowInventario(true);
-  };
-  
-  const handleEditClick = (producto) => {
-    setProductoSeleccionado(producto);
-    setEditarInventario(true);
-  };
-  
-  const handleChangeClick = (producto) => {
-    setProductoSeleccionado(producto);
-    setModificarInventario(true);
-  };
-
-  const handlePopupSubmit = async () => {
-    try {
-      await getProductos();
-    } catch (error) {
-      console.log(error);
-    }
-  setModificarInventario(false);
-  setEditarInventario(false);
-  };
-
-
   const getProductos = async () => {
     try {
       const res = await axios.get(ruta_back + 'transito', {
@@ -94,6 +58,252 @@ const Transito = () => {
       console.log(error);
     }
   };
+
+  const handleDevolver = async (producto) => {
+    console.log(producto);
+    try {
+      const res = await axios.get(ruta_back + 'transito/' + producto.id,{
+        headers: {
+          Authorization: token, // No incluye el prefijo "Bearer"
+        }
+      });
+      const p = res.data;
+      console.log("Aqui va el p:");
+      console.log(p);
+      const res2 = await axios.get(ruta_back + 'inventario/' + p.id_inventario,{
+        headers: {
+          Authorization: token, // No incluye el prefijo "Bearer"
+        }
+      });
+      const p2 = res2.data;
+      console.log("Aqui va el p2:");
+      console.log(p2);
+      await axios.put(ruta_back + 'inventario/' + p2.id,{
+          id_locacion: p2.id_locacion,
+          id_joya: p2.id_joya,
+          cantidad: p2.cantidad + p.cantidad,
+          precio_venta: p2.precio_venta,
+          deleted: false
+        },{headers: {
+          Authorization: token, // No incluye el prefijo "Bearer"
+        }
+      });
+      await axios.delete(ruta_back + 'transito/' + p.id,{
+        headers: {
+          Authorization: token, // No incluye el prefijo "Bearer"
+        }
+      });
+      // Obtener la fecha de hoy
+      const fechaHoy = new Date();
+      // Obtener los componentes de la fecha (día, mes y año)
+      const dia = String(fechaHoy.getDate()).padStart(2, '0');
+      const mes = String(fechaHoy.getMonth() + 1).padStart(2, '0'); // Sumamos 1 al mes ya que los meses en JavaScript empiezan desde 0 (enero es 0)
+      const anio = fechaHoy.getFullYear();
+
+      // Formatear la fecha en el formato deseado (dd/mm/aaaa)
+      
+      const fechaHoyFormateada = dia+'/'+mes+'/'+anio;
+
+      await axios.post(ruta_back + 'log_inventario', {
+        id_producto: p2.id,
+        nombre_producto: producto.joya,
+        tipo_producto: p2.id,
+        nombre_locacion: p2.id_locacion,
+        cantidad: p.cantidad,
+        tipo_transaccion: 'RETORNO',
+        fecha_transaccion: fechaHoyFormateada,
+        valor_transaccion: 0,
+        responsable_transaccion: userData.data.id,
+      }
+      ,{
+        headers: {
+          Authorization: token, // No incluye el prefijo "Bearer"
+        }
+      });
+
+      
+    } catch (error) {
+      console.log("no se pudo obtener el producto");
+      console.log(error);
+    }
+  };
+
+  const handleRecibir = async (producto) => {
+    try {
+      const res = await axios.get(ruta_back + 'transito/' + producto.id,{
+        headers: {
+          Authorization: token, // No incluye el prefijo "Bearer"
+        }
+      });
+      const p = res.data;
+      console.log("Aqui va el p:");
+      console.log(p);
+      const res2 = await axios.get(ruta_back + 'inventario/' + p.id_inventario,{
+        headers: {
+          Authorization: token, // No incluye el prefijo "Bearer"
+        }
+      });
+      const p2 = res2.data;
+      console.log("Aqui va el p2:");
+      console.log(p2);
+      const inventario = await axios.get(ruta_back + 'inventario',{
+        headers: {
+          Authorization: token, 
+        }
+      });
+      const res_locacion = await axios.get(ruta_back + 'locacion/' + p.id_destino,{
+        headers: {
+          Authorization: token,
+        }
+      });
+      const res_nombre_joya = await axios.get(ruta_back + 'joya/' + p2.id_joya,{
+        headers: {
+          Authorization: token,
+        }
+      });
+      const joyaSeleccionada = res_nombre_joya.data.nombre;
+      const locacionSeleccionada = res_locacion.data.nombre;
+      const inventarioItem = inventario.data.filter(
+          (item) => item.local?.trim() === locacionSeleccionada?.trim() && 
+          item.joya?.trim() === joyaSeleccionada?.trim()
+            
+        )[0];
+      // Obtener los componentes de la fecha (día, mes y año)
+      const fechaHoy = new Date();
+      const dia = String(fechaHoy.getDate()).padStart(2, '0');
+      const mes = String(fechaHoy.getMonth() + 1).padStart(2, '0'); // Sumamos 1 al mes ya que los meses en JavaScript empiezan desde 0 (enero es 0)
+      const anio = fechaHoy.getFullYear();
+
+      // Formatear la fecha en el formato deseado (dd/mm/aaaa)
+      const fechaHoyFormateada = dia+'/'+mes+'/'+anio;
+
+      if (inventarioItem) {
+          const cantidadInventario = inventarioItem.cantidad;
+          const cantidadActual = p.cantidad;
+          const nuevaCantidad = cantidadActual + cantidadInventario;
+          console.log("Inventario Item");
+          console.log(inventarioItem);
+          try{
+            const res = await axios.get(ruta_back + 'inventario/' + inventarioItem.id,{
+                headers: {
+                  Authorization: token, 
+                }
+              });
+            const producto_cambiar = res.data;
+            console.log(producto_cambiar);
+            try{
+              await axios.put(ruta_back + 'inventario/' + producto_cambiar.id, {
+                  id_locacion: producto_cambiar.id_locacion,
+                  id_joya: producto_cambiar.id_joya,
+                  cantidad: nuevaCantidad,
+                  precio_venta: producto_cambiar.precio_venta,
+                  deleted: false
+              },{
+                headers: {
+                  Authorization: token, 
+                }
+              });
+
+              try{
+                  await axios.post(ruta_back + 'log_inventario', {
+                  id_producto: producto_cambiar.id,
+                  nombre_producto: producto.joya,
+                  tipo_producto: producto_cambiar.id_joya,
+                  nombre_locacion: producto_cambiar.id_locacion,
+                  cantidad: cantidadActual,
+                  tipo_transaccion: 'RECEPCION',
+                  fecha_transaccion: fechaHoyFormateada,
+                  valor_transaccion: producto_cambiar.precio_venta,
+                  responsable_transaccion: userData.data.id,
+                },{
+                  headers: {
+                    Authorization: token, 
+                  }
+                }); 
+              }catch (error) {
+                console.log(error);
+                alert('Ocurrió un error al generar el log de inventario');
+                return;
+              }
+            } catch (error) {
+                console.log(error);
+                alert('Ocurrió un error al modificar el inventario');
+                return;
+            }
+
+
+
+            //----------------------------
+          } catch (error) {
+              console.log('Error al actualizar el inventario:', error);
+          }
+
+      } else {
+        try{
+          const res2 = await axios.get(ruta_back + 'inventario',{
+            headers: {
+              Authorization: token, 
+            }
+          });
+          const producto_auxiliar = res2.data.find((item) => producto.joya === item.joya);
+          //console.log("El producto auxiliar: " + {producto_auxiliar});
+          await axios.post(ruta_back + 'inventario', {
+                id_locacion: p.id_destino,
+                id_joya: p2.id_joya,
+                cantidad: p.cantidad,
+                precio_venta: producto_auxiliar.precio_venta,
+                deleted: false
+                },{
+                  headers: {
+                    Authorization: token, 
+                  }
+                });
+
+                try{
+                  const res = await axios.get(ruta_back + 'inventario',{
+                    headers: {
+                      Authorization: token, 
+                    }
+                  });
+                  const last = res.data[res.data.length - 1];
+                  await axios.post(ruta_back + 'log_inventario', {
+                    id_producto: last.id,
+                    nombre_producto: producto.joya,
+                    tipo_producto: 1,
+                    nombre_locacion: p.id_destino,
+                    cantidad: p.cantidad,
+                    tipo_transaccion: 'RECEPCION',
+                    fecha_transaccion: fechaHoyFormateada,
+                    valor_transaccion: 0,
+                    responsable_transaccion: userData.data.id,
+                  },{
+                    headers: {
+                      Authorization: token, 
+                    }
+                  }); 
+                }catch (error) {
+                  console.log(error);
+                  alert('Ocurrió un error al generar el log de inventario');
+                  return;
+                }
+
+
+          } catch (error) {
+              console.log('Error al actualizar el inventario:', error);
+          }
+
+      }
+  } catch (error) {
+    console.log(error);
+  }
+  await axios.delete(ruta_back + 'transito/' + producto.id,{
+    headers: {
+      Authorization: token, // No incluye el prefijo "Bearer"
+    }
+  });
+  };
+
+
 
   const getCategorias = async () => {
     try {
@@ -115,10 +325,12 @@ const Transito = () => {
   };
   
   useEffect(() => {
+    setProductoInventario();
+    setT();
     getProductos();
     getCategorias();
     getLocaciones();
-  }, []);
+  }, [T,]);
 
   const filteredProductos = productos
   .filter(producto => (categoriaSeleccionada ? producto.tipo_producto === categoriaSeleccionada : true))
@@ -210,8 +422,12 @@ const Transito = () => {
                   <td>
                   <div className='icono-columna'>
                   
-                    <Col style={{padding:'2px'}}><Button variant="primary" style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent',fontSize:'14px'}}>RECEPCIONAR</Button></Col>
-                    <Col style={{padding:'2px'}}><Button variant="primary" style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent',fontSize:'14px'}}>CANCELAR</Button></Col>
+                    <Col  style={{padding:'2px'}}><Button variant="primary" onClick ={() => handleRecibir(producto)} style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent',fontSize:'14px'}}>RECEPCIONAR</Button></Col>
+                    <Col  style={{padding:'2px'}}>
+                      <Button onClick={() => handleDevolver(producto)} variant="primary" style={{ marginRight: '10px' , backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent',fontSize:'14px'}}>
+                        CANCELAR
+                      </Button>
+                    </Col>
                   
                   </div>
                   </td>
@@ -221,28 +437,6 @@ const Transito = () => {
           </Table>  
         </div>
 
-        {showModificarInventario && (
-        <Modificar_Inventario
-          product={productoSeleccionado}
-          onCancel={() => setModificarInventario(false)}
-          onSubmit={handlePopupSubmit}
-        />
-         )}
-
-        {showEditarInventario && (
-        <Editar_Inventario
-          id={productoSeleccionado.id}
-          onCancel={() => setEditarInventario(false)}
-          onSubmit={handlePopupSubmit}
-        />
-         )}
-        
-        {showInventario && (
-        <Ver_Inventario
-          id={productoSeleccionado.id}
-          onCancel={() => setShowInventario(false)}
-        />
-         )}
         </Container>
     );
   };

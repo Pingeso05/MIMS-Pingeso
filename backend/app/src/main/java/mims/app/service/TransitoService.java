@@ -22,6 +22,7 @@ public class TransitoService {
 
     public ResponseEntity<TransitoEntity> get_transito_by_id(int id) {
         return transitoRepository.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+
     }
 
     public ResponseEntity<TransitoEntity> create_transito(TransitoEntity transitoEntity) {
