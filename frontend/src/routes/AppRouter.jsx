@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Router, Routes, Route, Navigate } from 'react-router-dom';
 import InventarioRoutes from './inventarioRoutes';
 import VendedorRoutes from './vendedorRoutes';
 import Login from '../Autenticacion/Login';

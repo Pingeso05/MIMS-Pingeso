@@ -5,7 +5,7 @@ import AgregarJoya from '../Pages/AgregarJoya';
 import '../App.css';
 import Container from 'react-bootstrap/Container';
 import Layout from '../Components/Layout';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Router, Routes, Route, Navigate } from 'react-router-dom';
 import Joya from '../Pages/Joya';
 import AgregarProducto from '../Pages/Agregar_Producto';
 import Locaciones from '../Pages/Locaciones';
