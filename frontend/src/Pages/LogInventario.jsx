@@ -143,6 +143,7 @@ const LogInventario = () => {
       <Row className="fila-dp" style={{ marginTop: '20px' }}>
         <Col md={3} style={{ display: 'flex', alignItems: 'left' }}>
           <select className='dropdown-tb'
+            style={{ marginTop: '10px' }}
             value={categoriaSeleccionada}
             onChange={handleCategoriaChange}
           >
@@ -152,8 +153,9 @@ const LogInventario = () => {
             ))}
           </select>
         </Col>
-        <Col md={3} style={{ display: 'flex', alignItems: 'left' }}>
+        <Col md={3} style={{ display: 'flex', alignItems: 'left', }}>
           <select className='dropdown-tb'
+            style={{ marginTop: '10px' }}
             value={locacionSeleccionada}
             onChange={handleLocacionChange}
           >
@@ -163,7 +165,7 @@ const LogInventario = () => {
             ))}
           </select>
         </Col>
-        <Col md={3} style={{ display: 'flex', alignItems: 'center' }}>
+        <Col md={3} style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
           <DatePicker
             className='datepicker'
             selected={fechaSeleccionada}
@@ -182,8 +184,8 @@ const LogInventario = () => {
         <Table bordered hover className='table'>
           <thead>
             <tr className='cabeceras'>
-              <th>ID TRANSACCION</th>
-              <th>ID PRODUCTO</th>
+              <th className='ocultar-columna'>ID TRANSACCION</th>
+              <th className='ocultar-columna'>ID PRODUCTO</th>
               <th>NOMBRE PRODUCTO</th>
               <th>FECHA</th>
               <th>RESPONSABLE</th>
@@ -195,8 +197,8 @@ const LogInventario = () => {
           <tbody>
             {filteredProductos.map((registro, index) => (
               <tr key={index}>
-                <td>{registro.id}</td>
-                <td>{registro.id_producto}</td>
+                <td className='ocultar-columna'>{registro.id}</td>
+                <td className='ocultar-columna'>{registro.id_producto}</td>
                 <td>{registro.nombre_producto}</td>
                 <td>{registro.fecha_transaccion}</td>
                 <td>{registro.responsable_transaccion}</td>

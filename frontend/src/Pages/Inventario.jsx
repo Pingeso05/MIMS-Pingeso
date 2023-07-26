@@ -124,9 +124,6 @@ const Inventario = () => {
     <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-table">
       <h1 className='titulo' >LISTA DE PRODUCTOS</h1>
       
-        
-          
-
       <Row className="fila-dp" style={{ marginTop: '10px' }}>
         <Col className="columna-dp" style={{ padding:'5px',display: 'flex', alignItems: 'left' }}>
           <Col md={6} style={{ display: 'flex', alignItems: 'left' }}>
