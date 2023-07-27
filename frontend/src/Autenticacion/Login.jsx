@@ -5,6 +5,7 @@ import { useNavigate, Navigate } from 'react-router-dom';
 import { ruta_back } from '../utils/globals';
 import {  useAuth } from '../context/AuthContext';
 import axios from 'axios';
+import { alertaError, alertaWarning } from '../utils/alertas';
 
 const Login = () => {
 
@@ -23,7 +24,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     if (email.trim() === '' || password.trim() === '') {
-      alert('Por favor, ingrese su correo electrónico y contraseña.');
+      alertaWarning('Por favor, ingrese su correo electrónico y contraseña.');
       return;
     }
 
@@ -60,7 +61,7 @@ const Login = () => {
         });
       } 
     } catch (error) {
-        alert('No encontramos un usuario con esas credenciales.');
+        alertaError('No encontramos un usuario con esas credenciales.');
       }
       
   };
