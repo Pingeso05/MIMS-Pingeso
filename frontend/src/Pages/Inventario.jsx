@@ -137,7 +137,7 @@ const Inventario = () => {
               ))}
             </select>
 
-            <select className='dropdown-tb'
+            <select className='dropdown-tb' style={{marginLeft:'5px'}}
               value={locacionSeleccionada}
               onChange={handleLocacionChange}
             >
