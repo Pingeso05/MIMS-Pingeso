@@ -389,7 +389,7 @@ const Transito = () => {
   .filter(producto => (locacion2Seleccionada ? producto.destino === locacion2Seleccionada : true));
 
   return (
-    <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-table">
+    <Container style={{ marginTop: '30px', textAlign: 'center' }} className="container-table">
       <h1 className='titulo' >PRODUCTOS EN TRANSITO</h1>
       
         
@@ -443,7 +443,7 @@ const Transito = () => {
           </Col>
       </Row>
       
-          <div style={{ overflow: 'auto', maxHeight: '60vh', marginTop: '20px' }}>
+          <div className='div-table'>
           <Table bordered hover className='table'>
             <thead>
               <tr className='cabeceras'>

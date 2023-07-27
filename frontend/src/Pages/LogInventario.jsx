@@ -118,7 +118,7 @@ const LogInventario = () => {
   ));
   
   return (
-    <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container-table">
+    <Container style={{ marginTop: '30px', textAlign: 'center' }} className="container-table">
       <h1 className='titulo' >REGISTRO DE TRANSACCIONES</h1>
 
       <Row className="fila-dp" style={{ marginTop: '20px' }}>
@@ -133,8 +133,6 @@ const LogInventario = () => {
               <option value={categoria} key={index}>{categoria}</option>
             ))}
           </select>
-        </Col>
-        <Col md={3} style={{ display: 'flex', alignItems: 'left', }}>
           <select className='dropdown-tb'
             style={{ marginTop: '10px' }}
             value={locacionSeleccionada}
@@ -145,6 +143,9 @@ const LogInventario = () => {
               <option value={locacion} key={index}>{locacion}</option>
             ))}
           </select>
+        </Col>
+        <Col md={3} style={{ display: 'flex', alignItems: 'left', }}>
+
         </Col>
         <Col md={3} style={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
           <DatePicker
@@ -161,7 +162,7 @@ const LogInventario = () => {
         </Col>
       </Row>
   
-      <div style={{ overflow: 'auto', maxHeight: '60vh', marginTop: '20px' }}>
+      <div className='div-table'>
         <Table bordered hover className='table'>
           <thead>
             <tr className='cabeceras'>
