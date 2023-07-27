@@ -98,19 +98,29 @@ my-fila:hover{
     font-size: 48px;
   }
 
+.div-table{
+  overflow-y: auto; 
+  overflow-x: hidden; 
+  max-height: 60vh;
+  margin-top: 5px;
+  width: 100%;
+}
+
 .table {
     background-color: #ffffff;
     border-collapse: collapse;
     text-align: center;
+    
 }
 .table td,
 .table th {
-  vertical-align: middle; 
+  vertical-align: middle;
 }
 .table thead tr.cabeceras th {
     position: sticky;
     top: -1px;
     background-color: #F5F5F5;
+    
   }
   
 .left-col {
@@ -152,6 +162,9 @@ my-fila:hover{
       margin-bottom: 5px; 
       margin-top: 5px;
       height: 80vh;
+    }
+    .div-table{
+      overflow: auto; 
     }
 
     .dropdown-tb{
@@ -197,6 +210,12 @@ my-fila:hover{
         align-items: center;
       }
 }
+@media (max-height: 720px) {
+  .div-table {
+    max-height: 50vh;
+  }  
+}
+
 .joya-row {
     display: flex;
     align-items: center;

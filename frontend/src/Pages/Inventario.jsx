@@ -136,10 +136,8 @@ const Inventario = () => {
                 <option value={categoria} key={index}>{categoria}</option>
               ))}
             </select>
-          </Col>
-          
-          <Col md={6} style={{ marginTop: '5px',display: 'flex', alignItems: 'left' }}>
-            <select className='dropdown-tb'
+
+            <select className='dropdown-tb' style={{marginLeft:'5px'}}
               value={locacionSeleccionada}
               onChange={handleLocacionChange}
             >
@@ -151,6 +149,8 @@ const Inventario = () => {
           </Col>
           
 
+          
+
 
       </Row>
       <Row style={{padding:'10px'}}>
@@ -160,7 +160,7 @@ const Inventario = () => {
         </Col>
       </Row>
       
-          <div style={{ overflow: 'auto', maxHeight: '60vh', marginTop: '20px' }}>
+          <div className="div-table" >
           <Table bordered hover className='table'>
             <thead>
               <tr className='cabeceras'>
@@ -188,11 +188,11 @@ const Inventario = () => {
                   <td>
                   <div>
                     <Row>
-                      <Col style={{padding:'1px'}}><Button variant="success" onClick={() => handleViewClick(producto)} style={{backgroundColor: 'success', borderRadius: '10', borderColor: 'transparent',fontSize:'10px'}}>DETALLE</Button></Col>
-                      <Col style={{padding:'1px'}}><Button variant="primary" onClick={() => handleEditClick(producto)} style={{backgroundColor: 'danger', borderRadius: '10', borderColor: 'transparent',fontSize:'10px'}}>EDITAR</Button></Col>
+                      <Col style={{padding:'1px'}}><Button className="boton1" variant="success" onClick={() => handleViewClick(producto)} style={{backgroundColor: 'success', borderRadius: '10', borderColor: 'transparent',fontSize:'10px'}}>DETALLE</Button></Col>
+                      <Col style={{padding:'1px'}}><Button className="boton1" variant="primary" onClick={() => handleEditClick(producto)} style={{backgroundColor: 'danger', borderRadius: '10', borderColor: 'transparent',fontSize:'10px'}}>EDITAR</Button></Col>
                     </Row>
                     <Row>
-                    <Col style={{padding:'1px'}}><Button variant="primary" onClick={() => handleChangeClick(producto)} style={{backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent',fontSize:'10px'}}>ACCIONES</Button></Col>
+                    <Col style={{padding:'1px'}}><Button className="boton1" variant="primary" onClick={() => handleChangeClick(producto)} style={{backgroundColor: '#D5418F', borderRadius: '10', borderColor: 'transparent',fontSize:'10px'}}>ACCIONES</Button></Col>
                     </Row>
                     
                   </div>

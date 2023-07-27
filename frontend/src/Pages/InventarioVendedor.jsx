@@ -127,9 +127,8 @@ const InventarioVendedor = () => {
                 <option value={categoria} key={index}>{categoria}</option>
               ))}
             </select>
-          </Col>
-          <Col md={6} style={{ marginTop: '5px',display: 'flex', alignItems: 'left' }}>
-            <select className='dropdown-tb'
+
+            <select className='dropdown-tb' style={{marginLeft:'5px'}}
               value={locacionSeleccionada}
               onChange={handleLocacionChange}
             >
@@ -139,6 +138,7 @@ const InventarioVendedor = () => {
               ))}
             </select>
           </Col>
+
           
 
       </Row>
@@ -149,7 +149,7 @@ const InventarioVendedor = () => {
         </Col>
       </Row>
       
-          <div style={{ overflow: 'auto', maxHeight: '60vh', marginTop: '20px' }}>
+          <div className='div-table'>
           <Table bordered hover className='table'>
             <thead>
               <tr className='cabeceras'>
