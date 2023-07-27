@@ -210,7 +210,7 @@ my-fila:hover{
         align-items: center;
       }
 }
-@media (max-height: 720px) {
+@media (max-height: 1024px) and (max-width: 1024px) {
   .div-table {
     max-height: 50vh;
   }  
