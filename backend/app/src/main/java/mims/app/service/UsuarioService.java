@@ -56,6 +56,7 @@ public class UsuarioService {
     public ResponseEntity<UsuarioEntity> delete(int id) {
         return usuarioRepository.findById(id).map(usuario -> {
             usuario.setDeleted(true);
+            usuario.setEmail("");
             UsuarioEntity usuario_deleted = usuarioRepository.save(usuario);
             return ResponseEntity.ok().body(usuario_deleted);
         }).orElse(ResponseEntity.notFound().build());

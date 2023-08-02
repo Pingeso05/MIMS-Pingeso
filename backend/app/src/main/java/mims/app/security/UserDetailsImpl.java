@@ -40,7 +40,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return !usuario.getDeleted();
     }
 
     @Override
@@ -50,13 +50,16 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return !usuario.getDeleted();
     }
 
     public String getNombre(){
         return usuario.getNombre();
     }
+
     public int getId(){
         return usuario.getId();
     }
+
+
 }

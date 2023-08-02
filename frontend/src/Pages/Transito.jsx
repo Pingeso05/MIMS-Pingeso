@@ -397,43 +397,19 @@ const Transito = () => {
 
       <Row className="fila-dp" style={{ marginTop: '10px' }}>
 
-          <Col md={6} style={{ marginTop: '5px',display: 'flex', alignItems: 'left' }}>
-            <select className='dropdown-tb'
-              value={categoriaSeleccionada}
-              onChange={handleCategoriaChange}
-            >
-              <option value="">CATEGORÍA</option>
-              {categorias.map((categoria, index) => (
-                <option value={categoria} key={index}>{categoria}</option>
-              ))}
-            </select>
-          </Col>
-          <Col md={6} style={{ marginTop: '5px', display: 'flex', alignItems: 'left'}}>
-            <select className='dropdown-tb'
-              style={{ marginRight: '10px' }}
-              value={locacion1Seleccionada}
-              onChange={handleLocacion1Change}
-            >
-              <option value="">ORIGEN</option>
-              {locaciones.map((locacion1, index) => (
-                <option value={locacion1} key={index}>{locacion1}</option>
-              ))}
-            </select>
-            
-            
-            <select className='dropdown-tb'
-              value={locacion2Seleccionada}
-              onChange={handleLocacion2Change}
-            >
-              <option value="">DESTINO</option>
-              {locaciones.map((locacion2, index) => (
-                <option value={locacion2} key={index}>{locacion2}</option>
-              ))}
-            </select>
-            
-          </Col>
-          
-
+        <Col md={6} style={{ marginTop: '5px',display: 'flex', alignItems: 'left' }}>
+          <select className='dropdown-tb'
+            value={categoriaSeleccionada}
+            onChange={handleCategoriaChange}
+          >
+            <option value="">CATEGORÍA</option>
+            {categorias.map((categoria, index) => (
+              <option value={categoria} key={index}>{categoria}</option>
+            ))}
+          </select>
+        </Col>
+      
+                 
 
       </Row>
       <Row style={{padding:'10px'}}>

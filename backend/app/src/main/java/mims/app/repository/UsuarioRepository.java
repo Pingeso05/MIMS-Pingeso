@@ -17,4 +17,6 @@ public interface UsuarioRepository extends JpaRepository<UsuarioEntity, Integer>
     Optional<UsuarioEntity> findOneByEmail(String email);
     @Query(value = "SELECT usuario.id, usuario.nombre, usuario.apellido, usuario.email, roles.nombre AS rol FROM mims.usuario, mims.roles WHERE roles.id = usuario.rol AND usuario.deleted = 0", nativeQuery = true)
     public ArrayList<DisplayUsuarioModelInterface> findAllUsuariosNotDeleted();
+
+    Optional<Object> findOneByEmailAndDeletedIsFalse(String email);
 }
