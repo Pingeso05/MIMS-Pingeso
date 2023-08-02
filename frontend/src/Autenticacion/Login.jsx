@@ -38,8 +38,11 @@ const Login = () => {
       
       localStorage.setItem('accessToken', accessToken);
       const currentDate = new Date();
-      const expirationDate = new Date(currentDate.getTime() + (30 * 24 * 60 * 60 * 1000)); 
+      const expirationDate = new Date(currentDate.getTime() + 86400000);
       const expirationTimestamp = expirationDate.getTime();
+
+
+      
       const userData = {
         data: {
           exp: expirationTimestamp,
