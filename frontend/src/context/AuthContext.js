@@ -37,7 +37,10 @@ export function AuthProvider({ children }) {
     const { data } = user;
   
     // Verificar si el token ha expirado
-    if (!data || !data.exp || Date.now() > data.exp * 1000) {
+    const fechaactual = new Date(Date.now());
+    const fechaExp = new Date(data.exp);
+
+    if ((!data) || (!data.exp) || (fechaactual > fechaExp)) {
       userLogout();
       return false;
     }

@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class TokenUtils {
 
     private final static String ACCESS_TOKEN_SECRET = "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";
-    private final static Long ACCESS_TOKEN_VALIDITY_SECONDS = 2_592_000L;
+    private final static Long ACCESS_TOKEN_VALIDITY_SECONDS = 86_400L;
 
 
     public static String createToken(String nombre, String email) {
